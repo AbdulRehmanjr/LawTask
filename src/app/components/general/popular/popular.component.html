@@ -1,0 +1,57 @@
+<section>
+  <div class="row text-center">
+    <h3 class="heading">Popular Jobs</h3>
+  </div>
+  <div class="row offset-sm-1">
+    <div *ngFor="let card of cards" class="col-sm-6 col-md-3 text-center category-box">
+      <a>
+        <div class="category-box-icon">
+          <i class="{{card.icon}}"></i>
+        </div>
+        <div class="category-box-counter">{{card.counter}}</div>
+        <div class="category-box-content">
+          <h3>{{card.category}}</h3>
+          <p>{{card.description}}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="row text-center">
+    <h3 class="heading">Featured Jobs</h3>
+    <div class="row offset-md-1">
+      <div class="col-md-9">
+        <a href="single-job-page.html" class="job-listing with-apply-button">
+
+          <!-- Job Listing Details -->
+          <div class="job-listing-details">
+
+            <!-- Logo -->
+            <div class="job-listing-company-logo">
+              <img src="images/company-logo-01.png" alt="">
+            </div>
+
+            <!-- Details -->
+            <div class="job-listing-description">
+              <h3 class="job-listing-title">Bilingual Event Support Specialist</h3>
+
+              <!-- Job Listing Footer -->
+              <div class="job-listing-footer">
+                <ul>
+                  <li><i class="icon-material-outline-business"></i> Hexagon <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>
+                  <li><i class="icon-material-outline-location-on"></i> San Francissco</li>
+                  <li><i class="icon-material-outline-business-center"></i> Full Time</li>
+                  <li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Apply Button -->
+            <span class="list-apply-button ripple-effect">Apply Now</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
