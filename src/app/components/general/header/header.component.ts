@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import * as $ from 'jquery'
 
-import {mmenu } from 'src/assets/js/mmenu.min.js'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
