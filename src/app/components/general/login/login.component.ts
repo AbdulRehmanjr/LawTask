@@ -37,16 +37,11 @@ export class LoginComponent {
   }
 
 
-
-  get email(): any { return this.LoginForm.get('email').value; }
-  get password(): any { return this.LoginForm.get('password').value; }
-
   // form submission
   OnSubmit() {
 
 
     if (this.LoginForm.invalid) {
-
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please Provide Credentials' })
       return
     }
@@ -56,11 +51,6 @@ export class LoginComponent {
     login.email = this.LoginForm.controls['email'].value;
     login.password = this.LoginForm.controls['password'].value;
 
-    // checking blank
-    if (login.email.trim() == "") {
-
-
-    }
 
     this.loginService.generateToken(login).subscribe({
       next: (data: any) => {
@@ -70,15 +60,12 @@ export class LoginComponent {
         this.loginService.currentUser(login).subscribe(
           {
             next: (data: any) => {
-              console.log("Data from request", data)
               this.loginService.setUser(data)
-
             }
-            , error(err) {
-              console.log(err)
+            , error(err:Error) {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Network Error' })
             },
             complete: () => {
-              console.log('completed seting user')
               this.redirection()
             },
           }
@@ -86,7 +73,7 @@ export class LoginComponent {
         )
       },
       error: (err) => {
-        console.log(err)
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Network Error' })
 
       },
       complete: () => {

@@ -25,6 +25,7 @@ import { PopularComponent } from '../../components/general/popular/popular.compo
 import { FooterComponent } from '../../components/general/footer/footer.component';
 import { LoginComponent } from '../../components/general/login/login.component';
 import { SignupComponent } from '../../components/general/signup/signup.component';
+import { SubscriptioncardComponent } from '../../components/general/subscriptioncard/subscriptioncard.component';
 @NgModule({
   declarations: [
     UserComponent,
@@ -34,6 +35,7 @@ import { SignupComponent } from '../../components/general/signup/signup.componen
     FooterComponent,
     LoginComponent,
     SignupComponent,
+    SubscriptioncardComponent,
   ],
   imports: [
     ToastModule,
