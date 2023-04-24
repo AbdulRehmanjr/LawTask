@@ -1,7 +1,4 @@
-.container-fluid {
-  padding-left: 0;
-  padding-right: 0;
-}
+
 
 html{
   scroll-behavior: smooth;
@@ -16,10 +13,17 @@ body {
   color: #666;
   background: #fff;
 }
-body, h1, h2, h3, h4, h5, h6,  input[type="text"], input[type="password"], input[type="email"],
-	textarea, select, input[type="button"], input[type="submit"], button, body .pac-container
-	{ font-family: "Nunito", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; text-transform: none; }
 
+.sticky{
+  position: sticky;
+  top:0;
+  left: 0;
+  z-index: 99999999;
+}
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
 	/* Headlines */
 	h1, h2, h3, h4, h5, h6 {
 		color: #333;
@@ -29,7 +33,13 @@ body, h1, h2, h3, h4, h5, h6,  input[type="text"], input[type="password"], input
 	}
 
 
-
+a{
+  text-decoration: none;
+  color:black;
+}
+a:hover{
+  color:black;
+}
 	/* Section Headline */
 	.section-headline {
 		display: block;

@@ -28,6 +28,10 @@ input {
   border: none;
   outline: none;
 }
+input:hover,input:focus{
+  border: none;
+  outline: none;
+}
 .btn {
   border: none;
   outline: none;

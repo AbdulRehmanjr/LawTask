@@ -1,28 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 import * as $ from 'jquery'
 
 @Component({
-  selector: 'app-header',
+  selector: 'shared-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit,AfterViewInit{
 
 
+  check:string
   ngOnInit(): void {
+
+    this.check = JSON.parse(localStorage.getItem('user'))['userId']
+  }
+  ngAfterViewInit(): void {
     this.profileDropdown()
   }
-
-
-  profileDropdown(){
+  profileDropdown():void {
+    console.log('fie')
     $(".header-notifications").each(function() {
       var userMenu = $(this);
       var userMenuTrigger = $(this).find('.header-notifications-trigger a');
-
+      console.log('found')
       $(userMenuTrigger).on('click', function(event) {
         event.preventDefault();
-
+        console.log('clicked')
         if ( $(this).closest(".header-notifications").is(".active") ) {
                 close_user_dropdown();
             } else {

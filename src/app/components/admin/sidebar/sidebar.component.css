@@ -1,0 +1,201 @@
+.sticky{
+  position: sticky;
+  top:50px;
+}
+
+.dashboard-nav {
+	display: block;
+	z-index: 11;
+	padding-bottom: 30px;
+}
+
+a.dashboard-responsive-nav-trigger { display: none; }
+
+.dashboard-nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 25px 0 0 0;
+}
+
+.dashboard-nav ul:first-child {
+	margin: 30px 0 0 0;
+}
+
+.dashboard-nav ul:before {
+	content: attr(data-submenu-title);
+	padding: 0 35px;
+	margin-bottom: 5px;
+	display: block;
+	color: #2A41E8;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+/* 1st Level */
+.dashboard-nav ul li {
+	display: block;
+	border-left: 3px solid transparent;
+	transition: 0.3s;
+	line-height: 25px;
+	font-size: 15px;
+}
+
+.dashboard-nav ul li a {
+	color: #707070;
+	padding: 11px 32px;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.dashboard-nav ul li a i {
+	padding:15px 0;
+	width: 15px;
+	font-size: 15px;
+	color: #909090;
+	transition: 0.3s;
+}
+
+
+/* Hover State */
+.dashboard-nav ul li ul li:hover a { padding-left: 4px; }
+
+
+.dashboard-nav ul li.active-submenu a i,
+.dashboard-nav ul li.active a i,
+.dashboard-nav ul li:hover a i {
+	color: #2A41E8;
+}
+
+.dashboard-nav ul li.active-submenu,
+.dashboard-nav ul li.active,
+.dashboard-nav ul li:hover {
+	border-color: #2A41E8;
+	background-color: rgba(102,103,107,0.04);
+}
+
+/*.dashboard-nav ul li:hover {
+	background-color: #f8f8f8;
+}*/
+
+.dashboard-nav ul li.active-submenu a,
+.dashboard-nav ul li:hover a,
+.dashboard-nav ul li.active a { color: #2A41E8; }
+
+
+/* Nav Tag */
+.dashboard-nav ul li span.nav-tag {
+	display: inline-block;
+    font-weight: 700;
+    height: 19px;
+    width: 19px;
+    line-height: 19px;
+    text-align: center;
+    color: #fff;
+    font-size: 11px;
+    background-color: #66676b;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 0 0 4px;
+    top: -2px;
+}
+
+/* Dropdown Styles */
+.dashboard-nav ul li ul {
+	padding: 0;
+	margin: 0;
+	visibility: hidden;
+	max-height: 0;
+	opacity: 0;
+	line-height: 0;
+	transition: 0.3s;
+	pointer-events: none;
+}
+
+.dashboard-nav ul li.active-submenu ul {
+	visibility: visible;
+	padding: 0 0 18px 0;
+	line-height: 24px;
+	opacity: 1;
+	max-height: 200px;
+	pointer-events: all;
+}
+
+.dashboard-nav ul li ul li {
+	background-color: transparent;
+	border: none;
+	padding-left: 63px;
+	position: relative;
+	margin: 0;
+}
+
+.dashboard-nav ul li ul li a {
+	padding: 5px 0;
+}
+
+.dashboard-nav ul li ul li:hover {
+	border: none;
+	background-color: transparent;
+}
+
+/* Indicator Arrow */
+.dashboard-nav ul li a:after {
+    font-family: "Material-Icons";
+    content: '\e914';
+    opacity: 1;
+    font-size: 16px;
+    transition: 0.3s;
+    opacity: 1;
+    line-height: 17px;
+    width: 17px;
+    height: 17px;
+    background-color: #f0f0f0;
+    color: #a8a8a8;
+    display: inline-block;
+    border-radius: 3px;
+    margin-left: 7px;
+    text-indent: 0;
+    top: 1px;
+    position: absolute;
+   	right: 35px;
+    top: 15px;
+}
+
+.dashboard-nav ul li.active-submenu a:after,
+.dashboard-nav ul li.active a:after,
+.dashboard-nav ul li:hover a:after {
+    color: #66676b;
+    background: rgba(102,103,107,0.13);
+    opacity: 0.8;
+}
+
+.dashboard-nav ul li ul:before,
+.dashboard-nav ul li a:only-child:after { content: ''; display: none; }
+
+
+/* ---------------------------------- */
+/* Dashboard Elements
+------------------------------------- */
+
+/* Dashboard Headline
+------------------------------------- */
+.dashboard-headline {
+	display: block;
+	position: relative;
+	margin-bottom: 50px;
+}
+
+.dashboard-headline h3 {
+	display: block;
+	font-size: 26px;
+	color: #333;
+}
+
+.dashboard-headline span {
+	display: block;
+	font-size: 18px;
+	color: #888;
+	line-height: 30px;
+	margin-top: 5px;
+}
+
+.dashboard-headline #breadcrumbs { right: 0; }

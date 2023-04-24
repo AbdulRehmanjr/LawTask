@@ -48,7 +48,7 @@ export class LoginComponent {
 
     let login = new Login();
 
-    login.email = this.LoginForm.controls['email'].value;
+    login.userEmail = this.LoginForm.controls['email'].value;
     login.password = this.LoginForm.controls['password'].value;
 
 

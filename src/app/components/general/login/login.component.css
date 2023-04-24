@@ -8,7 +8,10 @@ img{
   border-radius: 10px;
 }
 
-.error{
+a{
+  color:blue;
+}
+.error-message{
   color: red;
   font-size: 15px;
 }

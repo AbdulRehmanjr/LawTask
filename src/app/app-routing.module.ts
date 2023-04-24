@@ -4,6 +4,7 @@ import { SellerModule } from './modules/seller/seller.module';
 import { GeneralModule } from './modules/general/general.module';
 import { LoginComponent } from './components/general/login/login.component';
 import { SignupComponent } from './components/general/signup/signup.component';
+import { AdminModule } from './modules/admin/admin.module';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    AdminModule,
     SellerModule,
     GeneralModule,
     RouterModule.forRoot(routes)
