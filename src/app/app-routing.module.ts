@@ -5,14 +5,22 @@ import { GeneralModule } from './modules/general/general.module';
 import { LoginComponent } from './components/general/login/login.component';
 import { SignupComponent } from './components/general/signup/signup.component';
 import { AdminModule } from './modules/admin/admin.module';
+import { UserComponent } from './modules/general/general.component';
 
 const routes: Routes = [
-  {
-    path:'login',component:LoginComponent
-  },
-  {
-    path:'signup',component:SignupComponent
-  }
+  // {
+  //   path:'home',component:UserComponent
+  // },
+  // {
+  //   path:'login',component:LoginComponent
+  // },
+  // {
+  //   path:'signup',component:SignupComponent
+  // },
+  // {
+  //   path:'',redirectTo:'home',pathMatch:'full'
+  // }
+
 ];
 
 @NgModule({

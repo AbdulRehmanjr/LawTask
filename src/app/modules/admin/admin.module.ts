@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
+//* ng prime
+import {  SliderModule } from 'primeng/slider';
+import { ChipModule } from 'primeng/chip';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 //* custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -33,6 +38,11 @@ const routes :Routes = [
     SellerapprovaldetailComponent
   ],
   imports: [
+    MultiSelectModule,
+    ChipModule,
+    SliderModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     CommonModule,
     RouterModule.forChild(routes)

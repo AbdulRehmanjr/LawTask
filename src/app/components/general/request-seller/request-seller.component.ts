@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-sellerapprovaldetail',
-  templateUrl: './sellerapprovaldetail.component.html',
-  styleUrls: ['./sellerapprovaldetail.component.css']
+  selector: 'app-request-seller',
+  templateUrl: './request-seller.component.html',
+  styleUrls: ['./request-seller.component.css']
 })
-export class SellerapprovaldetailComponent implements OnInit {
+export class RequestSellerComponent {
 
   rate: number = 10
   sellerForm: FormGroup
