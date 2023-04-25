@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { SellerRequest } from 'src/app/classes/seller-request';
+import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 
 @Component({
   selector: 'app-request-seller',
@@ -10,14 +13,21 @@ export class RequestSellerComponent {
 
   rate: number = 10
   sellerForm: FormGroup
-
   disableSkills: boolean = false
   selectedSkills: string[] = []
+  profilPicture:File
+  document:File
+
+  constructor(private messageService:MessageService,
+    private sellerService:SellerrequestService){}
   ngOnInit(): void {
     this.creatingForm()
 
   }
 
+  /**
+   * @function (changes) will get the file inputs
+   */
   /**
    * @form creating form without files
    * @since v1.0.0
@@ -40,23 +50,64 @@ export class RequestSellerComponent {
   /**
    * @function selected skills
    */
+  documentUpload(event:any):void {
+    this.document = event.target.files[0]
+  }
+  pictureUpload(event:any):void{
+    this.profilPicture = event.target.files[0]
+  }
+
+  /**
+   * @function skill => used for dynamic skill display
+   */
+  skillRemoved(event:any):void{
+    console.log(event)
+  }
   skillSelected(): void {
     this.selectedSkills = this.sellerForm.get('skill').value
 
-    console.log('Skill selected')
-    console.log(this.selectedSkills)
+    if(this.selectedSkills.length>=3){
+      this.disableSkills = true
+    }
   }
   /**
-   * @action form submission handling
+   * @action Form submission handling
    * @since v1.0.0
    */
   onSubmit(): void {
-    console.log('form submitted')
+
+    if (this.sellerForm.invalid) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please Provide Credentials' })
+      return
+    }
+
+    let seller = new SellerRequest()
+
+    seller.firstName = this.sellerForm.get('firstName').value
+    seller.lastName = this.sellerForm.get('lastName').value
+    seller.email = this.sellerForm.get('email').value
+    seller.charges = this.sellerForm.get('charges').value
+    seller.jobName = this.sellerForm.get('jobName').value
+    seller.description = this.sellerForm.get('description').value
+    seller.skills = this.sellerForm.get('skill').value
+    seller.tagLine = this.sellerForm.get('tagLine').value
+    seller.location = this.sellerForm.get('location').value
+
+     this.sellerService.requestSeller(seller,this.profilPicture,this.document).subscribe({
+      next:(message:any)=>{
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: `${message}` })
+      },
+      error:(error:Error)=>{
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error.message}` })
+      }
+      ,complete:()=>{
+
+      }
+     })
   }
 
 
   //* arrays of large data
-
   skills: Obj[] = [
     { value: "Web Development", label: "Web Development" },
     { value: "Mobile App Development", label: "Mobile App Development" },

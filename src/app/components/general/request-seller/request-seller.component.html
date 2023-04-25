@@ -1,4 +1,5 @@
 <section class="row">
+  <p-toast></p-toast>
   <form [formGroup]="sellerForm" (ngSubmit)="onSubmit()">
     <!-- Dashboard Box -->
     <div class="col-xl-12">
@@ -20,8 +21,7 @@
                   src="assets/images/user-avatar-placeholder.png"
                   alt="seller picture"
                 />
-                <div class="upload-button"></div>
-                <input class="file-upload" type="file" accept="image/*" />
+                <input  class="uploadButton-input"  (change)="pictureUpload($event)" type="file" accept="image/*" />
               </div>
             </div>
 
@@ -135,7 +135,6 @@
                     Job Name
                     <i
                       class="fa-solid fa-suitcase"
-                      title="Add up to 5 skills"
                     ></i>
                   </h5>
                   <div class="mt-4 pt-4">
@@ -165,6 +164,7 @@
                       [maxSelectedLabels]="3"
                       (onChange)="skillSelected()"
                       defaultLabel="Select Skills"
+                      [disabled]="disableSkills"
                       display="chip"
                       optionLabel="label"
                       optionValue="value"
@@ -180,6 +180,7 @@
 
                         label="{{ skill }}"
                         [removable]="true"
+                        (onRemove)="skillRemoved($event)"
                       >
                       </p-chip>
 
@@ -211,6 +212,7 @@
                         type="file"
                         accept="image/*, application/*"
                         id="upload"
+                        (change) = "documentUpload($event)"
                       />
                       <label
                         class="uploadButton-button ripple-effect"
