@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { SellerRequest } from 'src/app/classes/seller-request';
 import { SellerrequestService } from 'src/app/services/sellerrequest.service';
@@ -11,6 +12,7 @@ import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 })
 export class RequestSellerComponent {
 
+  placeholder:string='assets/images/user-avatar-placeholder.png'
   rate: number = 10
   sellerForm: FormGroup
   disableSkills: boolean = false
@@ -19,7 +21,8 @@ export class RequestSellerComponent {
   document:File
 
   constructor(private messageService:MessageService,
-    private sellerService:SellerrequestService){}
+    private sellerService:SellerrequestService,
+    private router:Router){}
   ngOnInit(): void {
     this.creatingForm()
 
@@ -101,7 +104,7 @@ export class RequestSellerComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error.message}` })
       }
       ,complete:()=>{
-
+        this.router.navigate(['home'])
       }
      })
   }

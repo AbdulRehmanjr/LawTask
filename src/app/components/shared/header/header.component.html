@@ -12,7 +12,7 @@
         <!-- Main Navigation -->
         <nav id="navigation">
           <ul id="responsive">
-            <li><a href="#" class="current">Home</a></li>
+            <li><a routerLink="/home" class="current">Home</a></li>
 
             <li><a href="#">Find Work</a></li>
 
@@ -70,21 +70,20 @@
 
               <ul class="user-menu-small-nav">
                 <li>
-                  <a href="dashboard.html"
+                  <a
                     ><i class="icon-material-outline-dashboard"></i>
                     Dashboard</a
                   >
                 </li>
                 <li>
-                  <a href="dashboard-settings.html"
+                  <a
                     ><i class="icon-material-outline-settings"></i> Settings</a
                   >
                 </li>
                 <li>
-                  <a href="index-logged-out.html"
+                  <button (click)="logOut()"
                     ><i class="icon-material-outline-power-settings-new"></i>
-                    Logout</a
-                  >
+                    Logout</button>
                 </li>
               </ul>
             </div>

@@ -19,4 +19,8 @@ export class SellerrequestService {
 
     return this.http.post(`${this.baseUrl}/request`,formdata,{responseType:'text'})
   }
+
+  getPendingRequest(){
+    return this.http.get(`${this.baseUrl}/pending`)
+  }
 }

@@ -12,30 +12,30 @@ export class LoginService {
 
   constructor(private _http: HttpClient) { }
 
-  public generateToken(login: Login) {
+   generateToken(login: Login) {
     return this._http.post(`${this.baseUrl}` + '/generate', login, {
       responseType: 'json',
     });
 
   }
 
-  public setToken(token: any) {
+   setToken(token: any) {
     if (token != null) {
       localStorage.setItem('token', JSON.stringify(token));
     }
   }
 
-  public getToken() {
+   getToken() {
     return localStorage.getItem('token');
   }
 
-  public getAuthority() {
+   getAuthority() {
     let user = JSON.parse(localStorage.getItem('user'))
 
     return user.authority;
   }
 
-  public setUser(data: any) {
+   setUser(data: any) {
 
     let current_user = new User();
 
@@ -47,8 +47,9 @@ export class LoginService {
     localStorage.setItem('user', JSON.stringify(current_user));
   }
 
-  public currentUser(loginInfo: Login) {
+   currentUser(loginInfo: Login) {
     return this._http.post(`${this.baseUrl}/current-user`, loginInfo);
   }
+
 
 }
