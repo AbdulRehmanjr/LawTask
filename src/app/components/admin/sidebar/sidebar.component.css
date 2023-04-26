@@ -60,14 +60,13 @@ a.dashboard-responsive-nav-trigger { display: none; }
 .dashboard-nav ul li ul li:hover a { padding-left: 4px; }
 
 
-.dashboard-nav ul li.active-submenu a i,
-.dashboard-nav ul li.active a i,
+.dashboard-nav ul li:active  a i,
 .dashboard-nav ul li:hover a i {
 	color: #2A41E8;
 }
 
-.dashboard-nav ul li.active-submenu,
-.dashboard-nav ul li.active,
+.dashboard-nav ul li:active,
+
 .dashboard-nav ul li:hover {
 	border-color: #2A41E8;
 	background-color: rgba(102,103,107,0.04);

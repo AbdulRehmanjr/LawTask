@@ -8,9 +8,9 @@ import { AppComponent } from './app.component';
 //* ngrx store
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-// Effects
-import { SellerRequestEffect } from './ngrx/effects/SellerRequestEffect';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,6 +20,7 @@ import { SellerRequestEffect } from './ngrx/effects/SellerRequestEffect';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({maxAge:25}),
     EffectsModule.forRoot([]),
   ],
   providers: [],

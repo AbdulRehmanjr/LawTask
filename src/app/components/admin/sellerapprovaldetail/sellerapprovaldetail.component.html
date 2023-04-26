@@ -1,5 +1,5 @@
 <section class="row">
-  <form [formGroup]="sellerForm" (ngSubmit)="onSubmit()">
+  <form>
     <!-- Dashboard Box -->
     <div class="col-xl-12">
       <div class="dashboard-box">
@@ -17,11 +17,9 @@
               >
                 <img
                   class="profile-pic mx-2 mt-2"
-                  src="assets/images/user-avatar-placeholder.png"
+                  src="data:image/jpeg; base64, {{ seller.profilePicture }}"
                   alt="seller picture"
                 />
-                <div class="upload-button"></div>
-                <input class="file-upload" type="file" accept="image/*" />
               </div>
             </div>
 
@@ -31,11 +29,11 @@
                   <div class="submit-field">
                     <h5>First Name</h5>
                     <input
-                      formControlName="firstName"
+                      value="{{ seller.firstName }}"
                       type="text"
                       class="with-border"
                       placeholder="James"
-                      required="true"
+                      disabled="true"
                     />
                   </div>
                 </div>
@@ -44,11 +42,11 @@
                   <div class="submit-field">
                     <h5>Last Name</h5>
                     <input
-                      formControlName="lastName"
+                      value="{{ seller.lastName }}"
                       type="text"
                       class="with-border"
                       placeholder="Smith"
-                      required="true"
+                      disabled="true"
                     />
                   </div>
                 </div>
@@ -83,11 +81,11 @@
                   <div class="submit-field">
                     <h5>Email</h5>
                     <input
-                      formControlName="email"
+                      value="{{ seller.email }}"
                       type="text"
                       class="with-border"
                       placeholder="tom@example.com"
-                      required="true"
+                      disabled="true"
                     />
                   </div>
                 </div>
@@ -118,15 +116,8 @@
                         >Set your <strong>minimal hourly rate</strong></span
                       >
                       <div class="bidding-value mb-5">
-                        $<span id="biddingVal">{{ rate }}</span>
+                        $<span id="biddingVal">{{ seller.charges }}</span>
                       </div>
-                      <p-slider
-                        formControlName="charges"
-                        [(ngModel)]="rate"
-                        [min]="10"
-                        [max]="100"
-                        class="bidding-slider"
-                      ></p-slider>
                     </div>
                   </div>
                 </div>
@@ -140,11 +131,11 @@
                   </h5>
                   <div class="mt-4 pt-4">
                     <input
-                      formControlName="jobName"
+                      value="{{ seller.jobName }}"
                       type="text"
                       placeholder="Enter the Job Name"
                       class="form-control form-control-lg"
-                      required
+                      disabled="true"
                     />
                   </div>
                 </div>
@@ -154,37 +145,13 @@
                     Skills
                     <i
                       class="fa-solid fa-circle-info"
-                      data-tippy-placement="right"
-                      title="Add up to 3 skills"
                     ></i>
                   </h5>
-                  <div class="mt-3 pt-3">
-                    <p-multiSelect
-                      formControlName="skill"
-                      [options]="skills"
-                      [maxSelectedLabels]="3"
-                      (onChange)="skillSelected()"
-                      defaultLabel="Select Skills"
-                      display="chip"
-                      optionLabel="label"
-                      optionValue="value"
-                    ></p-multiSelect>
-                  </div>
 
-                  <!-- Skills List -->
 
-                  <div  *ngIf="selectedSkills">
-                    <span
-                     *ngFor="let skill of selectedSkills">
-                      <p-chip
-
-                        label="{{ skill }}"
-                        [removable]="true"
-                      >
-                      </p-chip>
-
-                    </span>
-                  </div>
+                  <span *ngFor="let skill of seller.skills">
+                    <p-chip label="{{ skill }}"> </p-chip>
+                  </span>
                 </div>
 
                 <div class="col-md-3">
@@ -194,33 +161,13 @@
                     <!-- Attachments -->
                     <div class="attachments-container">
                       <div class="attachment-box ripple-effect">
-                        <span>Cover Letter</span>
-                        <i>PDF</i>
-                        <button
-                          class="remove-attachment"
-                          data-tippy-placement="top"
-                          title="Remove"
-                        ></button>
+                        {{pdfUrl}}
+                        <span></span>
+                        <i></i>
                       </div>
                     </div>
-                    <div class="clearfix"></div>
 
-                    <div class="uploadButton mt-4">
-                      <input
-                        class="uploadButton-input"
-                        type="file"
-                        accept="image/*, application/*"
-                        id="upload"
-                      />
-                      <label
-                        class="uploadButton-button ripple-effect"
-                        for="upload"
-                        >Upload Files</label
-                      >
-                      <span class="uploadButton-file-name"
-                        >Maximum file size: 5 MB</span
-                      >
-                    </div>
+
                   </div>
                 </div>
               </div>
@@ -231,10 +178,10 @@
                   <div class="submit-field">
                     <h5>Tagline</h5>
                     <input
-                      formControlName="tagLine"
+                      value="{{seller.tagLine}}"
                       type="text"
                       class="with-border"
-                      value="iOS Expert + Node Dev"
+                      disabled="true"
                     />
                   </div>
                 </div>
@@ -242,21 +189,7 @@
                 <div class="col-xl-6">
                   <div class="submit-field">
                     <h5>Nationality</h5>
-                    <select
-                      formControlName="location"
-                      class="selectpicker with-border"
-                      data-size="7"
-                      title="Select Job Type"
-                      data-live-search="true"
-                    >
-                      <option value="">Select the Location</option>
-                      <option
-                        *ngFor="let location of locations"
-                        value="{{ location.code }}"
-                      >
-                        {{ location.name }}
-                      </option>
-                    </select>
+                   <p>{{seller.location}}</p>
                   </div>
                 </div>
 
@@ -264,10 +197,10 @@
                   <div class="submit-field">
                     <h5>Introduce Yourself</h5>
                     <textarea
-                      formControlName="description"
+                      value="{{seller.description}}"
                       cols="30"
                       rows="5"
-                      placeholder="I am a ...."
+                      disabled="true"
                       class="with-border"
                     >
                     </textarea>
@@ -282,7 +215,7 @@
 
     <div class="col-xl-12">
       <button type="submit" class="button ripple-effect big mt-4">
-        Save Changes
+        Action
       </button>
     </div>
   </form>

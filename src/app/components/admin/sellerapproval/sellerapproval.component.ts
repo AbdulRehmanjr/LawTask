@@ -4,66 +4,61 @@ import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { SellerRequest } from 'src/app/classes/seller-request';
 import { appState } from 'src/app/ngrx/states/appState';
-import {sellerRequestIsFetchedSeletor,errorSelector,sellerRequestSelector} from 'src/app/ngrx/selectors/SellerRequestSelector'
+import { sellerRequestIsFetchedSeletor, errorSelector, sellerRequestSelector } from 'src/app/ngrx/selectors/SellerRequestSelector'
 import * as sellerAction from 'src/app/ngrx/actions/SellerRequestAction'
-import { SellerrequestService } from 'src/app/services/sellerrequest.service';
+
 
 @Component({
   selector: 'app-sellerapproval',
   templateUrl: './sellerapproval.component.html',
   styleUrls: ['./sellerapproval.component.css']
 })
-export class SellerapprovalComponent  implements OnInit{
+export class SellerapprovalComponent implements OnInit {
 
-  sellerRequest:SellerRequest[]=[]
-  sellerRequest$:Observable<SellerRequest[]>
-  fetched$:Observable<boolean>
-  error$:Observable<string|null>
-  isfetched:boolean
+  sellerRequest: SellerRequest[] = []
+  sellerRequest$: Observable<SellerRequest[]>
+  fetched$: Observable<boolean>
+  error$: Observable<string | null>
+  isfetched: boolean
+  error:string = null
 
-
-  constructor(private sellerService:SellerrequestService,
-    private MessageService:MessageService,
-    private store:Store<appState>){
-      this.sellerRequest$ = this.store.pipe(select(sellerRequestSelector))
-      this.fetched$ =this.store.select<boolean>(sellerRequestIsFetchedSeletor)
-      this.error$ = this.store.pipe(select(errorSelector))
-    }
+  constructor(
+    private MessageService: MessageService,
+    private store: Store<appState>) {
+    this.fetched$ = this.store.select<boolean>(sellerRequestIsFetchedSeletor)
+    this.sellerRequest$ = this.store.pipe(select(sellerRequestSelector))
+    this.error$ = this.store.pipe(select(errorSelector))
+  }
 
   ngOnInit(): void {
+
+   this.error$.subscribe(
+      {
+        next:(response)=>{
+          this.error= response
+          this.MessageService.add({ severity: 'error', summary: 'Error', detail: `No request Found` })
+        },
+        complete:()=>{
+
+        }
+      }
+    )
     this.fetchRequests()
   }
 
-  fetchRequests(){
+  fetchRequests() {
+
     this.fetched$
     .subscribe(
       {
-       next: data =>{
+       next: (data) =>{
          this.isfetched = data
-         if(this.isfetched == false){
-           this.store.dispatch(sellerAction.getAllSellerRequests())
-         }
-       },
-       error: err=>{
-         console.log(err)
-       },
-       complete: ()=>{
-        console.log('completed')
+        if(this.isfetched == false && this.error==null ){
+          this.store.dispatch(sellerAction.getAllSellerRequests())
+        }
        }
       }
      )
-    // this.sellerService.getPendingRequest().subscribe({
-    //   next:(data:SellerRequest[])=>{
-    //     this.sellerRequest = data
-    //   },
-    //     error:(error:any)=>{
-    //       console.log(error)
-    //       this.MessageService.add({ severity: 'error', summary: 'Error', detail: `No request Found` })
-    //     },
-    //     complete:()=>{
 
-    //     }
-    //   }
-    //)
   }
 }

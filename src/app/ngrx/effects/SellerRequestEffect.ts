@@ -10,23 +10,29 @@ import { SellerRequest } from 'src/app/classes/seller-request';
 @Injectable()
 export class SellerRequestEffect {
 
-    constructor(private action$:Actions,
-        private sellerService:SellerrequestService){}
+  constructor(private action$: Actions,
+    private sellerService: SellerrequestService) { }
 
-    getAllSellerRequests$ = createEffect(
-        ()=>{
-            return this.action$.pipe(
-                ofType(sellerAction.getAllSellerRequests),
-                mergeMap(
-                    (): Observable<any> => {
-                        return this.sellerService.getPendingRequest()
-                            .pipe(
-                                map((data:any) => sellerAction.getAllSellerRequestsSuccess({sellers:data})),
-                                catchError(error => of(sellerAction.getAllSellerRequestsError({ error: error.message })))
-                            )
-                    }
+  getAllSellerRequests$ = createEffect(
+    () => {
+      return this.action$.pipe(
+        ofType(sellerAction.getAllSellerRequests),
+        mergeMap(
+          (): Observable<any> => {
+            return this.sellerService.getPendingRequest()
+              .pipe(
+                map((data: any) => {
+                  return sellerAction.getAllSellerRequestsSuccess({ sellers: data })
+                }
+                ),
+                catchError((error: any) => {
+                  return of(sellerAction.getAllSellerRequestsError({ error: error.message }))
+                }
                 )
-            )
-        }
-    )
+              )
+          }
+        )
+      )
+    }
+  )
 }

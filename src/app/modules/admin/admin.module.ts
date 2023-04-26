@@ -33,7 +33,7 @@ const routes :Routes = [
     children:[
       {path:'request-approval',component:SellerapprovalComponent},
       {
-        path:'request-approval-detail',component:SellerapprovaldetailComponent
+        path:'request-approval-detail/:sellerId',component:SellerapprovaldetailComponent
       }
     ]
   }
