@@ -5,50 +5,157 @@
   <div class="row offset-md-1">
     <p-toast position="bottom-right"></p-toast>
     <div class="col-md-9">
-      <a *ngFor="let request of sellerRequest$ | async"  class="job-listing with-apply-button">
-        <div class="row job-listing-details">
-          <div class="col-sm-1">
-            <div class="job-listing-company-logo">
-              <img
-                src="data:image/jpeg; base64, {{ request.profilePicture }}"
-                width="70"
-                alt="job image"
+      <p-table
+        #dt
+        [value]="sellerRequests"
+        [rowHover]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5, 10, 25]"
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="0"
+
+        [globalFilterFields]="['firstName', 'lastName']"
+      >
+        <ng-template pTemplate="caption">
+          <div class="table-header">
+            List of Sellers
+            <span class="p-input-icon-left">
+
+              <input
+                pInputText
+                type="text"
+                (input)="dt.filterGlobal($event.target['value'], 'contains')"
+                placeholder="Global Search"
               />
-            </div>
+            </span>
           </div>
-          <div class="col-sm-9 px-4">
-            <div class="d-flex flex-start">
-              <h3 class="job-listing-title">
-                {{request.jobName}}
-              </h3>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="d-flex flex-start job-listing-footer">
-                  <ul>
-                    <li>
-                      <i class="fa-regular fa-building"></i> Hexagon
-                      <!-- <div
-                        class="verified-badge"
-                        title="Verified Employer"
-                        data-tippy-placement="top"
-                      ></div> -->
-                    </li>
-                    <li>
-                      <i class="fa-solid fa-location-dot"></i> {{request.location}}
-                    </li>
-                    <li><i class="fa-solid fa-briefcase"></i> Full Time</li>
-                    <li><i class="fa-regular fa-clock"></i> 2 days ago</li>
-                  </ul>
-                </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                Profile Image
               </div>
-            </div>
-          </div>
-          <div class="col-sm-2 pt-4">
-            <button routerLink="/admin-dashboard/request-approval-detail/{{request.sellerId}}" class="btn">Detail</button>
-          </div>
-        </div>
-      </a>
+            </th>
+            <th pSortableColumn="firstName" >
+                First Name
+                <p-sortIcon field="firstName"></p-sortIcon>
+
+            </th>
+            <th pSortableColumn="country.name">
+              <div class="flex justify-content-between align-items-center">
+                Last Name
+                <p-sortIcon field="lastName"></p-sortIcon>
+
+              </div>
+            </th>
+
+            <th pSortableColumn="location">
+              <div class="flex justify-content-between align-items-center">
+                Location
+                <p-sortIcon field="location"></p-sortIcon>
+
+              </div>
+            </th>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                Job Name
+                <p-sortIcon field="jobName"></p-sortIcon>
+
+              </div>
+            </th>
+            <th style="width: 5rem"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-seller>
+          <tr class="p-selectable-row">
+            <td>
+              <img
+                src="data:image;base64 , {{ seller.profilePicture }}"
+                style="width: 100px"
+              />
+            </td>
+            <td>
+              {{ seller.firstName }}
+            </td>
+            <td>
+              {{ seller.lastName }}
+            </td>
+            <td>
+              {{ seller.location }}
+            </td>
+            <td>Hello</td>
+            <td style="text-align: center">
+              <button
+                pButton
+                type="button"
+                class="p-button-secondary"
+                icon="pi pi-cog"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">No customers found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+
     </div>
   </div>
 </section>
+<!-- <a
+*ngFor="let request of sellerRequest$ | async"
+class="job-listing with-apply-button"
+>
+<div class="row job-listing-details">
+  <div class="col-sm-1">
+    <div class="job-listing-company-logo">
+      <img
+        src="data:image/jpeg; base64, {{ request.profilePicture }}"
+        width="70"
+        height="70"
+        alt="job image"
+      />
+    </div>
+  </div>
+  <div class="col-sm-9 px-4">
+    <div class="d-flex flex-start">
+      <h3 class="job-listing-title">
+        {{ request.jobName }}
+      </h3>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="d-flex flex-start job-listing-footer">
+          <ul>
+            <li>
+              <i class="fa-regular fa-building"></i> Hexagon
+
+            </li>
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              {{ request.location }}
+            </li>
+            <li><i class="fa-solid fa-briefcase"></i> Full Time</li>
+            <li><i class="fa-regular fa-clock"></i> 2 days ago</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2 pt-4">
+    <button
+      routerLink="/admin-dashboard/request-approval-detail/{{
+        request.sellerId
+      }}"
+      class="btn"
+    >
+      Detail
+    </button>
+  </div>
+</div>
+</a> -->

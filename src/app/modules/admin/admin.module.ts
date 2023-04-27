@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //* ng prime
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
-import {  SliderModule } from 'primeng/slider';
+import { SliderModule } from 'primeng/slider';
 import { ChipModule } from 'primeng/chip';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { TableModule } from 'primeng/table';
 
+
+export class AppModule { }
 
 //* ngrx imports
 import { StoreModule } from '@ngrx/store';
@@ -27,13 +32,13 @@ import { SidebarComponent } from '../../components/admin/sidebar/sidebar.compone
 import { SellerapprovalComponent } from '../../components/admin/sellerapproval/sellerapproval.component';
 import { SellerapprovaldetailComponent } from '../../components/admin/sellerapprovaldetail/sellerapprovaldetail.component';
 
-const routes :Routes = [
+const routes: Routes = [
   {
-    path:'admin-dashboard',component:AdminComponent,
-    children:[
-      {path:'request-approval',component:SellerapprovalComponent},
+    path: 'admin-dashboard', component: AdminComponent,
+    children: [
+      { path: 'request-approval', component: SellerapprovalComponent },
       {
-        path:'request-approval-detail/:sellerId',component:SellerapprovaldetailComponent
+        path: 'request-approval-detail/:sellerId', component: SellerapprovaldetailComponent
       }
     ]
   }
@@ -48,6 +53,7 @@ const routes :Routes = [
     SellerapprovaldetailComponent
   ],
   imports: [
+    TableModule,
     ToastModule,
     MessageModule,
     MultiSelectModule,
@@ -57,14 +63,16 @@ const routes :Routes = [
     ReactiveFormsModule,
     SharedModule,
     CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('sellerRequests',SellerRequestReducer),
+    StoreModule.forFeature('sellerRequests', SellerRequestReducer),
     EffectsModule.forFeature([SellerRequestEffect])
   ],
-  exports:[
+  exports: [
     RouterModule
   ],
-  providers:[
+  providers: [
     MessageService
   ]
 })

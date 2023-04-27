@@ -1,5 +1,6 @@
 export class SellerRequest {
   sellerId:string
+  userId:string
   firstName:string
   lastName:string
   email:string
@@ -11,4 +12,6 @@ export class SellerRequest {
   description:string
   profilePicture:string
   document:string
+  documentType:string
+  documentName:string
 }

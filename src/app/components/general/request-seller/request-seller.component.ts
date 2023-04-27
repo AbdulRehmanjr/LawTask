@@ -12,6 +12,8 @@ import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 })
 export class RequestSellerComponent {
 
+  private userId:string
+  alreadyRequested:boolean = false
   placeholder:string='assets/images/user-avatar-placeholder.png'
   rate: number = 10
   sellerForm: FormGroup
@@ -20,17 +22,40 @@ export class RequestSellerComponent {
   profilPicture:File
   document:File
 
+
   constructor(private messageService:MessageService,
     private sellerService:SellerrequestService,
     private router:Router){}
-  ngOnInit(): void {
-    this.creatingForm()
 
+  ngOnInit(): void {
+    this.userId = JSON.parse(localStorage.getItem('user'))['userId']
+    this.creatingForm()
+    this.checkSeller()
   }
 
+
+
   /**
-   * @function (changes) will get the file inputs
+   * @function (check) will check weither the user has already made a request or not.
    */
+  checkSeller(){
+    this.sellerService.getSellerByUserId(this.userId).subscribe(
+      {
+        next:(response)=>{
+          console.log(response)
+          if(response){
+            this.alreadyRequested = true
+          }
+        },
+        error:(error)=>{
+          console.log('Error',error)
+        },
+        complete:()=>{
+          console.log('checking seller completed')
+        }
+      }
+    )
+  }
   /**
    * @form creating form without files
    * @since v1.0.0
@@ -86,6 +111,8 @@ export class RequestSellerComponent {
 
     let seller = new SellerRequest()
 
+    console.log('user ID', this.userId)
+    seller.userId = this.userId
     seller.firstName = this.sellerForm.get('firstName').value
     seller.lastName = this.sellerForm.get('lastName').value
     seller.email = this.sellerForm.get('email').value

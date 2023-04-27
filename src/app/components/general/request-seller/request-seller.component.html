@@ -1,114 +1,116 @@
 <section class="row">
 
-  <div clas=" mt-4 pt-4 gap-2">
-    <p-toast position="bottom-right"></p-toast>
-  </div>
+  <ng-container *ngIf="alreadyRequested == false else newUser">
+    <div clas=" mt-4 pt-4 gap-2">
+      <p-toast position="bottom-right"></p-toast>
+    </div>
 
-  <form [formGroup]="sellerForm" (ngSubmit)="onSubmit()">
-    <!-- Dashboard Box -->
-    <div class="col-xl-12">
-      <div class="dashboard-box">
-        <div class="headline">
-          <h3><i class="fa-regular fa-id-card"></i> My Account</h3>
-        </div>
+    <form [formGroup]="sellerForm" (ngSubmit)="onSubmit()">
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div class="dashboard-box">
+          <div class="headline">
+            <h3><i class="fa-regular fa-id-card"></i> My Account</h3>
+          </div>
 
-        <div class="content">
-          <div class="row">
-            <div class="col-auto">
-              <img class="profile-pic" src="{{placeholder}}" alt="profile picture">
-              <input
-              class=""
-              (change)="pictureUpload($event)" type="file" accept="image/*"
-              />
+          <div class="content">
+            <div class="row">
+              <div class="col-auto">
+                <img class="profile-pic" src="{{placeholder}}" alt="profile picture">
+                <input
+                class=""
+                (change)="pictureUpload($event)" type="file" accept="image/*"
+                />
 
-            </div>
+              </div>
 
-            <div class="col">
-              <div class="row">
-                <div class="col-xl-6">
-                  <div class="submit-field">
-                    <h5>First Name</h5>
-                    <input
-                      formControlName="firstName"
-                      type="text"
-                      class="with-border"
-                      placeholder="James"
-                      required="true"
-                    />
-                  </div>
-                  <div
-                  *ngIf="
-                    sellerForm.get('firstName').invalid && sellerForm.get('firstName').touched
-                  "
-                >
-                <p-message severity="error"  text="Field is required"></p-message>
-                </div>
-
-                </div>
-
-                <div class="col-xl-6">
-                  <div class="submit-field">
-                    <h5>Last Name</h5>
-                    <input
-                      formControlName="lastName"
-                      type="text"
-                      class="with-border"
-                      placeholder="Smith"
-                      required="true"
-                    />
-                  </div>
-                  <div
-                  *ngIf="
-                    sellerForm.get('lastName').invalid && sellerForm.get('lastName').touched
-                  "
-                >
-                <p-message severity="error"  text="Field is required"></p-message>
-                </div>
-                </div>
-
-                <div class="col-xl-6">
-                  <!-- Account Type -->
-                  <div class="submit-field">
-                    <h5>Account Type</h5>
-                    <div class="account-type">
-                      <div>
-                        <input
-                          type="radio"
-                          name="account-type-radio"
-                          id="freelancer-radio"
-                          class="account-type-radio"
-                          checked
-                          [disabled]="true"
-                        />
-                        <label for="freelancer-radio" class="ripple-effect-dark"
-                          ><i
-                            class="fas fa-user"
-                            style="color: #fff !important"
-                          ></i>
-                          Seller</label
-                        >
-                      </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>First Name</h5>
+                      <input
+                        formControlName="firstName"
+                        type="text"
+                        class="with-border"
+                        placeholder="James"
+                        required="true"
+                      />
                     </div>
-                  </div>
-                </div>
-
-                <div class="col-xl-6">
-                  <div class="submit-field">
-                    <h5>Email</h5>
-                    <input
-                      formControlName="email"
-                      type="text"
-                      class="with-border"
-                      placeholder="tom@example.com"
-                      required="true"
-                    />
                     <div
                     *ngIf="
-                      sellerForm.get('email').invalid && sellerForm.get('email').touched
+                      sellerForm.get('firstName').invalid && sellerForm.get('firstName').touched
                     "
                   >
                   <p-message severity="error"  text="Field is required"></p-message>
                   </div>
+
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Last Name</h5>
+                      <input
+                        formControlName="lastName"
+                        type="text"
+                        class="with-border"
+                        placeholder="Smith"
+                        required="true"
+                      />
+                    </div>
+                    <div
+                    *ngIf="
+                      sellerForm.get('lastName').invalid && sellerForm.get('lastName').touched
+                    "
+                  >
+                  <p-message severity="error"  text="Field is required"></p-message>
+                  </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <!-- Account Type -->
+                    <div class="submit-field">
+                      <h5>Account Type</h5>
+                      <div class="account-type">
+                        <div>
+                          <input
+                            type="radio"
+                            name="account-type-radio"
+                            id="freelancer-radio"
+                            class="account-type-radio"
+                            checked
+                            [disabled]="true"
+                          />
+                          <label for="freelancer-radio" class="ripple-effect-dark"
+                            ><i
+                              class="fas fa-user"
+                              style="color: #fff !important"
+                            ></i>
+                            Seller</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Email</h5>
+                      <input
+                        formControlName="email"
+                        type="text"
+                        class="with-border"
+                        placeholder="tom@example.com"
+                        required="true"
+                      />
+                      <div
+                      *ngIf="
+                        sellerForm.get('email').invalid && sellerForm.get('email').touched
+                      "
+                    >
+                    <p-message severity="error"  text="Field is required"></p-message>
+                    </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -116,217 +118,222 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Dashboard Box -->
-    <div class="col-xl-12">
-      <div class="dashboard-box">
-        <!-- Headline -->
-        <div class="headline">
-          <h3><i class="fa-solid fa-face-smile"></i> My Profile</h3>
-        </div>
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <h3><i class="fa-solid fa-face-smile"></i> My Profile</h3>
+          </div>
 
-        <div class="content">
-          <ul class="fields-ul">
-            <li>
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="submit-field">
-                    <div class="bidding-widget">
-                      <!-- Headline -->
-                      <span class="bidding-detail"
-                        >Set your <strong>minimal hourly rate</strong></span
-                      >
-                      <div class="bidding-value mb-5">
-                        $<span id="biddingVal">{{ rate }}</span>
-                      </div>
-                      <p-slider
-                        formControlName="charges"
-                        [(ngModel)]="rate"
-                        [min]="10"
-                        [max]="100"
-                        class="bidding-slider"
-                      ></p-slider>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <h5>
-                    Job Name
-                    <i
-                      class="fa-solid fa-suitcase"
-                    ></i>
-                  </h5>
-                  <div class="mt-4 pt-4">
-                    <input
-                      formControlName="jobName"
-                      type="text"
-                      placeholder="Enter the Job Name"
-                      class="form-control form-control-lg"
-                    />
-                    <div
-                    *ngIf="
-                      sellerForm.get('jobName').invalid && sellerForm.get('jobName').touched
-                    "
-                  >
-                  <p-message severity="error"  text="Field is required"></p-message>
-                  </div>
-                  </div>
-                </div>
-
-                <div class="col-md-3">
-                  <h5>
-                    Skills
-                    <i
-                      class="fa-solid fa-circle-info"
-                      data-tippy-placement="right"
-                      title="Add up to 3 skills"
-                    ></i>
-                  </h5>
-                  <div class="mt-3 pt-3">
-                    <p-multiSelect
-                      formControlName="skill"
-                      [options]="skills"
-                      [maxSelectedLabels]="3"
-                      (onChange)="skillSelected()"
-                      defaultLabel="Select Skills"
-                      [disabled]="disableSkills"
-                      display="chip"
-                      optionLabel="label"
-                      optionValue="value"
-                    ></p-multiSelect>
-                  </div>
-
-                  <!-- Skills List -->
-
-                  <div  *ngIf="selectedSkills">
-                    <span
-                     *ngFor="let skill of selectedSkills">
-                      <p-chip
-
-                        label="{{ skill }}"
-                        [removable]="true"
-                        (onRemove)="skillRemoved($event)"
-                      >
-                      </p-chip>
-
-                    </span>
-                  </div>
-                </div>
-
-                <div class="col-md-3">
-                  <div class="submit-field">
-                    <h5>Attachments</h5>
-
-                    <!-- Attachments -->
-                    <div class="attachments-container">
-
-                      <div *ngIf="document" class="attachment-box ripple-effect">
-                        <span>{{document.name}}</span>
-                        <i>{{document.type}}</i>
-                        <button
-                          class="remove-attachment"
+          <div class="content">
+            <ul class="fields-ul">
+              <li>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="submit-field">
+                      <div class="bidding-widget">
+                        <!-- Headline -->
+                        <span class="bidding-detail"
+                          >Set your <strong>minimal hourly rate</strong></span
                         >
-                        <i class="fa-regular fa-trash-can" style="color:white !important;font-size:10px;"></i>
-                      </button>
+                        <div class="bidding-value mb-5">
+                          $<span id="biddingVal">{{ rate }}</span>
+                        </div>
+                        <p-slider
+                          formControlName="charges"
+                          [(ngModel)]="rate"
+                          [min]="10"
+                          [max]="100"
+                          class="bidding-slider"
+                        ></p-slider>
                       </div>
                     </div>
-                    <div class="clearfix"></div>
-
-                    <div class="uploadButton mt-4">
+                  </div>
+                  <div class="col-md-3">
+                    <h5>
+                      Job Name
+                      <i
+                        class="fa-solid fa-suitcase"
+                      ></i>
+                    </h5>
+                    <div class="mt-4 pt-4">
                       <input
-                        class="uploadButton-input"
-                        type="file"
-                        accept="image/*, application/*"
-                        id="upload"
-                        (change) = "documentUpload($event)"
+                        formControlName="jobName"
+                        type="text"
+                        placeholder="Enter the Job Name"
+                        class="form-control form-control-lg"
                       />
-                      <label
-                        class="uploadButton-button ripple-effect"
-                        for="upload"
-                        >Upload Files</label
-                      >
-                      <span class="uploadButton-file-name"
-                        >Maximum file size: 5 MB</span
-                      >
+                      <div
+                      *ngIf="
+                        sellerForm.get('jobName').invalid && sellerForm.get('jobName').touched
+                      "
+                    >
+                    <p-message severity="error"  text="Field is required"></p-message>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <h5>
+                      Skills
+                      <i
+                        class="fa-solid fa-circle-info"
+                        data-tippy-placement="right"
+                        title="Add up to 3 skills"
+                      ></i>
+                    </h5>
+                    <div class="mt-3 pt-3">
+                      <p-multiSelect
+                        formControlName="skill"
+                        [options]="skills"
+                        [maxSelectedLabels]="3"
+                        (onChange)="skillSelected()"
+                        defaultLabel="Select Skills"
+                        [disabled]="disableSkills"
+                        display="chip"
+                        optionLabel="label"
+                        optionValue="value"
+                      ></p-multiSelect>
+                    </div>
+
+                    <!-- Skills List -->
+
+                    <div  *ngIf="selectedSkills">
+                      <span
+                       *ngFor="let skill of selectedSkills">
+                        <p-chip
+
+                          label="{{ skill }}"
+                          [removable]="true"
+                          (onRemove)="skillRemoved($event)"
+                        >
+                        </p-chip>
+
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="submit-field">
+                      <h5>Attachments</h5>
+
+                      <!-- Attachments -->
+                      <div class="attachments-container">
+
+                        <div *ngIf="document" class="attachment-box ripple-effect">
+                          <span>{{document.name}}</span>
+                          <i>{{document.type}}</i>
+                          <button
+                            class="remove-attachment"
+                          >
+                          <i class="fa-regular fa-trash-can" style="color:white !important;font-size:10px;"></i>
+                        </button>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div class="uploadButton mt-4">
+                        <input
+                          class="uploadButton-input"
+                          type="file"
+                          accept="image/*, application/*"
+                          id="upload"
+                          (change) = "documentUpload($event)"
+                        />
+                        <label
+                          class="uploadButton-button ripple-effect"
+                          for="upload"
+                          >Upload Files</label
+                        >
+                        <span class="uploadButton-file-name"
+                          >Maximum file size: 5 MB</span
+                        >
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="row">
-                <div class="col-xl-6">
-                  <div class="submit-field">
-                    <h5>Tagline</h5>
-                    <input
-                      formControlName="tagLine"
-                      type="text"
-                      class="with-border"
-                      value="iOS Expert + Node Dev"
-                    />
-                    <div
-                    *ngIf="
-                      sellerForm.get('tagLine').invalid && sellerForm.get('tagLine').touched
-                    "
-                  >
-                  <p-message severity="error"  text="Field is required"></p-message>
-                  </div>
-                  </div>
-                </div>
-
-                <div class="col-xl-6">
-                  <div class="submit-field">
-                    <h5>Nationality</h5>
-                    <select
-                      formControlName="location"
-                      class="selectpicker with-border"
-                      data-size="7"
-                      title="Select Job Type"
-                      data-live-search="true"
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Tagline</h5>
+                      <input
+                        formControlName="tagLine"
+                        type="text"
+                        class="with-border"
+                        value="iOS Expert + Node Dev"
+                      />
+                      <div
+                      *ngIf="
+                        sellerForm.get('tagLine').invalid && sellerForm.get('tagLine').touched
+                      "
                     >
-                      <option value="">Select the Location</option>
-                      <option
-                        *ngFor="let location of locations"
-                        value="{{ location.code }}"
+                    <p-message severity="error"  text="Field is required"></p-message>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Nationality</h5>
+                      <select
+                        formControlName="location"
+                        class="selectpicker with-border"
+                        data-size="7"
+                        title="Select Job Type"
+                        data-live-search="true"
                       >
-                        {{ location.name }}
-                      </option>
-                    </select>
+                        <option value="">Select the Location</option>
+                        <option
+                          *ngFor="let location of locations"
+                          value="{{ location.code }}"
+                        >
+                          {{ location.name }}
+                        </option>
+                      </select>
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-xl-12">
-                  <div class="submit-field">
-                    <h5>Introduce Yourself</h5>
-                    <textarea
-                      formControlName="description"
-                      cols="30"
-                      rows="5"
-                      placeholder="I am a ...."
-                      class="with-border"
+                  <div class="col-xl-12">
+                    <div class="submit-field">
+                      <h5>Introduce Yourself</h5>
+                      <textarea
+                        formControlName="description"
+                        cols="30"
+                        rows="5"
+                        placeholder="I am a ...."
+                        class="with-border"
+                      >
+                      </textarea>
+                      <div
+                      *ngIf="
+                        sellerForm.get('description').invalid && sellerForm.get('description').touched
+                      "
                     >
-                    </textarea>
-                    <div
-                    *ngIf="
-                      sellerForm.get('description').invalid && sellerForm.get('description').touched
-                    "
-                  >
-                  <p-message severity="error"  text="Field is required"></p-message>
-                  </div>
+                    <p-message severity="error"  text="Field is required"></p-message>
+                    </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-xl-12">
-      <button type="submit" class="btn btn-success mt-4 mb-4">
-        Save Changes
-      </button>
-    </div>
-  </form>
+      <div class="col-xl-12">
+        <button type="submit" class="btn btn-success mt-4 mb-4">
+          Save Changes
+        </button>
+      </div>
+    </form>
+
+  </ng-container>
+  <ng-template #newUser>
+      <h1>Your request is under review please wait for response</h1>
+  </ng-template>
+
 </section>

@@ -143,11 +143,8 @@
                 <div class="col-md-3">
                   <h5>
                     Skills
-                    <i
-                      class="fa-solid fa-circle-info"
-                    ></i>
+                    <i class="fa-solid fa-circle-info"></i>
                   </h5>
-
 
                   <span *ngFor="let skill of seller.skills">
                     <p-chip label="{{ skill }}"> </p-chip>
@@ -161,13 +158,10 @@
                     <!-- Attachments -->
                     <div class="attachments-container">
                       <div class="attachment-box ripple-effect">
-                        {{pdfUrl}}
-                        <span></span>
-                        <i></i>
+                        <span>{{seller.documentName}}</span>
+                        <i>{{seller.documentType}}</i>
                       </div>
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -178,7 +172,7 @@
                   <div class="submit-field">
                     <h5>Tagline</h5>
                     <input
-                      value="{{seller.tagLine}}"
+                      value="{{ seller.tagLine }}"
                       type="text"
                       class="with-border"
                       disabled="true"
@@ -189,7 +183,7 @@
                 <div class="col-xl-6">
                   <div class="submit-field">
                     <h5>Nationality</h5>
-                   <p>{{seller.location}}</p>
+                    <p>{{ seller.location }}</p>
                   </div>
                 </div>
 
@@ -197,7 +191,7 @@
                   <div class="submit-field">
                     <h5>Introduce Yourself</h5>
                     <textarea
-                      value="{{seller.description}}"
+                      value="{{ seller.description }}"
                       cols="30"
                       rows="5"
                       disabled="true"

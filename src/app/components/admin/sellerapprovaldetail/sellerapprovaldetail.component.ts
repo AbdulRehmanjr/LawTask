@@ -50,34 +50,48 @@ export class SellerapprovaldetailComponent implements OnInit {
    * @required sellerId
    */
   fetchSellerDetail() {
-    this.sellerRequest$.subscribe(
+    this.fetched$.subscribe(
       {
-        next: (data) => {
-          console.log(this.seller)
-          data.forEach(
-            (data) => {
-              if (data.sellerId === this.sellerId) {
-                this.seller = data
+        next:(value)=>{
+          console.log('value')
+          if(value==false){
+            this.store.dispatch(sellerAction.getAllSellerRequests())
+          }
+          this.sellerRequest$.subscribe(
+            {
+              next: (data) => {
                 console.log(this.seller)
-              }
+                data.forEach(
+                  (data) => {
+                    if (data.sellerId === this.sellerId) {
+                      this.seller = data
+                    }
 
+                  }
+                )
+              }
+              , error: (error: any) => {
+                console.log('errror in finding user')
+              }
+              , complete: () => {
+                const byteCharacters = Buffer.from(this.seller.document,'base64');
+
+
+                const pdfBlob = new Blob([byteCharacters], { type: 'application/pdf' });
+
+
+                 this.pdfUrl = URL.createObjectURL(pdfBlob);
+              }
             }
           )
-        }
-        , error: (error: any) => {
-          console.log('errror in finding user')
-        }
-        , complete: () => {
-          const byteCharacters = Buffer.from(this.seller.document,'base64');
+        },
+        error:(err)=>{
+          console.log('error in fetching true or false')
+        },
 
-
-          const pdfBlob = new Blob([byteCharacters], { type: 'application/pdf' });
-
-
-           this.pdfUrl = URL.createObjectURL(pdfBlob);
-        }
       }
     )
+
   }
 
 }
