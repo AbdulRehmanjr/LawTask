@@ -4,7 +4,7 @@
     <div class="col-xl-12">
       <div class="dashboard-box">
         <div class="headline">
-          <h3><i class="fa-regular fa-id-card"></i> My Account</h3>
+          <h3><i class="fa-regular fa-id-card"></i> User Account Information</h3>
         </div>
 
         <div class="content">
@@ -101,7 +101,7 @@
       <div class="dashboard-box">
         <!-- Headline -->
         <div class="headline">
-          <h3><i class="fa-solid fa-face-smile"></i> My Profile</h3>
+          <h3><i class="fa-solid fa-face-smile"></i> Seller Profile</h3>
         </div>
 
         <div class="content">
@@ -159,7 +159,8 @@
                     <div class="attachments-container">
                       <div class="attachment-box ripple-effect">
                         <span>{{seller.documentName}}</span>
-                        <i>{{seller.documentType}}</i>
+                        {{seller.documentType}}
+                        <i class="fa-solid fa-circle-down" (click)="download()"></i>
                       </div>
                     </div>
                   </div>
@@ -189,7 +190,7 @@
 
                 <div class="col-xl-12">
                   <div class="submit-field">
-                    <h5>Introduce Yourself</h5>
+                    <h5>Description</h5>
                     <textarea
                       value="{{ seller.description }}"
                       cols="30"
@@ -207,10 +208,25 @@
       </div>
     </div>
 
-    <div class="col-xl-12">
-      <button type="submit" class="button ripple-effect big mt-4">
-        Action
+  </form>
+  <div class="row mt-4 mb-4 offset-sm-3">
+    <div class="col-sm-3">
+      <button type="submit" class="btn btn-success" (click)="accept()">
+        <i style="color:#fff !important;" class="fa-solid fa-check"></i>
+        Accept
       </button>
     </div>
-  </form>
+      <div class="col-sm-3">
+      <button type="submit" class="btn btn-danger" (click)="showDialog()">
+        <i  style="color:#fff !important;" class="fa-solid fa-xmark"></i>
+        Reject
+      </button>
+    </div>
+  </div>
+
 </section>
+<p-dialog [(visible)]="isDisplay"  header="Give Remarks" [modal]="true" styleClass="dialog-style">
+  <ng-template pTemplate="body">
+    <h1>hello</h1>
+  </ng-template>
+</p-dialog>

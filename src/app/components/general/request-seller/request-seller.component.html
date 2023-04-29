@@ -1,6 +1,7 @@
-<section class="row">
+
 
   <ng-container *ngIf="alreadyRequested == false else newUser">
+    <section class="row">
     <div clas=" mt-4 pt-4 gap-2">
       <p-toast position="bottom-right"></p-toast>
     </div>
@@ -330,10 +331,21 @@
         </button>
       </div>
     </form>
-
+  </section>
   </ng-container>
   <ng-template #newUser>
-      <h1>Your request is under review please wait for response</h1>
+    <section class="row">
+
+    <ng-container *ngIf="isAccepted == false else accepted" >
+      <h1 class="alert alert-info">Your request is under review please wait for response</h1>
+    </ng-container>
+    <ng-template #accepted>
+        <h1 class="alert alert-info">
+          Your Request for Seller has been accepted.
+        </h1>
+    </ng-template>
+    </section>
+
   </ng-template>
 
-</section>
+

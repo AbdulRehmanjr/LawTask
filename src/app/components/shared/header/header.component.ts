@@ -1,37 +1,51 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as $ from 'jquery'
+import { Subject } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'shared-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
 
 
   check: string
 
+  isAdmin: boolean = false
+
   constructor(private router: Router) { }
+
   ngOnInit(): void {
 
     this.check = JSON.parse(localStorage.getItem('user'))['userId']
+    this.userCheck()
   }
   ngAfterViewInit(): void {
     this.profileDropdown()
   }
 
+  userCheck(): void {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user.authority === 'ADMIN') {
+      this.isAdmin = true
+    }
+  }
 
   logOut() {
 
     localStorage.removeItem('user')
+    this.router.navigate(['/home'])
+    location.reload()
 
-    this.router.navigate(['home'])
+
   }
   profileDropdown(): void {
-    console.log('fie')
+
     $(".header-notifications").each(function () {
       var userMenu = $(this);
       var userMenuTrigger = $(this).find('.header-notifications-trigger a');

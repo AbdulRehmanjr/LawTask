@@ -18,7 +18,7 @@
 
             <li><a href="#">For Employers</a></li>
 
-            <li><a href="/admin-dashboard">Dashboard</a></li>
+            <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
 
             <li><a href="#">Pages</a></li>
             <li *ngIf="check == undefined else other">

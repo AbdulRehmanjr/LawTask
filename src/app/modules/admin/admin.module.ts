@@ -13,9 +13,8 @@ import { SliderModule } from 'primeng/slider';
 import { ChipModule } from 'primeng/chip';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 
-
-export class AppModule { }
 
 //* ngrx imports
 import { StoreModule } from '@ngrx/store';
@@ -53,6 +52,7 @@ const routes: Routes = [
     SellerapprovaldetailComponent
   ],
   imports: [
+    DialogModule,
     TableModule,
     ToastModule,
     MessageModule,

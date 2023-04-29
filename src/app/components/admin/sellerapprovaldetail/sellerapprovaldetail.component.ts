@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable, filter, reduce } from 'rxjs';
 import { SellerRequest } from 'src/app/classes/seller-request';
 import { sellerRequestIsFetchedSeletor, sellerRequestSelector, errorSelector } from 'src/app/ngrx/selectors/SellerRequestSelector';
 import { appState } from 'src/app/ngrx/states/appState';
 import * as sellerAction from 'src/app/ngrx/actions/SellerRequestAction'
+import * as fileSave from 'file-saver'
+import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 
 @Component({
   selector: 'app-sellerapprovaldetail',
@@ -19,22 +21,16 @@ export class SellerapprovaldetailComponent implements OnInit {
   sellerForm: FormGroup
   disableSkills: boolean = false
   selectedSkills: string[] = []
-
-
-
   sellerId: string = ''
   seller: SellerRequest
-  sellerRequest$: Observable<SellerRequest[]>
-  fetched$: Observable<boolean>
-  error$: Observable<string | null>
-  pdfUrl: string;
+  isDisplay:boolean=false
+
 
 
   constructor(private activeRoute: ActivatedRoute,
-    private store: Store<appState>) {
-    this.fetched$ = this.store.select<boolean>(sellerRequestIsFetchedSeletor)
-    this.sellerRequest$ = this.store.pipe(select(sellerRequestSelector))
-    this.error$ = this.store.pipe(select(errorSelector))
+    private router:Router,
+    private sellerService: SellerrequestService) {
+
   }
   ngOnInit(): void {
     // this.creatingForm()
@@ -50,49 +46,56 @@ export class SellerapprovaldetailComponent implements OnInit {
    * @required sellerId
    */
   fetchSellerDetail() {
-    this.fetched$.subscribe(
-      {
-        next:(value)=>{
-          console.log('value')
-          if(value==false){
-            this.store.dispatch(sellerAction.getAllSellerRequests())
-          }
-          this.sellerRequest$.subscribe(
-            {
-              next: (data) => {
-                console.log(this.seller)
-                data.forEach(
-                  (data) => {
-                    if (data.sellerId === this.sellerId) {
-                      this.seller = data
-                    }
+    this.sellerService.getSellserBySellerId(this.sellerId).subscribe({
 
-                  }
-                )
-              }
-              , error: (error: any) => {
-                console.log('errror in finding user')
-              }
-              , complete: () => {
-                const byteCharacters = Buffer.from(this.seller.document,'base64');
+      next: (response: SellerRequest) => {
+        this.seller = response
 
-
-                const pdfBlob = new Blob([byteCharacters], { type: 'application/pdf' });
-
-
-                 this.pdfUrl = URL.createObjectURL(pdfBlob);
-              }
-            }
-          )
-        },
-        error:(err)=>{
-          console.log('error in fetching true or false')
-        },
+      },
+      error: (err) => {
+        console.log('error in fetching')
+      },
+      complete: () => {
 
       }
-    )
+
+    })
+
 
   }
 
+  download(): void {
+
+    const byteCharacters = atob(this.seller.document);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const image = new Blob([byteArray], { type: `${this.seller.documentType}` })
+
+    fileSave.saveAs(image, `${this.seller.firstName}.${this.seller.documentType.split('/')[1]}`)
+  }
+
+  showDialog():void{
+    this.isDisplay = true
+  }
+
+  accept():void{
+    this.sellerService.acceptRequestBySellerId(this.sellerId).subscribe(
+      {
+        next:(value)=>{
+          console.log('value',value)
+        },
+        error:(error)=>{
+          console.log('error',error)
+        },
+        complete:()=>{
+          console.log('request updated success')
+          this.router.navigate(['/admin-dashboard/request-approval'])
+        }
+      }
+    )
+  }
 }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Login } from '../classes/login';
 import { User } from '../classes/user';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,15 @@ export class LoginService {
 
   private baseUrl = 'http://localhost:8080/api/v1/token'
 
+
   constructor(private _http: HttpClient) { }
+
+
 
    generateToken(login: Login) {
     return this._http.post(`${this.baseUrl}` + '/generate', login, {
       responseType: 'json',
-    });
+    })
 
   }
 
@@ -43,6 +47,7 @@ export class LoginService {
     current_user.email = data.email
     current_user.userName = data.userName
     current_user.authority = data.role.authority;
+
 
     localStorage.setItem('user', JSON.stringify(current_user));
   }

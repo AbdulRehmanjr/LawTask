@@ -20,11 +20,18 @@ export class SellerrequestService {
     return this.http.post(`${this.baseUrl}/request`,formdata,{responseType:'text'})
   }
 
+  getSellserBySellerId(sellerId:string){
+    return this.http.get(`${this.baseUrl}/${sellerId}`,{observe:'body'})
+  }
   getSellerByUserId(userId:string){
-    return this.http.get(`${this.baseUrl}/${userId}`,{observe:'body'})
+    return this.http.get(`${this.baseUrl}/user/${userId}`,{observe:'body'})
   }
   getPendingRequest(){
     return this.http.get(`${this.baseUrl}/pending`)
   }
 
+  acceptRequestBySellerId(sellerId:string){
+
+    return this.http.post(`${this.baseUrl}/accept/${sellerId}`,{observe:'body'})
+  }
 }

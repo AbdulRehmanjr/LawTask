@@ -12,7 +12,9 @@ import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 })
 export class RequestSellerComponent {
 
-  private userId:string
+  private userId:string = ''
+  role:string = ''
+  isAccepted:boolean = false
   alreadyRequested:boolean = false
   placeholder:string='assets/images/user-avatar-placeholder.png'
   rate: number = 10
@@ -28,27 +30,34 @@ export class RequestSellerComponent {
     private router:Router){}
 
   ngOnInit(): void {
+
     this.userId = JSON.parse(localStorage.getItem('user'))['userId']
-    this.creatingForm()
     this.checkSeller()
+    this.creatingForm()
+    this.checkSellerRequest()
   }
 
-
+  checkSeller():void{
+    this.role = JSON.parse(localStorage.getItem('user'))['authority']
+    if(this.role==='SELLER'){
+      this.isAccepted = true
+    }
+  }
 
   /**
    * @function (check) will check weither the user has already made a request or not.
    */
-  checkSeller(){
+  checkSellerRequest(){
     this.sellerService.getSellerByUserId(this.userId).subscribe(
       {
         next:(response)=>{
-          console.log(response)
+
           if(response){
             this.alreadyRequested = true
           }
         },
         error:(error)=>{
-          console.log('Error',error)
+          this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Welcome to Seller Page.' })
         },
         complete:()=>{
           console.log('checking seller completed')

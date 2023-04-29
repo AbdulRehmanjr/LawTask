@@ -56,7 +56,7 @@ export class SignupComponent {
     user.password = this.SignupForm.controls['password'].value
     user.userName = this.SignupForm.controls['username'].value
 
-    this._signup.saveAdmin(user, this.file).subscribe({
+    this._signup.saveUser(user, this.file).subscribe({
       next: (value: any) => {
         if (value) {
           this._router.navigate(['login'])
