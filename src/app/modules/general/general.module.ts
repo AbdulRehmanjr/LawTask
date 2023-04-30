@@ -20,26 +20,29 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SharedModule } from '../shared/shared.module';
 
 // components
-import { UserComponent } from './general.component';
+import { GeneralComponent } from './general.component';
 import { IntroComponent } from '../../components/general/intro/intro.component';
 import { PopularComponent } from '../../components/general/popular/popular.component';
 import { FooterComponent } from '../../components/general/footer/footer.component';
 import { LoginComponent } from '../../components/general/login/login.component';
 import { SignupComponent } from '../../components/general/signup/signup.component';
-import { SubscriptioncardComponent } from '../../components/general/subscriptioncard/subscriptioncard.component';
 import { RequestSellerComponent } from '../../components/general/request-seller/request-seller.component';
 import { MainPortionComponent } from '../../components/general/main-portion/main-portion.component';
+import { JobsListComponent } from 'src/app/components/seller/jobs-list/jobs-list.component';
 
 
 const routes: Routes = [
   {
-    path: 'home', component: UserComponent,
+    path: 'home', component: GeneralComponent,
     children: [
       {
         path: '', component: MainPortionComponent
       },
       {
         path:'seller-request',component:RequestSellerComponent
+      },
+      {
+        path:'job-list',component:JobsListComponent
       },
       {
         path: 'login', component: LoginComponent
@@ -58,13 +61,12 @@ const routes: Routes = [
 @NgModule({
   declarations: [
 
-    UserComponent,
+    GeneralComponent,
     IntroComponent,
     PopularComponent,
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    SubscriptioncardComponent,
     RequestSellerComponent,
     MainPortionComponent,
   ],

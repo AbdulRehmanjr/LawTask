@@ -19,13 +19,13 @@
             <li><a href="#">For Employers</a></li>
 
             <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
-
+            <li *ngIf="role=='SELLER'"><a routerLink="job-list">Post Jobs</a></li>
             <li><a href="#">Pages</a></li>
             <li *ngIf="check == undefined else other">
               <a routerLink="/login"> Login </a>
             </li>
             <ng-template #other>
-              <li>
+              <li *ngIf="role=='USER'">
               <a routerLink="seller-request"> Request Seller </a>
             </li>
             </ng-template>

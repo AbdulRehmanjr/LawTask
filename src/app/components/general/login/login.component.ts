@@ -89,9 +89,12 @@ export class LoginComponent {
 
     if (role == "ADMIN") {
 
-      this.router.navigate(['admin-dashboard'])
+      this.router.navigate([''])
 
     } else if (role == "USER") {
+      this.router.navigate([''])
+    }
+    else if(role=='SELLER'){
       this.router.navigate([''])
     }
     else {

@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HeaderComponent } from 'src/app/components/shared/header/header.component';
-
+import { SubscriptioncardComponent } from 'src/app/components/shared/subscriptioncard/subscriptioncard.component';
 
 const routes:Routes = [
 
 ]
 @NgModule({
   declarations: [
+    SubscriptioncardComponent,
     HeaderComponent
   ],
   imports: [
@@ -17,6 +18,7 @@ const routes:Routes = [
     CommonModule
   ],
   exports:[
+    SubscriptioncardComponent,
     HeaderComponent
   ]
 })

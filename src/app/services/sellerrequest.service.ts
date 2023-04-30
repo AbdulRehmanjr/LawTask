@@ -7,7 +7,7 @@ import { SellerRequest } from '../classes/seller-request';
 })
 export class SellerrequestService {
 
-  private baseUrl  = 'http://localhost:8080/api/v1/seller'
+  private baseUrl  = 'http://localhost:8080/api/v1/sellerrequest'
   constructor(private http:HttpClient) { }
 
   requestSeller(seller:SellerRequest,profile:File,document:File){

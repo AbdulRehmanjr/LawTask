@@ -34,14 +34,22 @@ export class RequestSellerComponent {
     this.userId = JSON.parse(localStorage.getItem('user'))['userId']
     this.checkSeller()
     this.creatingForm()
-    this.checkSellerRequest()
   }
 
   checkSeller():void{
     this.role = JSON.parse(localStorage.getItem('user'))['authority']
-    if(this.role==='SELLER'){
-      this.isAccepted = true
+
+    if(this.role==='ADMIN'){
+
+      return
     }
+
+    if(this.role==='SELLER' ){
+      this.isAccepted = true
+      return
+    }
+    this.checkSellerRequest()
+
   }
 
   /**
@@ -53,6 +61,7 @@ export class RequestSellerComponent {
         next:(response)=>{
 
           if(response){
+
             this.alreadyRequested = true
           }
         },

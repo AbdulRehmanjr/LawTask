@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 
   check: string
-
+  role:string =''
   isAdmin: boolean = false
 
   constructor(private router: Router) { }
@@ -31,7 +31,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   userCheck(): void {
     const user = JSON.parse(localStorage.getItem('user'))
-    if (user.authority === 'ADMIN') {
+    this.role=user.authority
+    if ( this.role=== 'ADMIN') {
       this.isAdmin = true
     }
   }
@@ -39,8 +40,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   logOut() {
 
     localStorage.removeItem('user')
-    this.router.navigate(['/home'])
-    location.reload()
+
+    setInterval(
+      ()=>{
+        location.reload()
+      },1000
+    )
+    this.router.navigate(['/home/'])
 
 
   }

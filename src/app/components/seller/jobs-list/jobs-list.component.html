@@ -1,0 +1,7 @@
+<ng-container *ngIf="showSubscription == true else subscribed">
+  <h1>You are selected as a seller please choose following subscription to start your work.</h1>
+  <shared-subscriptioncard></shared-subscriptioncard>
+</ng-container>
+<ng-template #subscribed>
+<h1>subcribed</h1>
+</ng-template>
