@@ -10,7 +10,7 @@ import { SellerService } from 'src/app/services/seller.service';
 export class JobsListComponent implements OnInit{
 
 
-  showSubscription:boolean = true
+  showSubscription:boolean = false
   constructor(
     private sellerService:SellerService
   ){}
@@ -27,8 +27,8 @@ export class JobsListComponent implements OnInit{
     this.sellerService.getSeller(userId).subscribe(
       {
         next:(response:Seller)=>{
-          if(response.active == true){
-              this.showSubscription = false
+          if(response.active == false){
+              this.showSubscription = true
           }
         },
         error:(error:any)=>{

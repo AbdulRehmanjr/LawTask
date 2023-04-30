@@ -1,0 +1,32 @@
+.bg-white{
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+}
+i{
+  color:blue;
+}
+.headline{
+  font-size:30px;
+  color:black;
+  font-family:'Times New Roman', Times, serif;
+}
+.headline-sec i{
+  font-size: 20px;
+}
+.headline-sec{
+  font-size:23px;
+  color: #000;
+  font-family: 'Times New Roman', Times, serif;
+}
+.job-details{
+  margin:10px;
+  padding:10px;
+}
+.job-title{
+  margin-top:5px;
+  margin-left:10px;
+  padding-left:10px;
+  font-size:18px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 700;
+}

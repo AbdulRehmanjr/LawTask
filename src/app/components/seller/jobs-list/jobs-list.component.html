@@ -1,7 +1,44 @@
-<ng-container *ngIf="showSubscription == true else subscribed">
-  <h1>You are selected as a seller please choose following subscription to start your work.</h1>
-  <shared-subscriptioncard></shared-subscriptioncard>
+<ng-container *ngIf="showSubscription == false; else unsubscribed">
+  <div class="container-fluid">
+    <div class="row">
+      <h1 class="text-center headline"> Manage Jobs</h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2 pt-3 pb-2 bg-white">
+        <h2 class="headline-sec"><i class="fa-solid fa-suitcase"></i> My Jobs</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2 pt-3 pb-2 bg-white">
+        <div class="job-details">
+          <div class="d-flex flex-row">
+            <img src="assets/images/company-logo-01.png" width="50" alt="job image">
+            <h3 class="job-title">FrontEnd Developer Angular 15 <span class="badge text-bg-success">New Job</span></h3>
+          </div>
+          <div class="row mt-4">
+            <div class="col-sm-3">
+              <div class="post-date">
+                Posted on date
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-sm-3">
+              <button>Edit</button>
+              <button>del</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
 </ng-container>
-<ng-template #subscribed>
-<h1>subcribed</h1>
+<ng-template #unsubscribed>
+  <h1>
+    You are selected as a seller please choose following subscription to start
+    your work.
+  </h1>
+  <shared-subscriptioncard></shared-subscriptioncard>
 </ng-template>

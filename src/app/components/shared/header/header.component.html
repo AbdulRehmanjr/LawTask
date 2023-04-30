@@ -19,7 +19,7 @@
             <li><a href="#">For Employers</a></li>
 
             <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
-            <li *ngIf="role=='SELLER'"><a routerLink="job-list">Post Jobs</a></li>
+            <li *ngIf="role=='SELLER'"><a routerLink="job-list">My Jobs</a></li>
             <li><a href="#">Pages</a></li>
             <li *ngIf="check == undefined else other">
               <a routerLink="/login"> Login </a>
