@@ -29,6 +29,8 @@ import { SignupComponent } from '../../components/general/signup/signup.componen
 import { RequestSellerComponent } from '../../components/general/request-seller/request-seller.component';
 import { MainPortionComponent } from '../../components/general/main-portion/main-portion.component';
 import { JobsListComponent } from 'src/app/components/seller/jobs-list/jobs-list.component';
+import { SearchComponent } from '../../components/general/search/search.component';
+
 
 
 const routes: Routes = [
@@ -43,6 +45,9 @@ const routes: Routes = [
       },
       {
         path:'job-list',component:JobsListComponent
+      },
+      {
+        path:'search',component:SearchComponent
       },
       {
         path: 'login', component: LoginComponent
@@ -69,6 +74,7 @@ const routes: Routes = [
     SignupComponent,
     RequestSellerComponent,
     MainPortionComponent,
+    SearchComponent,
   ],
   imports: [
     SliderModule,

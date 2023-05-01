@@ -1,0 +1,46 @@
+<div class="container">
+  <p-toast position="bottom-right"></p-toast>
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+    <div class="form-outline">
+      <input
+        type="text"
+        placeholder="Job Name"
+        formControlName="jobName"
+        class="form-control form-control-lg"
+        [required]="true"
+      />
+      <label class="form-label">Job Name</label>
+    </div>
+    <div
+      *ngIf="
+        jobForm.get('jobName').invalid &&
+        jobForm.get('jobName').touched
+      "
+      class="error-message"
+    >
+      Name is Required
+    </div>
+    <div class="form-outline">
+      <input
+        type="file"
+        formControlName="jobPicture"
+        (change)="onChange($event)"
+        class="form-control form-control-lg"
+        required
+      />
+      <label class="form-label">Profile Picture</label>
+    </div>
+    <div
+      *ngIf="
+        jobForm.get('jobPicture').invalid &&
+        jobForm.get('jobPicture').touched
+      "
+      class="error-message"
+    >
+      Job display Picture is Required
+    </div>
+    <div class="single-input-item">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

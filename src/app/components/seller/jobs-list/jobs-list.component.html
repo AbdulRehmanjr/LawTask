@@ -1,39 +1,49 @@
 <ng-container *ngIf="showSubscription == false; else unsubscribed">
+  <p-toast position="bottom-right"></p-toast>
   <div class="container-fluid">
     <div class="row">
-      <h1 class="text-center headline"> Manage Jobs</h1>
+      <h1 class="text-center headline">Manage Jobs</h1>
+
     </div>
     <div class="row">
       <div class="col-sm-8 offset-sm-2 pt-3 pb-2 bg-white">
-        <h2 class="headline-sec"><i class="fa-solid fa-suitcase"></i> My Jobs</h2>
+        <span class="d-flex flex-between">
+          <h2 class="headline-sec">
+            <i class="fa-solid fa-suitcase"></i> My Jobs
+          </h2>
+          <button class="add-btn btn btn-info" (click)="showDialog()">Add</button>
+          <h2>Total Jobs Left: {{seller?.maxJobs-seller?.currentJobs}}</h2>
+        </span>
+
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-8 offset-sm-2 pt-3 pb-2 bg-white">
+      <div *ngFor="let job of jobs" class="col-sm-8 offset-sm-2 pt-3 pb-2 mb-3 bg-white">
         <div class="job-details">
           <div class="d-flex flex-row">
-            <img src="assets/images/company-logo-01.png" width="50" alt="job image">
-            <h3 class="job-title">FrontEnd Developer Angular 15 <span class="badge text-bg-success">New Job</span></h3>
-          </div>
-          <div class="row mt-4">
-            <div class="col-sm-3">
-              <div class="post-date">
-                Posted on date
-              </div>
-            </div>
-          </div>
-          <div class="row mt-4">
-            <div class="col-sm-3">
-              <button>Edit</button>
-              <button>del</button>
-            </div>
+            <img
+              src="data:image/jpeg; base64, {{job.jobImage}}"
+              width="50"
+              alt="job image"
+            />
+            <h3 class="job-title">
+             {{job.jobName}}
+              <span class="badge text-bg-success">New Job</span>
+            </h3>
+            <button class="del-btn btn btn-danger">
+              <i style="color:#fff;" class="fas fa-trash"></i>
+            </button>
           </div>
         </div>
+
       </div>
-
-
     </div>
   </div>
+  <p-dialog [(visible)]="displayDialog"  header="Add New Job" [modal]="true" styleClass="dialog-style">
+    <ng-template pTemplate="body">
+      <app-add-job (jobAdded)="hideDialog()"></app-add-job>
+    </ng-template>
+</p-dialog>
 </ng-container>
 <ng-template #unsubscribed>
   <h1>

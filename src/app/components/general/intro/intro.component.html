@@ -16,16 +16,16 @@
     <div class="row">
       <div class="col-sm-9 offset-sm-1">
         <div class="search-form p-2">
-          <form class="row">
+          <form [formGroup]="searchForm" class="row" (ngSubmit)="onSubmit()">
             <span class="col-sm-5 d-flex flex-row">
               <i class="fa-solid fa-location-dot"></i>
-              <input type="text" placeholder="Location"  />
+              <input type="text" placeholder="Location" formControlName="location" />
             </span>
             <span class="col-sm-5 d-flex flex-row">
               <i class="fa-solid fa-location-dot"></i>
-              <input type="text" placeholder="Jobs"  />
+              <input type="text" placeholder="Jobs" formControlName="category" />
             </span>
-            <button class="col-sm-2 btn btn-primary" >submits</button>
+            <button class="col-sm-2 btn btn-primary" >Search</button>
           </form>
 
         </div>
