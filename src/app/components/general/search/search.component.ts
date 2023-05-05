@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Jobs } from 'src/app/classes/jobs';
@@ -11,12 +12,14 @@ import { JobsService } from 'src/app/services/jobs.service';
 })
 export class SearchComponent implements OnInit{
 
+  search:FormGroup
   jobs:Jobs[]
   jobName:string = ''
 
   constructor(private jobService:JobsService,
     private message:MessageService,
-    private router:ActivatedRoute){}
+    private router:ActivatedRoute,
+    private formBuilder:FormBuilder){}
   ngOnInit(): void {
 
     this.router.queryParams.subscribe(params => {
@@ -25,6 +28,11 @@ export class SearchComponent implements OnInit{
     this.fetchJobs()
   }
 
+  createForm():void{
+    this.search = this.formBuilder.group({
+      search: new FormControl('')
+    })
+  }
   fetchJobs():void{
     this.jobService.getJobsByJobName(this.jobName).subscribe({
       next:(response:Jobs[])=>{

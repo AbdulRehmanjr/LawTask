@@ -1,0 +1,13 @@
+.user-bar{
+  max-height:500px;
+  overflow-y: scroll;
+}
+.messages-container-inner{
+  min-height: 500px;
+  max-height: 500px;
+}
+.me .message-text{
+  background-color: #2A41E8;
+  color: #fff;
+  font-weight: 600;
+}

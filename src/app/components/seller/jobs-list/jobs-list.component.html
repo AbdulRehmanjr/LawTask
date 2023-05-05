@@ -1,6 +1,6 @@
 <ng-container *ngIf="showSubscription == false; else unsubscribed">
   <p-toast position="bottom-right"></p-toast>
-  <div class="container-fluid">
+  <div class="container-fluid margin-top-100">
     <div class="row">
       <h1 class="text-center headline">Manage Jobs</h1>
 
@@ -11,7 +11,7 @@
           <h2 class="headline-sec">
             <i class="fa-solid fa-suitcase"></i> My Jobs
           </h2>
-          <button class="add-btn btn btn-info" (click)="showDialog()">Add</button>
+          <button class="add-btn btn btn-success" (click)="showDialog()">Add</button>
           <h2>Total Jobs Left: {{seller?.maxJobs-seller?.currentJobs}}</h2>
         </span>
 

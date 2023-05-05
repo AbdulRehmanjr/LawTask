@@ -30,9 +30,15 @@ import { RequestSellerComponent } from '../../components/general/request-seller/
 import { MainPortionComponent } from '../../components/general/main-portion/main-portion.component';
 import { JobsListComponent } from 'src/app/components/seller/jobs-list/jobs-list.component';
 import { SearchComponent } from '../../components/general/search/search.component';
+import { CommunicationComponent } from '../../components/general/communication/communication.component';
 
 
-
+// const config: SocketIoConfig = {
+//   url: 'http://localhost:8082/my-websocket-endpoint',
+//   options: {
+//     transports:['websocket']
+//   }
+// };
 const routes: Routes = [
   {
     path: 'home', component: GeneralComponent,
@@ -48,6 +54,9 @@ const routes: Routes = [
       },
       {
         path:'search',component:SearchComponent
+      },
+      {
+        path:'messages/:sellerId',component:CommunicationComponent
       },
       {
         path: 'login', component: LoginComponent
@@ -75,8 +84,10 @@ const routes: Routes = [
     RequestSellerComponent,
     MainPortionComponent,
     SearchComponent,
+    CommunicationComponent,
   ],
   imports: [
+
     SliderModule,
     ChipModule,
     MultiSelectModule,

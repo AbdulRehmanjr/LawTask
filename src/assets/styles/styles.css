@@ -15954,31 +15954,42 @@ ul.dashboard-box-list > li:hover {
 	line-height: 25px;
 }
 
-.message-bubble.me .message-text {
-	float: right;
+/* sender */
+.message-bubble-me {
+	display: block;
+	position: relative;
+	margin-bottom: 25px;
 }
 
-.message-bubble .message-text p {
+.message-bubble-me .message-avatar {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.message-bubble-me .message-avatar img {
+	width: 50px;
+	height: 50px;
+}
+
+.message-bubble-me .message-text {
+	margin-right: 70px;
+	background-color: blue;
+  color: white;
+	border-radius: 4px;
+	padding: 12px 18px;
+	position: relative;
+	display: inline-block;
+	float: right;
+	line-height: 25px;
+}
+.message-bubble-me .message-text p {
 	font-size: 15px;
 	padding: 0;
 	margin: 0;
 	line-height: 25px;
 }
 
-
-/* Message Bubble "me" */
-.message-bubble.me .message-avatar {
-	left: auto;
-	right: 0;
-}
-
-.message-bubble.me .message-text {
-	margin-left: 0;
-	margin-right: 70px;
-	background-color: #66676b;
-	color: #fff;
-	position: relative;
-}
 
 /* Arrow */
 .message-bubble .message-text:before {
@@ -15994,7 +16005,7 @@ ul.dashboard-box-list > li:hover {
 	position: absolute;
 }
 
-.message-bubble.me .message-text:before {
+.message-bubble-me .message-text:before {
 	border-top: 6px solid transparent;
 	border-bottom: 6px solid transparent;
 	border-left: 6px solid #66676b;

@@ -6,5 +6,6 @@ export class Jobs {
   jobImage:string
   likes:number
   views:number
+  jobPrice:number
   user:User
 }

@@ -23,6 +23,7 @@
     "@ngrx/store": "^15.4.0",
     "@ngrx/store-devtools": "^15.4.0",
     "@popperjs/core": "^2.9.3",
+    "@stomp/stompjs": "^7.0.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.4",
     "file-saver": "^2.0.5",
@@ -31,6 +32,8 @@
     "primeicons": "^6.0.1",
     "primeng": "^15.2.1",
     "rxjs": "~7.5.0",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

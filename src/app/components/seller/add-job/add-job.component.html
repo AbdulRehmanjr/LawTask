@@ -22,6 +22,25 @@
     </div>
     <div class="form-outline">
       <input
+        type="text"
+        placeholder="$ 10"
+        formControlName="jobPrice"
+        class="form-control form-control-lg"
+        [required]="true"
+      />
+      <label class="form-label">Job Price</label>
+    </div>
+    <div
+      *ngIf="
+        jobForm.get('jobPrice').invalid &&
+        jobForm.get('jobPrice').touched
+      "
+      class="error-message"
+    >
+      Price is Required
+    </div>
+    <div class="form-outline">
+      <input
         type="file"
         formControlName="jobPicture"
         (change)="onChange($event)"
