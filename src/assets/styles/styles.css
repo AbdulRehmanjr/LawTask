@@ -182,7 +182,7 @@ img { max-width: 100%; }
 
 #header {
 	position: relative;
-	z-index: 999;
+	z-index: 99999999;
 	padding: 0;
 	box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.12);
 	font-size: 16px;
@@ -2554,7 +2554,7 @@ body #backtotop a {
 /* ---------------------------------- */
 /* Sidebar Styles
 ------------------------------------- */
-.sidebar-container { margin-bottom: 40px; }
+.sidebar-container { margin-bottom: 40px; z-index: 999; }
 .full-page-container .sidebar-container { margin-bottom: 0px; }
 
 .sidebar-widget input { margin-bottom: 0; }

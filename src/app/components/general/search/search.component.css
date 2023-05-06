@@ -1,6 +1,10 @@
 .margin{
   margin-top:90px;
 }
+.sidebar-container{
+  position: sticky;
+  top:85px;
+}
 @media (max-width: 576px), (max-width: 768px) {
   .margin{
     margin-top: 5px;

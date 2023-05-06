@@ -65,7 +65,7 @@
               <div class="clearfix"></div>
             </div> -->
             <ng-container *ngFor="let message of messages">
-              <div [ngClass]="{'message-bubble-me': true, 'message-bubble': false}">
+              <div [ngClass]="{'message-bubble-me': message.type=='SENDER', 'message-bubble': message.type=='RECEIVER'}">
                 <div class="message-bubble-inner">
                   <div class="message-avatar">
                     <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="sender image" />

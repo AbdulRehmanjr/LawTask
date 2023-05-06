@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Seller } from 'src/app/classes/seller';
 import { SellerRequest } from 'src/app/classes/seller-request';
 import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 
@@ -32,25 +33,11 @@ export class RequestSellerComponent {
   ngOnInit(): void {
 
     this.userId = JSON.parse(localStorage.getItem('user'))['userId']
-    this.checkSeller()
+    this.checkSellerRequest()
     this.creatingForm()
   }
 
-  checkSeller():void{
-    this.role = JSON.parse(localStorage.getItem('user'))['authority']
 
-    if(this.role==='ADMIN'){
-
-      return
-    }
-
-    if(this.role==='SELLER' ){
-      this.isAccepted = true
-      return
-    }
-    this.checkSellerRequest()
-
-  }
 
   /**
    * @function (check) will check weither the user has already made a request or not.
@@ -58,18 +45,18 @@ export class RequestSellerComponent {
   checkSellerRequest(){
     this.sellerService.getSellerByUserId(this.userId).subscribe(
       {
-        next:(response)=>{
-
+        next:(response:Seller)=>{
           if(response){
-
             this.alreadyRequested = true
           }
+          if(response.active===true){
+            this.isAccepted=true
+          }
         },
-        error:(error)=>{
+        error:(_error:any)=>{
           this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Welcome to Seller Page.' })
         },
         complete:()=>{
-          console.log('checking seller completed')
         }
       }
     )
@@ -93,6 +80,14 @@ export class RequestSellerComponent {
 
   }
 
+  displayImage() {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      // Set the image source to the FileReader result
+      this.placeholder = e.target.result;
+    };
+    reader.readAsDataURL(this.profilPicture);
+  }
   /**
    * @function selected skills
    */
@@ -101,6 +96,8 @@ export class RequestSellerComponent {
   }
   pictureUpload(event:any):void{
     this.profilPicture = event.target.files[0]
+    this.displayImage()
+    console.log(this.profilPicture)
   }
 
   /**
@@ -149,7 +146,8 @@ export class RequestSellerComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error.message}` })
       }
       ,complete:()=>{
-        this.router.navigate(['home'])
+         // this.router.navigate(['home'])
+          this.ngOnInit()
       }
      })
   }

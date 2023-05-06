@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Route } from '@angular/router';
 import { CardSubscription } from 'src/app/classes/subscription';
 import { SellerService } from 'src/app/services/seller.service';
 
@@ -31,6 +32,7 @@ export class SubscriptioncardComponent implements OnInit {
       },
       complete:()=>{
         console.log('card Subscription added')
+
       }
     })
 

@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { Observable, filter, reduce } from 'rxjs';
 import { SellerRequest } from 'src/app/classes/seller-request';
-import { sellerRequestIsFetchedSeletor, sellerRequestSelector, errorSelector } from 'src/app/ngrx/selectors/SellerRequestSelector';
-import { appState } from 'src/app/ngrx/states/appState';
-import * as sellerAction from 'src/app/ngrx/actions/SellerRequestAction'
+
 import * as fileSave from 'file-saver'
 import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 

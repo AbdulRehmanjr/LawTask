@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit{
   jobs:Jobs[]
   jobName:string = ''
 
+
   constructor(private jobService:JobsService,
     private message:MessageService,
     private router:ActivatedRoute,

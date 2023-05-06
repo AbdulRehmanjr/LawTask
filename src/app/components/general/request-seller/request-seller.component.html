@@ -16,10 +16,10 @@
 
           <div class="content">
             <div class="row">
-              <div class="col-auto">
-                <img class="profile-pic" src="{{placeholder}}" alt="profile picture">
+              <div class="col-auto mx-2 px-3">
+                <img class="profile-pic" [src]="placeholder" alt="profile picture">
                 <input
-                class=""
+                class="mt-4"
                 (change)="pictureUpload($event)" type="file" accept="image/*"
                 />
 
@@ -334,15 +334,20 @@
   </section>
   </ng-container>
   <ng-template #newUser>
-    <section class="row">
+    <section class="row margin-top-100 paddin-top-10">
 
-    <ng-container *ngIf="isAccepted == false else accepted" >
-      <h1 class="alert alert-info">Your request is under review please wait for response</h1>
+    <ng-container *ngIf="isAccepted == true else unAccepted" >
+
+      <h1 class="alert alert-info">
+        Your Request for Seller has been accepted.
+
+      </h1>
+      <h2>Please Select the Subscription from below</h2>
+      <shared-subscriptioncard></shared-subscriptioncard>
     </ng-container>
-    <ng-template #accepted>
-        <h1 class="alert alert-info">
-          Your Request for Seller has been accepted.
-        </h1>
+    <ng-template #unAccepted>
+      <h1 class="alert alert-info">Your request is under review please wait for response</h1>
+
     </ng-template>
     </section>
 

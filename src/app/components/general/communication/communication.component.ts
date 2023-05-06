@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/classes/message';
 import { Seller } from 'src/app/classes/seller';
-import { CommunicationService } from 'src/app/services/communication.service';
 import { SellerService } from 'src/app/services/seller.service';
-
+import { Client, Stomp } from '@stomp/stompjs';
+import * as SockJS from 'sockjs-client';
 @Component({
   selector: 'app-communication',
   templateUrl: './communication.component.html',
@@ -13,19 +13,16 @@ import { SellerService } from 'src/app/services/seller.service';
 export class CommunicationComponent implements OnInit {
   messages: Message[] = [];
   newMessage: string = ''
-  sellerId: string
+  sellerId: string |null
   seller: Seller
   date: any
   time: any
 
   constructor(private sellerService: SellerService,
     private route: ActivatedRoute,
-    private chat:CommunicationService
   ) {
 
   }
-
-
 
   ngOnInit(): void {
 
@@ -42,20 +39,33 @@ export class CommunicationComponent implements OnInit {
   }
   connection() {
 
-    this.chat.connect()
+    const sockJS = new SockJS('http://localhost:8080/api/v1/ws');
+    const stompClient = Stomp.over(sockJS);
+
+    stompClient.connect({}, (frame) => {
+      console.log('Connected:', frame);
+      // Perform actions upon successful connection
+    }, (error) => {
+      console.error('Connection error:', error);
+      // Handle connection error
+    });
+
+
   }
 
   sendMessage(data: any) {
 
     const message = new Message()
+    message.id=1
     message.message = data.value
     message.type='SENDER'
 
 
     this.messages.push(message)
     data.value = ''
-    this.chat.sendMessage(message)
-    // console.log(message)
+   this.getMessage(message)
+console.log(this.messages)
+
   }
 
   fetchSeller(): void {
@@ -75,6 +85,13 @@ export class CommunicationComponent implements OnInit {
 
   }
 
+  getMessage(data:Message):void{
+    let message = new Message()
+    message.id = 2
+    message.message = data.message
+    message.type='RECEIVER'
+    this.messages.push(message)
+  }
 
 
 

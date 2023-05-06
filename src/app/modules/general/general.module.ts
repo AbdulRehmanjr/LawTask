@@ -15,6 +15,7 @@ import { MessageModule } from 'primeng/message';
 import { SliderModule } from 'primeng/slider';
 import { ChipModule } from 'primeng/chip';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -87,7 +88,7 @@ const routes: Routes = [
     CommunicationComponent,
   ],
   imports: [
-
+    SelectButtonModule,
     SliderModule,
     ChipModule,
     MultiSelectModule,
