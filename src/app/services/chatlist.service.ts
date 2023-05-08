@@ -13,4 +13,15 @@ export class ChatlistService {
     return this.http.post(`${this.URL}/${userId}`,{})
   }
 
+  addNewUser(userId:string,receiverId:string){
+    return this.http.post(`${this.URL}/${userId}/${receiverId}`,{})
+  }
+  getChatList(userId:string){
+    return this.http.get(`${this.URL}/${userId}`,{observe:'body'})
+  }
+
+  getAllMessages(userId:string,receiverId:String){
+
+    return this.http.get(`${this.URL}/${userId}/${receiverId}`,{observe:'body'})
+  }
 }

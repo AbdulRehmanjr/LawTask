@@ -10,132 +10,15 @@
         </div>
 
         <ul class="user-bar">
-          <li>
-            <a (click)="changeBackground()" [ngStyle]="{ 'background-color': isClicked ? '#ff0000' : 'transparent' }">
+          <li *ngFor="let user of users">
+            <a id="{{user.userId}}" (click)="selectUser(user)" [ngStyle]="{ 'border': isClicked ? '2px solid blue' : 'none' }">
               <div class="message-avatar">
                 <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+                <img src="data:image/jpeg; base64, {{ user?.profilePicture }}" alt="profile Image" />
               </div>
               <div class="message-by">
                 <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a >
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ seller?.user.userName }}</h5>
+                  <h5>{{user?.userName }}</h5>
                 </div>
               </div>
             </a>
@@ -146,26 +29,23 @@
     <article  id="userchat" class="col-sm-12 col-md-9 mt-md-5">
       <div class="message-content">
         <div class="messages-headline d-flex flex-row justify-content-between">
-          <h4>{{seller?.user.userName}}</h4>
+          <h4>{{selectedUser?.userName}}</h4>
           <button  class="message-action"
             ><i class="fa-solid fa-trash "></i></button
           >
         </div>
-
         <div class="message-content-inner">
-
           <div class="message-time-sign">
             <span>{{date}}</span>
           </div>
-          <ng-container *ngFor="let message of messages">
-            <div [ngClass]="{'message-bubble-me': message.type=='SENDER', 'message-bubble': message.type=='RECEIVER'}">
+          <ng-container  *ngFor="let message of messages">
+            <div  [ngClass]="{'message-bubble-me': message.type=='SENDER', 'message-bubble': message.type=='RECEIVER'}">
               <div class="message-bubble-inner">
                 <div class="message-text">
                   <p>
                     {{message.content}}
-
                   </p>
-                  <p class="time">{{this.time}}</p>
+                  <p class="time">{{message.date}}</p>
                 </div>
               </div>
               <div class="clearfix"></div>

@@ -9,11 +9,11 @@
 .message-content{
   height:530px;
 }
-.message-text{
+/* .message-text{
   background-color: #2A41E8;
   color: #fff;
   font-weight: 600;
-}
+} */
 .time{
   font-size:10px !important;
 }
@@ -27,6 +27,9 @@
 /* .messages-inbox{
   height:100vh;
 } */
+a{
+  cursor: pointer;
+}
 a:hover{
   border-bottom:2px solid blue;
 }
