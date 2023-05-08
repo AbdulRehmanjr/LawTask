@@ -57,7 +57,7 @@ const routes: Routes = [
         path:'search',component:SearchComponent
       },
       {
-        path:'messages/:sellerId',component:CommunicationComponent
+        path:'messages',component:CommunicationComponent
       },
       {
         path: 'login', component: LoginComponent

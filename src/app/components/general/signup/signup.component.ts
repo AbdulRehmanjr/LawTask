@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Chatlist } from 'src/app/classes/chatlist';
 import { User } from 'src/app/classes/user';
+import { ChatService } from 'src/app/services/chat.service';
+import { ChatlistService } from 'src/app/services/chatlist.service';
 import { SingupService } from 'src/app/services/singup.service';
 
 @Component({
@@ -14,11 +17,13 @@ export class SignupComponent {
   SignupForm: FormGroup;
   file: File
   Error: string
+  user:any
   constructor(
     private formBuilder: FormBuilder,
     private _router: Router,
     private _signup: SingupService,
-    private messageService:MessageService) { }
+    private messageService:MessageService,
+    private chatList:ChatlistService) { }
   ngOnInit(): void {
     this.SignupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -59,6 +64,7 @@ export class SignupComponent {
     this._signup.saveUser(user, this.file).subscribe({
       next: (value: any) => {
         if (value) {
+          this.user = value
           this._router.navigate(['login'])
         }
       },
@@ -68,6 +74,7 @@ export class SignupComponent {
       },
       complete: () => {
         console.log('Saving user completed with success')
+        this.chatList.createNewChatList(this.user.userId).subscribe()
       }
     })
   }

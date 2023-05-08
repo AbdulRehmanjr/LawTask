@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-
+import { Stomp } from '@stomp/stompjs';
+import * as SockJS from 'sockjs-client'
+import { Message } from '../classes/message';
 
 
 
@@ -7,40 +9,45 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ChatService {
-  userId:string =''
-  socket:any
+private SOCKET:string = 'http://localhost:8080/api/v1/ws'
+  private client: any
+  private messages: any[] = []
+
   constructor() {
 
+    const sockJS = new SockJS(this.SOCKET);
 
+
+    this.client = Stomp.over(sockJS);
   }
 
-  public joinRoom(userId:string): void {
-    console.log(`join room using ${userId}`)
-    try {
-      this.socket.emit('joinRoom', userId);
-    } catch (error) {
-      console.error(error)
-    }
+  connect() {
 
+    this.client.connect({}, () => {
+      console.log('Connected to WebSocket server');
+
+
+      this.client.subscribe('/chatroom/public', (message) => {
+        const newMessage: Message = JSON.parse(message.body)
+
+        if(newMessage.senderName!=JSON.parse(localStorage.getItem('user'))['userId']){
+          this.messages.push(newMessage)
+        }
+
+
+      });
+    });
+  }
+  sendMessage(data: Message) {
+    let message = new Message()
+    message = data
+    message.senderName = JSON.parse(localStorage.getItem('user'))['userId']
+    this.client.send('/app/message', {}, JSON.stringify(message));
+    this.messages.push(message)
   }
 
-  public leaveRoom(): void {
-    this.socket.emit('leaveRoom', this.userId);
+
+  getMessages(): any[] {
+    return this.messages;
   }
-
-  public sendMessage(message: string): void {
-    this.socket.emit('chatMessage', { userId: this.userId, message: message });
-  }
-
-  // public receiveMessages(): Observable<any> {
-  //   return this.socket.fromEvent('chatMessage');
-  // }
-
-  // public receiveUserJoined(): Observable<any> {
-  //   return this.socket.fromEvent('userJoined');
-  // }
-
-  // public receiveUserLeft(): Observable<any> {
-  //   return this.socket.fromEvent('userLeft');
-  // }
 }

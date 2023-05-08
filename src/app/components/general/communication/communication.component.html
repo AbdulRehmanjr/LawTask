@@ -1,141 +1,198 @@
-<section class="dashboard-content-container">
-  <div class="dashboard-content-inner">
-    <div class="messages-container margin-top-50">
-      <div class="messages-container-inner">
-        <div class="messages-inbox">
-          <div class="messages-headline">
-            <div class="input-with-icon">
-              <input id="autocomplete-input" type="text" placeholder="Search" />
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
+<section class="row mt-md-5">
+  <div class="row">
+    <aside id="userbar" class="col-md-3 d-none d-md-block mt-md-5">
+      <div class="messages-inbox">
+        <div class="messages-headline">
+          <div class="input-with-icon">
+            <input id="autocomplete-input" type="text" placeholder="Search" />
+            <i class="fa-solid fa-magnifying-glass"></i>
           </div>
-
-          <ul class="user-bar">
-            <li>
-              <a >
-                <div class="message-avatar">
-                  <i class="status-icon status-online"></i
-                  >
-                  <!-- <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" /> -->
-                </div>
-                <div class="message-by">
-                  <div class="message-by-headline">
-                    <h5>{{seller?.user.userName}}</h5>
-                    <span>4 hours ago</span>
-                  </div>
-                  <p>
-                    Thanks for reaching out. I'm quite busy right now on many
-                  </p>
-                </div>
-              </a>
-            </li>
-
-          </ul>
         </div>
-        <!-- Messages / End -->
 
-        <!-- Message Content -->
-        <div class="message-content">
-          <div class="messages-headline">
-            <h4>{{seller?.user.userName}}</h4>
-            <a  class="message-action"
-              ><i class="fa-solid fa-trash"></i> Delete Conversation</a
-            >
-          </div>
-
-          <div class="message-content-inner">
-
-            <div class="message-time-sign">
-              <span>{{date}}</span>
-            </div>
-
-            <!-- <div class="message-bubble me">
-              <div class="message-bubble-inner">
-                <div class="message-avatar">
-                  <img src="images/user-avatar-small-01.jpg" alt="" />
+        <ul class="user-bar">
+          <li>
+            <a (click)="changeBackground()" [ngStyle]="{ 'background-color': isClicked ? '#ff0000' : 'transparent' }">
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
                 </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a >
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="profile Image" />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ seller?.user.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <article  id="userchat" class="col-sm-12 col-md-9 mt-md-5">
+      <div class="message-content">
+        <div class="messages-headline d-flex flex-row justify-content-between">
+          <h4>{{seller?.user.userName}}</h4>
+          <button  class="message-action"
+            ><i class="fa-solid fa-trash "></i></button
+          >
+        </div>
+
+        <div class="message-content-inner">
+
+          <div class="message-time-sign">
+            <span>{{date}}</span>
+          </div>
+          <ng-container *ngFor="let message of messages">
+            <div [ngClass]="{'message-bubble-me': message.type=='SENDER', 'message-bubble': message.type=='RECEIVER'}">
+              <div class="message-bubble-inner">
                 <div class="message-text">
                   <p>
-                    Thanks for choosing my offer. I will start working on your
-                    project tomorrow.
-                    {{this.time}}
+                    {{message.content}}
+
                   </p>
+                  <p class="time">{{this.time}}</p>
                 </div>
               </div>
               <div class="clearfix"></div>
-            </div> -->
-            <ng-container *ngFor="let message of messages">
-              <div [ngClass]="{'message-bubble-me': message.type=='SENDER', 'message-bubble': message.type=='RECEIVER'}">
-                <div class="message-bubble-inner">
-                  <div class="message-avatar">
-                    <img src="data:image/jpeg; base64, {{ seller?.user.profilePicture }}" alt="sender image" />
-                  </div>
-                  <div class="message-text">
-                    <p>
-                      {{message.message}}
-                      {{this.time}}
-                    </p>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </ng-container>
+            </div>
+          </ng-container>
 
 
 
-          </div>
-          <!-- Message Content Inner / End -->
-
-          <!-- Reply Area -->
-          <div class="message-reply" >
-
-              <textarea
-              #message
-              cols="1"
-              rows="1"
-              placeholder="Your Message"
-              data-autoresize
-            ></textarea>
-            <button  (click)="sendMessage(message)" class="button ripple-effect">Send</button>
-
-
-          </div>
         </div>
-        <!-- Message Content -->
-      </div>
-    </div>
-    <!-- Messages Container / End -->
+        <!-- Message Content Inner / End -->
 
-    <!-- Footer -->
-    <div class="dashboard-footer-spacer"></div>
-    <div class="small-footer margin-top-15">
-      <div class="small-footer-copyrights">
-        © 2019 <strong>Hireo</strong>. All Rights Reserved.
+        <!-- Reply Area -->
+        <div class="message-reply" >
+
+            <textarea
+            #message
+            cols="1"
+            rows="1"
+            placeholder="Your Message"
+            data-autoresize
+            (keydown.enter)="sendMessage($event,message)"
+          ></textarea>
+          <button  (click)="sendMessage($event,message)" class="button ripple-effect">Send</button>
+
+
+        </div>
       </div>
-      <ul class="footer-social-links">
-        <li>
-          <a href="#" title="Facebook" data-tippy-placement="top">
-            <i class="icon-brand-facebook-f"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" title="Twitter" data-tippy-placement="top">
-            <i class="icon-brand-twitter"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" title="Google Plus" data-tippy-placement="top">
-            <i class="icon-brand-google-plus-g"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" title="LinkedIn" data-tippy-placement="top">
-            <i class="icon-brand-linkedin-in"></i>
-          </a>
-        </li>
-      </ul>
-      <div class="clearfix"></div>
-    </div>
-    <!-- Footer / End -->
+    </article>
   </div>
 </section>

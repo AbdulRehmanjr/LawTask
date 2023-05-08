@@ -16,8 +16,8 @@
 
             <li><a href="#">Find Work</a></li>
 
-            <li><a href="#">For Employers</a></li>
-
+            <li *ngIf="role=='SELLER'"><a routerLink="/seller-dashboard">For Employers</a></li>
+            <li *ngIf="role=='USER'"><a routerLink="messages">Messages</a></li>
             <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
             <li *ngIf="role=='SELLER'"><a routerLink="job-list">My Jobs</a></li>
             <li><a href="#">Pages</a></li>

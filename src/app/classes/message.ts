@@ -2,8 +2,9 @@
 
 export class Message{
   id:number
-  message:string
+  content:string
+  senderName:string
+  receiverName:string
+  date:string
   type:string
-  sendBy:string
-  sendTo:string
 }

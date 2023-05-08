@@ -15679,7 +15679,7 @@ ul.dashboard-box-list > li:hover {
 
 /* Scrollbar Adjustments */
 .messages-inbox ul { max-height: 875px; }
-.message-content-inner { max-height: 750px; }
+.message-content-inner {height: 750px; }
 
 .message-content,
 .messages-container-inner .messages-inbox { overflow: hidden; }
@@ -15689,8 +15689,6 @@ ul.dashboard-box-list > li:hover {
 	overflow-y: scroll;
 	width: calc(100% + 18px)
 }
-.message-content-inner::-webkit-scrollbar,
-.messages-container-inner .messages-inbox ul::-webkit-scrollbar { width: 17px; }
 /*  Scrollbar Hide - End */
 
 .messages-headline {
@@ -15932,25 +15930,18 @@ ul.dashboard-box-list > li:hover {
 	margin-bottom: 25px;
 }
 
-.message-bubble .message-avatar {
-	position: absolute;
-	left: 0;
-	top: 0;
-}
 
-.message-bubble .message-avatar img {
-	width: 50px;
-	height: 50px;
-}
 
 .message-bubble .message-text {
-	margin-left: 70px;
 	background-color: #f4f4f4;
 	border-radius: 4px;
 	padding: 12px 18px;
 	position: relative;
 	display: inline-block;
 	float: left;
+  max-width: 400px;
+  height: auto;
+  word-break: break-word;
 	line-height: 25px;
 }
 
@@ -15961,19 +15952,9 @@ ul.dashboard-box-list > li:hover {
 	margin-bottom: 25px;
 }
 
-.message-bubble-me .message-avatar {
-	position: absolute;
-	right: 0;
-	top: 0;
-}
 
-.message-bubble-me .message-avatar img {
-	width: 50px;
-	height: 50px;
-}
 
 .message-bubble-me .message-text {
-	margin-right: 70px;
 	background-color: blue;
   color: white;
 	border-radius: 4px;
@@ -15981,6 +15962,9 @@ ul.dashboard-box-list > li:hover {
 	position: relative;
 	display: inline-block;
 	float: right;
+  max-width: 400px;
+  height: auto;
+  word-break: break-word;
 	line-height: 25px;
 }
 .message-bubble-me .message-text p {
@@ -16046,12 +16030,11 @@ ul.dashboard-box-list > li:hover {
 /* Reply */
 .message-reply {
 	border-top: 1px solid #eaeaea;
-	padding: 30px;
+	padding: 6px;
 	display: flex;
 	align-items: flex-start;
 	margin-top: 15px;
 }
-
 .message-reply textarea {
 	min-width: auto;
 	height: 48px;
@@ -16114,7 +16097,7 @@ ul.dashboard-box-list > li:hover {
 
 /* Messages Media Queries */
 @media (max-width: 992px) {
-	.messages-container-inner .messages-inbox { max-width: 300px; }
+	.messages-container-inner .messages-inbox { max-width: 200px; }
 }
 @media (max-width: 768px) {
 	.messages-container-inner { display: block; }

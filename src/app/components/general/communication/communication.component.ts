@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/classes/message';
 import { Seller } from 'src/app/classes/seller';
+import { User } from 'src/app/classes/user';
+import { ChatService } from 'src/app/services/chat.service';
+import { LoginService } from 'src/app/services/login.service';
 import { SellerService } from 'src/app/services/seller.service';
-import { Client, Stomp } from '@stomp/stompjs';
-import * as SockJS from 'sockjs-client';
+import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-communication',
   templateUrl: './communication.component.html',
@@ -13,19 +16,25 @@ import * as SockJS from 'sockjs-client';
 export class CommunicationComponent implements OnInit {
   messages: Message[] = [];
   newMessage: string = ''
-  sellerId: string |null
+  sellerId: string | null
+  senderId:string
+  sender:User
   seller: Seller
   date: any
   time: any
+  isClicked: boolean = false;
+  isSeller: boolean
 
   constructor(private sellerService: SellerService,
     private route: ActivatedRoute,
+    private chatService: ChatService,
+    private userService:UserService
   ) {
 
   }
 
   ngOnInit(): void {
-
+    this.senderId = JSON.parse(localStorage.getItem('user'))['userId']
     this.sellerId = this.route.snapshot.paramMap.get('sellerId')
     this.fetchSeller()
     const time = new Date()
@@ -34,44 +43,49 @@ export class CommunicationComponent implements OnInit {
     const options: any = { month: 'long', day: 'numeric', year: 'numeric' };
     this.date = currentDate.toLocaleDateString('en-US', options)
 
-    this.connection()
-
-  }
-  connection() {
-
-    const sockJS = new SockJS('http://localhost:8080/api/v1/ws');
-    const stompClient = Stomp.over(sockJS);
-
-    stompClient.connect({}, (frame) => {
-      console.log('Connected:', frame);
-      // Perform actions upon successful connection
-    }, (error) => {
-      console.error('Connection error:', error);
-      // Handle connection error
-    });
-
-
+    this.fetchUser()
+    this.chatService.connect()
+    this.messages = this.chatService.getMessages()
   }
 
-  sendMessage(data: any) {
+  fetchUser(){
+    this.userService.getUserById(this.senderId).subscribe({
+      next :(response:User)=>{
 
+        this.sender = response
+
+      },
+      error:(error)=>{
+        console.log(error)
+      },
+      complete:()=>{
+        console.log('completed')
+      }
+    })
+  }
+
+  sendMessage($event:Event,data: any) {
+
+    $event.preventDefault()
+
+    if(data.value==''){
+      return
+    }
     const message = new Message()
-    message.id=1
-    message.message = data.value
-    message.type='SENDER'
 
+    message.content = data.value
+    message.type = 'SENDER'
 
-    this.messages.push(message)
     data.value = ''
-   this.getMessage(message)
-console.log(this.messages)
 
+    this.chatService.sendMessage(message)
   }
 
   fetchSeller(): void {
     this.sellerService.getSeller(this.sellerId).subscribe({
       next: (response: Seller) => {
         this.seller = response
+        this.isSeller = true
       },
       error: (error: any) => {
         console.log('error')
@@ -81,22 +95,8 @@ console.log(this.messages)
       }
     })
   }
-  send(): void {
-
+  changeBackground() {
+    this.isClicked = !this.isClicked;
   }
 
-  getMessage(data:Message):void{
-    let message = new Message()
-    message.id = 2
-    message.message = data.message
-    message.type='RECEIVER'
-    this.messages.push(message)
-  }
-
-
-
-  // sendMessage() {
-  //   this.socketService.sendMessage(this.message);
-  //   this.message = '';
-  // }
 }

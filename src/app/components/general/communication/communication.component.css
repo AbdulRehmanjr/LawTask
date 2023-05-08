@@ -1,13 +1,35 @@
 .user-bar{
-  max-height:500px;
+  max-height:450px;
   overflow-y: scroll;
 }
-.messages-container-inner{
-  min-height: 500px;
-  max-height: 500px;
+.message-content-inner{
+  min-height: 390px ;
+  max-height: 390px;
 }
-.me .message-text{
+.message-content{
+  height:530px;
+}
+.message-text{
   background-color: #2A41E8;
   color: #fff;
   font-weight: 600;
+}
+.time{
+  font-size:10px !important;
+}
+.sticky{
+  position: sticky;
+  top:75px;
+}
+#userchat{
+  height:530px;
+}
+/* .messages-inbox{
+  height:100vh;
+} */
+a:hover{
+  border-bottom:2px solid blue;
+}
+a.active {
+  background-color: blue;
 }

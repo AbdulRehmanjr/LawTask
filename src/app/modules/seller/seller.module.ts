@@ -14,16 +14,26 @@ import { SharedModule } from '../shared/shared.module';
 import { SellerComponent } from './seller.component';
 import { JobsListComponent } from '../../components/seller/jobs-list/jobs-list.component';
 import { AddJobComponent } from '../../components/seller/add-job/add-job.component';
+import { DashboardComponent } from '../../components/seller/dashboard/dashboard.component';
+import { SidebarComponent } from '../../components/seller/sidebar/sidebar.component';
+import { CommunicationComponent } from 'src/app/components/general/communication/communication.component';
 
 
 
-const routes :Routes = []
+const routes :Routes = [
+  {path:'seller-dashboard',component:SellerComponent,
+  children:[
+    {path:'messages',component:CommunicationComponent}
+  ]}
+]
 
 @NgModule({
   declarations: [
     SellerComponent,
     JobsListComponent,
-    AddJobComponent
+    AddJobComponent,
+    DashboardComponent,
+    SidebarComponent
   ],
   imports: [
     ToastModule,

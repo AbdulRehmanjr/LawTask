@@ -17,7 +17,7 @@ export class SingupService {
     formData.append('file', file)
     formData.append('user',JSON.stringify(user))
 
-    return this._http.post(`${this.baseUrl}/register`, formData,{responseType:'text'})
+    return this._http.post(`${this.baseUrl}/register`, formData,{observe:'body'})
   }
   saveAdmin(user:User,file:File){
     const formData = new FormData()
