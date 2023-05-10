@@ -1,5 +1,5 @@
 #subscribe{
-  margin: 30px 0;
+  margin: 20px 0;
   padding: 20px 0;
 }
 .pricing-plans-container {
@@ -12,6 +12,22 @@
 	flex: 1;
 	padding: 35px 17px;
 	position: relative;
+}
+
+.tick-list {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.tick-list li::before {
+  content: '\2713'; /* Unicode character for checkmark */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 20px;
+  color: #33BF34; /* Color of the tick */
 }
 
 .pricing-plan:first-of-type {
@@ -70,7 +86,7 @@
 	display: inline-block;
 }
 .recommended-price{
-  color: #0033ff !important;
+  color: #33BF34 !important;
 }
 .pricing-plan-features ul {
 	padding: 0;
@@ -88,9 +104,9 @@
 
 .pricing-plan .button {
   width: 400px;
-	color: #0033ff;
+	color: #33BF34;
 	background-color: #ffffff;
-	border: 1px solid #2600ff;
+	border: 1px solid #33BF34;
 	box-shadow: 0 4px 12px rgba(102,103,107,0.1);
 }
 
@@ -112,7 +128,7 @@
 }
 
 .pricing-plan .recommended-badge {
-	background-color: #0033ff;
+	background-color: #33BF34;
 	color: #fff;
 	position: absolute;
 	width: 100%;

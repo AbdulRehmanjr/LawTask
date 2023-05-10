@@ -1,6 +1,6 @@
 
-  <section class="row" id="intro-section">
-    <div class="row">
+  <section class="row mt-sm-3 mt-md-2 mt-lg-4" id="intro-section">
+    <div class="row mt-sm-3 mt-md-2 mt-lg-4">
       <div class="col-md-12">
         <div class="intro-headline">
           <h3>
@@ -13,41 +13,41 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-9 offset-sm-1">
+    <div class="row mx-auto">
+      <div class="col-sm-7 mx-auto">
         <div class="search-form p-2">
           <form [formGroup]="searchForm" class="row" (ngSubmit)="onSubmit()">
-            <span class="col-sm-5 d-flex flex-row">
+            <!-- <span class="col-sm-5 d-flex flex-row">
               <i class="fa-solid fa-location-dot"></i>
               <input type="text" placeholder="Location" formControlName="location" />
-            </span>
-            <span class="col-sm-5 d-flex flex-row">
-              <i class="fa-solid fa-location-dot"></i>
+            </span> -->
+            <span class="col-sm-9 d-flex flex-row">
+              <i class="fa-solid fa-address-book"></i>
               <input type="text" placeholder="Jobs" formControlName="category" />
             </span>
-            <button class="col-sm-2 btn btn-primary" >Search</button>
+            <button class="col-sm-1 mx-auto btn btn-success" >Search</button>
           </form>
 
         </div>
       </div>
     </div>
     <div class="row">
-			<div class="col-sm-6 offset-sm-1">
+			<div class="col-sm-6 offset-sm-1 offset-md-3">
 				<ul class="intro-stats">
 					<li>
 						<strong class="counter">1,586</strong>
             <br>
-						<span>Jobs Posted</span>
+						<span class="intro-stats-title">Jobs Posted</span>
 					</li>
 					<li>
 						<strong class="counter">3,543</strong>
             <br>
-						<span>Tasks Posted</span>
+						<span class="intro-stats-title">Tasks Posted</span>
 					</li>
 					<li>
 						<strong class="counter">1,232</strong>
             <br>
-						<span>Freelancers</span>
+						<span class="intro-stats-title">Freelancers</span>
 					</li>
 				</ul>
 			</div>

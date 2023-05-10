@@ -46,8 +46,7 @@ private SOCKET:string = 'http://localhost:8080/api/v1/ws'
     this.messages.push(message)
   }
 
-  getMessages(): any[] {
-    console.log('message',this.messages)
+  getMessages(): Message[] {
     return this.messages;
   }
 }

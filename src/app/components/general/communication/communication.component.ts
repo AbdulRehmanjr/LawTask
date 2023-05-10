@@ -99,7 +99,7 @@ export class CommunicationComponent implements OnInit {
 
     message.content = data.value
     message.senderName = this.senderId
-    message.receiverName = this.selectedUser.userId
+    message.receiverName = this.selectedUser?.userId
     message.date = this.time
     message.type = 'SENDER'
 
@@ -112,11 +112,20 @@ export class CommunicationComponent implements OnInit {
       this.chatListService.getAllMessages(this.senderId,this.selectedUser.userId).subscribe({
 
         next:(response:Message[])=>{
-        //  this.oldMessages = response
-         this.messages = [...response]
+        this.oldMessages = response
+
         },
         error:(error:any)=>{
           console.log(error)
+        },
+        complete:()=>{
+          this.oldMessages.forEach(
+            message=>{
+              if(message.receiverName==this.senderId){
+                message.type='RECEIVER'
+              }
+            }
+          )
         }
       })
   }
