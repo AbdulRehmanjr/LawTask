@@ -1,6 +1,22 @@
 .margin{
   margin-top:90px;
 }
+input,input:focus,input:hover{
+  border:1px solid black;
+  border-radius: 10px;
+
+}
+button{
+  border:1px solid yellowgreen;
+}
+.button{
+  background-color: #00A88C;
+}
+button:hover{
+  background-color: yellowgreen;
+  color:#fff;
+
+}
 .sidebar-container{
   position: sticky;
   top:85px;
@@ -10,3 +26,42 @@
     margin-top: 5px;
   }
 }
+
+/* radio*/
+.radio-buttons {
+
+  display: flex;
+}
+
+.radio-buttons label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.radio-buttons input[type="radio"] {
+  display: none;
+}
+
+.radio-buttons .button-style {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.radio-buttons .button-style:hover {
+  background-color: #eaeaea;
+  font-size: 20px;
+}
+
+.radio-buttons input[type="radio"]:checked + .button-style {
+  background-color: #00A88C;
+  color: #fff;
+
+}
+

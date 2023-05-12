@@ -9,6 +9,11 @@ import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
 import { DialogModule } from 'primeng/dialog';
 import {  ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+
+
 // custom modules
 import { SharedModule } from '../shared/shared.module';
 import { SellerComponent } from './seller.component';
@@ -36,6 +41,9 @@ const routes :Routes = [
     SidebarComponent
   ],
   imports: [
+    ButtonModule,
+    TableModule,
+    ToolbarModule,
     ToastModule,
     DialogModule,
     MessageModule,

@@ -31,6 +31,7 @@ export class AddJobComponent implements OnInit{
   createForm():void{
     this.jobForm = this.formBuilder.group({
       jobName: ['',[Validators.required]],
+      description:['',[Validators.required]],
       jobPicture: ['',[Validators.required]],
       jobPrice: ['',Validators.required]
     })
@@ -51,6 +52,7 @@ export class AddJobComponent implements OnInit{
 
     let job = new Jobs()
     job.jobName = this.jobForm.get('jobName').value
+    job.description = this.jobForm.get('description').value
     job.jobPrice = this.jobForm.get('jobPrice').value
     job.user = user
 

@@ -9,11 +9,24 @@
 .message-content{
   height:530px;
 }
-/* .message-text{
-  background-color: #2A41E8;
+.user-name{
+  font-size: 25px;
+}
+/* send button */
+.send-button {
+  background-color: #009975;
   color: #fff;
-  font-weight: 600;
-} */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.send-button i {
+  margin-right: 5px;
+}
+
 .time{
   font-size:10px !important;
 }
@@ -30,9 +43,8 @@
 a{
   cursor: pointer;
 }
-a:hover{
-  border-bottom:2px solid blue;
-}
-a.active {
-  background-color: blue;
+
+::ng-deep .p-sidebar-left {
+  top:10% !important;
+  width:12rem !important;
 }

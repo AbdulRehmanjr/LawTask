@@ -11,14 +11,23 @@
 
         <ul class="user-bar">
           <li *ngFor="let user of users">
-            <a id="{{user.userId}}" (click)="selectUser(user)" [ngStyle]="{ 'border': isClicked ? '2px solid blue' : 'none' }">
+            <a
+              id="{{ user.userId }}"
+              (click)="selectUser(user)"
+              [ngStyle]="{
+                border: selectedUser === user ? '2px solid #6cff1d' : 'none'
+              }"
+            >
               <div class="message-avatar">
                 <i class="status-icon status-online"></i>
-                <img src="data:image/jpeg; base64, {{ user?.profilePicture }}" alt="profile Image" />
+                <img
+                  src="data:image/jpeg; base64, {{ user?.profilePicture }}"
+                  alt="profile Image"
+                />
               </div>
               <div class="message-by">
                 <div class="message-by-headline">
-                  <h5>{{user?.userName }}</h5>
+                  <h5>{{ user?.userName }}</h5>
                 </div>
               </div>
             </a>
@@ -26,64 +35,97 @@
         </ul>
       </div>
     </aside>
-    <article  id="userchat" class="col-sm-12 col-md-9 mt-md-5">
+    <aside class="d-sm-block d-md-none">
+      <p-sidebar [(visible)]="sidebarVisible1" position="left">
+        <ul class="user-bar">
+          <li *ngFor="let user of users">
+            <a
+              id="{{ user.userId }}"
+              (click)="selectUser(user)"
+              [ngStyle]="{
+                border: selectedUser === user ? '2px solid #6cff1d' : 'none'
+              }"
+            >
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img
+                  src="data:image/jpeg; base64, {{ user?.profilePicture }}"
+                  alt="profile Image"
+                />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <h5>{{ user?.userName }}</h5>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </p-sidebar>
+    </aside>
+
+    <article id="userchat" class="col-sm-12 col-md-9 mt-md-5">
       <div class="message-content">
         <div class="messages-headline d-flex flex-row justify-content-between">
-          <h4>{{selectedUser?.userName}}</h4>
-          <button  class="message-action"
-            ><i class="fa-solid fa-trash "></i></button
-          >
+          <h4 class="user-name">{{ selectedUser?.userName }}</h4>
+          <button class="d-sm-block d-md-none" (click)="sidebarVisible1 = true" icon="pi pi-th-large">sdadsada</button>
+          <button>
+            <i class="fa-solid fa-trash"></i>
+          </button>
         </div>
-        <div class="message-content-inner">
-          <div class="message-time-sign">
-            <span>{{date}}</span>
-          </div>
-          <ng-container  *ngFor="let message of oldMessages">
-            <div  [ngClass]="{'message-bubble-me': message.type=='SENDER', 'message-bubble': message.type=='RECEIVER'}">
+        <div #chatContainer class="message-content-inner">
+          <ng-container *ngFor="let message of oldMessages">
+            <div
+              [ngClass]="{
+                'message-bubble-me': message.type == 'SENDER',
+                'message-bubble': message.type == 'RECEIVER'
+              }"
+            >
               <div class="message-bubble-inner">
-                <div class="message-text">
+                <div class="message-text m-3 mt-0 mb-0">
                   <p>
-                    {{message.content}}
+                    {{ message.content }}
                   </p>
-                  <p class="time">{{message.date}}</p>
+                  <p class="time">{{ message.date }}</p>
                 </div>
               </div>
               <div class="clearfix"></div>
             </div>
           </ng-container>
-          <ng-container  *ngFor="let message of messages">
-            <div  [ngClass]="{'message-bubble-me': message.type=='SENDER', 'message-bubble': message.type=='RECEIVER'}">
+          <ng-container *ngFor="let message of messages">
+            <div
+              [ngClass]="{
+                'message-bubble-me': message.type == 'SENDER',
+                'message-bubble': message.type == 'RECEIVER'
+              }"
+            >
               <div class="message-bubble-inner">
-                <div class="message-text">
+                <div class="message-text m-3 mt-0 mb-0">
                   <p>
-                    {{message.content}}
+                    {{ message.content }}
                   </p>
-                  <p class="time">{{message.date}}</p>
+                  <p class="time">{{ message.date }}</p>
                 </div>
               </div>
               <div class="clearfix"></div>
             </div>
           </ng-container>
-
-
-
         </div>
         <!-- Message Content Inner / End -->
 
         <!-- Reply Area -->
-        <div class="message-reply" >
-
-            <textarea
+        <div class="message-reply">
+          <textarea
             #message
             cols="1"
             rows="1"
             placeholder="Your Message"
             data-autoresize
-            (keydown.enter)="sendMessage($event,message)"
+            (keydown.enter)="sendMessage($event, message)"
           ></textarea>
-          <button  (click)="sendMessage($event,message)" class="button ripple-effect">Send</button>
-
-
+          <button (click)="sendMessage($event, message)" class="send-button">
+            <i class="fa-solid fa-paper-plane"></i>Send
+          </button>
         </div>
       </div>
     </article>

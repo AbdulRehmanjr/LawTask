@@ -17,8 +17,8 @@ a{
 	line-height: 25px;
 	border-radius: 4px;
 	padding: 0 8px;
-	color: #909090;
-	background: rgba(0,0,0,0.06);
+	color: #fff;
+	background: #33BF34;
 	font-weight: 600;
 	display: inline-block;
 	margin: 0 auto;
@@ -29,7 +29,7 @@ a{
   background-color: transparent;
 	font-size: 42px;
 	line-height: 32px;
-	color: #66676b;
+	color: #33BF34;
 	position: relative;
 }
 
@@ -63,6 +63,7 @@ a{
   border: none;
   outline: none;
   border-radius: 10px;
+  background-color: #d6d4d4;
 }
 
 .category-box:hover {
@@ -168,8 +169,20 @@ a{
 	margin-right: 3px;
 	color: #777;
 }
-.btn{
+/* .btn{
   font-size: 16px;
   background-color: #F0F0F0;
   font-weight: 500;
+} */
+::ng-deep .p-rating .p-rating-icon.pi-star-fill{
+  color:#33BF34;
 }
+
+
+::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+    background-color: #33BF34;
+}
+/* .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+    background: #EFF6FF;
+    color: #1D4ED8;
+} */

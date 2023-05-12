@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/classes/message';
 import { Seller } from 'src/app/classes/seller';
@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './communication.component.html',
   styleUrls: ['./communication.component.css']
 })
-export class CommunicationComponent implements OnInit {
+export class CommunicationComponent implements OnInit,AfterViewChecked{
   messages: Message[] = [];
   newMessage: string = ''
   sellerId: string | null
@@ -28,6 +28,8 @@ export class CommunicationComponent implements OnInit {
   oldMessages:Message[]
   isClicked: boolean = false;
   isSeller: boolean
+  @ViewChild('chatContainer', { static: false }) chatContainer: ElementRef;
+  sidebarVisible1: boolean;
 
   constructor(private sellerService: SellerService,
     private route: ActivatedRoute,
@@ -36,6 +38,9 @@ export class CommunicationComponent implements OnInit {
     private userService:UserService
   ) {
 
+  }
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
   }
 
   ngOnInit(): void {
@@ -46,11 +51,11 @@ export class CommunicationComponent implements OnInit {
     // const currentDate = new Date();
     // const options: any = { month: 'long', day: 'numeric', year: 'numeric' };
     // this.date = currentDate.toLocaleDateString('en-US', options)
-
+    // this.chatService.connect()
     this.fetchUser()
     this.fetchChatList()
 
-    this.chatService.connect()
+    this.chatService.onConnect()
     this.messages = this.chatService.getMessages()
   }
 
@@ -104,10 +109,13 @@ export class CommunicationComponent implements OnInit {
     message.type = 'SENDER'
 
     data.value = ''
-
+    // this.chatService.connect()
     this.chatService.sendMessage(message)
   }
-
+  scrollToBottom(): void {
+    const container = this.chatContainer.nativeElement;
+    container.scrollTop = container.scrollHeight;
+  }
   fetchMessage(){
       this.chatListService.getAllMessages(this.senderId,this.selectedUser.userId).subscribe({
 
@@ -129,26 +137,11 @@ export class CommunicationComponent implements OnInit {
         }
       })
   }
-  /**
-   * @deprecated deprected and will be removed in future
-   */
-  fetchSeller(): void {
-    this.sellerService.getSeller(this.sellerId).subscribe({
-      next: (response: Seller) => {
-        this.seller = response
-        this.isSeller = true
-      },
-      error: (error: any) => {
-        console.log('error')
-      },
-      complete: () => {
-        console.log('seller fetched in communication')
-      }
-    })
-  }
+
   selectUser(user:User) {
     this.isClicked = !this.isClicked;
     this.selectedUser = user
+    this.chatService.connectToUser(this.selectedUser?.userId)
     this.fetchMessage()
   }
 

@@ -1,43 +1,69 @@
+<p-toast position="bottom-right"></p-toast>
 <div class="container">
-  <p-toast position="bottom-right"></p-toast>
   <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
-    <div class="form-outline">
+    <div class="flex flex-column">
+      <label htmlFor="username">Username</label>
       <input
-        type="text"
+        pInputText
+        id="jobName"
+        aria-describedby="jobname-help"
         placeholder="Job Name"
         formControlName="jobName"
-        class="form-control form-control-lg"
         [required]="true"
       />
-      <label class="form-label">Job Name</label>
+      <small id="jobname-help">Enter your Job Name.</small>
     </div>
     <div
-      *ngIf="
-        jobForm.get('jobName').invalid &&
-        jobForm.get('jobName').touched
-      "
+      *ngIf="jobForm.get('jobName').invalid && jobForm.get('jobName').touched"
       class="error-message"
     >
       Name is Required
     </div>
-    <div class="form-outline">
-      <input
-        type="text"
-        placeholder="$ 10"
-        formControlName="jobPrice"
-        class="form-control form-control-lg"
-        [required]="true"
-      />
-      <label class="form-label">Job Price</label>
+    <div class="flex flex-column">
+      <label htmlFor="username">Price</label>
+      <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input
+          formControlName="jobPrice"
+          [required]="true"
+          placeholder="10"
+          type="number"
+          class="form-control"
+          aria-label="Amount"
+        />
+        <span class="input-group-text">.00</span>
+      </div>
+      <small id="jobname-help">Enter your Job Price.</small>
     </div>
+
     <div
-      *ngIf="
-        jobForm.get('jobPrice').invalid &&
-        jobForm.get('jobPrice').touched
-      "
+      *ngIf="jobForm.get('jobPrice').invalid && jobForm.get('jobPrice').touched"
       class="error-message"
     >
       Price is Required
+    </div>
+    <div class="flex flex-column">
+      <label htmlFor="description">Description</label>
+      <textarea
+        pInputTextarea
+        id="description"
+        rows="2"
+        cols="10"
+        aria-describedby="description-help"
+        placeholder="Description"
+        formControlName="description"
+        [required]="true"
+      >
+      </textarea>
+      <small id="description-help">Enter your Job Description.</small>
+    </div>
+    <div
+      *ngIf="
+        jobForm.get('description').invalid && jobForm.get('description').touched
+      "
+      class="error-message"
+    >
+      Description is Required
     </div>
     <div class="form-outline">
       <input
@@ -47,19 +73,18 @@
         class="form-control form-control-lg"
         required
       />
-      <label class="form-label">Profile Picture</label>
+      <label class="form-label">Job Profile Picture</label>
     </div>
     <div
       *ngIf="
-        jobForm.get('jobPicture').invalid &&
-        jobForm.get('jobPicture').touched
+        jobForm.get('jobPicture').invalid && jobForm.get('jobPicture').touched
       "
       class="error-message"
     >
       Job display Picture is Required
     </div>
     <div class="single-input-item">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-success">Submit</button>
     </div>
   </form>
 </div>

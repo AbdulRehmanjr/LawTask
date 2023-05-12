@@ -20,44 +20,22 @@
 
         <div class="sidebar-widget">
           <h3>Price</h3>
-          <div class="d-flex justify-content-between">
 
-            <button type="button" class="btn btn-outline-dark"> <i class="fa-solid fa-dollar-sign"></i></button>
-          <button type="button" class="btn btn-outline-dark"> <i class="fa-solid fa-dollar-sign"></i> <i class="fa-solid fa-dollar-sign"></i></button>
-          <button type="button" class="btn btn-outline-dark"> <i class="fa-solid fa-dollar-sign"></i> <i class="fa-solid fa-dollar-sign"></i> <i class="fa-solid fa-dollar-sign"></i></button>
+          <div class="radio-buttons">
+            <label>
+              <input type="radio" name="currency" value="low" checked>
+              <span class="button-style">$</span>
+            </label>
+            <label>
+              <input type="radio" name="currency" value="normal">
+              <span class="button-style">$$</span>
+            </label>
+            <label>
+              <input type="radio" name="currency" value="high">
+              <span class="button-style">$$$</span>
+            </label>
           </div>
 
-
-
-          <!-- Range Slider -->
-          <input
-            class="range-slider"
-            type="text"
-            value=""
-            data-slider-currency="$"
-            data-slider-min="10"
-            data-slider-max="2500"
-            data-slider-step="25"
-            data-slider-value="[10,2500]"
-          />
-        </div>
-
-        <!-- Hourly Rate -->
-        <div class="sidebar-widget">
-          <h3>Hourly Rate</h3>
-          <div class="margin-top-55"></div>
-
-          <!-- Range Slider -->
-          <input
-            class="range-slider"
-            type="text"
-            value=""
-            data-slider-currency="$"
-            data-slider-min="10"
-            data-slider-max="150"
-            data-slider-step="5"
-            data-slider-value="[10,200]"
-          />
         </div>
       </div>
     </div>
@@ -93,7 +71,6 @@
                 <li>
                   <i class="icon-material-outline-location-on"></i>location
                 </li>
-
               </ul>
             </div>
           </div>
@@ -102,13 +79,14 @@
             <div class="task-listing-bid-inner">
               <div class="task-offers">
                 <strong>{{ job?.jobPrice | currency : "USD" }}</strong>
-                <strong>{{job?.user.userName}}</strong>
+                <strong>{{ job?.user.userName }}</strong>
                 <span>Fixed Price</span>
               </div>
               <span
                 (click)="sendMessage(job.user.userId)"
                 class="button button-sliding-icon ripple-effect"
-                >Contact <i class="fa-regular fa-comment-dots"></i></span>
+                >Contact <i class="fa-regular fa-comment-dots"></i
+              ></span>
             </div>
           </div>
         </a>

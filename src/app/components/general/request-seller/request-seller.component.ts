@@ -72,7 +72,6 @@ export class RequestSellerComponent {
       email: new FormControl('', [Validators.required, Validators.email]),
       charges: new FormControl(10, [Validators.required]),
       jobName: new FormControl('', [Validators.required]),
-      skill: new FormControl<Obj[] | null>(null, Validators.required),
       tagLine: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -134,7 +133,6 @@ export class RequestSellerComponent {
     seller.charges = this.sellerForm.get('charges').value
     seller.jobName = this.sellerForm.get('jobName').value
     seller.description = this.sellerForm.get('description').value
-    seller.skills = this.sellerForm.get('skill').value
     seller.tagLine = this.sellerForm.get('tagLine').value
     seller.location = this.sellerForm.get('location').value
 

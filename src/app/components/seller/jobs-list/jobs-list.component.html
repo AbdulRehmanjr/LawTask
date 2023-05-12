@@ -1,49 +1,123 @@
 <ng-container *ngIf="showSubscription == false; else unsubscribed">
-  <p-toast position="bottom-right"></p-toast>
-  <div class="container-fluid margin-top-100">
+  <div class="container-fluid mt-sm-3 mt-md-5">
+    <p-toast position="bottom-right"></p-toast>
     <div class="row">
-      <h1 class="text-center headline">Manage Jobs</h1>
+      <div class="col-md-8 offset-md-2 mt-sm-3 mt-md-5">
+        <p-toolbar styleClass="mt-md-5 gap-2">
+          <ng-template pTemplate="left">
+            <button
+              pButton
+              pRipple
+              label="New"
+              icon="pi pi-plus"
+              class="p-button-raised  p-button-success"
+              (click)="showDialog()"
+            ></button>
+            <!-- <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-danger mx-3"
+            ></button> -->
+            <span class="job-number mx-5"> Max Jobs: {{maxJobs}} Jobs Left: {{leftJobs}}</span>
+          </ng-template>
+        </p-toolbar>
 
-    </div>
-    <div class="row">
-      <div class="col-sm-8 offset-sm-2 pt-3 pb-2 bg-white">
-        <span class="d-flex flex-between">
-          <h2 class="headline-sec">
-            <i class="fa-solid fa-suitcase"></i> My Jobs
-          </h2>
-          <button class="add-btn btn btn-success" (click)="showDialog()">Add</button>
-          <h2>Total Jobs Left: {{seller?.maxJobs-seller?.currentJobs}}</h2>
-        </span>
-
-      </div>
-    </div>
-    <div class="row">
-      <div *ngFor="let job of jobs" class="col-sm-8 offset-sm-2 pt-3 pb-2 mb-3 bg-white">
-        <div class="job-details">
-          <div class="d-flex flex-row">
-            <img
-              src="data:image/jpeg; base64, {{job.jobImage}}"
-              width="50"
-              alt="job image"
+        <p-table
+          #dt
+          styleClass="p-datatable-gridlines"
+          [value]="jobs"
+          [rows]="10"
+          [paginator]="true"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          [globalFilterFields]="['jobName', 'image', 'description', 'status']"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+        >
+          <ng-template pTemplate="caption">
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($event.target['value'], 'contains')"
+              placeholder="Search..."
             />
-            <h3 class="job-title">
-             {{job.jobName}}
-              <span class="badge text-bg-success">New Job</span>
-            </h3>
-            <button class="del-btn btn btn-danger">
-              <i style="color:#fff;" class="fas fa-trash"></i>
-            </button>
-          </div>
-        </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <!-- <th style="width: 4rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th> -->
+              <th pSortableColumn="jobName" style="width: 10rem">
+                Title <p-sortIcon field="jobName"></p-sortIcon>
+              </th>
+              <th style="width: 10rem">Image</th>
+              <th pSortableColumn="jobPrice" style="width: 5rem">
+                Price <p-sortIcon field="jobPrice"></p-sortIcon>
+              </th>
+              <th style="width: 13rem">Description</th>
+              <th style="width: 5rem" pSortableColumn="likes">
+                Likes <p-sortIcon field="likes"></p-sortIcon>
+              </th>
+              <th style="width: 5rem" pSortableColumn="views">
+                Views <p-sortIcon field="views"></p-sortIcon>
+              </th>
 
+              <th width="width:10rem"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-job>
+            <tr>
+              <td>{{ job.jobName }}</td>
+              <td>
+                <img
+                  src="data:image/jpeg; base64, {{ job.jobImage }}"
+                  alt="job image"
+                  width="50"
+                  class="shadow-4"
+                />
+              </td>
+              <td>{{ job.jobPrice | currency : "USD" }}</td>
+              <td>{{ job.description }}</td>
+              <td>{{job.likes}}</td>
+              <td>{{job.views}}</td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-pencil"
+                  class="p-button-rounded p-button-success "
+                ></button>
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-trash"
+                  class="p-button-rounded p-button-warning"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+              In total there are {{ jobs ? jobs.length : 0 }} products.
+            </div>
+          </ng-template>
+        </p-table>
+        <p-dialog
+          [(visible)]="displayDialog"
+          header="Post New Job"
+          [modal]="true"
+          styleClass="dialog-style"
+          style="z-index:  9999999990;"
+        >
+          <ng-template pTemplate="body">
+            <app-add-job (jobAdded)="hideDialog()"></app-add-job>
+          </ng-template>
+        </p-dialog>
       </div>
     </div>
   </div>
-  <p-dialog [(visible)]="displayDialog"  header="Add New Job" [modal]="true" styleClass="dialog-style">
-    <ng-template pTemplate="body">
-      <app-add-job (jobAdded)="hideDialog()"></app-add-job>
-    </ng-template>
-</p-dialog>
 </ng-container>
 <ng-template #unsubscribed>
   <h1>

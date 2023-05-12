@@ -17,6 +17,8 @@ export class JobsListComponent implements OnInit {
   seller:Seller
   showSubscription: boolean = false
   jobs:Jobs[]
+  maxJobs:number = 0
+  leftJobs:number = 0
   @Input()
   actionForm: boolean
   displayDialog:boolean = false
@@ -63,6 +65,8 @@ export class JobsListComponent implements OnInit {
         },
         complete: () => {
           console.log('completed function fetch seller')
+          this.maxJobs = this.seller.maxJobs
+          this.leftJobs = this.maxJobs - this.seller.currentJobs
         }
       }
     )
@@ -71,6 +75,9 @@ export class JobsListComponent implements OnInit {
   hideDialog() {
     this.displayDialog = false
     this.fetchJobsBySeller()
+    this.maxJobs = this.maxJobs +1
+    this.leftJobs = this.leftJobs
+    // this.fetchSeller()
   }
   showDialog() {
     this.displayDialog = true

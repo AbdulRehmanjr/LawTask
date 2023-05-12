@@ -1,4 +1,4 @@
-<section >
+<section>
   <div class="col-sm-12 text-center">
     <h3 class="heading">Popular Jobs</h3>
   </div>
@@ -20,144 +20,101 @@
     </div>
   </div>
 </section>
-<section>
-  <div class="row text-center">
-    <h3 class="heading">Featured Jobs</h3>
-    <div class="row offset-md-1">
-      <div class="col-md-9">
-        <a class="job-listing with-apply-button">
-          <div class="row job-listing-details">
-            <div class="col-sm-1">
-              <div class="job-listing-company-logo">
-                <img
-                  src="assets/images/company-logo-01.png"
-                  width="70"
-                  alt="job image"
-                />
-              </div>
-            </div>
-            <div class="col-sm-9 px-4">
-              <div class="d-flex flex-start">
-                <h3 class="job-listing-title">
-                  Bilingual Event Support Specialist
-                </h3>
-              </div>
-              <div class="row">
-                <div class="col-sm-11">
-                  <div class="d-flex flex-start job-listing-footer">
-                    <ul>
-                      <li>
-                        <i class="fa-regular fa-building"></i> Hexagon
-                        <!-- <div
-                          class="verified-badge"
-                          title="Verified Employer"
-                          data-tippy-placement="top"
-                        ></div> -->
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-location-dot"></i> San Francissco
-                      </li>
-                      <li><i class="fa-solid fa-briefcase"></i> Full Time</li>
-                      <li><i class="fa-regular fa-clock"></i> 2 days ago</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2 pt-4">
-              <button class="btn">Apply Now</button>
-            </div>
-          </div>
-        </a>
-        <a class="job-listing with-apply-button">
-          <div class="row job-listing-details">
-            <div class="col-sm-1">
-              <div class="job-listing-company-logo">
-                <img
-                  src="assets/images/company-logo-01.png"
-                  width="70"
-                  alt="job image"
-                />
-              </div>
-            </div>
-            <div class="col-sm-9 px-4">
-              <div class="d-flex flex-start">
-                <h3 class="job-listing-title">
-                  Bilingual Event Support Specialist
-                </h3>
-              </div>
-              <div class="row">
-                <div class="col-sm-11">
-                  <div class="d-flex flex-start job-listing-footer">
-                    <ul>
-                      <li>
-                        <i class="fa-regular fa-building"></i> Hexagon
-                        <!-- <div
-                          class="verified-badge"
-                          title="Verified Employer"
-                          data-tippy-placement="top"
-                        ></div> -->
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-location-dot"></i> San Francissco
-                      </li>
-                      <li><i class="fa-solid fa-briefcase"></i> Full Time</li>
-                      <li><i class="fa-regular fa-clock"></i> 2 days ago</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2 pt-4">
-              <button class="btn">Apply Now</button>
-            </div>
-          </div>
-        </a>
-        <a class="job-listing with-apply-button">
-          <div class="row job-listing-details">
-            <div class="col-sm-1">
-              <div class="job-listing-company-logo">
-                <img
-                  src="assets/images/company-logo-01.png"
-                  width="70"
-                  alt="job image"
-                />
-              </div>
-            </div>
-            <div class="col-sm-9 px-4">
-              <div class="d-flex flex-start">
-                <h3 class="job-listing-title">
-                  Bilingual Event Support Specialist
-                </h3>
-              </div>
-              <div class="row">
-                <div class="col-sm-11">
-                  <div class="d-flex flex-start job-listing-footer">
-                    <ul>
-                      <li>
-                        <i class="fa-regular fa-building"></i> Hexagon
-                        <!-- <div
-                          class="verified-badge"
-                          title="Verified Employer"
-                          data-tippy-placement="top"
-                        ></div> -->
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-location-dot"></i> San Francissco
-                      </li>
-                      <li><i class="fa-solid fa-briefcase"></i> Full Time</li>
-                      <li><i class="fa-regular fa-clock"></i> 2 days ago</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2 pt-4">
-              <button class="btn">Apply Now</button>
-            </div>
-          </div>
-        </a>
+<section id="popular-freelancer">
+  <div class="row">
+    <div class="col-xl-12">
+      <!-- Section Headline -->
+      <div class="row">
+        <div class="col-sm-12 text-center mt-4 mb-4">
+          <h3>Highest Rated Freelancers</h3>
+        </div>
+
+        <!-- <a href="freelancers-grid-layout.html" class="headline-link"
+          >Browse All Freelancers</a
+        > -->
       </div>
+    </div>
+    <div class="col-xl-12">
+      <p-carousel
+        [value]="freelancers"
+        [numVisible]="3"
+        [numScroll]="1"
+        [circular]="true"
+        [responsiveOptions]="responsiveOptions"
+      >
+        <ng-template let-freelancer pTemplate="item">
+          <!-- <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div class="mb-3">
+                    <img  height="300" width="300" src="{{freelancer.image}}" alt="freelancer image" class="w-6 shadow-2" />
+                </div>
+                <div>
+                    <h4 class="mb-1">{{ freelancer.name }}</h4>
+                    <h6 class="mt-0 mb-3">{{ '$' + freelancer.price }}</h6>
+
+                    <div class="car-buttons mt-5">
+                        <button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search">def</button>
+                        <button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill">asdas</button>
+                    </div>
+                </div>
+            </div> -->
+          <div class="freelancers-container">
+            <!--Freelancer -->
+            <div class="freelancer">
+              <!-- Overview -->
+              <div class="freelancer-overview">
+                <div class="freelancer-overview-inner">
+                  <div class="freelancer-avatar">
+                    <img
+                      width="50"
+                      height="50"
+                      src="{{ freelancer.image }}"
+                      alt="freelancer image"
+                    />
+                  </div>
+
+                  <!-- Name -->
+                  <div class="freelancer-name">
+                    <!-- <h4><a href="single-freelancer-profile.html">Tom Smith <img class="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4> -->
+                    <h4>{{ freelancer.name }}</h4>
+                    <span>{{ freelancer.job }}</span>
+                  </div>
+
+                  <!-- Rating -->
+                  <div class="freelancer-rating">
+                    <p-rating
+                      [(ngModel)]="freelancer.rating"
+                      [readonly]="true"
+                      [cancel]="false"
+                    ></p-rating>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Details -->
+              <div class="freelancer-details">
+                <div class="freelancer-details-list">
+                  <ul>
+                    <li>
+                      Location
+                      <strong
+                        ><i class="icon-material-outline-location-on"></i>
+                        London</strong
+                      >
+                    </li>
+                    <li>Rate <strong>$60 / hr</strong></li>
+                    <li>Job Success <strong>95%</strong></li>
+                  </ul>
+                </div>
+                <button class="btn btn-success"
+
+                  >View Profile
+                  <i class="icon-material-outline-arrow-right-alt"></i
+                ></button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
     </div>
   </div>
 </section>

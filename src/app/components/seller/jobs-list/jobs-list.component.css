@@ -1,41 +1,53 @@
-.bg-white{
-  background-color: #fff;
-  border: 1px solid #e1e1e1;
+
+.headline {
+  font-size: 30px;
+  color: black;
+  font-family: "Times New Roman", Times, serif;
 }
-i{
-  color:blue;
-}
-.headline{
-  font-size:30px;
-  color:black;
-  font-family:'Times New Roman', Times, serif;
-}
-.headline-sec i{
+.headline-sec i {
   font-size: 20px;
 }
-.headline-sec{
-  font-size:23px;
+.index{
+  z-index: 9999999999;
+}
+.headline-sec {
+  font-size: 23px;
   color: #000;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
-.job-details{
-  margin:5px;
-  padding:5px;
-  border-bottom:2px solid #e1e1e1;
+.job-details {
+  margin: 5px;
+  padding: 5px;
+  border-bottom: 2px solid #e1e1e1;
 }
-.job-title{
-  margin:5px;
-  padding:10px;
-  font-size:18px;
-  font-family: 'Times New Roman', Times, serif;
+.job-title {
+  margin: 5px;
+  padding: 10px;
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
   font-weight: 700;
 }
-.del-btn{
-  margin:10px;
 
-  height:40px;
+.job-number{
+  font-weight: 900;
+  font-size:20px;
+  color:#fff;
 }
-.add-btn{
-  margin-left: 5px;
-  color:white;
+/* prime components */
+
+::ng-deep .p-toolbar {
+  background-color: #22c55e;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+
+  font-weight: bolder;
+  background-color: #22c55e;
+  color: #fff;
+}
+::ng-deep .p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: #fff;
+}
+::ng-deep .p-dialog{
+  top:10%;
 }

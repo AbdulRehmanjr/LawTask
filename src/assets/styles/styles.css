@@ -5054,17 +5054,15 @@ span.blog-item-tag {
 /* Freelancers - Grid Layout
 ------------------------------------- */
 .freelancers-container {
-	display: flex;
-	flex-wrap: wrap;
-	width: calc(100% + 30px);
+	width: calc(80% + 30px);
 }
 
 .freelancer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 30px 30px 0;
-    width: calc(100% * (1/2) - 30px);
+    /* margin: 0 30px 30px 0; */
+    /* width: calc(100% * (1/2) - 30px); */
     border-radius: 4px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     background-color: #fff;
@@ -5102,7 +5100,7 @@ span.blog-item-tag {
 }
 
 .freelancer-overview .freelancer-avatar img {
-	width: 100%;
+	width: 50%;
 	border-radius: 50%;
 	cursor: pointer;
 }
@@ -6144,66 +6142,6 @@ body .notification strong { border: none; }
 
 
 /* ---------------------------------- */
-/* Tables
-------------------------------------- */
-table.basic-table {
-	width: 100%;
-	border-collapse: separate;
-	border-spacing: 0;
-	border:none;
-	margin-bottom: 15px;
-}
-
-table.basic-table th {
-	background-color: #66676b;
-	text-align: left;
-	color: #fff;
-	vertical-align: top;
-	font-weight: 500;
-}
-
-table.basic-table th:first-child { border-radius: 4px 0 0 4px; }
-table.basic-table th:last-child { border-radius: 0 4px 4px 0; }
-
-
-table.basic-table th,
-table.basic-table td {
-	padding: 15px 28px;
-}
-
-table.basic-table tr:nth-child(odd) {
-	background-color: #f4f4f4;
-}
-
-table.basic-table { margin-bottom: 0; }
-
-
-@media screen and (max-width: 600px) {
-
-	table { border: 0; }
-	table th { display: none; }
-
-	table tr {
-		display: block;
-		margin-bottom: 0;
-	}
-	table td {
-		border-bottom: 1px solid #ddd;
-		display: block;
-		font-size: 14px;
-		text-align: right;
-	}
-
-	table td:before {
-		content: attr(data-label);
-		float: left;
-		font-weight: 600;
-	}
-
-	table td:last-child { border-bottom: 0; }
-}
-
-/* ---------------------------------- */
 /* Accordion
 ------------------------------------- */
 .accordion {
@@ -6566,8 +6504,7 @@ table.basic-table { margin-bottom: 0; }
 }
 
 .verified-badge:before {
-	content: "\e92b";
-	font-family: "Feather-Icons";
+	content: "\2713";
 	font-size: 16px;
 	color: #fff;
 	position: relative;
@@ -6621,64 +6558,13 @@ table.basic-table { margin-bottom: 0; }
 /* ---------------------------------- */
 /* Star Rating
 ------------------------------------- */
-/* Star Rating */
-.star-rating { display: inline-block; }
-
-.star-rating .star {
-	display: inline-block;
-	margin: 0;
-	padding: 0;
-	float: left;
-	margin-right: 0;
-	position: relative;
+.start-rating{
+  background-color:yellowgreen;
+  width:fit-content;
 }
 
-.star-rating .star.half:after,
-.star-rating .star:before {
-	font-family: "Material-Icons";
-	content: "\e988";
-	display: block;
-	color: #febe42;
-	font-size: 22px;
-}
 
-.star-rating .star.empty:before { color: #ddd; }
 
-.rating:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
-}
-
-.star-rating .star.half:before { color: #ddd; }
-.star-rating .star.half:after {
-	color: #febe42;
-	position: absolute;
-	top:0;
-	width: 50%;
-	display: block;
-	height: 100%;
-	overflow: hidden;
-}
-
-/* average rating before stars */
-.star-rating:before {
-	content: attr(data-rating);
-	float: left;
-	border-radius: 4px;
-	background-color: #febe42;
-	color: #fff;
-	font-size: 14px;
-	line-height: 15px;
-	font-weight: 700;
-	padding: 5px 7px;
-	position: relative;
-	top: 1px;
-	margin-right: 10px;
-}
 
 /* No stars */
 .star-rating.no-stars .star { display: none; }
@@ -15953,7 +15839,7 @@ ul.dashboard-box-list > li:hover {
 
 
 .message-bubble-me .message-text {
-	background-color: blue;
+	background-color: #009975;
   color: white;
 	border-radius: 4px;
 	padding: 12px 18px;

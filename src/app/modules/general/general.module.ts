@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // prime
+import { CarouselModule } from 'primeng/carousel';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
@@ -16,6 +17,8 @@ import { SliderModule } from 'primeng/slider';
 import { ChipModule } from 'primeng/chip';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { RatingModule } from 'primeng/rating';
+import { SidebarModule } from 'primeng/sidebar';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -88,6 +91,9 @@ const routes: Routes = [
     CommunicationComponent,
   ],
   imports: [
+    SidebarModule,
+    RatingModule,
+    CarouselModule,
     SelectButtonModule,
     SliderModule,
     ChipModule,

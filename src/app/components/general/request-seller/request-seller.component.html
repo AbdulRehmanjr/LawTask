@@ -132,7 +132,7 @@
             <ul class="fields-ul">
               <li>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="submit-field">
                       <div class="bidding-widget">
                         <!-- Headline -->
@@ -152,7 +152,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <h5>
                       Job Name
                       <i
@@ -176,47 +176,8 @@
                     </div>
                   </div>
 
-                  <div class="col-md-3">
-                    <h5>
-                      Skills
-                      <i
-                        class="fa-solid fa-circle-info"
-                        data-tippy-placement="right"
-                        title="Add up to 3 skills"
-                      ></i>
-                    </h5>
-                    <div class="mt-3 pt-3">
-                      <p-multiSelect
-                        formControlName="skill"
-                        [options]="skills"
-                        [maxSelectedLabels]="3"
-                        (onChange)="skillSelected()"
-                        defaultLabel="Select Skills"
-                        [disabled]="disableSkills"
-                        display="chip"
-                        optionLabel="label"
-                        optionValue="value"
-                      ></p-multiSelect>
-                    </div>
 
-                    <!-- Skills List -->
-
-                    <div  *ngIf="selectedSkills">
-                      <span
-                       *ngFor="let skill of selectedSkills">
-                        <p-chip
-
-                          label="{{ skill }}"
-                          [removable]="true"
-                          (onRemove)="skillRemoved($event)"
-                        >
-                        </p-chip>
-
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="submit-field">
                       <h5>Attachments</h5>
 
@@ -338,16 +299,21 @@
 
     <ng-container *ngIf="isAccepted == true else unAccepted" >
 
-      <h1 class="alert alert-info">
-        Your Request for Seller has been accepted.
-
-      </h1>
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Congsrauation!!!!</h4>
+        <p>Your request has been accepted by adminstration.</p>
+        <hr>
+      </div>
       <h2>Please Select the Subscription from below</h2>
       <shared-subscriptioncard></shared-subscriptioncard>
     </ng-container>
     <ng-template #unAccepted>
-      <h1 class="alert alert-info">Your request is under review please wait for response</h1>
-
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Good Luck!</h4>
+        <p>Your request has been forwarded to adminstration.</p>
+        <hr>
+        <p class="mb-0">Please wait for admininstraion verification</p>
+      </div>
     </ng-template>
     </section>
 

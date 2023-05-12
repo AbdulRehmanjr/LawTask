@@ -6,7 +6,6 @@ export class SellerRequest {
   email:string
   charges:number
   jobName:string
-  skills:string[]
   tagLine:string
   location:string
   description:string
