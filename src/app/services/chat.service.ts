@@ -3,6 +3,7 @@ import { CompatClient, Stomp } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client'
 import { Message } from '../classes/message';
 import { error } from 'jquery';
+import { Subscription } from 'rxjs';
 
 
 
@@ -16,6 +17,7 @@ export class ChatService {
   private sockJS = new SockJS(this.SOCKET);
   private client:CompatClient  = Stomp.over(this.sockJS)
   private sender:string = ''
+  private subscriptions: { [key: string]: any } = {};
   constructor() {
     this.sender = JSON.parse(localStorage.getItem('user'))['userId']
     this.client.onStompError = (frame) => {
@@ -29,15 +31,21 @@ export class ChatService {
 
   connectToUser(receiverId:string){
 
-      this.client.subscribe(`/userChat/${receiverId}/private`, (message) => {
-        const newMessage: Message = JSON.parse(message.body)
-        console.log('message recveied private',message.body)
-        if(newMessage.senderName===receiverId){
-          this.messages.push(newMessage)
-        }
+    if (this.subscriptions[receiverId]) {
+      console.log(`Already subscribed to user ${receiverId}`);
+      return;
+    }
 
+    // Establish a new subscription
+    const subscription = this.client.subscribe(`/userChat/${receiverId}/private`, (message) => {
+      const newMessage: Message = JSON.parse(message.body);
+      if (newMessage.senderName === receiverId) {
+        this.messages.push(newMessage);
       }
-      )
+    });
+
+    // Store the subscription
+    this.subscriptions[receiverId] = subscription;
   }
   onConnect() {
     this.client.activate()
@@ -49,7 +57,15 @@ export class ChatService {
     this.client.send('/app/private-message', {}, JSON.stringify(message))
     this.messages.push(message)
   }
-  disconnect(){
+  disconect(receiverId:string){
+    if (this.subscriptions[receiverId]) {
+      // Unsubscribe and remove the subscription
+      this.subscriptions[receiverId].unsubscribe();
+      delete this.subscriptions[receiverId];
+    }
+  }
+  onDisconnect(){
+
     this.client.disconnect()
   }
   getMessages(): Message[] {

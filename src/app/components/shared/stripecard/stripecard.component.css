@@ -1,6 +1,13 @@
-#subscribe{
-  margin: 20px 0;
-  padding: 20px 0;
+.panel-title{
+  margin-right: 5px;
+  background-color: #16794B;
+  color: #fff;
+  font-weight: 900;
+}
+.panel-header img{
+  margin-left: 5px;
+  height: 30px;
+  float:right;
 }
 .pricing-plans-container {
 	border-radius: 4px;
@@ -170,20 +177,48 @@
 	}
 }
 
-::ng-deep .p-dialog{
-  top:5%;
-}
-/* For mobile devices */
-@media (max-width: 767px) {
-  ::ng-deep .p-dialog {
-    width: 550px;
-    height:450px;/* Adjust the width as per your requirements */
-  }
+#card-element {
+  display:block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* For medium-sized screens */
-@media (min-width: 768px) and (max-width: 1023px) {
-  ::ng-deep .p-dialog {
-    width: 800px; /* Adjust the width as per your requirements */
-  }
+#card-element .StripeElement {
+  margin-bottom: 10px;
+}
+
+#card-element input {
+  height: 40px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: #32325d;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#card-element input::placeholder {
+  color: #aab7c4;
+}
+
+#card-element .StripeElement--focus {
+  border-color: #80bdff;
+}
+
+#card-element .StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+#card-element .StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+button{
+  font-size:22px;
+  font-weight: bold;
+  color: #fff;
 }

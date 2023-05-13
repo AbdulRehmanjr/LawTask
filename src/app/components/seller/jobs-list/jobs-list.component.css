@@ -1,4 +1,13 @@
+.position{
+  position: relative;
+  top:12%;
+}
 
+@media (max-width: 991.98px) {  /* Medium screens and below */
+  .position {
+    top: initial;  /* Reset the top value for medium screens and below */
+  }
+}
 .headline {
   font-size: 30px;
   color: black;

@@ -1,12 +1,11 @@
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Message } from 'src/app/classes/message';
 import { Seller } from 'src/app/classes/seller';
 import { User } from 'src/app/classes/user';
 import { ChatService } from 'src/app/services/chat.service';
 import { ChatlistService } from 'src/app/services/chatlist.service';
-import { LoginService } from 'src/app/services/login.service';
-import { SellerService } from 'src/app/services/seller.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -29,13 +28,13 @@ export class CommunicationComponent implements OnInit,AfterViewChecked{
   isClicked: boolean = false;
   isSeller: boolean
   @ViewChild('chatContainer', { static: false }) chatContainer: ElementRef;
-  sidebarVisible1: boolean;
+  sidebarVisible: boolean
 
-  constructor(private sellerService: SellerService,
-    private route: ActivatedRoute,
+  constructor(
     private chatService: ChatService,
     private chatListService:ChatlistService,
-    private userService:UserService
+    private userService:UserService,
+    private messageService:MessageService
   ) {
 
   }
@@ -45,13 +44,6 @@ export class CommunicationComponent implements OnInit,AfterViewChecked{
 
   ngOnInit(): void {
     this.senderId = JSON.parse(localStorage.getItem('user'))['userId']
-    // this.sellerId = this.route.snapshot.paramMap.get('sellerId')
-    // this.fetchSeller()
-
-    // const currentDate = new Date();
-    // const options: any = { month: 'long', day: 'numeric', year: 'numeric' };
-    // this.date = currentDate.toLocaleDateString('en-US', options)
-    // this.chatService.connect()
     this.fetchUser()
     this.fetchChatList()
 
@@ -62,15 +54,12 @@ export class CommunicationComponent implements OnInit,AfterViewChecked{
   fetchChatList(){
     this.chatListService.getChatList(this.senderId).subscribe({
       next:(response:User[])=>{
-        console.log('response of userList')
         this.users = response
-        console.log(response)
       },
-      error:(error)=>{
-        console.log(error)
+      error:(error:any)=>{
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in fetching list' })
       },
       complete:()=>{
-        console.log('completed usre list')
       }
     })
   }
@@ -82,7 +71,7 @@ export class CommunicationComponent implements OnInit,AfterViewChecked{
 
       },
       error:(error)=>{
-        console.log(error)
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in fecthing user' })
       },
       complete:()=>{
         console.log('completed')

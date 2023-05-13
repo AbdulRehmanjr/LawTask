@@ -19,6 +19,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { RatingModule } from 'primeng/rating';
 import { SidebarModule } from 'primeng/sidebar';
+import { PaginatorModule } from 'primeng/paginator';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -35,6 +36,7 @@ import { MainPortionComponent } from '../../components/general/main-portion/main
 import { JobsListComponent } from 'src/app/components/seller/jobs-list/jobs-list.component';
 import { SearchComponent } from '../../components/general/search/search.component';
 import { CommunicationComponent } from '../../components/general/communication/communication.component';
+import { StripecardComponent } from 'src/app/components/shared/stripecard/stripecard.component';
 
 
 // const config: SocketIoConfig = {
@@ -52,6 +54,9 @@ const routes: Routes = [
       },
       {
         path:'seller-request',component:RequestSellerComponent
+      },
+      {
+        path:'payment',component:StripecardComponent
       },
       {
         path:'job-list',component:JobsListComponent
@@ -91,6 +96,7 @@ const routes: Routes = [
     CommunicationComponent,
   ],
   imports: [
+    PaginatorModule,
     SidebarModule,
     RatingModule,
     CarouselModule,

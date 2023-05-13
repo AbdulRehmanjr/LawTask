@@ -2477,19 +2477,19 @@ em.mm-counter+a.mm-fullsubopen+span {
 .section.gray .pagination .pagination-arrow a:hover,
 .pagination ul li a.current-page,
 .pagination ul li a:hover {
-	background-color: #333;
+	background-color: #66CC99;
 	color: #fff;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.2)
 }
 
 .pagination ul li a.current-page {
-	background-color: #66676b;
+	background-color: #66CC99;
 	color: #fff;
 	box-shadow: 0 2px 8px rgba(102,103,107,0.25)
 }
 
-.pagination .pagination-arrow a { background-color: #f0f0f0; }
-.section.gray .pagination .pagination-arrow a { background-color: #eaeaea; }
+.pagination .pagination-arrow a { background-color: #66CC99; color:#fff;}
+.section.gray .pagination .pagination-arrow a { background-color: #66CC99; }
 
 
 /* ---------------------------------- */

@@ -1,4 +1,5 @@
-<section class="row mt-md-5">
+<section class="row mt-md-5 sticky-container">
+  <p-toast position="bottom-right"></p-toast>
   <div class="row">
     <aside id="userbar" class="col-md-3 d-none d-md-block mt-md-5">
       <div class="messages-inbox">
@@ -35,41 +36,57 @@
         </ul>
       </div>
     </aside>
-    <aside class="d-sm-block d-md-none">
-      <p-sidebar [(visible)]="sidebarVisible1" position="left">
-        <ul class="user-bar">
-          <li *ngFor="let user of users">
-            <a
-              id="{{ user.userId }}"
-              (click)="selectUser(user)"
-              [ngStyle]="{
-                border: selectedUser === user ? '2px solid #6cff1d' : 'none'
-              }"
-            >
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img
-                  src="data:image/jpeg; base64, {{ user?.profilePicture }}"
-                  alt="profile Image"
-                />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ user?.userName }}</h5>
+
+    <p-sidebar [(visible)]="sidebarVisible" position="left" [blockScroll]="false">
+      <aside  class="col-md-3 d-sm-block d-md-none mt-md-5">
+        <div class="messages-inbox">
+          <div class="messages-headline">
+            <div class="input-with-icon">
+              <input id="autocomplete-input" type="text" placeholder="Search" />
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+          </div>
+
+          <ul class="user-bar">
+            <li *ngFor="let user of users">
+              <a
+                id="{{ user.userId }}"
+                (click)="selectUser(user)"
+                [ngStyle]="{
+                  border: selectedUser === user ? '2px solid #6cff1d' : 'none'
+                }"
+              >
+                <div class="message-avatar">
+                  <i class="status-icon status-online"></i>
+                  <img
+                    src="data:image/jpeg; base64, {{ user?.profilePicture }}"
+                    alt="profile Image"
+                  />
                 </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </p-sidebar>
-    </aside>
+                <div class="message-by">
+                  <div class="message-by-headline">
+                    <h5>{{ user?.userName }}</h5>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+  </p-sidebar>
 
     <article id="userchat" class="col-sm-12 col-md-9 mt-md-5">
       <div class="message-content">
         <div class="messages-headline d-flex flex-row justify-content-between">
           <h4 class="user-name">{{ selectedUser?.userName }}</h4>
-          <button class="d-sm-block d-md-none" (click)="sidebarVisible1 = true" icon="pi pi-th-large">sdadsada</button>
-          <button>
+          <button
+            class="btn btn-success d-sm-block d-md-bock"
+            (click)="sidebarVisible = true"
+          >
+            <i class="fa-solid fa-users"></i>
+          </button>
+          <button class="btn btn-success">Confirm Order</button>
+          <button class="btn btn-danger">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>

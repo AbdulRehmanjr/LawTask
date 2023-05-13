@@ -11,19 +11,22 @@ import { JobsService } from 'src/app/services/jobs.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
 
-  search:FormGroup
-  jobs:Jobs[]
-  jobName:string = ''
+  first: number = 0
+  rows: number = 5
+  currentPage=1
+  search: FormGroup
+  jobs: Jobs[]
+  jobName: string = ''
 
 
-  constructor(private jobService:JobsService,
-    private message:MessageService,
-    private route:ActivatedRoute,
-    private router:Router,
-    private formBuilder:FormBuilder,
-    private chatList:ChatlistService){}
+  constructor(private jobService: JobsService,
+    private message: MessageService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private chatList: ChatlistService) { }
   ngOnInit(): void {
 
     this.route.queryParams.subscribe(params => {
@@ -32,35 +35,46 @@ export class SearchComponent implements OnInit{
     this.fetchJobs()
   }
 
-  createForm():void{
+  createForm(): void {
     this.search = this.formBuilder.group({
       search: new FormControl('')
     })
   }
-  fetchJobs():void{
+  onPageChange(event:any) {
+    this.first = event.first;
+    this.rows = event.rows;
+}
+  moveArrow(direction: string) {
+    if (direction === 'back' && this.currentPage > 1) {
+      this.currentPage--
+    } else if (direction === 'forward' && this.currentPage < this.jobs.length) {
+      this.currentPage++
+    }
+  }
+  fetchJobs(): void {
     this.jobService.getJobsByJobName(this.jobName).subscribe({
-      next:(response:Jobs[])=>{
+      next: (response: Jobs[]) => {
         this.jobs = response
       },
-      error:(error:any)=>{
+      error: (error: any) => {
         this.message.add({ severity: 'error', summary: 'error', detail: 'No Job or service found.' })
       },
-      complete:()=>{
+      complete: () => {
         console.log('completed')
       }
     })
   }
-  sendMessage(receiverId:string){
+  sendMessage(receiverId: string) {
     const userId = JSON.parse(localStorage.getItem('user'))['userId']
 
-    this.chatList.addNewUser(userId,receiverId).subscribe({
-      next:(_response)=>{
+    this.chatList.addNewUser(userId, receiverId).subscribe({
+      next: (_response) => {
         console.log(_response)
       },
-      error:(_error)=>{
+      error: (_error) => {
         this.router.navigate(['/home/messages'])
       },
-      complete:()=>{
+      complete: () => {
         this.router.navigate(['/home/messages'])
       }
     })

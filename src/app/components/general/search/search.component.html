@@ -23,19 +23,18 @@
 
           <div class="radio-buttons">
             <label>
-              <input type="radio" name="currency" value="low" checked>
+              <input type="radio" name="currency" value="low" checked />
               <span class="button-style">$</span>
             </label>
             <label>
-              <input type="radio" name="currency" value="normal">
+              <input type="radio" name="currency" value="normal" />
               <span class="button-style">$$</span>
             </label>
             <label>
-              <input type="radio" name="currency" value="high">
+              <input type="radio" name="currency" value="high" />
               <span class="button-style">$$$</span>
             </label>
           </div>
-
         </div>
       </div>
     </div>
@@ -57,7 +56,7 @@
       <!-- Tasks Container -->
       <div class="tasks-list-container tasks-grid-layout margin-top-35">
         <!-- Task -->
-        <a *ngFor="let job of jobs" class="task-listing">
+        <a *ngFor="let job of jobs?.slice(first,first+rows)" class="task-listing">
           <!-- Job Listing Details -->
           <div class="task-listing-details">
             <div class="task-listing-description">
@@ -95,32 +94,17 @@
 
       <!-- Pagination -->
       <div class="clearfix"></div>
-      <div class="row">
+     <div class="row">
         <div class="col-md-12">
-          <!-- Pagination -->
-          <div class="pagination-container margin-top-60 margin-bottom-60">
-            <nav class="pagination">
-              <ul>
-                <li class="pagination-arrow">
-                  <a href="#" class="ripple-effect"
-                    ><i class="icon-material-outline-keyboard-arrow-left"></i
-                  ></a>
-                </li>
-                <li><a href="#" class="ripple-effect">1</a></li>
-                <li><a href="#" class="current-page ripple-effect">2</a></li>
-                <li><a href="#" class="ripple-effect">3</a></li>
-                <li><a href="#" class="ripple-effect">4</a></li>
-                <li class="pagination-arrow">
-                  <a href="#" class="ripple-effect"
-                    ><i class="icon-material-outline-keyboard-arrow-right"></i
-                  ></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+          <p-paginator
+            (onPageChange)="onPageChange($event)"
+            [first]="first"
+            [rows]="rows"
+            [totalRecords]="jobs?.length"
+          ></p-paginator>
         </div>
       </div>
-      <!-- Pagination / End -->
+
     </div>
   </div>
 </section>

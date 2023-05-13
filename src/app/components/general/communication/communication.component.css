@@ -2,6 +2,10 @@
   max-height:450px;
   overflow-y: scroll;
 }
+.sticky-container{
+  position: sticky;
+  top:60px;
+}
 .message-content-inner{
   min-height: 390px ;
   max-height: 390px;
@@ -43,7 +47,9 @@
 a{
   cursor: pointer;
 }
-
+::ng-deep .p-component-overlay {
+  display: none !important;
+}
 ::ng-deep .p-sidebar-left {
   top:10% !important;
   width:12rem !important;
