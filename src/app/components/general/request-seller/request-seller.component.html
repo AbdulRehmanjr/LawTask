@@ -16,12 +16,12 @@
 
           <div class="content">
             <div class="row">
-              <div class="col-auto mx-2 px-3">
-                <img class="profile-pic" [src]="placeholder" alt="profile picture">
-                <input
+              <div class="col-auto mx-2 px-3 mt-4">
+                <img class="profile-pic" src="data:image/jpeg; base64, {{user['profilePicture']}}" alt="profile picture">
+                <!-- <input
                 class="mt-4"
                 (change)="pictureUpload($event)" type="file" accept="image/*"
-                />
+                /> -->
 
               </div>
 
@@ -34,7 +34,6 @@
                         formControlName="firstName"
                         type="text"
                         class="with-border"
-                        placeholder="James"
                         required="true"
                       />
                     </div>
@@ -55,7 +54,6 @@
                         formControlName="lastName"
                         type="text"
                         class="with-border"
-                        placeholder="Smith"
                         required="true"
                       />
                     </div>
@@ -98,19 +96,12 @@
                     <div class="submit-field">
                       <h5>Email</h5>
                       <input
-                        formControlName="email"
+                      [value]="user['email']"
                         type="text"
                         class="with-border"
-                        placeholder="tom@example.com"
-                        required="true"
+                        [disabled]="isDisabled"
                       />
-                      <div
-                      *ngIf="
-                        sellerForm.get('email').invalid && sellerForm.get('email').touched
-                      "
-                    >
-                    <p-message severity="error"  text="Field is required"></p-message>
-                    </div>
+
                     </div>
                   </div>
                 </div>

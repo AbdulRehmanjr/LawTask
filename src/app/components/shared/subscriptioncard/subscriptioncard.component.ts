@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { CardSubscription } from 'src/app/classes/subscription';
+import { PaymentService } from 'src/app/services/payment.service';
 import { SellerService } from 'src/app/services/seller.service';
 import { environment } from 'src/app/variables/environment ';
 import { StripeScriptTag } from 'stripe-angular';
@@ -13,11 +15,13 @@ import { StripeScriptTag } from 'stripe-angular';
 export class SubscriptioncardComponent implements OnInit {
 
 
+
   @Input()
   actionForm: boolean
-  displayDialog:boolean = false
+  displayDialog: boolean = false
 
-  constructor(private sellerService: SellerService) {
+  constructor(private sellerService: SellerService,private stripeService:PaymentService,
+    private messageService:MessageService) {
   }
   ngOnInit(): void {
 
@@ -45,7 +49,23 @@ export class SubscriptioncardComponent implements OnInit {
 
   }
 
+  buySubscription(type:string) {
+    const email = JSON.parse(localStorage.getItem('user'))['email']
+    this.stripeService.paymentConfirm(type,email).subscribe({
+      next:(response:any)=>{
 
+        window.location.href = response;
+      },
+      error:(_err:any)=>{
+        console.log(_err)
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `Something went Wrong. Please check you internet connection or provided information` })
+      },
+      complete:()=>{
+
+      }
+    })
+
+  }
 
   hideDialog() {
     this.displayDialog = false

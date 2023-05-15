@@ -7,9 +7,11 @@ import { HeaderComponent } from 'src/app/components/shared/header/header.compone
 import { SubscriptioncardComponent } from 'src/app/components/shared/subscriptioncard/subscriptioncard.component';
 
 import { DialogModule } from 'primeng/dialog';
-
-import { StripeModule } from 'stripe-angular';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { MessageModule } from 'primeng/message';
 import { StripecardComponent } from '../../components/shared/stripecard/stripecard.component';
+import { Message } from 'src/app/classes/message';
 
 @NgModule({
   declarations: [
@@ -18,16 +20,18 @@ import { StripecardComponent } from '../../components/shared/stripecard/stripeca
     StripecardComponent
   ],
   imports: [
+    ToastModule,
+    MessageModule,
     FormsModule,
     ReactiveFormsModule,
     DialogModule,
-    StripeModule,
     RouterModule,
     CommonModule,
   ],
   exports:[
     SubscriptioncardComponent,
     HeaderComponent
-  ]
+  ],
+  providers:[MessageService]
 })
 export class SharedModule { }

@@ -50,6 +50,9 @@ const routes: Routes = [
     path: 'home', component: GeneralComponent,
     children: [
       {
+        path:'success',component:StripecardComponent
+      },
+      {
         path: '', component: MainPortionComponent
       },
       {

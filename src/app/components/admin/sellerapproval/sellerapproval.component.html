@@ -33,11 +33,6 @@
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
-            <th>
-              <div class="flex justify-content-between align-items-center">
-                Profile Image
-              </div>
-            </th>
             <th pSortableColumn="firstName" >
               <div class="flex justify-content-between align-items-center">
                 First Name
@@ -72,12 +67,6 @@
         </ng-template>
         <ng-template pTemplate="body" let-seller>
           <tr class="p-selectable-row">
-            <td>
-              <img
-                src="data:image;base64 , {{ seller.profilePicture }}"
-                style="width: 100px"
-              />
-            </td>
             <td>
               {{ seller.firstName }}
             </td>

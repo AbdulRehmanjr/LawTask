@@ -47,6 +47,7 @@ export class LoginService {
     current_user.email = data.email
     current_user.userName = data.userName
     current_user.authority = data.role.authority;
+    current_user.profilePicture = data.profilePicture
 
 
     localStorage.setItem('user', JSON.stringify(current_user));

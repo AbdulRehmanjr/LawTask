@@ -1,5 +1,7 @@
+import { Token, TokenResult } from "@stripe/stripe-js"
+
 export class PaymentRequest {
-  amount:number
-  currency:string
-  description:string
+
+  email:string
+  type:string
 }

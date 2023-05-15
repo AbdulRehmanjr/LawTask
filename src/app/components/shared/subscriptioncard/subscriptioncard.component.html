@@ -2,7 +2,7 @@
 
   <div class="container">
 		<div class="row">
-
+      <p-toast position="bottom-right"></p-toast>
 			<div class="col-xl-12">
 				<!-- Section Headline -->
 				<div class="text-center mb-4 ">
@@ -18,7 +18,7 @@
 				<div class="pricing-plans-container">
 
 					<!-- Plan -->
-					<div class="pricing-plan">
+					<div  class="pricing-plan">
 						<h3>Dew Dropper</h3>
 						<p class="margin-top-10">One time fee for one listing or task highlighted in search results.</p>
 						<div class="pricing-plan-label billed-monthly-label"><strong>$19.99</strong>/ monthly</div>
@@ -30,7 +30,7 @@
 								<li>Highlighted in Search Results</li>
 							</ul>
 						</div>
-						<button (click)="showDialog()" class="mt-4 btn btn-outline-success">Buy Now</button>
+						<button (click)="buySubscription('Dew')" class="mt-4 btn btn-outline-success">Buy Now</button>
 					</div>
 
 					<!-- Plan -->
@@ -47,12 +47,12 @@
 								<li>Highlighted in Search Results</li>
 							</ul>
 						</div>
-						<button (click)="showDialog()"  class="mt-4 btn btn-success">Buy Now</button>
+						<button (click)="buySubscription('Sprinkle')" class="mt-4 btn btn-success">Buy Now</button>
 					</div>
 
 					<!-- Plan -->
 					<div class="pricing-plan">
-						<h3>Rain maker</h3>
+						<h3>Rain Maker</h3>
 						<p class="margin-top-10">One time fee for one listing or task highlighted in search results.</p>
 						<div class="pricing-plan-label billed-monthly-label"><strong>$99.99</strong>/ monthly</div>
 						<div class="pricing-plan-features">
@@ -63,10 +63,10 @@
 								<li>Highlighted in Search Results</li>
 							</ul>
 						</div>
-						<button (click)="showDialog()" class="mt-4 btn btn-outline-success" >Buy Now</button>
+						<button (click)="buySubscription('Rain')" class="mt-4 btn btn-outline-success" >Buy Now</button>
 					</div>
 
-          <p-dialog
+          <!-- <p-dialog
           [(visible)]="displayDialog"
           header="Payment"
           [modal]="true"
@@ -76,7 +76,7 @@
           <ng-template pTemplate="body">
             <shared-stripecard (actionForm)="hideDialog()"></shared-stripecard>
           </ng-template>
-        </p-dialog>
+        </p-dialog> -->
 				</div>
 
 			</div>

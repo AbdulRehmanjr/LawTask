@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
     this.check = JSON.parse(localStorage.getItem('user'))['userId']
-    // this.profile = JSON.parse(localStorage.getItem('user'))['profilePicture']
+    this.profile = JSON.parse(localStorage.getItem('user'))['profilePicture']
     this.userCheck()
   }
   ngAfterViewInit(): void {

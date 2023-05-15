@@ -5,6 +5,8 @@ import { SellerRequest } from 'src/app/classes/seller-request';
 
 import * as fileSave from 'file-saver'
 import { SellerrequestService } from 'src/app/services/sellerrequest.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/classes/user';
 
 @Component({
   selector: 'app-sellerapprovaldetail',
@@ -20,12 +22,11 @@ export class SellerapprovaldetailComponent implements OnInit {
   sellerId: string = ''
   seller: SellerRequest
   isDisplay:boolean=false
-
-
-
+  userImage:string = ''
   constructor(private activeRoute: ActivatedRoute,
     private router:Router,
-    private sellerService: SellerrequestService) {
+    private sellerService: SellerrequestService,
+    private userService:UserService) {
 
   }
   ngOnInit(): void {
@@ -52,7 +53,17 @@ export class SellerapprovaldetailComponent implements OnInit {
         console.log('error in fetching')
       },
       complete: () => {
+        this.userService.getUserById(this.seller.userId).subscribe({
+          next:(response:User)=>{
+              this.userImage = response.profilePicture
+          },
+          error:(error:any)=>{
+            console.log('Error show')
+          },
+          complete:()=>{
 
+          }
+        })
       }
 
     })

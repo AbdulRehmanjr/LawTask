@@ -5,14 +5,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { StripeModule } from 'stripe-angular';
 
 //* ngrx store
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerService } from './interceptor/spinner.service';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({maxAge:25}),
     EffectsModule.forRoot([]),
-    StripeModule.forRoot('s')
+    NgxSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerService,
+      multi: true
+    }
+  ],
   exports:[],
   bootstrap: [AppComponent]
 })

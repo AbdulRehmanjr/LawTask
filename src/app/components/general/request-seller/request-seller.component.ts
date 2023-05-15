@@ -13,15 +13,13 @@ import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 })
 export class RequestSellerComponent {
 
-  private userId:string = ''
+  user:string = ''
   role:string = ''
   isAccepted:boolean = false
   alreadyRequested:boolean = false
-  placeholder:string='assets/images/user-avatar-placeholder.png'
   rate: number = 10
   sellerForm: FormGroup
-  disableSkills: boolean = false
-  selectedSkills: string[] = []
+  isDisabled:boolean = true
   profilPicture:File
   document:File
 
@@ -32,7 +30,7 @@ export class RequestSellerComponent {
 
   ngOnInit(): void {
 
-    this.userId = JSON.parse(localStorage.getItem('user'))['userId']
+    this.user = JSON.parse(localStorage.getItem('user'))
     this.checkSellerRequest()
     this.creatingForm()
   }
@@ -43,7 +41,7 @@ export class RequestSellerComponent {
    * @function (check) will check weither the user has already made a request or not.
    */
   checkSellerRequest(){
-    this.sellerService.getSellerByUserId(this.userId).subscribe(
+    this.sellerService.getSellerByUserId(this.user['userId']).subscribe(
       {
         next:(response:Seller)=>{
           if(response){
@@ -57,6 +55,7 @@ export class RequestSellerComponent {
           this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Welcome to Seller Page.' })
         },
         complete:()=>{
+
         }
       }
     )
@@ -69,7 +68,6 @@ export class RequestSellerComponent {
     this.sellerForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
       charges: new FormControl(10, [Validators.required]),
       jobName: new FormControl('', [Validators.required]),
       tagLine: new FormControl('', [Validators.required]),
@@ -79,39 +77,20 @@ export class RequestSellerComponent {
 
   }
 
-  displayImage() {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      // Set the image source to the FileReader result
-      this.placeholder = e.target.result;
-    };
-    reader.readAsDataURL(this.profilPicture);
-  }
+
   /**
    * @function selected skills
    */
   documentUpload(event:any):void {
     this.document = event.target.files[0]
   }
-  pictureUpload(event:any):void{
-    this.profilPicture = event.target.files[0]
-    this.displayImage()
-    console.log(this.profilPicture)
-  }
+  // pictureUpload(event:any):void{
+  //   this.profilPicture = event.target.files[0]
+  //   this.displayImage()
+  //   console.log(this.profilPicture)
+  // }
 
-  /**
-   * @function skill => used for dynamic skill display
-   */
-  skillRemoved(event:any):void{
-    console.log(event)
-  }
-  skillSelected(): void {
-    this.selectedSkills = this.sellerForm.get('skill').value
 
-    if(this.selectedSkills.length>=3){
-      this.disableSkills = true
-    }
-  }
   /**
    * @action Form submission handling
    * @since v1.0.0
@@ -125,18 +104,18 @@ export class RequestSellerComponent {
 
     let seller = new SellerRequest()
 
-    console.log('user ID', this.userId)
-    seller.userId = this.userId
+
+    seller.userId = this.user['userId']
     seller.firstName = this.sellerForm.get('firstName').value
     seller.lastName = this.sellerForm.get('lastName').value
-    seller.email = this.sellerForm.get('email').value
+    seller.email = this.user['email']
     seller.charges = this.sellerForm.get('charges').value
     seller.jobName = this.sellerForm.get('jobName').value
     seller.description = this.sellerForm.get('description').value
     seller.tagLine = this.sellerForm.get('tagLine').value
     seller.location = this.sellerForm.get('location').value
 
-     this.sellerService.requestSeller(seller,this.profilPicture,this.document).subscribe({
+     this.sellerService.requestSeller(seller,this.document).subscribe({
       next:(message:any)=>{
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${message}` })
       },
@@ -150,59 +129,6 @@ export class RequestSellerComponent {
      })
   }
 
-
-  //* arrays of large data
-  skills: Obj[] = [
-    { value: "Web Development", label: "Web Development" },
-    { value: "Mobile App Development", label: "Mobile App Development" },
-    { value: "Graphic Design", label: "Graphic Design" },
-    { value: "Video Editing", label: "Video Editing" },
-    { value: "Social Media Marketing", label: "Social Media Marketing" },
-    { value: "SEO", label: "SEO" },
-    { value: "Content Writing", label: "Content Writing" },
-    { value: "Copywriting", label: "Copywriting" },
-    { value: "Translation", label: "Translation" },
-    { value: "Transcription", label: "Transcription" },
-    { value: "Voice Over", label: "Voice Over" },
-    { value: "Virtual Assistant", label: "Virtual Assistant" },
-    { value: "Data Entry", label: "Data Entry" },
-    { value: "Excel", label: "Excel" },
-    { value: "PowerPoint", label: "PowerPoint" },
-    { value: "WordPress", label: "WordPress" },
-    { value: "Shopify", label: "Shopify" },
-    { value: "Magento", label: "Magento" },
-    { value: "Drupal", label: "Drupal" },
-    { value: "Joomla", label: "Joomla" },
-    { value: "Python", label: "Python" },
-    { value: "Java", label: "Java" },
-    { value: "PHP", label: "PHP" },
-    { value: "Ruby", label: "Ruby" },
-    { value: "JavaScript", label: "JavaScript" },
-    { value: "Node.js", label: "Node.js" },
-    { value: "React", label: "React" },
-    { value: "Angular", label: "Angular" },
-    { value: "Vue.js", label: "Vue.js" },
-    { value: "Swift", label: "Swift" },
-    { value: "Kotlin", label: "Kotlin" },
-    { value: "Objective-C", label: "Objective-C" },
-    { value: "C#", label: "C#" },
-    { value: "C++", label: "C++" },
-    { value: "Machine Learning", label: "Machine Learning" },
-    { value: "Data Science", label: "Data Science" },
-    { value: "Blockchain", label: "Blockchain" },
-    { value: "Game Development", label: "Game Development" },
-    { value: "3D Modeling", label: "3D Modeling" },
-    { value: "Animation", label: "Animation" },
-    { value: "Illustration", label: "Illustration" },
-    { value: "Cartoon", label: "Cartoon" },
-    { value: "Logo Design", label: "Logo Design" },
-    { value: "Brand Identity Design", label: "Brand Identity Design" },
-    { value: "Packaging Design", label: "Packaging Design" },
-    { value: "T-Shirt Design", label: "T-Shirt Design" },
-    { value: "Business Card Design", label: "Business Card Design" },
-    { value: "Flyer Design", label: "Flyer Design" },
-    { value: "Poster Design", label: "Poster Design" },
-  ];
   locations: any[] = [
     { "name": "Afghanistan", "code": "AF" },
     { "name": "land Islands", "code": "AX" },
