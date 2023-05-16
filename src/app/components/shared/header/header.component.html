@@ -6,27 +6,24 @@
       <div class="left-side">
         <!-- Logo -->
         <div id="logo">
-          <a><img src="assets/images/logo.png" alt="logo picture" /></a>
+          <a class="disabled-link-hover"><img src="assets/images/logo.png" alt="logo picture" /></a>
         </div>
 
         <!-- Main Navigation -->
         <nav id="navigation">
           <ul id="responsive">
             <li><a routerLink="/home" class="current">Home</a></li>
-
-            <li><a href="#">Find Work</a></li>
-
             <li *ngIf="role=='SELLER'"><a routerLink="/seller-dashboard">For Employers</a></li>
             <li *ngIf="role=='USER'"><a routerLink="messages">Messages</a></li>
             <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
-            <li *ngIf="role=='SELLER'"><a routerLink="job-list">My Jobs</a></li>
+            <li *ngIf="role=='SELLER'"><a routerLink="/home/job-list">My Jobs</a></li>
             <li><a href="#">Pages</a></li>
             <li *ngIf="check == undefined else other">
               <a routerLink="/login"> Login </a>
             </li>
             <ng-template #other>
               <li *ngIf="role=='USER'">
-              <a routerLink="seller-request"> Become Seller </a>
+              <a routerLink="/home/seller-request"> Become Seller </a>
             </li>
             </ng-template>
           </ul>
@@ -42,7 +39,7 @@
         <div class="header-widget">
           <div class="header-notifications user-menu">
             <div class="header-notifications-trigger">
-              <a
+              <a class="disabled-link-hover"
                 ><div class="user-avatar status-online">
                   <img
                     src="data:image/jpeg; base64, {{profile}}"

@@ -13,28 +13,26 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './communication.component.html',
   styleUrls: ['./communication.component.css']
 })
-export class CommunicationComponent implements OnInit,AfterViewChecked{
+export class CommunicationComponent implements OnInit, AfterViewChecked {
+
   messages: Message[] = [];
-  newMessage: string = ''
-  sellerId: string | null
-  senderId:string
-  users:User[]
-  selectedUser:User
-  sender:User
-  seller: Seller
-  date: any
+  senderId: string
+  users: User[]
+  selectedUser: User
+  sender: User
   time: any
-  oldMessages:Message[]
-  isClicked: boolean = false;
-  isSeller: boolean
+  isUsers: boolean = false
+  oldMessages: Message[]
+  isClicked: boolean = false
+
   @ViewChild('chatContainer', { static: false }) chatContainer: ElementRef;
   sidebarVisible: boolean
 
   constructor(
     private chatService: ChatService,
-    private chatListService:ChatlistService,
-    private userService:UserService,
-    private messageService:MessageService
+    private chatListService: ChatlistService,
+    private userService: UserService,
+    private messageService: MessageService
   ) {
 
   }
@@ -51,39 +49,49 @@ export class CommunicationComponent implements OnInit,AfterViewChecked{
     this.messages = this.chatService.getMessages()
   }
 
-  fetchChatList(){
+  fetchChatList() {
     this.chatListService.getChatList(this.senderId).subscribe({
-      next:(response:User[])=>{
+      next: (response: User[]) => {
         this.users = response
       },
-      error:(error:any)=>{
+      error: (error: any) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in fetching list' })
       },
-      complete:()=>{
+      complete: () => {
+        this.isUsers = true;
       }
     })
   }
-  fetchUser(){
+  fetchUser() {
     this.userService.getUserById(this.senderId).subscribe({
-      next :(response:User)=>{
+      next: (response: User) => {
 
         this.sender = response
 
       },
-      error:(error)=>{
+      error: (error) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in fecthing user' })
       },
-      complete:()=>{
+      complete: () => {
         console.log('completed')
       }
     })
   }
+  onFileSelected($event: any) {
+    const file = $event.target.files[0]
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
 
-  sendMessage($event:Event,data: any) {
+    };
+    //reader.readAsArrayBuffer(file);
+    reader.readAsDataURL(file);
+    console.log(file)
+  }
+  sendMessage($event: Event, data: any) {
 
     $event.preventDefault()
 
-    if(data.value==''){
+    if (data.value == '') {
       return
     }
     console.log('sending')
@@ -105,29 +113,30 @@ export class CommunicationComponent implements OnInit,AfterViewChecked{
     const container = this.chatContainer.nativeElement;
     container.scrollTop = container.scrollHeight;
   }
-  fetchMessage(){
-      this.chatListService.getAllMessages(this.senderId,this.selectedUser.userId).subscribe({
 
-        next:(response:Message[])=>{
+  fetchMessage() {
+    this.chatListService.getAllMessages(this.senderId, this.selectedUser.userId).subscribe({
+
+      next: (response: Message[]) => {
         this.oldMessages = response
 
-        },
-        error:(error:any)=>{
-          console.log(error)
-        },
-        complete:()=>{
-          this.oldMessages.forEach(
-            message=>{
-              if(message.receiverName==this.senderId){
-                message.type='RECEIVER'
-              }
+      },
+      error: (error: any) => {
+        console.log(error)
+      },
+      complete: () => {
+        this.oldMessages.forEach(
+          message => {
+            if (message.receiverName == this.senderId) {
+              message.type = 'RECEIVER'
             }
-          )
-        }
-      })
+          }
+        )
+      }
+    })
   }
 
-  selectUser(user:User) {
+  selectUser(user: User) {
     this.isClicked = !this.isClicked;
     this.selectedUser = user
     this.chatService.connectToUser(this.selectedUser?.userId)

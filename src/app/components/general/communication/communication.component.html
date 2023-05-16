@@ -1,7 +1,9 @@
-<section class="row mt-md-5 sticky-container">
+<section class="row mt-md-5 mt-sm-3 sticky-container">
   <p-toast position="bottom-right"></p-toast>
+  <ng-container *ngIf="isUsers else nouser"
+  >
   <div class="row">
-    <aside id="userbar" class="col-md-3 d-none d-md-block mt-md-5">
+    <aside id="userbar" class="col-md-3 d-none d-md-block mt-md-2">
       <div class="messages-inbox">
         <div class="messages-headline">
           <div class="input-with-icon">
@@ -37,8 +39,8 @@
       </div>
     </aside>
 
-    <p-sidebar [(visible)]="sidebarVisible" position="left" [blockScroll]="false">
-      <aside  class="col-md-3 d-sm-block d-md-none mt-md-5">
+    <p-sidebar class= "col-md-3 d-sm-block d-md-none mt-md-2" [(visible)]="sidebarVisible" position="left" [blockScroll]="false">
+      <aside >
         <div class="messages-inbox">
           <div class="messages-headline">
             <div class="input-with-icon">
@@ -75,12 +77,12 @@
       </aside>
   </p-sidebar>
 
-    <article id="userchat" class="col-sm-12 col-md-9 mt-md-5">
+    <article id="userchat" class="col-sm-12 col-md-9 mt-md-2">
       <div class="message-content">
         <div class="messages-headline d-flex flex-row justify-content-between">
           <h4 class="user-name">{{ selectedUser?.userName }}</h4>
           <button
-            class="btn btn-success d-sm-block d-md-bock"
+            class="btn btn-success d-sm-block d-md-none"
             (click)="sidebarVisible = true"
           >
             <i class="fa-solid fa-users"></i>
@@ -140,6 +142,12 @@
             data-autoresize
             (keydown.enter)="sendMessage($event, message)"
           ></textarea>
+          <!-- <input type="file" style="display: none;" (change)="onFileSelected($event)" #fileInput>
+          <button style="margin-right:5px;" class="send-button mr-2" (click)="fileInput.click()">
+             <i class="fas fa-file"></i>
+          </button> -->
+
+
           <button (click)="sendMessage($event, message)" class="send-button">
             <i class="fa-solid fa-paper-plane"></i>Send
           </button>
@@ -147,4 +155,8 @@
       </div>
     </article>
   </div>
+</ng-container>
+<ng-template #nouser>
+  <h1>No user yet</h1>
+</ng-template>
 </section>

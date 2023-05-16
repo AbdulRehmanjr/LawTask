@@ -38,73 +38,107 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-9 col-lg-8">
-      <h3 class="page-title">Search Results</h3>
+    <ng-container *ngIf="isFound; else notFound">
+      <div class="col-xl-9 col-lg-8">
+        <h3 class="page-title">Search Results</h3>
 
-      <div class="notify-box margin-top-15">
-        <div class="d-flex flex-space-between">
-          <span>Sort by:</span>
-          <select class="selectpicker">
-            <option>Relevance</option>
-            <option>Newest</option>
-            <option>Oldest</option>
-            <option>Random</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Tasks Container -->
-      <div class="tasks-list-container tasks-grid-layout margin-top-35">
-        <!-- Task -->
-        <a *ngFor="let job of jobs?.slice(first,first+rows)" class="task-listing">
-          <!-- Job Listing Details -->
-          <div class="task-listing-details">
-            <div class="task-listing-description">
-              <img
-                width="70"
-                src="data:image/jpeg; base64, {{ job?.jobImage }}"
-                alt="job image"
-              />
-              <h3 class="task-listing-title">{{ job.jobName }}</h3>
-              <ul class="task-icons">
-                <li>
-                  <i class="icon-material-outline-location-on"></i>location
-                </li>
-              </ul>
-            </div>
+        <!-- <div class="notify-box margin-top-15">
+          <div class="d-flex flex-space-between">
+            <span>Sort by:</span>
+            <select class="selectpicker">
+              <option>Relevance</option>
+              <option>Newest</option>
+              <option>Oldest</option>
+              <option>Random</option>
+            </select>
           </div>
+        </div> -->
 
-          <div class="task-listing-bid">
-            <div class="task-listing-bid-inner">
-              <div class="task-offers">
-                <strong>{{ job?.jobPrice | currency : "USD" }}</strong>
-                <strong>{{ job?.user.userName }}</strong>
-                <span>Fixed Price</span>
+        <!-- Tasks Container -->
+        <div class="tasks-list-container tasks-grid-layout margin-top-35">
+          <!-- Task -->
+          <a
+            *ngFor="let job of jobs?.slice(first, first + rows)"
+            class="task-listing"
+          >
+            <!-- Job Listing Details -->
+            <div class="task-listing-details">
+              <div class="task-listing-description">
+                <img
+                  width="70"
+                  src="data:image/jpeg; base64, {{ job?.jobImage }}"
+                  alt="job image"
+                />
+                <h3 class="task-listing-title">{{ job.jobName }}</h3>
+                <ul class="task-icons">
+                  <li>
+                    <i class="icon-material-outline-location-on"></i>location
+                  </li>
+                </ul>
               </div>
-              <span
-                (click)="sendMessage(job.user.userId)"
-                class="button button-sliding-icon ripple-effect"
-                >Contact <i class="fa-regular fa-comment-dots"></i
-              ></span>
             </div>
-          </div>
-        </a>
-      </div>
-      <!-- Tasks Container / End -->
 
-      <!-- Pagination -->
-      <div class="clearfix"></div>
-     <div class="row">
-        <div class="col-md-12">
-          <p-paginator
-            (onPageChange)="onPageChange($event)"
-            [first]="first"
-            [rows]="rows"
-            [totalRecords]="jobs?.length"
-          ></p-paginator>
+            <div class="task-listing-bid">
+              <div class="task-listing-bid-inner">
+                <div class="task-offers">
+                  <strong>{{ job?.jobPrice | currency : "USD" }}</strong>
+                  <strong>{{ job?.user.userName }}</strong>
+                  <span>Fixed Price</span>
+                </div>
+                <span
+                  (click)="sendMessage(job.user.userId)"
+                  class="button button-sliding-icon ripple-effect"
+                  >Contact <i class="fa-regular fa-comment-dots"></i
+                ></span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- Tasks Container / End -->
+
+        <!-- Pagination -->
+        <div class="clearfix"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <p-paginator
+              (onPageChange)="onPageChange($event)"
+              [first]="first"
+              [rows]="rows"
+              [totalRecords]="jobs?.length"
+            ></p-paginator>
+          </div>
         </div>
       </div>
+    </ng-container>
+    <ng-template #notFound>
+      <div class="col-xl-9 col-lg-8">
+        <div class="row">
+          <div class="col-xl-12">
 
-    </div>
+            <section id="not-found" class="center">
+              <h2>404 <i class="icon-line-awesome-question-circle"></i></h2>
+              <p>We're sorry,the thing you were looking for doesn't exist</p>
+            </section>
+
+            <div class="row">
+              <div class="col-xl-8 offset-xl-2">
+                  <div class="intro-banner-search-form not-found-search margin-bottom-50">
+                    <!-- Search Field -->
+                    <div class="intro-search-field ">
+                      <input id="intro-keywords" type="text" placeholder="What Are You Looking For?">
+                    </div>
+
+                    <!-- Button -->
+                    <div class="intro-search-button">
+                      <button class="button ripple-effect">Search</button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </section>

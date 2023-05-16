@@ -115,6 +115,7 @@ export class RequestSellerComponent {
     seller.tagLine = this.sellerForm.get('tagLine').value
     seller.location = this.sellerForm.get('location').value
 
+    console.log('seller', seller)
      this.sellerService.requestSeller(seller,this.document).subscribe({
       next:(message:any)=>{
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${message}` })

@@ -30,7 +30,7 @@
           [rows]="10"
           [paginator]="true"
           [tableStyle]="{ 'min-width': '50rem' }"
-          [globalFilterFields]="['jobName', 'image', 'description', 'status']"
+          [globalFilterFields]="['jobName', 'jobType', 'description', 'status']"
           [rowHover]="true"
           dataKey="id"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -56,6 +56,9 @@
               <th pSortableColumn="jobPrice" style="width: 5rem">
                 Price <p-sortIcon field="jobPrice"></p-sortIcon>
               </th>
+              <th pSortableColumn="jobType" style="width: 5rem">
+                Type <p-sortIcon field="jobType"></p-sortIcon>
+              </th>
               <th style="width: 13rem">Description</th>
               <th style="width: 5rem" pSortableColumn="likes">
                 Likes <p-sortIcon field="likes"></p-sortIcon>
@@ -79,16 +82,11 @@
                 />
               </td>
               <td>{{ job.jobPrice | currency : "USD" }}</td>
+              <td>{{job.jobType}}</td>
               <td>{{ job.description }}</td>
               <td>{{job.likes}}</td>
               <td>{{job.views}}</td>
               <td>
-                <button
-                  pButton
-                  pRipple
-                  icon="pi pi-pencil"
-                  class="p-button-rounded p-button-success "
-                ></button>
                 <button
                   pButton
                   pRipple

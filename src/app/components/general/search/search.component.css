@@ -1,6 +1,9 @@
 .margin{
   margin-top:90px;
 }
+.container{
+  min-height: 100vh;
+}
 input,input:focus,input:hover{
   border:1px solid black;
   border-radius: 10px;
@@ -64,4 +67,3 @@ button:hover{
   color: #fff;
 
 }
-

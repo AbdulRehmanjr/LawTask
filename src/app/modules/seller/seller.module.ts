@@ -12,6 +12,7 @@ import {  ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 // custom modules
@@ -41,6 +42,7 @@ const routes :Routes = [
     SidebarComponent
   ],
   imports: [
+    SelectButtonModule,
     ButtonModule,
     TableModule,
     ToolbarModule,

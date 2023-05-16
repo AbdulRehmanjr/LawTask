@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
   search: FormGroup
   jobs: Jobs[]
   jobName: string = ''
-
+  isFound:boolean = false
 
   constructor(private jobService: JobsService,
     private message: MessageService,
@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit {
         this.message.add({ severity: 'error', summary: 'error', detail: 'No Job or service found.' })
       },
       complete: () => {
-        console.log('completed')
+        this.isFound = true
       }
     })
   }

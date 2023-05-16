@@ -1,3 +1,8 @@
 a:hover{
-  border-bottom: 2px solid greenyellow;
+  border-bottom: 2px solid #39FF14;
+  color:#39FF14 !important;
+}
+.disabled-link-hover:hover{
+  border: none !important;
+  cursor: pointer;
 }

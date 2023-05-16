@@ -257,7 +257,7 @@ header.fullwidth .container {
 }
 
 .header-widget:last-of-type { padding-right: 0; margin-right: -5px; }
-.fullwidth .header-widget:last-of-type { padding-right: 5px; margin-right: 0; }
+.fullwidth .header-widget:last-of-type { padding-right: 5px; margin-right: 10px; }
 
 /* Notification Avatar*/
 .header-notifications-content .notification-avatar {
@@ -664,13 +664,24 @@ a.header-notifications-button i {
 	position: relative;
 }
 
-.user-avatar img {
-	width: 100%;
+/* .user-avatar img {
+	width: 70px;
 	display: inline-block;
 	border-radius: 50%;
 	image-rendering: -webkit-optimize-contrast;
-}
+} */
 
+.user-avatar img {
+  display: inline-block;
+  border-radius: 50%;
+  image-rendering: -webkit-optimize-contrast;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  aspect-ratio: 1/1;
+
+}
 
 /* User Menu Small Nav */
 ul.user-menu-small-nav {
@@ -821,7 +832,10 @@ ul.user-menu-small-nav li a:hover i { color: #66676b; }
 	position: relative;
 	float: left;
 	margin: 0;
-	padding: 0
+	padding: 0;
+  font-size:15px;
+  font-weight: 900;
+color:#000;
 }
 
 #navigation ul li ul {

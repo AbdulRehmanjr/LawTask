@@ -7,6 +7,7 @@ export class Jobs {
   description:string
   likes:number
   views:number
+  jobType:string
   jobPrice:number
   user:User
 }

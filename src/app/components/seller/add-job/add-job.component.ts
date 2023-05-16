@@ -10,38 +10,42 @@ import { JobsService } from 'src/app/services/jobs.service';
   templateUrl: './add-job.component.html',
   styleUrls: ['./add-job.component.css']
 })
-export class AddJobComponent implements OnInit{
+export class AddJobComponent implements OnInit {
 
 
   @Output()
   jobAdded = new EventEmitter<boolean>()
 
-  jobForm:FormGroup
-  file:File
-
-  constructor(private formBuilder:FormBuilder,
-    private jobService:JobsService,
-    private messageService:MessageService){}
+  jobForm: FormGroup
+  file: File
+  stateOptions: any[] = [
+    { label: 'Fixed', value: 'Fixed' },
+    { label: 'Hourly', value: 'Hourly' }
+  ];
+  constructor(private formBuilder: FormBuilder,
+    private jobService: JobsService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
 
     this.createForm()
   }
 
-  createForm():void{
+  createForm(): void {
     this.jobForm = this.formBuilder.group({
-      jobName: ['',[Validators.required]],
-      description:['',[Validators.required]],
-      jobPicture: ['',[Validators.required]],
-      jobPrice: ['',Validators.required]
+      jobName: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      jobType:  new FormControl('Fixed'),
+      jobPicture: ['', [Validators.required]],
+      jobPrice: ['', Validators.required]
     })
   }
 
-  onChange(event:any):void {
-      this.file = event.target.files[0]
+  onChange(event: any): void {
+    this.file = event.target.files[0]
   }
 
-  onSubmit():void{
+  onSubmit(): void {
     if (this.jobForm.invalid) {
       this.jobForm.markAllAsTouched();
       return;
@@ -54,18 +58,19 @@ export class AddJobComponent implements OnInit{
     job.jobName = this.jobForm.get('jobName').value
     job.description = this.jobForm.get('description').value
     job.jobPrice = this.jobForm.get('jobPrice').value
+    job.jobType = this.jobForm.get('jobType').value
     job.user = user
 
-    this.jobService.saveJob(job,this.file).subscribe({
-     next:(_response:any)=>{
-      this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Job Saved.' })
-     },
-     error:(_error:any)=>{
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in saving Job.' })
-     },
-     complete:()=>{
-      this.jobAdded.emit(true)
-     }
+    this.jobService.saveJob(job, this.file).subscribe({
+      next: (_response: any) => {
+        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Job Saved.' })
+      },
+      error: (_error: any) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in saving Job.' })
+      },
+      complete: () => {
+        this.jobAdded.emit(true)
+      }
     })
 
   }

@@ -43,6 +43,15 @@
       Price is Required
     </div>
     <div class="flex flex-column">
+      <label htmlFor="username">Pice Type</label>
+      <div class="input-group mb-3">
+        <p-selectButton [options]="stateOptions" formControlName="jobType" optionLabel="label" optionValue="value"></p-selectButton>
+      </div>
+      <small id="jobname-help">Select your Job Type.</small>
+    </div>
+
+
+    <div class="flex flex-column">
       <label htmlFor="description">Description</label>
       <textarea
         pInputTextarea

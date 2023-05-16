@@ -11,7 +11,6 @@
         <div class="category-box-icon">
           <i class="{{ card.icon }}"></i>
         </div>
-        <div class="category-box-counter">{{ card.counter }}</div>
         <div class="category-box-content">
           <h3>{{ card.category }}</h3>
           <p>{{ card.description }}</p>
@@ -43,20 +42,6 @@
         [responsiveOptions]="responsiveOptions"
       >
         <ng-template let-freelancer pTemplate="item">
-          <!-- <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
-                <div class="mb-3">
-                    <img  height="300" width="300" src="{{freelancer.image}}" alt="freelancer image" class="w-6 shadow-2" />
-                </div>
-                <div>
-                    <h4 class="mb-1">{{ freelancer.name }}</h4>
-                    <h6 class="mt-0 mb-3">{{ '$' + freelancer.price }}</h6>
-
-                    <div class="car-buttons mt-5">
-                        <button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search">def</button>
-                        <button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill">asdas</button>
-                    </div>
-                </div>
-            </div> -->
           <div class="freelancers-container">
             <!--Freelancer -->
             <div class="freelancer">
@@ -74,7 +59,6 @@
 
                   <!-- Name -->
                   <div class="freelancer-name">
-                    <!-- <h4><a href="single-freelancer-profile.html">Tom Smith <img class="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4> -->
                     <h4>{{ freelancer.name }}</h4>
                     <span>{{ freelancer.job }}</span>
                   </div>

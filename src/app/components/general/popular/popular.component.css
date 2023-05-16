@@ -29,7 +29,7 @@ a{
   background-color: transparent;
 	font-size: 42px;
 	line-height: 32px;
-	color: #33BF34;
+	color: #fff;
 	position: relative;
 }
 
@@ -43,8 +43,8 @@ a{
 .category-box-content h3 {
   background-color: transparent;
 	font-size: 16px;
-	font-weight: 600;
-	color: #333;
+	font-weight: 800;
+	color: #fff;
 	margin: 0;
 	padding: 0;
 	transition: 0.35s;
@@ -52,7 +52,8 @@ a{
 
 .category-box-content p {
   background-color: transparent;
-	color: #888;
+	color: #fff;
+  font-weight: 600;
 	margin: 0;
 	padding: 0;
 	line-height: 24px;
@@ -63,18 +64,17 @@ a{
   border: none;
   outline: none;
   border-radius: 10px;
-  background-color: #d6d4d4;
+  background-color: #00FF66;
 }
 
 .category-box:hover {
-	background-color: #333333 ;
-	box-shadow: 0 4px 12px rgba(102,103,107,0.2);
+	background-color: #7FFF00 ;
 	color: #fff;
 }
 
 .category-box:hover .category-box-content h3,
 .category-box:hover .category-box-icon { color: #fff; }
-.category-box:hover .category-box-content p { color: rgba(255,255,255,0.7); }
+.category-box:hover .category-box-content p { color: #fff; }
 
 .category-box:hover .category-box-counter {
 	background: rgba(0,0,0,0.2);
