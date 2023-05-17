@@ -1,0 +1,73 @@
+<section class="container">
+  <!-- Dashboard Content
+	================================================== -->
+  <div class="dashboard-content-container" data-simplebar>
+    <div class="dashboard-content-inner">
+      <div class="dashboard-headline">
+        <h3>{{ admin.userName }} !</h3>
+        <span>We are glad to see you again!</span>
+
+        <!-- Breadcrumbs -->
+        <!-- <nav id="breadcrumbs" class="dark">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Dashboard</li>
+					</ul>
+				</nav> -->
+      </div>
+
+      <!-- Fun Facts Container -->
+      <div class="fun-facts-container row">
+        <div class="col-md-4">
+          <div class="fun-fact">
+            <div class="fun-fact-text">
+              <span>Total Users</span>
+              <h4>{{ info?.users }}</h4>
+            </div>
+            <div class="fun-fact-icon">
+              <i class="fas fa-user" style="color: #7fff00"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="fun-fact">
+            <div class="fun-fact-text">
+              <span>Total Sellers</span>
+              <h4>{{ info?.sellers }}</h4>
+            </div>
+            <div class="fun-fact-icon">
+              <i class="fas fa-shop" style="color: #b81b7f"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="fun-fact">
+            <div class="fun-fact-text">
+              <span>Total Jobs</span>
+              <h4>{{ info?.jobs }}</h4>
+            </div>
+            <div class="fun-fact-icon">
+              <i class="fas fa-cart-shopping" style="color: #efa80f"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="fun-fact" data-fun-fact-color="#2a41e6">
+            <div class="fun-fact-text">
+              <span>Total Revenue</span>
+              <h4>{{ info?.income | currency : "USD" }}</h4>
+            </div>
+            <div class="fun-fact-icon">
+              <i class="fa-solid fa-sack-dollar" style="color: #00ff00"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <p-chart type="line" [data]="data" [options]="options"></p-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Content / End -->
+</section>

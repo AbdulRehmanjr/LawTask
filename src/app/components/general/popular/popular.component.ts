@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Freelancer } from 'src/app/classes/freelancer';
+import { FreelancerService } from 'src/app/services/freelancer.service';
 
 @Component({
   selector: 'app-popular',
@@ -8,54 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class PopularComponent implements OnInit {
   responsiveOptions: any[]
 
-  freelancers: any[] = [
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person1.jpg'
-    },
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person2.jpg'
-    },
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person3.jpg'
-    },
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person3.jpg'
-    },
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person3.jpg'
-    },
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person3.jpg'
-    },
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person3.jpg'
-    },
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person3.jpg'
-    },
-    { rating:5,
-      job: 'Web Developer',
-      name: 'Seller 1',
-      image: 'assets/images/person/person3.jpg'
-    },
+  freelancers: Freelancer[] = []
 
-  ]
+  constructor(private freelancerService:FreelancerService){}
   ngOnInit(): void {
     this.responsiveOptions = [
       {
@@ -74,10 +31,22 @@ export class PopularComponent implements OnInit {
         numScroll: 1
       }
     ];
+    this.getTopFreelancers()
   }
 
   getTopFreelancers():void{
+    this.freelancerService.getTopFreeLancers().subscribe({
+      next:(response:Freelancer[])=>{
+        this.freelancers  = response
+        console.log(response)
+      },
+      error:(error:any)=>{
+        console.log("error")
+      },
+      complete:()=>{
 
+      }
+    })
   }
   cards: any[] = [
     {

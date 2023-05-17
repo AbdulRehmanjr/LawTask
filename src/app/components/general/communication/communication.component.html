@@ -111,7 +111,7 @@
               <div class="clearfix"></div>
             </div>
           </ng-container>
-          <ng-container *ngFor="let message of messages">
+          <ng-container *ngFor="let message of messages$ | async">
             <div
               [ngClass]="{
                 'message-bubble-me': message.type == 'SENDER',

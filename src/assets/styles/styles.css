@@ -14321,7 +14321,6 @@ a.attachment-box:hover i {
 
 .dashboard-content-inner {
     padding: 50px;
-    padding-bottom: 0;
     position: relative;
 }
 
@@ -14389,7 +14388,7 @@ a.dashboard-responsive-nav-trigger { display: none; }
 .dashboard-nav ul li a {
 	color: #707070;
 	display: block;
-	padding: 11px 32px;
+	padding: 5px 10px;
 	transition: 0.3s;
 	cursor: pointer;
 	position: relative;
@@ -15360,17 +15359,6 @@ ul.dashboard-box-list > li:hover {
 
 /* Dashbaord Media Queries
 ------------------------------------- */
-@media (min-width: 1365px) and (max-width: 1600px) {
-	.fun-fact:last-child { display: none; }
-}
-
-@media (max-width: 1365px) {
-	.fun-fact {
-		flex: 1 1 calc(50% - 30px);
-		max-width: calc(50% - 30px);
-	}
-}
-
 @media (max-width: 992px) {
 	.dashboard-content-inner { min-height: auto !important; }
 	/* Dashboard Mobile Basis */
@@ -15512,10 +15500,6 @@ ul.dashboard-box-list > li:hover {
 }
 
 @media (max-width: 768px) {
-	.fun-fact {
-		flex: 1 1 100%;
-		max-width: 100%;
-	}
 	#titlebar #breadcrumbs,
 	.dashboard-headline #breadcrumbs {
 	    right: 0;

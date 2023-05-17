@@ -14,13 +14,9 @@ import { ChipModule } from 'primeng/chip';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import { ChartModule } from 'primeng/chart';
 
 
-//* ngrx imports
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { SellerRequestReducer } from 'src/app/ngrx/reducers/SellerRequestReducer';
-import { SellerRequestEffect } from 'src/app/ngrx/effects/SellerRequestEffect';
 
 //* custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -30,14 +26,19 @@ import { AdminComponent } from './admin.component';
 import { SidebarComponent } from '../../components/admin/sidebar/sidebar.component';
 import { SellerapprovalComponent } from '../../components/admin/sellerapproval/sellerapproval.component';
 import { SellerapprovaldetailComponent } from '../../components/admin/sellerapprovaldetail/sellerapprovaldetail.component';
+import { ApprovedRequestsComponent } from '../../components/admin/approved-requests/approved-requests.component';
+import { DashboardComponent } from '../../components/admin/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: 'admin-dashboard', component: AdminComponent,
     children: [
+      {path:'',component:DashboardComponent},
       { path: 'request-approval', component: SellerapprovalComponent },
       {
         path: 'request-approval-detail/:sellerId', component: SellerapprovaldetailComponent
+      },{
+        path:'approved-requests',component:ApprovedRequestsComponent
       }
     ]
   }
@@ -49,9 +50,12 @@ const routes: Routes = [
     AdminComponent,
     SidebarComponent,
     SellerapprovalComponent,
-    SellerapprovaldetailComponent
+    SellerapprovaldetailComponent,
+    ApprovedRequestsComponent,
+    DashboardComponent
   ],
   imports: [
+    ChartModule,
     DialogModule,
     TableModule,
     ToastModule,
@@ -66,8 +70,6 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('sellerRequests', SellerRequestReducer),
-    EffectsModule.forFeature([SellerRequestEffect])
   ],
   exports: [
     RouterModule

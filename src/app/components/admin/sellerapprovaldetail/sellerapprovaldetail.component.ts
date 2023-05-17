@@ -53,7 +53,7 @@ export class SellerapprovaldetailComponent implements OnInit {
         console.log('error in fetching')
       },
       complete: () => {
-        this.userService.getUserById(this.seller.userId).subscribe({
+        this.userService.getUserById(this.seller.user.userId).subscribe({
           next:(response:User)=>{
               this.userImage = response.profilePicture
           },

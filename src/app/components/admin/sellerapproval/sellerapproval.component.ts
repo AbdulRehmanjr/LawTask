@@ -17,10 +17,7 @@ import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 export class SellerapprovalComponent implements OnInit {
 
   sellerRequests: SellerRequest[]
-  sellerRequests$: Observable<SellerRequest[]>
-  fetched$: Observable<boolean>
-  error$: Observable<string | null>
-  isfetched: boolean
+
   error: string = null
 
   constructor(

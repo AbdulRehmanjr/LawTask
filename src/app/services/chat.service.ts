@@ -3,7 +3,7 @@ import { CompatClient, Stomp } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client'
 import { Message } from '../classes/message';
 import { error } from 'jquery';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 
 
@@ -14,7 +14,7 @@ import { MessageService } from 'primeng/api';
 export class ChatService {
   private SOCKET: string = 'http://localhost:8080/api/v1/ws'
 
-  private messages: any[] = []
+  private messagesSubject: BehaviorSubject<any[]> = new BehaviorSubject([]);
   private sockJS = new SockJS(this.SOCKET);
   private client: CompatClient = Stomp.over(this.sockJS)
   private currentUserId: string = ''
@@ -43,39 +43,29 @@ export class ChatService {
     // Establish a new subscription
     const subscription = this.client.subscribe(`/userChat/${connectedId}/private`, (message:any) => {
       const newMessage: Message = JSON.parse(message.body);
-
-      if (newMessage.receiverName === this.currentUserId || newMessage.senderName === connectedId) {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Received Message',
-          detail: `Received message from ${newMessage.senderName}`
-        });
-        this.messages.push(newMessage);
-      }
+      this.messageService.add({severity:'info',summary:'Message Received',detail:`Message Recived By ${connectedId}`})
+      this.handleNewMessage(newMessage);
     });
 
     // Store the subscription
     this.subscriptions[connectedId] = subscription;
   }
+  private handleNewMessage(newMessage: any) {
+    const currentMessages = this.messagesSubject.value;
+    const updatedMessages = [...currentMessages, newMessage];
+    this.messagesSubject.next(updatedMessages);
+  }
   onConnect() {
     this.client.activate()
-  }
-  private unsubscribeFromPreviousUser() {
-    for (const userId in this.subscriptions) {
-      if (this.subscriptions.hasOwnProperty(userId)) {
-        this.subscriptions[userId].unsubscribe();
-        delete this.subscriptions[userId];
-      }
-    }
   }
 
   sendMessage(data: Message) {
     let message = new Message()
     message = data
     this.client.send('/app/private-message', {}, JSON.stringify(message))
-    if(message.senderName == this.currentUserId && message.receiverName == this.currentReceiverId){
-      this.messages.push(message)
-    }
+    // if(message.senderName == this.currentUserId && message.receiverName == this.currentReceiverId){
+    //   this.messagesSubject.next(updatedMessages);
+    // }
 
   }
   disconect(receiverId: string) {
@@ -89,7 +79,8 @@ export class ChatService {
 
     this.client.disconnect()
   }
-  getMessages(): Message[] {
-    return this.messages;
+
+  public getMessages() {
+    return this.messagesSubject;
   }
 }

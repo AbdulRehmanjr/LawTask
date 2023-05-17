@@ -1,6 +1,7 @@
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { BehaviorSubject } from 'rxjs';
 import { Message } from 'src/app/classes/message';
 import { Seller } from 'src/app/classes/seller';
 import { User } from 'src/app/classes/user';
@@ -15,7 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CommunicationComponent implements OnInit, AfterViewChecked {
 
-  messages: Message[] = [];
+  messages$: BehaviorSubject<any[]>
   currentUserId: string
   users: User[]
   selectedUser: User
@@ -46,7 +47,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     this.fetchChatList()
 
     this.chatService.onConnect()
-    this.messages = this.chatService.getMessages()
+    this.messages$ = this.chatService.getMessages()
 
 
   }
@@ -111,8 +112,10 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     data.value = '';
 
     // Only push the sent message if the current user is the sender or recipient
-    if (message.senderName === this.currentUserId || message.receiverName === this.currentUserId) {
-      this.messages.push(message);
+    if (message.senderName === this.currentUserId ) {
+      const currentMessages = this.messages$.value;
+    const updatedMessages = [...currentMessages, message];
+      this.messages$.next(updatedMessages)
       this.chatService.sendMessage(message)
     }
   }
@@ -147,7 +150,8 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
   selectUser(user: User) {
     this.isClicked = !this.isClicked;
     this.selectedUser = user
-    this.messages = [];
+    const values = []
+    this.messages$.next(values)
     this.chatService.connectToUser(this.selectedUser?.userId)
     this.fetchMessage()
   }

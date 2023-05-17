@@ -8,13 +8,13 @@ import { PaymentRequest } from '../classes/paymentrequest';
 })
 export class PaymentService {
 
-  private url = `${environment.apiBaseUrl}${environment.paymentUrl}`
+  private url = `${environment.apiBaseUrl}/${environment.paymentUrl}`
 
   constructor(private http: HttpClient) { }
 
   paymentIntent(payementRequest: PaymentRequest) {
     console.log(payementRequest)
-   return  this.http.post(this.url, payementRequest, {
+   return  this.http.post(`$this.url}/`, payementRequest, {
       observe: 'body',
       responseType: 'text'
     })
@@ -25,7 +25,7 @@ export class PaymentService {
     payment.email = email
     payment.type = type
 
-    return this.http.post(`${this.url}create-checkout-session`,payment,{
+    return this.http.post(`${this.url}/create-checkout-session`,payment,{
       observe:'body',
       responseType:'text'
     })

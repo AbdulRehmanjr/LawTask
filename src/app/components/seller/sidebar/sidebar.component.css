@@ -118,28 +118,6 @@ a.dashboard-responsive-nav-trigger { display: none; }
 	background-color: transparent;
 }
 
-/* Indicator Arrow */
-.dashboard-nav ul li a:after {
-    font-family: "Material-Icons";
-    content: '\e914';
-    opacity: 1;
-    font-size: 16px;
-    transition: 0.3s;
-    opacity: 1;
-    line-height: 17px;
-    width: 17px;
-    height: 17px;
-    background-color: #f0f0f0;
-    color: #a8a8a8;
-    display: inline-block;
-    border-radius: 3px;
-    margin-left: 7px;
-    text-indent: 0;
-    top: 1px;
-    position: absolute;
-   	right: 35px;
-    top: 15px;
-}
 
 .dashboard-nav ul li.active-submenu a:after,
 .dashboard-nav ul li.active a:after,

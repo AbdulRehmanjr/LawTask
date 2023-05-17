@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Seller } from 'src/app/classes/seller';
 import { SellerRequest } from 'src/app/classes/seller-request';
+import { User } from 'src/app/classes/user';
 import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 
 @Component({
@@ -103,8 +104,10 @@ export class RequestSellerComponent {
 
     let seller = new SellerRequest()
 
+    const user = new User()
 
-    seller.userId = this.user['userId']
+    user.userId = this.user['userId']
+    seller.user = user
     seller.firstName = this.sellerForm.get('firstName').value
     seller.lastName = this.sellerForm.get('lastName').value
     seller.email = this.user['email']
@@ -122,7 +125,6 @@ export class RequestSellerComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error.message}` })
       }
       ,complete:()=>{
-         // this.router.navigate(['home'])
           this.ngOnInit()
       }
      })

@@ -1,6 +1,8 @@
+import { User } from "./user"
+
 export class SellerRequest {
   sellerId:string
-  userId:string
+  user:User
   firstName:string
   lastName:string
   email:string
