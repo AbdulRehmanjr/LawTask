@@ -20,6 +20,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { RatingModule } from 'primeng/rating';
 import { SidebarModule } from 'primeng/sidebar';
 import { PaginatorModule } from 'primeng/paginator';
+import { BadgeModule } from 'primeng/badge';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -99,6 +100,7 @@ const routes: Routes = [
     CommunicationComponent,
   ],
   imports: [
+    BadgeModule,
     PaginatorModule,
     SidebarModule,
     RatingModule,

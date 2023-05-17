@@ -16,7 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CommunicationComponent implements OnInit, AfterViewChecked {
 
   messages: Message[] = [];
-  senderId: string
+  currentUserId: string
   users: User[]
   selectedUser: User
   sender: User
@@ -41,16 +41,18 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-    this.senderId = JSON.parse(localStorage.getItem('user'))['userId']
+    this.currentUserId = JSON.parse(localStorage.getItem('user'))['userId']
     this.fetchUser()
     this.fetchChatList()
 
     this.chatService.onConnect()
     this.messages = this.chatService.getMessages()
+
+
   }
 
   fetchChatList() {
-    this.chatListService.getChatList(this.senderId).subscribe({
+    this.chatListService.getChatList(this.currentUserId).subscribe({
       next: (response: User[]) => {
         this.users = response
       },
@@ -63,7 +65,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     })
   }
   fetchUser() {
-    this.userService.getUserById(this.senderId).subscribe({
+    this.userService.getUserById(this.currentUserId).subscribe({
       next: (response: User) => {
 
         this.sender = response
@@ -77,6 +79,10 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
       }
     })
   }
+  /**
+   * @deprecated
+   * @param $event
+   */
   onFileSelected($event: any) {
     const file = $event.target.files[0]
     const reader = new FileReader();
@@ -87,6 +93,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     reader.readAsDataURL(file);
     console.log(file)
   }
+
   sendMessage($event: Event, data: any) {
 
     $event.preventDefault()
@@ -94,28 +101,29 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     if (data.value == '') {
       return
     }
-    console.log('sending')
-    const message = new Message()
+    const message = new Message();
+    message.content = data.value;
+    message.senderName = this.currentUserId;
+    message.receiverName = this.selectedUser?.userId;
+    message.date = this.time;
+    message.type = 'SENDER';
 
-    this.time = new Date().toLocaleTimeString()
+    data.value = '';
 
-    message.content = data.value
-    message.senderName = this.senderId
-    message.receiverName = this.selectedUser?.userId
-    message.date = this.time
-    message.type = 'SENDER'
-
-    data.value = ''
-    // this.chatService.connect()
-    this.chatService.sendMessage(message)
+    // Only push the sent message if the current user is the sender or recipient
+    if (message.senderName === this.currentUserId || message.receiverName === this.currentUserId) {
+      this.messages.push(message);
+      this.chatService.sendMessage(message)
+    }
   }
+
   scrollToBottom(): void {
     const container = this.chatContainer.nativeElement;
     container.scrollTop = container.scrollHeight;
   }
 
   fetchMessage() {
-    this.chatListService.getAllMessages(this.senderId, this.selectedUser.userId).subscribe({
+    this.chatListService.getAllMessages(this.currentUserId, this.selectedUser.userId).subscribe({
 
       next: (response: Message[]) => {
         this.oldMessages = response
@@ -127,7 +135,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
       complete: () => {
         this.oldMessages.forEach(
           message => {
-            if (message.receiverName == this.senderId) {
+            if (message.receiverName == this.currentUserId) {
               message.type = 'RECEIVER'
             }
           }
@@ -139,6 +147,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
   selectUser(user: User) {
     this.isClicked = !this.isClicked;
     this.selectedUser = user
+    this.messages = [];
     this.chatService.connectToUser(this.selectedUser?.userId)
     this.fetchMessage()
   }

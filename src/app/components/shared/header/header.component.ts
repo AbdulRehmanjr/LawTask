@@ -18,13 +18,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   role:string =''
   isAdmin: boolean = false
   profile:string = ''
-
+  user:any
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-
-    this.check = JSON.parse(localStorage.getItem('user'))['userId']
-    this.profile = JSON.parse(localStorage.getItem('user'))['profilePicture']
+    this.user = JSON.parse(localStorage.getItem('user'))
+    this.check = this.user['userId']
+    this.profile = this.user['profilePicture']
     this.userCheck()
   }
   ngAfterViewInit(): void {

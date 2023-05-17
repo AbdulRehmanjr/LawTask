@@ -84,11 +84,10 @@ export class RequestSellerComponent {
   documentUpload(event:any):void {
     this.document = event.target.files[0]
   }
-  // pictureUpload(event:any):void{
-  //   this.profilPicture = event.target.files[0]
-  //   this.displayImage()
-  //   console.log(this.profilPicture)
-  // }
+  removeAttachement() {
+    this.document = null;
+    }
+
 
 
   /**
@@ -115,7 +114,6 @@ export class RequestSellerComponent {
     seller.tagLine = this.sellerForm.get('tagLine').value
     seller.location = this.sellerForm.get('location').value
 
-    console.log('seller', seller)
      this.sellerService.requestSeller(seller,this.document).subscribe({
       next:(message:any)=>{
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${message}` })
@@ -376,8 +374,4 @@ export class RequestSellerComponent {
     { "name": "Zambia", "code": "ZM" },
     { "name": "Zimbabwe", "code": "ZW" }
   ]
-}
-interface Obj {
-  label: string
-  value: string
 }

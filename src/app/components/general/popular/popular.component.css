@@ -64,22 +64,17 @@ a{
   border: none;
   outline: none;
   border-radius: 10px;
-  background-color: #00FF66;
+  background-color: #198754;
 }
 
 .category-box:hover {
-	background-color: #7FFF00 ;
+	background-color: #63a423a0 ;
 	color: #fff;
 }
 
 .category-box:hover .category-box-content h3,
 .category-box:hover .category-box-icon { color: #fff; }
-.category-box:hover .category-box-content p { color: #fff; }
 
-.category-box:hover .category-box-counter {
-	background: rgba(0,0,0,0.2);
-	color: #fff;
-}
 .job-listing {
 	display: block;
 	border-radius: 4px;

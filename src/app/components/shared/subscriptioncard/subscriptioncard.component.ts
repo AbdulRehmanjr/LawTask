@@ -26,28 +26,6 @@ export class SubscriptioncardComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  subscription(type: string) {
-    // const userId = JSON.parse(localStorage.getItem('user'))['userId']
-
-    // let subs = new CardSubscription
-    // subs.userId = userId
-    // subs.subscription = type
-
-    // this.sellerService.updateSubscription(subs).subscribe({
-    //   next:(response:any)=>{
-    //     console.log(response)
-    //   },
-    //   error:(error:any)=>{
-    //     console.error(error)
-    //   },
-    //   complete:()=>{
-    //     console.log('card Subscription added')
-
-    //   }
-    // })
-
-
-  }
 
   buySubscription(type:string) {
     const email = JSON.parse(localStorage.getItem('user'))['email']
