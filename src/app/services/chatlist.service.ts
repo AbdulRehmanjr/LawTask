@@ -10,11 +10,15 @@ export class ChatlistService {
   constructor(private http:HttpClient) { }
 
   createNewChatList(userId:string){
-    return this.http.post(`${this.URL}/${userId}`,{})
+    return this.http.post(`${this.URL}/${userId}`,{},{
+      observe:'body'
+    })
   }
 
   addNewUser(userId:string,receiverId:string){
-    return this.http.post(`${this.URL}/${userId}/${receiverId}`,{})
+    return this.http.post(`${this.URL}/${userId}/${receiverId}`,{},{
+      observe:'body'
+    })
   }
   getChatList(userId:string){
     return this.http.get(`${this.URL}/${userId}`,{observe:'body'})

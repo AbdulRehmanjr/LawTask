@@ -52,15 +52,15 @@
                     <img
                       width="50"
                       height="50"
-                      src="data:image/jpeg; base64,{{ freelancer.seller?.user?.userProfile }}"
+                      src="data:image/jpeg; base64,{{ freelancer.seller?.user?.profilePicture }}"
                       alt="freelancer image"
                     />
                   </div>
 
                   <!-- Name -->
                   <div class="freelancer-name">
-                    <h4>{{ freelancer.name }}</h4>
-                    <span>{{ freelancer.job }}</span>
+                    <h4>{{ freelancer.seller?.firstName}} {{freelancer.seller?.lastName }}</h4>
+                    <span>{{ freelancer.seller?.jobName }}</span>
                   </div>
 
                   <!-- Rating -->
@@ -82,18 +82,16 @@
                       Location
                       <strong
                         ><i class="icon-material-outline-location-on"></i>
-                        London</strong
+                        {{freelancer.seller?.location}}</strong
                       >
                     </li>
-                    <li>Rate <strong>$60 / hr</strong></li>
-                    <li>Job Success <strong>95%</strong></li>
+                    <li>Job Success <strong>{{freelancer?.success}}%</strong></li>
                   </ul>
                 </div>
-                <button class="btn btn-success"
+                <button (click)="freelancerProfile(freelancer?.id)" class="btn btn-success"
 
                   >View Profile
-                  <i class="icon-material-outline-arrow-right-alt"></i
-                ></button>
+                  <i class="fa-solid fa-id-card"></i></button>
               </div>
             </div>
           </div>

@@ -158,6 +158,14 @@ a{
 	margin-right: 0;
 }
 
+.freelancers-container{
+  height:513px;
+  max-width: 320px;
+}
+.freelancer-avatar img{
+  max-height: 80%;
+}
+
 .job-listing .job-listing-footer ul li i {
 	position: relative;
 	top: 1px;

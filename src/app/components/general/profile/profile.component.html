@@ -1,0 +1,180 @@
+<section id="profile">
+  <div class="single-page-header freelancer-header profile-intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="single-page-header-inner">
+            <div class="left-side">
+              <div class="header-image freelancer-avatar">
+                <img
+                  src="data:image/jpeg; base64,{{
+                    freelancerData?.seller?.user?.profilePicture
+                  }}"
+                  alt="freelancer image"
+                />
+              </div>
+              <div class="header-details">
+                <h3>
+                  {{ freelancerData?.seller?.firstName }}
+                  {{ freelancerData?.seller?.lastName
+                  }}<span>{{ freelancerData?.seller?.tagLine }}</span>
+                </h3>
+                <ul>
+                  <li>
+                    <p-rating
+                      ngModel="{{ freelancerData?.rating }}"
+                      [readonly]="true"
+                      [cancel]="false"
+                    ></p-rating>
+                  </li>
+                  <li>
+                    <img
+                      class="flag"
+                      src="assets/images/flags/pk.svg"
+                      alt="country flag"
+                    />
+                    {{ freelancerData?.seller?.location }}
+                  </li>
+                  <li>
+                    <p-chip label="Verified" icon="pi pi-verified"></p-chip>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Content
+  ================================================== -->
+  <div class="container">
+    <div class="row">
+      <!-- Content -->
+      <div class="col-xl-8 col-lg-8 content-right-offset">
+        <!-- Page Content -->
+        <div class="single-page-section">
+          <h3 class="margin-bottom-25">About Me</h3>
+          <p>{{ freelancerData?.seller?.description }}</p>
+        </div>
+        <!-- Boxed List / End -->
+
+        <!-- Boxed List -->
+        <div class="boxed-list margin-bottom-60">
+          <div class="boxed-list-headline">
+            <h3><i class="fa-solid fa-briefcase"></i> Avaliable Jobs</h3>
+          </div>
+          <ul class="boxed-list-ul">
+            <li *ngFor="let job of jobs?.slice(first, first + rows)">
+              <div class="boxed-list-item">
+                <!-- Avatar -->
+                <div class="item-image">
+                  <img
+                    src="data:image/jpeg; base64,{{ job?.jobImage }}"
+                    alt="job image"
+                  />
+                </div>
+
+                <!-- Content -->
+                <div class="item-content">
+                  <h4>{{ job?.jobName }}</h4>
+                  <div class="item-details margin-top-7">
+                    <div class="detail-item">
+                      <i class="fa-solid fa-wallet"></i>
+                      {{ job?.jobPrice | currency : "USD" }} {{ job?.jobType }}
+                    </div>
+                  </div>
+                  <div class="item-description">
+                    <p>{{ job?.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <p-paginator
+                (onPageChange)="onPageChange($event)"
+                [first]="first"
+                [rows]="rows"
+                [totalRecords]="jobs?.length"
+              ></p-paginator>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <!-- Boxed List / End -->
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-xl-4 col-lg-4">
+        <div class="sidebar-container">
+          <!-- Profile Overview -->
+          <div class="profile-overview">
+            <div class="overview-item">
+              <strong>$35</strong><span>Hourly Rate</span>
+            </div>
+            <div class="overview-item">
+              <strong>{{ jobs?.length }}</strong
+              ><span>Jobs</span>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <a
+          (click)="sendMessage()"
+            class="btn btn-success popup-with-zoom-anim margin-bottom-50 btn btn-success"
+            >Contact  <i class="fa-regular fa-comment-dots"></i></a>
+
+          <!-- Freelancer Indicators -->
+          <div class="sidebar-widget">
+            <div class="freelancer-indicators">
+              <!-- Indicator -->
+              <div class="indicator">
+                <strong>88%</strong>
+                <div class="indicator-bar" data-indicator-percentage="88">
+                  <span></span>
+                </div>
+                <span>Job Success</span>
+              </div>
+
+              <!-- Indicator -->
+              <div class="indicator">
+                <strong>100%</strong>
+                <div class="indicator-bar" data-indicator-percentage="100">
+                  <span></span>
+                </div>
+                <span>Recommendation</span>
+              </div>
+
+              <!-- Indicator -->
+              <div class="indicator">
+                <strong>90%</strong>
+                <div class="indicator-bar" data-indicator-percentage="90">
+                  <span></span>
+                </div>
+                <span>On Time</span>
+              </div>
+
+              <!-- Indicator -->
+              <div class="indicator">
+                <strong>80%</strong>
+                <div class="indicator-bar" data-indicator-percentage="80">
+                  <span></span>
+                </div>
+                <span>On Budget</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer -->
+  <div class="margin-top-15"></div>
+</section>
+

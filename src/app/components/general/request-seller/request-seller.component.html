@@ -17,7 +17,7 @@
           <div class="content">
             <div class="row">
               <div class="col-auto mx-2 px-3 mt-4">
-                <img class="profile-pic" src="data:image/jpeg; base64, {{user['profilePicture']}}" alt="profile picture">
+                <img class="profile-pic" src="data:image/jpeg; base64, {{user?.profilePicture}}" alt="profile picture">
 
               </div>
 
@@ -92,7 +92,7 @@
                     <div class="submit-field">
                       <h5>Email</h5>
                       <input
-                      [value]="user['email']"
+                      [value]="user?.email"
                         type="text"
                         class="with-border"
                         [disabled]="isDisabled"
@@ -119,27 +119,7 @@
             <ul class="fields-ul">
               <li>
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="submit-field">
-                      <div class="bidding-widget">
-                        <!-- Headline -->
-                        <span class="bidding-detail"
-                          >Set your <strong>minimal hourly rate</strong></span
-                        >
-                        <div class="bidding-value mb-5">
-                          $<span id="biddingVal">{{ rate }}</span>
-                        </div>
-                        <p-slider
-                          formControlName="charges"
-                          [(ngModel)]="rate"
-                          [min]="10"
-                          [max]="100"
-                          class="bidding-slider"
-                        ></p-slider>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <h5>
                       Job Name
                       <i
@@ -162,9 +142,7 @@
                     </div>
                     </div>
                   </div>
-
-
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <div class="submit-field">
                       <h5>Attachments</h5>
 
@@ -228,7 +206,7 @@
 
                   <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5>Nationality</h5>
+                      <h5>Location</h5>
                       <select
                         formControlName="location"
                         class="selectpicker with-border"
@@ -239,7 +217,7 @@
                         <option value="">Select the Location</option>
                         <option
                           *ngFor="let location of locations"
-                          value="{{ location.code }}"
+                          value="{{ location.name }}"
                         >
                           {{ location.name }}
                         </option>
@@ -283,7 +261,7 @@
   </section>
   </ng-container>
   <ng-template #newUser>
-    <section class="row mt-md-5mt-sm-3">
+    <section class="row mt-md-5 mt-sm-3">
 
     <ng-container *ngIf="isAccepted == true else unAccepted" >
 

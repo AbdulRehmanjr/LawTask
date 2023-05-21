@@ -1,5 +1,5 @@
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
 import { Message } from 'src/app/classes/message';
@@ -25,24 +25,29 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
   isUsers: boolean = false
   oldMessages: Message[]
   isClicked: boolean = false
+  role:string
 
-  @ViewChild('chatContainer', { static: false }) chatContainer: ElementRef;
-  sidebarVisible: boolean
+  @ViewChild('chatContainer') chatContainer?: ElementRef
+  sidebarVisible: boolean = false
+
 
   constructor(
     private chatService: ChatService,
     private chatListService: ChatlistService,
     private userService: UserService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router:Router
   ) {
 
   }
   ngAfterViewChecked(): void {
-    this.scrollToBottom();
+   this.scrollToBottom();
   }
 
   ngOnInit(): void {
-    this.currentUserId = JSON.parse(localStorage.getItem('user'))['userId']
+    const user = JSON.parse(localStorage.getItem('user'))
+    this.currentUserId = user['userId']
+    this.role = user['authority']
     this.fetchUser()
     this.fetchChatList()
 
@@ -52,6 +57,9 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
 
   }
 
+  showSideBar(){
+    this.sidebarVisible = true
+  }
   fetchChatList() {
     this.chatListService.getChatList(this.currentUserId).subscribe({
       next: (response: User[]) => {
@@ -112,17 +120,20 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     data.value = '';
 
     // Only push the sent message if the current user is the sender or recipient
-    if (message.senderName === this.currentUserId ) {
+    if (message.senderName === this.currentUserId) {
       const currentMessages = this.messages$.value;
-    const updatedMessages = [...currentMessages, message];
+      const updatedMessages = [...currentMessages, message];
       this.messages$.next(updatedMessages)
       this.chatService.sendMessage(message)
     }
   }
 
   scrollToBottom(): void {
-    const container = this.chatContainer.nativeElement;
-    container.scrollTop = container.scrollHeight;
+    const container = this.chatContainer?.nativeElement
+    if(container){
+      container.scrollTop = container?.scrollHeight;
+    }
+
   }
 
   fetchMessage() {
@@ -155,5 +166,12 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     this.chatService.connectToUser(this.selectedUser?.userId)
     this.fetchMessage()
   }
+  confirmOrder(){
 
+    const queryParams = {
+      sellerId:this.currentUserId
+    }
+
+    this.router.navigate([`/home/make-order`],{queryParams})
+  }
 }

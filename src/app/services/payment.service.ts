@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../variables/environment ';
 import { PaymentRequest } from '../classes/paymentrequest';
+import { Order } from '../classes/order';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,14 @@ export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
-  paymentIntent(payementRequest: PaymentRequest) {
-    console.log(payementRequest)
-   return  this.http.post(`$this.url}/`, payementRequest, {
+  paymentIntent(order:Order) {
+
+   return  this.http.post(`${this.url}/project`, order, {
       observe: 'body',
       responseType: 'text'
     })
   }
+
   paymentConfirm(type:string,email:string){
 
     let payment = new PaymentRequest()

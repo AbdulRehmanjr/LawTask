@@ -1,0 +1,25 @@
+.verified{
+  color:#fff;
+  border:none;
+  border-radius: 2px;
+  background-color: #30AB4A;
+
+}
+.profile-intro {
+  background: linear-gradient(to right, #005700, #00A600, #00FF00);
+}
+::ng-deep .p-chip  {
+    background-color: #30AB4A;
+    color: #fff;
+    font-weight: 700;
+}
+::ng-deep .p-rating .p-rating-icon{
+  color:#fff;
+}
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  color: #fff;
+}
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #30AB4A;
+  border-color: #30AB4A;
+}

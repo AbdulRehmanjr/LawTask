@@ -6,6 +6,7 @@ import { LoginComponent } from './components/general/login/login.component';
 import { SignupComponent } from './components/general/signup/signup.component';
 import { AdminModule } from './modules/admin/admin.module';
 import { SharedModule } from 'primeng/api';
+import { NotfoundComponent } from './components/general/notfound/notfound.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,9 @@ const routes: Routes = [
   {
     path:'signup',component:SignupComponent
   },
+  {
+    path:'not-found',component:NotfoundComponent
+  }
 
 ];
 

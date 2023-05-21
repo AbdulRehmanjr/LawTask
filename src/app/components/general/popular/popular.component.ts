@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Freelancer } from 'src/app/classes/freelancer';
+import { ChatlistService } from 'src/app/services/chatlist.service';
 import { FreelancerService } from 'src/app/services/freelancer.service';
 
 @Component({
@@ -12,12 +14,13 @@ export class PopularComponent implements OnInit {
 
   freelancers: Freelancer[] = []
 
-  constructor(private freelancerService:FreelancerService){}
+  constructor(private freelancerService:FreelancerService,
+    private router:Router){}
   ngOnInit(): void {
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
-        numVisible: 1,
+        numVisible: 3,
         numScroll: 1
       },
       {
@@ -47,6 +50,16 @@ export class PopularComponent implements OnInit {
 
       }
     })
+  }
+
+
+  freelancerProfile(id:string){
+    const queryParams = {
+      id:id
+
+    }
+
+    this.router.navigate([`/home/profile`],{queryParams})
   }
   cards: any[] = [
     {

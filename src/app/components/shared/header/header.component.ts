@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 
 import * as $ from 'jquery'
 import { Subject } from 'rxjs';
+import { User } from 'src/app/classes/user';
 import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'shared-header',
@@ -13,28 +15,47 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
 
-
   check: string
-  role:string =''
+  role: string = ''
   isAdmin: boolean = false
-  profile:string = ''
-  user:any
-  constructor(private router: Router) { }
+  profile: string = ''
+  private user: any
+  userResponse:User =  null
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
+
     this.user = JSON.parse(localStorage.getItem('user'))
     this.check = this.user['userId']
-    this.profile = this.user['profilePicture']
     this.userCheck()
+    this.fetchUser()
   }
   ngAfterViewInit(): void {
     this.profileDropdown()
   }
 
+
+  fetchUser() {
+    this.userService.getUserById(this.check).subscribe({
+      next: (response: User) => {
+
+        this.userResponse = response
+      },
+      error: (_error) => {
+        console.log(_error)
+      },
+      complete: () => {
+      }
+    })
+  }
+
+
+
+
   userCheck(): void {
     const user = JSON.parse(localStorage.getItem('user'))
-    this.role=user.authority
-    if ( this.role=== 'ADMIN') {
+    this.role = user.authority
+    if (this.role === 'ADMIN') {
       this.isAdmin = true
     }
   }
@@ -44,9 +65,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     localStorage.removeItem('user')
 
     setInterval(
-      ()=>{
+      () => {
         location.reload()
-      },1000
+      }, 1000
     )
     this.router.navigate(['/home/'])
 

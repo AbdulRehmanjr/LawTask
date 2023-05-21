@@ -1,0 +1,194 @@
+<section class="offer mt-md-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <p-toast position="bottom-right"></p-toast>
+      <div class="sign-in-form">
+        <ul class="popup-tabs-nav">
+          <li class="text-center">Make an Offer</li>
+        </ul>
+
+        <div class="popup-tabs-container">
+          <!-- Tab -->
+          <div class="popup-tab-content" id="tab">
+            <!-- Welcome Text -->
+            <div class="welcome-text">
+              <h3>Discuss your Project</h3>
+            </div>
+
+            <!-- Form -->
+            <form [formGroup]="order" (ngSubmit)="onSubmit()">
+              <div class="input-with-icon-left">
+                <i class="fa-solid fa-user-tie"></i>
+                <input
+                  type="text"
+                  class="input-text with-border"
+                  formControlName="userName"
+                  id="name"
+                  placeholder="First and Last Name"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  order.get('userName').invalid && order.get('userName').touched
+                "
+                class="error-message"
+              >
+                username is required
+              </div>
+
+              <div class="input-with-icon-left">
+                <i class="fa-solid fa-envelope"></i>
+                <input
+                  type="email"
+                  class="input-text with-border"
+                  formControlName="email"
+                  id="emailaddress"
+                  placeholder="Email Address"
+                  required="true"
+                />
+              </div>
+              <div
+                *ngIf="order.get('email').invalid && order.get('email').touched"
+                class="error-message"
+              >
+                Email is required
+              </div>
+              <div class="input-with-icon-left">
+                <i class="fa-solid fa-envelope"></i>
+                <input
+                  type="number"
+                  class="input-text with-border"
+                  formControlName="price"
+                  id="price"
+                  placeholder="0"
+                  required="true"
+                />
+              </div>
+              <div
+                *ngIf="order.get('price').invalid && order.get('price').touched"
+                class="error-message"
+              >
+                price is required
+              </div>
+              <div class="input-with-icon-left">
+                <i class="fa-solid fa-envelope"></i>
+                <select
+                  class="with-border px-5"
+                  formControlName="orderId"
+                  id=""
+                >
+                  <option selected>Select an option</option>
+                  <option *ngFor="let job of jobs" value="{{ job?.jobId }}">
+                    {{ job?.jobName }}
+                  </option>
+                </select>
+              </div>
+              <div
+                *ngIf="
+                  order.get('orderId').invalid && order.get('orderId').touched
+                "
+                class="error-message"
+              >
+                date is required
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-with-icon-left">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <input
+                      type="date"
+                      class="input-text with-border"
+                      formControlName="startDate"
+                      id="name"
+                      required="true"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      order.get('startDate').invalid &&
+                      order.get('startDate').touched
+                    "
+                    class="error-message"
+                  >
+                    date is required
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-with-icon-left">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <input
+                      type="date"
+                      class="input-text with-border"
+                      formControlName="endDate"
+                      id="name"
+                      required="true"
+                    />
+                    <div
+                      *ngIf="
+                        order.get('endDate').invalid &&
+                        order.get('endDate').touched
+                      "
+                      class="error-message"
+                    >
+                      order is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <textarea
+                name="textarea"
+                cols="10"
+                placeholder="Message"
+                formControlName="description"
+                class="with-border"
+                required="true"
+              ></textarea>
+              <div
+                *ngIf="
+                  order.get('description').invalid &&
+                  order.get('description').touched
+                "
+                class="error-message"
+              >
+                description is required
+              </div>
+              <div class="uploadButton margin-top-25">
+                <input
+                  (change)="onChange($event)"
+                  type="file"
+                  accept="image/*, application/pdf"
+                  id="upload"
+                  multiple
+                  required="true"
+                />
+                <span class="uploadButton-file-name"
+                  >Allowed file types: zip, pdf, png, jpg <br />
+                  Max. files size: 10 MB.</span
+                >
+                <div
+                  *ngIf="
+                    order.get('requirement').invalid &&
+                    order.get('requirement').touched
+                  "
+                  class="error-message"
+                >
+                  Document is required
+                </div>
+              </div>
+               <!-- Button -->
+            <button
+            class="btn btn-success margin-top-35 full-width button-sliding-icon ripple-effect"
+            type="submit"
+          >
+            Make an Offer
+            <i class="icon-material-outline-arrow-right-alt"></i>
+          </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

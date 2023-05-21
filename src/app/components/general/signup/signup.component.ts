@@ -14,7 +14,7 @@ import { SingupService } from 'src/app/services/singup.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  SignupForm: FormGroup;
+  SignupForm: FormGroup
   file: File
   Error: string
   user:any

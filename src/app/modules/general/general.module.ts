@@ -21,6 +21,9 @@ import { RatingModule } from 'primeng/rating';
 import { SidebarModule } from 'primeng/sidebar';
 import { PaginatorModule } from 'primeng/paginator';
 import { BadgeModule } from 'primeng/badge';
+import { DialogModule } from 'primeng/dialog';
+import { ToolbarModule } from 'primeng/toolbar';
+import { TableModule } from 'primeng/table';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -38,6 +41,11 @@ import { JobsListComponent } from 'src/app/components/seller/jobs-list/jobs-list
 import { SearchComponent } from '../../components/general/search/search.component';
 import { CommunicationComponent } from '../../components/general/communication/communication.component';
 import { StripecardComponent } from 'src/app/components/shared/stripecard/stripecard.component';
+import { ProfileComponent } from '../../components/general/profile/profile.component';
+import { NotfoundComponent } from '../../components/general/notfound/notfound.component';
+import { MakeOrderComponent } from '../../components/general/make-order/make-order.component';
+import { OrderhistoryComponent } from '../../components/general/orderhistory/orderhistory.component';
+import { ConfirmorderComponent } from '../../components/general/confirmorder/confirmorder.component';
 
 
 // const config: SocketIoConfig = {
@@ -60,6 +68,10 @@ const routes: Routes = [
         path:'seller-request',component:RequestSellerComponent
       },
       {
+        path:'profile',component:ProfileComponent
+      },
+
+      {
         path:'payment',component:StripecardComponent
       },
       {
@@ -70,6 +82,15 @@ const routes: Routes = [
       },
       {
         path:'messages',component:CommunicationComponent
+      },
+      {
+        path:'order',component:OrderhistoryComponent
+      },
+      {
+        path:'make-order',component:MakeOrderComponent
+      },
+      {
+        path:'order-confirm',component:ConfirmorderComponent
       },
       {
         path: 'login', component: LoginComponent
@@ -98,8 +119,15 @@ const routes: Routes = [
     MainPortionComponent,
     SearchComponent,
     CommunicationComponent,
+    ProfileComponent,
+    NotfoundComponent,
+    MakeOrderComponent,
+    OrderhistoryComponent,
+    ConfirmorderComponent,
   ],
   imports: [
+    TableModule,
+    DialogModule,
     BadgeModule,
     PaginatorModule,
     SidebarModule,

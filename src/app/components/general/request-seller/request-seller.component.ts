@@ -6,6 +6,7 @@ import { Seller } from 'src/app/classes/seller';
 import { SellerRequest } from 'src/app/classes/seller-request';
 import { User } from 'src/app/classes/user';
 import { SellerrequestService } from 'src/app/services/sellerrequest.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-request-seller',
@@ -14,48 +15,67 @@ import { SellerrequestService } from 'src/app/services/sellerrequest.service';
 })
 export class RequestSellerComponent {
 
-  user:string = ''
-  role:string = ''
-  isAccepted:boolean = false
-  alreadyRequested:boolean = false
+  userId: string = ''
+  user:User
+  role: string = ''
+  isAccepted: boolean = false
+  alreadyRequested: boolean = false
   rate: number = 10
   sellerForm: FormGroup
-  isDisabled:boolean = true
-  profilPicture:File
-  document:File
+  isDisabled: boolean = true
+  profilPicture: File
+  document: File
 
 
-  constructor(private messageService:MessageService,
-    private sellerService:SellerrequestService,
-    private router:Router){}
+  constructor(private messageService: MessageService,
+    private sellerService: SellerrequestService,
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
-    this.user = JSON.parse(localStorage.getItem('user'))
-    this.checkSellerRequest()
+    this.userId = JSON.parse(localStorage.getItem('user'))['userId']
     this.creatingForm()
+    this.checkSellerRequest()
+
+    this.fetchUser()
+
   }
 
 
+  fetchUser(){
+    this.userService.getUserById(this.userId).subscribe({
+      next:(response:User)=>{
+        this.user = response
+      },
+      error:(_error)=>{
+        console.error(_error)
+      },
+      complete:()=>{
+
+      }
+
+    })
+  }
 
   /**
    * @function (check) will check weither the user has already made a request or not.
    */
-  checkSellerRequest(){
-    this.sellerService.getSellerByUserId(this.user['userId']).subscribe(
+  checkSellerRequest() {
+    this.sellerService.getSellerByUserId(this.userId).subscribe(
       {
-        next:(response:Seller)=>{
-          if(response){
+        next: (response: Seller) => {
+          if (response) {
             this.alreadyRequested = true
           }
-          if(response.active===true){
-            this.isAccepted=true
+          if (response.active === true) {
+            this.isAccepted = true
           }
         },
-        error:(_error:any)=>{
+        error: (_error: any) => {
           this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Welcome to Seller Page.' })
         },
-        complete:()=>{
+        complete: () => {
 
         }
       }
@@ -82,12 +102,12 @@ export class RequestSellerComponent {
   /**
    * @function selected skills
    */
-  documentUpload(event:any):void {
+  documentUpload(event: any): void {
     this.document = event.target.files[0]
   }
   removeAttachement() {
     this.document = null;
-    }
+  }
 
 
 
@@ -117,17 +137,17 @@ export class RequestSellerComponent {
     seller.tagLine = this.sellerForm.get('tagLine').value
     seller.location = this.sellerForm.get('location').value
 
-     this.sellerService.requestSeller(seller,this.document).subscribe({
-      next:(message:any)=>{
+    this.sellerService.requestSeller(seller, this.document).subscribe({
+      next: (message: any) => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${message}` })
       },
-      error:(error:Error)=>{
+      error: (error: Error) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error.message}` })
       }
-      ,complete:()=>{
-          this.ngOnInit()
+      , complete: () => {
+        this.ngOnInit()
       }
-     })
+    })
   }
 
   locations: any[] = [

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Jobs } from 'src/app/classes/jobs';
+import { Job } from 'src/app/classes/job';
 import { Seller } from 'src/app/classes/seller';
 import { JobsService } from 'src/app/services/jobs.service';
 import { SellerService } from 'src/app/services/seller.service';
@@ -16,7 +16,7 @@ export class JobsListComponent implements OnInit {
   private userId:string = ''
   seller:Seller
   showSubscription: boolean = false
-  jobs:Jobs[]
+  jobs:Job[]
   maxJobs:number = 0
   leftJobs:number = 0
   @Input()
@@ -36,7 +36,7 @@ export class JobsListComponent implements OnInit {
 
   fetchJobsBySeller():void{
     this.jobService.getJobsByUserId(this.userId).subscribe({
-      next:(response:Jobs[])=>{
+      next:(response:Job[])=>{
         this.jobs = response
       },
       error:(error:any)=>{

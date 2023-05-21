@@ -23,6 +23,7 @@ import { AddJobComponent } from '../../components/seller/add-job/add-job.compone
 import { DashboardComponent } from '../../components/seller/dashboard/dashboard.component';
 import { SidebarComponent } from '../../components/seller/sidebar/sidebar.component';
 import { CommunicationComponent } from 'src/app/components/general/communication/communication.component';
+import { ProfileComponent } from '../../components/seller/profile/profile.component';
 
 
 
@@ -39,7 +40,8 @@ const routes :Routes = [
     JobsListComponent,
     AddJobComponent,
     DashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    ProfileComponent
   ],
   imports: [
     SelectButtonModule,

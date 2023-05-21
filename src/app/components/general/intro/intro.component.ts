@@ -44,7 +44,7 @@ export class IntroComponent implements OnInit {
       category:this.category.trim(),
       location:this.location
     }
-    console.log(`${this.category},${this.location}`)
+
     this.router.navigate([`/home/search`],{queryParams})
   }
 }

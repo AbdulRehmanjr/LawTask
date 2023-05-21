@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DashBoard } from 'src/app/classes/dashboard';
+import { SellerJoin } from 'src/app/classes/sellerjoin';
 import { UserJoin } from 'src/app/classes/userjoin';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { JoinService } from 'src/app/services/join.service';
@@ -12,15 +13,18 @@ import { JoinService } from 'src/app/services/join.service';
 })
 export class DashboardComponent implements OnInit {
 
-  userData :any = {}
-  sellerData:any = {}
+  userData: any = {}
+  sellerData: any = {}
   admin: any
   info: DashBoard
-  data: any;
+  data: any
+  sellerInfo:any
   array: number[] = [1, 2, 3, 2, 4, 5, 6, 7, 1, 2, 3, 9, 0, 4, 5]
   userJoin: UserJoin[]
+  sellerJoin: SellerJoin[]
+  sellerOptions:any
+  options: any
 
-  options: any;
 
   constructor(private dashboard: DashboardService,
     private message: MessageService,
@@ -31,6 +35,7 @@ export class DashboardComponent implements OnInit {
     this.admin = JSON.parse(localStorage.getItem('user'))
     this.fecthInfo()
     this.fetchUserJoin()
+    this.fetchSellerJoin()
 
   }
 
@@ -60,58 +65,70 @@ export class DashboardComponent implements OnInit {
       },
       complete: () => {
 
-        this.userJoin.forEach((data:UserJoin) => {
-          data.date = data.date.split("T")[0]
+        this.userJoin.forEach((data: UserJoin) => {
+          data.joinDate = data.joinDate.split("T")[0]
         })
-        this.keyValue(this.userJoin)
-        this.graph()
+        let object: any = {}
+
+        this.userJoin.forEach((data) => {
+          object[data['joinDate']] = (object[data['joinDate']] || 0) + 1
+        })
+
+        this.userData = object;
+
+       this.graph()
       }
 
     })
   }
-  keyValue(data:UserJoin[]){
-    let object:any = {}
 
-   data.forEach((data)=>{
-    object[data['date']] = (object[data['date']] || 0)+1
-   })
+  fetchSellerJoin() {
+    this.join.getSellerInfo().subscribe({
+      next: (response: SellerJoin[]) => {
+        this.sellerJoin = response
+        console.log(this.sellerJoin)
+      },
+      error: (error) => {
+        console.log(`error ${error}`)
+      },
+      complete: () => {
+        this.sellerJoin.forEach((data: SellerJoin) => {
+          data.joinDate = data.joinDate.split("T")[0]
+        })
+        let object: any = {}
 
-   this.userData = object;
+        this.sellerJoin.forEach((data) => {
+          object[data['joinDate']] = (object[data['joinDate']] || 0) + 1
+        })
 
+        this.sellerData = object;
+           this.graphSeller()
+      }
+    })
   }
-  graph() {
+
+  graphSeller() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
-
-    this.data = {
-      labels: Object.keys(this.userData) ,
+    console.log(this.sellerData)
+    this.sellerInfo = {
+      labels: Object.keys(this.sellerData),
       datasets: [
         {
-          label: 'Users',
-          fill: false,
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          yAxisID: 'y',
-          tension: 0.4,
-          data: Object.values(this.userData)
-        },
-        {
-          label: 'Sellers',
-          fill: false,
+          label: 'Seller',
+          backgroundColor: documentStyle.getPropertyValue('--green-500'),
           borderColor: documentStyle.getPropertyValue('--green-500'),
-          yAxisID: 'y1',
-          tension: 0.4,
-          data: [28, 48, 40, 19, 86, 27, 90]
-        }
+          data: Object.values(this.sellerData)
+        },
       ]
     };
 
-    this.options = {
-      stacked: false,
+    this.sellerOptions = {
       maintainAspectRatio: false,
-      aspectRatio: 0.6,
+      aspectRatio: 0.8,
       plugins: {
         legend: {
           labels: {
@@ -122,36 +139,82 @@ export class DashboardComponent implements OnInit {
       scales: {
         x: {
           ticks: {
-            color: textColorSecondary
+            color: textColorSecondary,
+            font: {
+              weight: 500
+            }
           },
           grid: {
-            color: surfaceBorder
+            color: surfaceBorder,
+            drawBorder: false
           }
         },
         y: {
-          type: 'linear',
-          display: true,
-          position: 'left',
           ticks: {
             color: textColorSecondary
           },
           grid: {
-            color: surfaceBorder
-          }
-        },
-        y1: {
-          type: 'linear',
-          display: true,
-          position: 'right',
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            drawOnChartArea: false,
-            color: surfaceBorder
+            color: surfaceBorder,
+            drawBorder: false
           }
         }
+
       }
+    }
+  }
+  graph() {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+
+    console.log(this.userData)
+    this.data = {
+      labels: Object.keys(this.userData),
+      datasets: [
+        {
+          label: 'Users',
+          backgroundColor: documentStyle.getPropertyValue('--blue-500'),
+          borderColor: documentStyle.getPropertyValue('--blue-500'),
+          data: Object.values(this.userData)
+        },
+      ]
     };
+
+    this.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: textColorSecondary,
+            font: {
+              weight: 500
+            }
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false
+          }
+        },
+        y: {
+          ticks: {
+            color: textColorSecondary
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false
+          }
+        }
+
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Jobs } from '../classes/jobs';
+import { Job } from '../classes/job';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class JobsService {
   private baseUrl  = 'http://localhost:8080/api/v1/job'
   constructor(private http:HttpClient) { }
 
-  saveJob(job:Jobs,image:File){
+  saveJob(job:Job,image:File){
 
     const formData = new FormData()
     formData.append('image', image)

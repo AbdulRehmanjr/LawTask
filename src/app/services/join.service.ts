@@ -16,4 +16,10 @@ export class JoinService {
       observe:'body'
     })
   }
+
+  getSellerInfo(){
+    return this.http.get(`${this.URL}/${environment.sellerJoin}`,{
+      observe:'body'
+    })
+  }
 }

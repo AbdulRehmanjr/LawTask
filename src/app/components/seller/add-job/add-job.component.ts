@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { Jobs } from 'src/app/classes/jobs';
+import { Job } from 'src/app/classes/job';
 import { User } from 'src/app/classes/user';
 import { JobsService } from 'src/app/services/jobs.service';
 
@@ -54,7 +54,7 @@ export class AddJobComponent implements OnInit {
     let user = new User()
     user.userId = JSON.parse(localStorage.getItem('user'))['userId']
 
-    let job = new Jobs()
+    let job = new Job()
     job.jobName = this.jobForm.get('jobName').value
     job.description = this.jobForm.get('description').value
     job.jobPrice = this.jobForm.get('jobPrice').value

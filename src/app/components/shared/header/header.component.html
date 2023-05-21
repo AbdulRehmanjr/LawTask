@@ -17,7 +17,7 @@
             <li *ngIf="role=='USER'"><a routerLink="messages">Messages</a></li>
             <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
             <li *ngIf="role=='SELLER'"><a routerLink="/home/job-list">My Jobs</a></li>
-            <li><a href="#">Pages</a></li>
+            <li *ngIf="role=='USER'"><a routerLink="/home/order">Orders</a></li>
             <li *ngIf="check == undefined else other">
               <a routerLink="/login"> Login </a>
             </li>
@@ -42,7 +42,7 @@
               <a class="disabled-link-hover"
                 ><div class="user-avatar status-online">
                   <img
-                    src="data:image/jpeg; base64, {{profile}}"
+                    src="data:image/jpeg; base64, {{userResponse.profilePicture}}"
                     alt="profile picture"
                   /></div
               ></a>
@@ -52,9 +52,9 @@
               <div class="user-status">
                 <div class="user-details">
                   <div class="user-avatar status-online">
-                    <img width="50" height="50" src="data:image/jpeg; base64, {{profile}}" alt="profile image" />
+                    <img width="50" height="50" src="data:image/jpeg; base64, {{userResponse.profilePicture}}" alt="profile image" />
                   </div>
-                  <div class="user-name">{{user['userName']}}</div>
+                  <div class="user-name">{{userResponse?.userName}}</div>
                 </div>
 
                 <!-- <div class="status-switch" id="snackbar-user-status">

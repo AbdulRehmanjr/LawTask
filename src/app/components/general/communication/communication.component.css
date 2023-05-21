@@ -47,10 +47,39 @@
 a{
   cursor: pointer;
 }
-::ng-deep .p-component-overlay {
-  display: none !important;
+::ng-deep  .p-component-overlay {
+  position: unset;
 }
 ::ng-deep .p-sidebar-left {
   top:10% !important;
   width:12rem !important;
+}
+@media only screen and (max-width: 767px) {
+  .messages-headline input {
+    font-size: 16px;
+  }
+
+  .message-avatar img {
+    width: 30px;
+    height: 30px;
+  }
+  .messages-inbox ul li a{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .messages-inbox .message-avatar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.message-by .message-by-headline h5 {
+
+  font-size:10px;
+}
+.user-name{
+  font-size: 15px;
+}
+
+
 }

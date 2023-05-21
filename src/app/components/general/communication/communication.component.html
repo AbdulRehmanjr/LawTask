@@ -18,7 +18,7 @@
               id="{{ user.userId }}"
               (click)="selectUser(user)"
               [ngStyle]="{
-                border: selectedUser === user ? '2px solid #6cff1d' : 'none'
+                background: selectedUser === user ? '#f0f0f0' : 'none'
               }"
             >
               <div class="message-avatar">
@@ -30,7 +30,7 @@
               </div>
               <div class="message-by">
                 <div class="message-by-headline">
-                  <h5 pBadge severity="success" value="2">{{ user?.userName }}</h5>
+                  <h5 >{{ user?.userName }}</h5>
                 </div>
               </div>
             </a>
@@ -39,7 +39,7 @@
       </div>
     </aside>
 
-    <p-sidebar class= "col-md-3 d-sm-block d-md-none mt-md-2" [(visible)]="sidebarVisible" position="left" [blockScroll]="false">
+    <p-sidebar class= "col-md-3 d-sm-block d-md-none mt-md-2" [(visible)]="sidebarVisible" position="left" [blockScroll]="false" >
       <aside >
         <div class="messages-inbox">
           <div class="messages-headline">
@@ -57,6 +57,7 @@
                 [ngStyle]="{
                   border: selectedUser === user ? '2px solid #6cff1d' : 'none'
                 }"
+                class="d-flex flex-column"
               >
                 <div class="message-avatar">
                   <i class="status-icon status-online"></i>
@@ -79,7 +80,7 @@
   <ng-container *ngIf="selectedUser else select">
     <article id="userchat" class="col-sm-12 col-md-9 mt-md-2">
       <div class="message-content">
-        <div class="messages-headline d-flex flex-row justify-content-between">
+        <div class="messages-headline d-flex gap-2">
           <h4 class="user-name">{{ selectedUser?.userName }}</h4>
           <button
             class="btn btn-success d-sm-block d-md-none"
@@ -87,7 +88,7 @@
           >
             <i class="fa-solid fa-users"></i>
           </button>
-          <button class="btn btn-success">Confirm Order</button>
+          <button *ngIf="role=='SELLER'" (click)="confirmOrder()" class="btn btn-success">Confirm Order</button>
           <button class="btn btn-danger">
             <i class="fa-solid fa-trash"></i>
           </button>
@@ -154,16 +155,17 @@
         </div>
       </div>
     </article>
-
   </ng-container>
   <ng-template #select>
+    <button class="d-sm-block d-md-none btn btn-success" (click)="showSideBar()">Show Side bar</button>
     <article  id="userchat" class="col-sm-12 col-md-9 mt-md-2">
       <h1>select user to start chat</h1>
     </article>
   </ng-template>
   </div>
+
 </ng-container>
 <ng-template #nouser>
-  <h1>No user yet</h1>
+  <app-notfound></app-notfound>
 </ng-template>
 </section>

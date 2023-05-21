@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Jobs } from 'src/app/classes/jobs';
+import { Job } from 'src/app/classes/job';
 import { ChatlistService } from 'src/app/services/chatlist.service';
 import { JobsService } from 'src/app/services/jobs.service';
 
@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   rows: number = 5
   currentPage=1
   search: FormGroup
-  jobs: Jobs[]
+  jobs: Job[]
   jobName: string = ''
   isFound:boolean = false
 
@@ -53,7 +53,7 @@ export class SearchComponent implements OnInit {
   }
   fetchJobs(): void {
     this.jobService.getJobsByJobName(this.jobName).subscribe({
-      next: (response: Jobs[]) => {
+      next: (response: Job[]) => {
         this.jobs = response
       },
       error: (error: any) => {
@@ -72,7 +72,8 @@ export class SearchComponent implements OnInit {
         console.log(_response)
       },
       error: (_error) => {
-        this.router.navigate(['/home/messages'])
+        console.log(_error)
+        // this.router.navigate(['/home/messages'])
       },
       complete: () => {
         this.router.navigate(['/home/messages'])

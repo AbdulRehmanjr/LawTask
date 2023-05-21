@@ -9,5 +9,6 @@ export const environment = {
   sellerRequest:'sellerrequest',
   dashboard:'dashboard',
   sellerJoin:'join/sellers',
-  userJoin:'join/users'
+  userJoin:'join/users',
+  order:'order'
 };

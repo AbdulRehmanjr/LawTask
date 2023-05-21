@@ -1,6 +1,6 @@
 import { User } from "./user"
 
-export class Jobs {
+export class Job {
   jobId:string
   jobName:string
   jobImage:string

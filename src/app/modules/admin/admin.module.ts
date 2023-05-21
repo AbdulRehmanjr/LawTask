@@ -33,12 +33,15 @@ const routes: Routes = [
   {
     path: 'admin-dashboard', component: AdminComponent,
     children: [
-      {path:'',component:DashboardComponent},
+      {path:'main',component:DashboardComponent},
       { path: 'request-approval', component: SellerapprovalComponent },
       {
         path: 'request-approval-detail/:sellerId', component: SellerapprovaldetailComponent
       },{
         path:'approved-requests',component:ApprovedRequestsComponent
+      },
+      {
+        path:'',redirectTo:'main',pathMatch:'full'
       }
     ]
   }

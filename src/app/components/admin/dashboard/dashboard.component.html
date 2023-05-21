@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="fun-fact" data-fun-fact-color="#2a41e6">
+          <div class="fun-fact" >
             <div class="fun-fact-text">
               <span>Total Revenue</span>
               <h4>{{ info?.income | currency : "USD" }}</h4>
@@ -62,8 +62,51 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-4">
+          <div class="fun-fact" >
+            <div class="fun-fact-text">
+              <span>Dew Dropper Subscriptions</span>
+              <h4>{{ info?.dewDropper}}</h4>
+            </div>
+            <div class="fun-fact-icon">
+
+              <i class="fa-solid fa-star" style="color:#E7D5A2;"></i>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="fun-fact" >
+            <div class="fun-fact-text">
+              <span>Sprinkle Subscriptions</span>
+              <h4>{{ info?.sprinkle}}</h4>
+            </div>
+            <div class="fun-fact-icon">
+              <i class="fa-solid fa-star" style="color:#B5BEC2;"></i>
+              <i class="fa-solid fa-star" style="color:#B5BEC2;"></i>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-4">
+          <div class="fun-fact" >
+            <div class="fun-fact-text">
+              <span>Rainmake Subscriptions</span>
+              <h4>{{ info?.rainmaker}}</h4>
+            </div>
+            <div class="fun-fact-icon">
+              <i class="fa-solid fa-star" style="color:#FBCD29;font-size:20px"></i>
+              <i class="fa-solid fa-star" style="color:#FBCD29;font-size:20px;"></i>
+              <i class="fa-solid fa-star" style="color:#FBCD29;font-size:20px;"></i>
+            </div>
+          </div>
+        </div>
         <div class="col-8">
-          <p-chart type="line" [data]="data" [options]="options"></p-chart>
+          <p-chart type="bar" [data]="data" [options]="options"></p-chart>
+        </div>
+        <div class="col-8 mt-5">
+          <p-chart type="bar" [data]="sellerInfo" [options]="options"></p-chart>
         </div>
       </div>
     </div>
