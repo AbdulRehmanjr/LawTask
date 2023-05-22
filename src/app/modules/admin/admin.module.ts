@@ -29,10 +29,12 @@ import { SellerapprovaldetailComponent } from '../../components/admin/sellerappr
 import { ApprovedRequestsComponent } from '../../components/admin/approved-requests/approved-requests.component';
 import { DashboardComponent } from '../../components/admin/dashboard/dashboard.component';
 import { CouponComponent } from '../../components/admin/coupon/coupon.component';
+import { AdminGuard } from 'src/app/security/admin.guard';
 
 const routes: Routes = [
   {
     path: 'admin-dashboard', component: AdminComponent,
+    canActivate:[AdminGuard],
     children: [
       {path:'main',component:DashboardComponent},
       { path: 'request-approval', component: SellerapprovalComponent },

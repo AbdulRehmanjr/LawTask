@@ -27,6 +27,7 @@ import { ProfileComponent } from '../../components/seller/profile/profile.compon
 import { PendingordersComponent } from '../../components/seller/pendingorders/pendingorders.component';
 import { FilessharingComponent } from '../../components/seller/filessharing/filessharing.component';
 import { FiledetailsComponent } from '../../components/seller/filedetails/filedetails.component';
+import { SellerGuard } from 'src/app/security/seller.guard';
 
 
 
@@ -34,6 +35,7 @@ import { FiledetailsComponent } from '../../components/seller/filedetails/filede
 const routes: Routes = [
   {
     path: 'seller-dashboard', component: SellerComponent,
+    canActivate:[SellerGuard],
     children: [
       {
         path:'',component:DashboardComponent

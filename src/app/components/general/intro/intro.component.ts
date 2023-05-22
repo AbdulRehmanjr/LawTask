@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { DashBoard } from 'src/app/classes/dashboard';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-intro',
@@ -10,13 +13,17 @@ import { Router } from '@angular/router';
 export class IntroComponent implements OnInit {
 
   searchForm: FormGroup
+  info:DashBoard
 
   private location: string
   private category: string = ''
-  constructor(private form: FormBuilder,private router:Router) { }
+  constructor(private form: FormBuilder,private router:Router,
+    private dashboard:DashboardService,
+    private message:MessageService) { }
   ngOnInit(): void {
 
     this.createForm()
+    this.fetchInfo()
   }
 
   createForm(): void {
@@ -24,8 +31,23 @@ export class IntroComponent implements OnInit {
       location: [''],
       category: ['', [Validators.required]]
     })
-  }
 
+  }
+  fetchInfo(){
+    this.dashboard.getDashboardInfo().subscribe(
+      {
+        next: (response: DashBoard) => {
+          this.info = response
+        },
+        error: (error: any) => {
+          this.message.add({ severity: 'error', summary: 'Error', detail: 'Error in fecthing dashbaord info.' })
+        },
+        complete: () => {
+
+        }
+      }
+    )
+  }
   onSubmit(): void {
 
     if (this.searchForm.invalid) {

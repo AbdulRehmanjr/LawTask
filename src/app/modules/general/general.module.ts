@@ -51,6 +51,10 @@ import { ConfirmorderComponent } from '../../components/general/confirmorder/con
 import { LinkifyPipe } from 'src/app/pipes/linkify.pipe';
 import { FilessharingComponent } from '../../components/general/filessharing/filessharing.component';
 import { FiledetailsComponent } from '../../components/general/filedetails/filedetails.component';
+import { GeneralGuard } from 'src/app/security/general.guard';
+import { TermofuseComponent } from '../../components/general/termofuse/termofuse.component';
+import { PrivacyComponent } from '../../components/general/privacy/privacy.component';
+import { SubscriptioncardComponent } from 'src/app/components/shared/subscriptioncard/subscriptioncard.component';
 
 // const config: SocketIoConfig = {
 //   url: 'http://localhost:8082/my-websocket-endpoint',
@@ -61,6 +65,7 @@ import { FiledetailsComponent } from '../../components/general/filedetails/filed
 const routes: Routes = [
   {
     path: 'home', component: GeneralComponent,
+    canActivate: [GeneralGuard],
     children: [
       {
         path: 'success', component: StripecardComponent
@@ -76,7 +81,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'payment', component: StripecardComponent
+        path: 'payment', component: SubscriptioncardComponent
       },
       {
         path: 'job-list', component: JobsListComponent
@@ -99,13 +104,12 @@ const routes: Routes = [
       },
       {
         path: 'order-confirm', component: ConfirmorderComponent
+      },{
+        path:'term-of-use',component:TermofuseComponent
       },
       {
-        path: 'login', component: LoginComponent
-      },
-      {
-        path: 'signup', component: SignupComponent
-      },
+        path:'privacy-policy',component:PrivacyComponent
+      }
     ]
   },
   {
@@ -134,6 +138,8 @@ const routes: Routes = [
     ConfirmorderComponent,
     FilessharingComponent,
     FiledetailsComponent,
+    TermofuseComponent,
+    PrivacyComponent,
   ],
   imports: [
     ButtonModule,
