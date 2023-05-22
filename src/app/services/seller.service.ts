@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Seller } from '../classes/seller';
 import { CardSubscription } from '../classes/subscription';
+import { environment } from '../variables/environment ';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SellerService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/seller'
+  private baseUrl = `${environment.apiBaseUrl}/${environment.seller}`
   constructor(private http:HttpClient) { }
 
   saveJob(){

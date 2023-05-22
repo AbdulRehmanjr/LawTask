@@ -4,7 +4,9 @@
     <div class="col-xl-12">
       <div class="dashboard-box">
         <div class="headline">
-          <h3><i class="fa-regular fa-id-card"></i> User Account Information</h3>
+          <h3>
+            <i class="fa-regular fa-id-card"></i> User Account Information
+          </h3>
         </div>
 
         <div class="content">
@@ -108,20 +110,7 @@
           <ul class="fields-ul">
             <li>
               <div class="row">
-                <div class="col-md-4">
-                  <div class="submit-field">
-                    <div class="bidding-widget">
-                      <!-- Headline -->
-                      <span class="bidding-detail"
-                        >Set your <strong>minimal hourly rate</strong></span
-                      >
-                      <div class="bidding-value mb-5">
-                        $<span id="biddingVal">{{ seller.charges }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <h5>
                     Job Name
                     <i
@@ -140,18 +129,19 @@
                   </div>
                 </div>
 
-
-
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="submit-field">
                     <h5>Attachments</h5>
 
                     <!-- Attachments -->
                     <div class="attachments-container">
                       <div class="attachment-box ripple-effect">
-                        <span>{{seller.documentName}}</span>
-                        {{seller.documentType}}
-                        <i class="fa-solid fa-circle-down" (click)="download()"></i>
+                        <span>{{ seller.documentName }}</span>
+                        {{ seller.documentType }}
+                        <i
+                          class="fa-solid fa-circle-down"
+                          (click)="download()"
+                        ></i>
                       </div>
                     </div>
                   </div>
@@ -198,26 +188,83 @@
         </div>
       </div>
     </div>
-
   </form>
-  <div class="row mt-4 mb-4 offset-sm-3">
-    <div class="col-sm-3">
-      <button type="submit" class="btn btn-success" (click)="accept()">
-        <i style="color:#fff !important;" class="fa-solid fa-check"></i>
-        Accept
-      </button>
-    </div>
-      <div class="col-sm-3">
-      <button type="submit" class="btn btn-danger" (click)="showDialog()">
-        <i  style="color:#fff !important;" class="fa-solid fa-xmark"></i>
-        Reject
-      </button>
-    </div>
-  </div>
+  <div class="row mt-4 mb-4">
+    <ng-container *ngIf="status == true || isReject == true else review">
+      <div class="col-sm-3 offset-sm-4">
+        <button *ngIf="isReject == false" class="btn btn-success">
+          Accepted
+        </button>
+        <button *ngIf="isReject == true" class="btn btn-danger">
+          Rejected
+        </button>
+        <div  *ngIf="isReject == true" class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">Remarks</h4>
+          <hr />
+          <p class="mb-0">Reason : {{seller.remarks}}</p>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #review>
+      <div class="row offset-sm-3">
+        <div class="col-sm-3">
+          <button type="submit" class="btn btn-success" (click)="accept()">
+            <i style="color: #fff !important" class="fa-solid fa-check"></i>
+            Accept
+          </button>
+        </div>
+        <div class="col-sm-3">
+          <button type="submit" class="btn btn-danger" (click)="showDialog()">
+            <i style="color: #fff !important" class="fa-solid fa-xmark"></i>
+            Reject
+          </button>
+        </div>
+      </div>
 
+    </ng-template>
+
+  </div>
 </section>
-<p-dialog [(visible)]="isDisplay"  header="Give Remarks" [modal]="true" styleClass="dialog-style">
+<p-dialog
+  [(visible)]="isDisplay"
+  header="Give Remarks"
+  [modal]="true"
+  styleClass="dialog-style"
+>
   <ng-template pTemplate="body">
-    <h1>hello</h1>
+    <div class="container">
+      <h2>Request Review Form</h2>
+      <form [formGroup]="remarksForm" (ngSubmit)="reject()">
+        <div class="form-group">
+          <label for="name">Remarks:</label>
+          <textarea
+            type="text"
+            class="form-control"
+            id="remark"
+            formControlName="remark"
+          >
+          </textarea>
+          <div
+            *ngIf="
+              remarksForm.get('remark').invalid &&
+              (remarksForm.get('remark').touched || remarksForm.get('remark').dirty)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="remarksForm.get('remark').errors['required']">
+              Remark is required.
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="remarksForm.invalid"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   </ng-template>
 </p-dialog>

@@ -18,6 +18,7 @@
             <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
             <li *ngIf="role=='SELLER'"><a routerLink="/home/job-list">My Jobs</a></li>
             <li *ngIf="role=='USER'"><a routerLink="/home/order">Orders</a></li>
+            <li *ngIf="role=='USER'"><a routerLink="/home/files">Files</a></li>
             <li *ngIf="check == undefined else other">
               <a routerLink="/login"> Login </a>
             </li>

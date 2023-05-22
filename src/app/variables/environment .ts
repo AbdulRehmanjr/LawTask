@@ -4,11 +4,22 @@ export const environment = {
   stripePublicKeyLive:'pk_live_51JhGPzEr164QO1KbD3UXh9LMANe9ItYyBHScGROV4ORdoQ2oiNBvkh7R6FeqtF7KxvZV9n0B2I32eYWwp2q6xEi600mIz5vsuV',
   stripeSecertKey:'sk_test_51JhGPzEr164QO1KbxCKBAuITlwThslOySvbT4tW9KI9NJl4E4GCcfhtnYxmugjwI35aImln3668YNTSCBt1VNTQU00wpjRIjLW',
   apiBaseUrl: 'http://localhost:8080/api/v1',
+  socket:'ws',
+  chatlist:'chatlist',
   paymentUrl:'checkout',
   freelancerUrl:'freelancer',
   sellerRequest:'sellerrequest',
   dashboard:'dashboard',
   sellerJoin:'join/sellers',
   userJoin:'join/users',
-  order:'order'
+  order:'order',
+  job:'job',
+  signup:'user',
+  user:'user',
+  seller:'seller',
+  token:'token',
+  coupon:'coupon',
+  userdashboard:'userdashboard',
+  file:'file',
+  subscription:'subscription'
 };

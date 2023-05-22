@@ -7,11 +7,12 @@ export class Order {
   customerEmail:string
   description:string
   requirementFile:string
+  documentType:string
   startedDate:string
   endedDate:string
   price:number
   job:Job
   user:User
-  customer:User
-
+  customerId:string
+  completed:boolean
 }

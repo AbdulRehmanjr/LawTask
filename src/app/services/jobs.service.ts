@@ -1,13 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Job } from '../classes/job';
+import { environment } from '../variables/environment ';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobsService {
 
-  private baseUrl  = 'http://localhost:8080/api/v1/job'
+  private baseUrl  = `${environment.apiBaseUrl}/${environment.job}`
   constructor(private http:HttpClient) { }
 
   saveJob(job:Job,image:File){

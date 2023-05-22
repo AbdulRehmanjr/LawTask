@@ -15,4 +15,7 @@ export class SellerRequest {
   document:string
   documentType:string
   documentName:string
+  rejected:boolean
+  active:boolean
+  remarks:string
 }

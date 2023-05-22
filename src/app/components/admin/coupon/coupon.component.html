@@ -1,0 +1,118 @@
+<section id="coupon">
+  <div class="container-fluid mt-sm-3 mt-md-5">
+    <p-toast position="bottom-right"></p-toast>
+    <div class="row">
+      <div class="col-md-8 offset-md-2 mt-sm-3 mt-md-5">
+        <p-toolbar styleClass="mt-md-5 gap-2">
+          <ng-template pTemplate="left">
+            <button
+              pButton
+              pRipple
+              label="New"
+              icon="pi pi-plus"
+              class="p-button-raised p-button-success"
+              (click)="showDialog()"
+            ></button>
+          </ng-template>
+        </p-toolbar>
+
+        <p-table
+          #dt
+          styleClass="p-datatable-gridlines"
+          [value]="coupons"
+          [rows]="10"
+          [paginator]="true"
+          [tableStyle]="{ 'min-width': '30rem' }"
+          [globalFilterFields]="['name', 'discount']"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+        >
+          <ng-template pTemplate="caption">
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($event.target['value'], 'contains')"
+              placeholder="Search..."
+            />
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="name" style="width: 2rem">
+                Title <p-sortIcon field="name"></p-sortIcon>
+              </th>
+              <th pSortableColumn="discount" style="width: 2rem">
+                Discount % <p-sortIcon field="discount"></p-sortIcon>
+              </th>
+              <th style="width:2rem"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-coupon>
+            <tr>
+              <td>{{ coupon.name }}</td>
+              <td>
+                {{ coupon.discount }}
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  (click)="deleteCoupon(coupon.id)"
+                  icon="pi pi-trash"
+                  class="p-button-rounded p-button-warning"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+              In total there are {{ coupons ? coupons.length : 0 }} products.
+            </div>
+          </ng-template>
+        </p-table>
+        <p-dialog
+          [(visible)]="displayDialog"
+          header="Add new Coupon"
+          [modal]="true"
+          styleClass="dialog-style"
+          style="z-index: 9999999990"
+        >
+          <ng-template pTemplate="body">
+            <div class="container">
+              <h2>Discount Coupon Form</h2>
+              <form [formGroup]="couponForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="name">Coupon Name:</label>
+                  <input type="text" class="form-control" id="name" formControlName="name">
+                  <div *ngIf="couponForm.get('name').invalid && (couponForm.get('name').touched || couponForm.get('name').dirty)" class="alert alert-danger">
+                    <div *ngIf="couponForm.get('name').errors['required']">
+                      Coupon Name is required.
+                    </div>
+                    <div *ngIf="couponForm.get('name').errors['minlength']">
+                      Coupon Name must be at least 5 characters long.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="amount">Discount Amount:</label>
+                  <input type="number" class="form-control" id="amount" formControlName="amount">
+                  <div *ngIf="couponForm.get('amount').invalid && (couponForm.get('amount').touched || couponForm.get('amount').dirty)" class="alert alert-danger">
+                    <div *ngIf="couponForm.get('amount').errors['required']">
+                      Discount Amount is required.
+                    </div>
+                    <div *ngIf="couponForm.get('amount').errors['min']">
+                      Discount Amount must be at least 5.
+                    </div>
+                  </div>
+                </div>
+                <button type="submit"  class="btn btn-primary" [disabled]="couponForm.invalid">Submit</button>
+              </form>
+            </div>
+
+          </ng-template>
+        </p-dialog>
+      </div>
+    </div>
+  </div>
+</section>

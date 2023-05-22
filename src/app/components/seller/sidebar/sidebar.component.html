@@ -4,18 +4,14 @@
       <!-- Navigation -->
       <div class="dashboard-nav">
         <div class="dashboard-nav-inner">
-
           <ul>
-            <li><a href="dashboard.html"><i class="fa-solid fa-rectangle-list"></i>  Dashboard</a></li>
+            <li><a routerLink="/seller-dashboard"><i class="fa-solid fa-rectangle-list"></i>  Dashboard</a></li>
             <li><a routerLink="/seller-dashboard/messages"><i class="fa-solid fa-comments"></i> Messages</a></li>
             <li><a routerLink="/seller-dashboard/orders"><i class="fa-solid fa-envelope-circle-check"></i> Pending Orders </a></li>
           </ul>
           <ul data-submenu-title="Organize and Manage">
-            <li><a routerLink="/home/job-list"> Jobs</a>
-              <ul>
-                <li><a href="dashboard-manage-jobs.html">Pending Tasks</a></li>
-              </ul>
-            </li>
+            <li><a routerLink="/home/job-list"> Jobs</a></li>
+            <li><a routerLink="/seller-dashboard/files"> Files</a></li>
           </ul>
           <ul data-submenu-title="Account">
             <li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li>

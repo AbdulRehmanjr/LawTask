@@ -39,13 +39,13 @@ export class MakeOrderComponent implements OnInit{
 
   createForm(){
       this.order = this.form.group({
-        userName: new FormControl('Filled by User',Validators.required),
+        userName: new FormControl({value:'Filled by User',disabled:true},Validators.required),
         orderId : new FormControl('',Validators.required),
         startDate: new FormControl('',Validators.required),
         endDate : new FormControl('',Validators.required),
-        email: new FormControl('Filled BY User',Validators.required),
+        email: new FormControl({value:'Filled by User',disabled:true},Validators.required),
         description: new FormControl('',Validators.required),
-        requirement: new FormControl('Filled BY User',Validators.required),
+        requirement: new FormControl({value:'Filled by User',disabled:true},Validators.required),
         price :new FormControl(0,Validators.required)
       })
   }
@@ -94,14 +94,13 @@ export class MakeOrderComponent implements OnInit{
           console.error('Could not copy text: ', err);
       });
         this.messageService.add({severity:'success',summary:'Add Success',detail:'URL copied to clipboard'})
-
       },
       error:(_error:any)=>{
         console.log(_error)
         this.messageService.add({severity:'error',summary:'Error',detail:'Error Making Order'})
       },
       complete:()=>{
-        this.router.navigate(['/home/messages'])
+        // this.router.navigate(['/home/messages'])
       }
     })
   }

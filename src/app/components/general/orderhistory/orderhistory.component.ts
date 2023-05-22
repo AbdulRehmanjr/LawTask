@@ -17,20 +17,51 @@ export class OrderhistoryComponent implements OnInit {
 
   orders:Order[]
   email:string = ''
+  status:string = ''
   constructor(
     private orderService:OrderService,
     private messageService:MessageService
   ) { }
 
   ngOnInit(): void {
-    this.email = JSON.parse(localStorage.getItem('user'))['email']
+    this.email = JSON.parse(localStorage.getItem('user'))['userId']
     this.fetchOrder()
 
   }
 
   fetchOrder(){
+    this.orderService.getOrderByCustomerId(this.email).subscribe({
+      next:(response:Order[])=>{
+        this.orders = response
+        this.messageService.add({
+          severity:'success',
+          summary:'Fetched',
+          detail:'Order fetched'
+        })
+      },
 
+      error:(error:any)=>{
+        this.messageService.add({
+          severity:'error',
+          summary:'Fetching Error',
+          detail:'Order fetching error'
+        })
+      },
+      complete:()=>{
+
+      }
+    })
   }
 
+  getSeverity(status: boolean): string {
+    switch (status) {
+      case true:
+        this.status = 'Completed'
+        return 'success';
+      case false:
+        this.status = 'Pending'
+        return 'danger';
+    }
+  }
 
 }

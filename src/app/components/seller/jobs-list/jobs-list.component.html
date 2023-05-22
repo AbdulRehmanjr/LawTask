@@ -13,12 +13,7 @@
               class="p-button-raised  p-button-success"
               (click)="showDialog()"
             ></button>
-            <!-- <button
-              pButton
-              pRipple
-              icon="pi pi-trash"
-              class="p-button-danger mx-3"
-            ></button> -->
+
             <span class="job-number mx-5"> Max Jobs: {{maxJobs}} Jobs Left: {{leftJobs}}</span>
           </ng-template>
         </p-toolbar>
@@ -67,7 +62,7 @@
                 Views <p-sortIcon field="views"></p-sortIcon>
               </th>
 
-              <th width="width:10rem"></th>
+              <!-- <th width="width:10rem"></th> -->
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-job>
@@ -86,14 +81,14 @@
               <td>{{ job.description }}</td>
               <td>{{job.likes}}</td>
               <td>{{job.views}}</td>
-              <td>
+              <!-- <td>
                 <button
                   pButton
                   pRipple
                   icon="pi pi-trash"
                   class="p-button-rounded p-button-warning"
                 ></button>
-              </td>
+              </td> -->
             </tr>
           </ng-template>
           <ng-template pTemplate="summary">

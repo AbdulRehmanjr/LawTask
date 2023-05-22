@@ -22,9 +22,10 @@ import { SidebarModule } from 'primeng/sidebar';
 import { PaginatorModule } from 'primeng/paginator';
 import { BadgeModule } from 'primeng/badge';
 import { DialogModule } from 'primeng/dialog';
-import { ToolbarModule } from 'primeng/toolbar';
 import { TableModule } from 'primeng/table';
-
+import { TagModule } from 'primeng/tag';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
 // custom modules
 import { SharedModule } from '../shared/shared.module';
 
@@ -47,6 +48,9 @@ import { MakeOrderComponent } from '../../components/general/make-order/make-ord
 import { OrderhistoryComponent } from '../../components/general/orderhistory/orderhistory.component';
 import { ConfirmorderComponent } from '../../components/general/confirmorder/confirmorder.component';
 
+import { LinkifyPipe } from 'src/app/pipes/linkify.pipe';
+import { FilessharingComponent } from '../../components/general/filessharing/filessharing.component';
+import { FiledetailsComponent } from '../../components/general/filedetails/filedetails.component';
 
 // const config: SocketIoConfig = {
 //   url: 'http://localhost:8082/my-websocket-endpoint',
@@ -59,38 +63,42 @@ const routes: Routes = [
     path: 'home', component: GeneralComponent,
     children: [
       {
-        path:'success',component:StripecardComponent
+        path: 'success', component: StripecardComponent
       },
       {
         path: '', component: MainPortionComponent
       },
       {
-        path:'seller-request',component:RequestSellerComponent
+        path: 'seller-request', component: RequestSellerComponent
       },
       {
-        path:'profile',component:ProfileComponent
+        path: 'profile', component: ProfileComponent
       },
 
       {
-        path:'payment',component:StripecardComponent
+        path: 'payment', component: StripecardComponent
       },
       {
-        path:'job-list',component:JobsListComponent
+        path: 'job-list', component: JobsListComponent
       },
       {
-        path:'search',component:SearchComponent
+        path: 'search', component: SearchComponent
+      }, {
+        path: 'files', component: FilessharingComponent
+      }, {
+        path: 'files-detail/:orderId/:customerId/:userId', component: FiledetailsComponent
       },
       {
-        path:'messages',component:CommunicationComponent
+        path: 'messages', component: CommunicationComponent
       },
       {
-        path:'order',component:OrderhistoryComponent
+        path: 'order', component: OrderhistoryComponent
       },
       {
-        path:'make-order',component:MakeOrderComponent
+        path: 'make-order', component: MakeOrderComponent
       },
       {
-        path:'order-confirm',component:ConfirmorderComponent
+        path: 'order-confirm', component: ConfirmorderComponent
       },
       {
         path: 'login', component: LoginComponent
@@ -108,7 +116,7 @@ const routes: Routes = [
 ]
 @NgModule({
   declarations: [
-
+    LinkifyPipe,
     GeneralComponent,
     IntroComponent,
     PopularComponent,
@@ -124,8 +132,13 @@ const routes: Routes = [
     MakeOrderComponent,
     OrderhistoryComponent,
     ConfirmorderComponent,
+    FilessharingComponent,
+    FiledetailsComponent,
   ],
   imports: [
+    ButtonModule,
+    ToolbarModule,
+    TagModule,
     TableModule,
     DialogModule,
     BadgeModule,

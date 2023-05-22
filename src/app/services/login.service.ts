@@ -3,13 +3,14 @@ import { Login } from '../classes/login';
 import { User } from '../classes/user';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { environment } from '../variables/environment ';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/token'
+  private baseUrl = `${environment.apiBaseUrl}/${environment.token}`
 
 
   constructor(private _http: HttpClient) { }

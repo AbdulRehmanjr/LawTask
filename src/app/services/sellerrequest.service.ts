@@ -32,8 +32,23 @@ export class SellerrequestService {
   getApprovedRequests(){
     return this.http.get(`${this.URL}/accepted`)
   }
+
   acceptRequestBySellerId(sellerId:string){
 
     return this.http.post(`${this.URL}/accept/${sellerId}`,{observe:'body'})
+  }
+  updateRequestSeller(seller:SellerRequest,document:File){
+
+    let formdata = new FormData()
+
+    formdata.append('seller',JSON.stringify(seller))
+    formdata.append('document',document)
+
+    return this.http.post(`${this.URL}/update`,formdata,{responseType:'text'})
+  }
+  rejectRequestBySellerId(sellerId:string,remarks:string){
+    return this.http.post(`${this.URL}/reject/${sellerId}`,remarks,{
+      observe:'body'
+    })
   }
 }

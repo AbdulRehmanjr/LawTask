@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../variables/environment ';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatlistService {
 
-  private URL = 'http://localhost:8080/api/v1/chatlist'
+  private URL = `${environment.apiBaseUrl}/${environment.chatlist}`
   constructor(private http:HttpClient) { }
 
   createNewChatList(userId:string){

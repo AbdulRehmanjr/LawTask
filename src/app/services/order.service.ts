@@ -14,10 +14,8 @@ export class OrderService {
   confirmOrderByUser(order:Order,requirement:File){
 
     let formData = new FormData()
-
     formData.append('order',JSON.stringify(order))
     formData.append('requirement',requirement)
-
     return this.http.post(`${this.URL}/register-confirmed`,formData,{observe:'body'})
   }
 
@@ -31,11 +29,18 @@ export class OrderService {
 
   getOrderByEmail(email:string){
 
-    return this.http.get(`${this.URL}/${email}`,{observe:'body'})
+    return this.http.get(`${this.URL}/email/${email}`,{observe:'body'})
+  }
+  getOrderByCustomerId(id:string){
+
+    return this.http.get(`${this.URL}/customer/${id}`,{observe:'body'})
   }
 
   getOrderById(id:string){
 
     return this.http.get(`${this.URL}/${id}`,{observe:'body'})
+  }
+  getOrderByUserId(id:string){
+    return this.http.get(`${this.URL}/user/${id}`,{observe:'body'})
   }
 }

@@ -1,0 +1,62 @@
+.position{
+  position: relative;
+  top:12%;
+}
+
+@media (max-width: 991.98px) {  /* Medium screens and below */
+  .position {
+    top: initial;  /* Reset the top value for medium screens and below */
+  }
+}
+.headline {
+  font-size: 30px;
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+}
+.headline-sec i {
+  font-size: 20px;
+}
+.index{
+  z-index: 9999999999;
+}
+.headline-sec {
+  font-size: 23px;
+  color: #000;
+  font-family: "Times New Roman", Times, serif;
+}
+.job-details {
+  margin: 5px;
+  padding: 5px;
+  border-bottom: 2px solid #e1e1e1;
+}
+.job-title {
+  margin: 5px;
+  padding: 10px;
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+}
+
+.job-number{
+  font-weight: 900;
+  font-size:20px;
+  color:#fff;
+}
+/* prime components */
+
+::ng-deep .p-toolbar {
+  background-color: #22c55e;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+
+  font-weight: bolder;
+  background-color: #22c55e;
+  color: #fff;
+}
+::ng-deep .p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: #fff;
+}
+::ng-deep .p-dialog{
+  top:10%;
+}

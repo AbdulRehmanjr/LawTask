@@ -5,6 +5,7 @@ import { Message } from '../classes/message';
 import { error } from 'jquery';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { environment } from '../variables/environment ';
 
 
 
@@ -12,7 +13,7 @@ import { MessageService } from 'primeng/api';
   providedIn: 'root'
 })
 export class ChatService {
-  private SOCKET: string = 'http://localhost:8080/api/v1/ws'
+  private SOCKET: string = `${environment.apiBaseUrl}/${environment.socket}`
 
   private messagesSubject: BehaviorSubject<any[]> = new BehaviorSubject([]);
   private sockJS = new SockJS(this.SOCKET);
@@ -37,10 +38,6 @@ export class ChatService {
       console.log(`Already subscribed to user ${connectedId}`);
       return;
     }
-   // this.unsubscribeFromPreviousUser();
-
-
-    // Establish a new subscription
     const subscription = this.client.subscribe(`/userChat/${connectedId}/private`, (message:any) => {
       const newMessage: Message = JSON.parse(message.body);
       this.messageService.add({severity:'info',summary:'Message Received',detail:`Message Recived By ${connectedId}`})
@@ -63,9 +60,7 @@ export class ChatService {
     let message = new Message()
     message = data
     this.client.send('/app/private-message', {}, JSON.stringify(message))
-    // if(message.senderName == this.currentUserId && message.receiverName == this.currentReceiverId){
-    //   this.messagesSubject.next(updatedMessages);
-    // }
+
 
   }
   disconect(receiverId: string) {

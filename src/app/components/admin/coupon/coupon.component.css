@@ -1,0 +1,20 @@
+
+input,input:focus,input:hover{
+border:1px solid black;
+}
+::ng-deep .p-toolbar {
+  background-color: #22c55e;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+
+  font-weight: bolder;
+  background-color: #22c55e;
+  color: #fff;
+}
+::ng-deep .p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: #fff;
+}
+::ng-deep .p-dialog{
+  top:10%;
+}

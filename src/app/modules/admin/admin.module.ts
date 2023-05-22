@@ -15,8 +15,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
-
-
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
 
 //* custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -28,6 +28,7 @@ import { SellerapprovalComponent } from '../../components/admin/sellerapproval/s
 import { SellerapprovaldetailComponent } from '../../components/admin/sellerapprovaldetail/sellerapprovaldetail.component';
 import { ApprovedRequestsComponent } from '../../components/admin/approved-requests/approved-requests.component';
 import { DashboardComponent } from '../../components/admin/dashboard/dashboard.component';
+import { CouponComponent } from '../../components/admin/coupon/coupon.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,9 @@ const routes: Routes = [
         path: 'request-approval-detail/:sellerId', component: SellerapprovaldetailComponent
       },{
         path:'approved-requests',component:ApprovedRequestsComponent
+      },
+      {
+        path:'coupons',component:CouponComponent
       },
       {
         path:'',redirectTo:'main',pathMatch:'full'
@@ -55,9 +59,12 @@ const routes: Routes = [
     SellerapprovalComponent,
     SellerapprovaldetailComponent,
     ApprovedRequestsComponent,
-    DashboardComponent
+    DashboardComponent,
+    CouponComponent
   ],
   imports: [
+    ButtonModule,
+    ToolbarModule,
     ChartModule,
     DialogModule,
     TableModule,

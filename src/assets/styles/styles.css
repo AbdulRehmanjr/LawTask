@@ -15725,7 +15725,9 @@ ul.dashboard-box-list > li:hover {
 	margin: 0;
 	line-height: 25px;
 }
-
+.message-bubble .message-text p a{
+color:#000;
+}
 /* sender */
 .message-bubble-me {
 	display: block;
@@ -15753,6 +15755,10 @@ ul.dashboard-box-list > li:hover {
 	padding: 0;
 	margin: 0;
 	line-height: 25px;
+}
+.message-bubble-me .message-text p a{
+	text-decoration: none;
+  color:#fff;
 }
 
 

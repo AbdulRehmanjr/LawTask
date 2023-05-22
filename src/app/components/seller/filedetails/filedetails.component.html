@@ -1,0 +1,101 @@
+<div class="container-fluid mt-sm-3 mt-md-5">
+  <p-toast position="bottom-right"></p-toast>
+  <div class="row">
+    <div class="col-md-8 offset-md-2 mt-sm-3 mt-md-5">
+      <p-toolbar styleClass="mt-md-5 gap-2">
+        <ng-template pTemplate="left">
+          <button
+            pButton
+            pRipple
+            label="New"
+            icon="pi pi-plus"
+            class="p-button-raised p-button-success"
+            (click)="showDialog()"
+          ></button>
+        </ng-template>
+      </p-toolbar>
+
+      <p-table
+        #dt
+        styleClass="p-datatable-gridlines"
+        [value]="files"
+        [rows]="10"
+        [paginator]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+      >
+        <ng-template pTemplate="caption">
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event.target['value'], 'contains')"
+            placeholder="Search..."
+          />
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 10rem">Order Name</th>
+            <th style="width: 10rem">File Name</th>
+            <th style="width: 10rem">File Type</th>
+            <th style="width: 20rem">File Description</th>
+            <th style="width: 10rem">Download File</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-file>
+          <tr>
+            <td>{{ file.order.job.jobName }}</td>
+            <td>{{ file.fileName }}</td>
+            <td>{{ file.fileType }}</td>
+            <td>{{ file.description }}</td>
+
+            <td>
+              <button class="btn btn-success" (click)="download(file)">
+                <i class="fa-solid fa-file-arrow-down"></i>
+              </button>
+            </td></tr>
+          </ng-template>
+
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            In total there are {{ files ? files.length : 0 }} Files.
+          </div>
+        </ng-template>
+      </p-table>
+      <p-dialog
+        [(visible)]="displayDialog"
+        header="Post New Job"
+        [modal]="true"
+        styleClass="dialog-style"
+        style="z-index: 9999999990"
+      >
+        <ng-template pTemplate="body">
+          <h2>Upload file</h2>
+              <form [formGroup]="fileForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="name">File Description:</label>
+                  <textarea type="text" class="form-control" id="name" formControlName="description"></textarea>
+                  <div *ngIf="fileForm.get('description').invalid && (fileForm.get('description').touched || fileForm.get('description').dirty)" class="alert alert-danger">
+                    <div *ngIf="fileForm.get('description').errors['required']">
+                      File Description  is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="amount">Upload File</label>
+                  <input type="file" class="form-control" id="file" (change)="getFile($event)" formControlName="file">
+                  <div *ngIf="fileForm.get('file').invalid && (fileForm.get('file').touched || fileForm.get('file').dirty)" class="alert alert-danger">
+                    <div *ngIf="fileForm.get('file').errors['required']">
+                      Discount Amount is required.
+                    </div>
+                  </div>
+                </div>
+                <button type="submit"  class="btn btn-primary" [disabled]="fileForm.invalid">Submit</button>
+              </form>
+        </ng-template>
+      </p-dialog>
+    </div>
+  </div>
+</div>

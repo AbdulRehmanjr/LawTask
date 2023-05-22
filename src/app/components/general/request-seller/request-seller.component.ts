@@ -16,16 +16,20 @@ import { UserService } from 'src/app/services/user.service';
 export class RequestSellerComponent {
 
   userId: string = ''
-  user:User
+  user: User
   role: string = ''
   isAccepted: boolean = false
+  isRejected: boolean = false
   alreadyRequested: boolean = false
   rate: number = 10
   sellerForm: FormGroup
+  updateForm: FormGroup
   isDisabled: boolean = true
+  remark :string = ''
+  display:boolean = false
   profilPicture: File
   document: File
-
+  request:SellerRequest
 
   constructor(private messageService: MessageService,
     private sellerService: SellerrequestService,
@@ -43,15 +47,15 @@ export class RequestSellerComponent {
   }
 
 
-  fetchUser(){
+  fetchUser() {
     this.userService.getUserById(this.userId).subscribe({
-      next:(response:User)=>{
+      next: (response: User) => {
         this.user = response
       },
-      error:(_error)=>{
+      error: (_error) => {
         console.error(_error)
       },
-      complete:()=>{
+      complete: () => {
 
       }
 
@@ -64,13 +68,21 @@ export class RequestSellerComponent {
   checkSellerRequest() {
     this.sellerService.getSellerByUserId(this.userId).subscribe(
       {
-        next: (response: Seller) => {
-          if (response) {
+        next: (response: SellerRequest) => {
+          this.request = response
+          if(response){
             this.alreadyRequested = true
           }
+          if (response.rejected == true) {
+            this.isRejected = true
+            this.remark = response.remarks
+          }
+
           if (response.active === true) {
             this.isAccepted = true
           }
+
+
         },
         error: (_error: any) => {
           this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Welcome to Seller Page.' })
@@ -89,7 +101,15 @@ export class RequestSellerComponent {
     this.sellerForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      charges: new FormControl(10, [Validators.required]),
+      jobName: new FormControl('', [Validators.required]),
+      tagLine: new FormControl('', [Validators.required]),
+      location: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+    });
+
+    this.updateForm = new FormGroup({
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
       jobName: new FormControl('', [Validators.required]),
       tagLine: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
@@ -127,11 +147,11 @@ export class RequestSellerComponent {
     const user = new User()
 
     user.userId = this.user['userId']
+
     seller.user = user
     seller.firstName = this.sellerForm.get('firstName').value
     seller.lastName = this.sellerForm.get('lastName').value
     seller.email = this.user['email']
-    seller.charges = this.sellerForm.get('charges').value
     seller.jobName = this.sellerForm.get('jobName').value
     seller.description = this.sellerForm.get('description').value
     seller.tagLine = this.sellerForm.get('tagLine').value
@@ -150,6 +170,59 @@ export class RequestSellerComponent {
     })
   }
 
+  showDialog(){
+    this.updateForm.setValue({
+      firstName: this.request.firstName,
+      lastName: this.request.lastName,
+      jobName: this.request.jobName,
+      tagLine: this.request.tagLine,
+      location: this.request.location,
+      description: this.request.description,
+    });
+    this.display = true
+  }
+   /**
+   * @action Form submission handling
+   * @since v1.0.0
+   */
+   updateRequest(): void {
+
+    console.log('update')
+    if (this.updateForm.invalid) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please Provide Credentials' })
+      return
+    }
+
+    let seller = new SellerRequest()
+
+    const user = new User()
+
+    user.userId = this.user['userId']
+
+    seller.sellerId = this.request.sellerId
+    seller.user = user
+    seller.firstName = this.updateForm.get('firstName').value
+    seller.lastName = this.updateForm.get('lastName').value
+    seller.email = this.user['email']
+    seller.jobName = this.updateForm.get('jobName').value
+    seller.description = this.updateForm.get('description').value
+    seller.tagLine = this.updateForm.get('tagLine').value
+    seller.location = this.updateForm.get('location').value
+
+    this.display = false
+    this.sellerService.updateRequestSeller(seller, this.document).subscribe({
+      next: (message: any) => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: `${message}` })
+      },
+      error: (error: Error) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error.message}` })
+      }
+      , complete: () => {
+        this.ngOnInit()
+      }
+    })
+
+  }
   locations: any[] = [
     { "name": "Afghanistan", "code": "AF" },
     { "name": "land Islands", "code": "AX" },

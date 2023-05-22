@@ -16,156 +16,150 @@
             </div>
 
             <!-- Form -->
-            <form [formGroup]="order" (ngSubmit)="onSubmit()">
+            <form  #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm)">
               <div class="input-with-icon-left">
-                <i class="fa-solid fa-user-tie"></i>
-                <input
-                  type="text"
-                  class="input-text with-border"
-                  formControlName="userName"
-                  id="name"
-                  required="true"
-                />
-              </div>
-              <div
-                *ngIf="
-                  order.get('userName').invalid && order.get('userName').touched
-                "
-                class="error-message"
-              >
-                username is required
+                  <i class="fa-solid fa-user-tie"></i>
+                  <input
+                    type="text"
+                    name="name"
+                    class="input-text with-border"
+                    [(ngModel)]="confirmOrder.customerName"
+                    #name="ngModel"
+                    id="name"
+                    required="true"
+                  />
               </div>
 
               <div class="input-with-icon-left">
-                <i class="fa-solid fa-envelope"></i>
-                <input
-                  type="email"
-                  class="input-text with-border"
-                  formControlName="email"
-                  id="emailaddress"
-                  required="true"
-                />
+                  <i class="fa-solid fa-envelope"></i>
+                  <input
+                    type="email"
+                    name="email"
+                    class="input-text with-border"
+                    [(ngModel)]="confirmOrder.customerEmail"
+                    #email="ngModel"
+                    id="emailaddress"
+                    required="true"
+                  />
               </div>
               <div
-                *ngIf="order.get('email').invalid && order.get('email').touched"
-                class="error-message"
+                  *ngIf="email.invalid && email.touched"
+                  class="error-message"
               >
-                Email is required
+                  Email is required
               </div>
               <div class="input-with-icon-left">
-                <i class="fa-solid fa-envelope"></i>
-                <input
-                  type="number"
-                  class="input-text with-border"
-                  formControlName="price"
-                  id="price"
-                  placeholder="0"
-                  required="true"
-                />
+                <i class="fa-solid fa-dollar-sign"></i>
+                  <input
+                    type="number"
+                    name="price"
+                    class="input-text with-border"
+                    [(ngModel)]="confirmOrder.price"
+                    #price="ngModel"
+                    id="price"
+                    placeholder="0"
+                    required="true"
+                    [disabled]="true"
+                  />
               </div>
               <div
-                *ngIf="order.get('price').invalid && order.get('price').touched"
-                class="error-message"
+                  *ngIf="price.invalid && price.touched"
+                  class="error-message"
               >
-                price is required
+                  price is required
               </div>
+
+              <!-- Date Inputs -->
               <div class="row">
-                <div class="col-md-6">
-                  <div class="input-with-icon-left">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <input
-                      type="date"
-                      class="input-text with-border"
-                      formControlName="startDate"
-                      id="name"
-                      required="true"
-                      [disabled]="true"
-                    />
+                  <div class="col-md-6">
+                      <div class="input-with-icon-left">
+                          <i class="fa-solid fa-user-tie"></i>
+                          <input
+                            type="date"
+                            name="startDate"
+                            class="input-text with-border"
+                            [(ngModel)]="confirmOrder.startedDate"
+                            #startDate="ngModel"
+                            id="startDate"
+                            required="true"
+                            [disabled]="true"
+                          />
+                      </div>
+                      <div
+                          *ngIf="startDate.invalid && startDate.touched"
+                          class="error-message"
+                      >
+                          date is required
+                      </div>
                   </div>
-                  <div
-                    *ngIf="
-                      order.get('startDate').invalid &&
-                      order.get('startDate').touched
-                    "
-                    class="error-message"
-                  >
-                    date is required
+                  <div class="col-md-6">
+                      <div class="input-with-icon-left">
+                          <i class="fa-solid fa-user-tie"></i>
+                          <input
+                            type="date"
+                            name="endDate"
+                            class="input-text with-border"
+                            [(ngModel)]="confirmOrder.endedDate"
+                            #endDate="ngModel"
+                            id="endDate"
+                            required="true"
+                            [disabled]="true"
+                          />
+                          <div
+                            *ngIf="endDate.invalid && endDate.touched"
+                            class="error-message"
+                          >
+                            endDate is required
+                          </div>
+                      </div>
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="input-with-icon-left">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <input
-                      type="date"
-                      class="input-text with-border"
-                      formControlName="endDate"
-                      id="name"
-                      required="true"
-                      [disabled]="true"
-                    />
-                    <div
-                      *ngIf="
-                        order.get('endDate').invalid &&
-                        order.get('endDate').touched
-                      "
-                      class="error-message"
-                    >
-                      order is required
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <textarea
-                name="textarea"
-                cols="10"
-                placeholder="Message"
-                formControlName="description"
-                class="with-border"
-                required="true"
-                [disabled]="true"
+                  name="description"
+                  cols="10"
+                  placeholder="Message"
+                  [(ngModel)]="confirmOrder.description"
+                  #description="ngModel"
+                  class="with-border"
+                  required="true"
+                  [disabled]="true"
               ></textarea>
               <div
-                *ngIf="
-                  order.get('description').invalid &&
-                  order.get('description').touched
-                "
-                class="error-message"
-              >
-                description is required
-              </div>
-              <div class="uploadButton margin-top-25">
-                <input
-                  (change)="onChange($event)"
-                  type="file"
-                  accept="image/*, application/pdf"
-                  id="upload"
-                  multiple
-                  required="true"
-                />
-                <span class="uploadButton-file-name"
-                  >Allowed file types: zip, pdf, png, jpg <br />
-                  Max. files size: 10 MB.</span
-                >
-                <div
-                  *ngIf="
-                    order.get('requirement').invalid &&
-                    order.get('requirement').touched
-                  "
+                  *ngIf="description.invalid && description.touched"
                   class="error-message"
-                >
-                  Document is required
-                </div>
+              >
+                  description is required
               </div>
-               <!-- Button -->
-            <button
-            class="btn btn-success margin-top-35 full-width button-sliding-icon ripple-effect"
-            type="submit"
-          >
-            Make an Offer
-            <i class="icon-material-outline-arrow-right-alt"></i>
-          </button>
-            </form>
+
+              <!-- File input -->
+              <div class="uploadButton margin-top-25">
+                  <input
+                    (change)="onChange($event)"
+                    type="file"
+                    accept="image/*, application/pdf"
+                    id="upload"
+                    name="requirement"
+                    multiple
+                    required="true"
+                  />
+                  <span class="uploadButton-file-name">
+                    Allowed file types: zip, pdf, png, jpg <br />
+                    Max. files size: 10 MB.
+                  </span>
+              </div>
+
+              <!-- Button -->
+              <button
+                class="btn btn-success margin-top-35 full-width button-sliding-icon ripple-effect"
+                type="submit"
+                [disabled]="orderForm.invalid"
+              >
+                Make an Offer
+                <i class="icon-material-outline-arrow-right-alt"></i>
+              </button>
+          </form>
+
           </div>
         </div>
       </div>

@@ -14,6 +14,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerService } from './interceptor/spinner.service';
+import { AuthService } from './security/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -23,9 +25,6 @@ import { SpinnerService } from './interceptor/spinner.service';
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument({maxAge:25}),
-    EffectsModule.forRoot([]),
     NgxSpinnerModule,
   ],
   providers: [
@@ -33,9 +32,13 @@ import { SpinnerService } from './interceptor/spinner.service';
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerService,
       multi: true
-    }
+    }, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthService,
+      multi: true
+    },
   ],
-  exports:[],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

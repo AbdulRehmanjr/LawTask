@@ -21,8 +21,6 @@ export class ConfirmorderComponent {
   confirmOrder:Order
   file:File
 
-  order:FormGroup
-
   constructor(private route:ActivatedRoute,
     private form:FormBuilder,
     private payment:PaymentService,
@@ -35,7 +33,6 @@ export class ConfirmorderComponent {
     });
 
     this.fetchOrder()
-
   }
 
   fetchOrder(){
@@ -47,59 +44,34 @@ export class ConfirmorderComponent {
         console.log(_error)
       },
       complete:()=>{
-        this.createForm()
+
       }
     })
-  }
-  createForm(){
-      this.order = this.form.group({
-        userName: new FormControl('Filled by User',Validators.required),
-        orderId : new FormControl('',Validators.required),
-        startDate: new FormControl(this.confirmOrder?.startedDate,Validators.required),
-        endDate : new FormControl(this.confirmOrder?.endedDate,Validators.required),
-        email: new FormControl('Filled BY User',Validators.required),
-        description: new FormControl(this.confirmOrder?.description,Validators.required),
-        requirement: new FormControl('',Validators.required),
-        price :new FormControl(this.confirmOrder?.price,Validators.required)
-      })
   }
   onChange(event: any) {
     this.file = event.target.files[0]
   }
-  onSubmit(){
+  onSubmit(form:any){
 
-    let makeOrder = new Order()
-    let job = new Job()
-    let user = new User()
 
-    makeOrder.customerName = this.order.get('userName').value
-    makeOrder.customerEmail = this.order.get('email').value
-    makeOrder.startedDate = this.order.get('startDate').value
-    makeOrder.endedDate = this.order.get('endDate').value
-    makeOrder.description = this.order.get('description').value
-    job.jobId =  this.order.get('orderId').value
-    makeOrder.job = job
-    makeOrder.user = user
+    let customer = JSON.parse(localStorage.getItem('user'))['userId']
 
-    const customer = new User()
+    this.confirmOrder.customerId = customer
+    this.confirmOrder.job.user = null
+    this.confirmOrder.user.role = null
 
-    customer.userId = JSON.parse(localStorage.getItem('user'))['userId']
-    makeOrder.customer = customer
-
-    console.log(makeOrder)
-    this.orderService.confirmOrderByUser(makeOrder,this.file).subscribe({
+    this.orderService.confirmOrderByUser(this.confirmOrder,this.file).subscribe({
       next:(_response:any)=>{
         this.messageService.add({severity:'success',summary:'Add Success',detail:'Order confirmed'})
 
       },
       error:(_error:any)=>{
-
+        console.error(_error)
         this.messageService.add({severity:'error',summary:'Error',detail:'Error Making Order'})
       },
       complete:()=>{
-        this.payment.paymentIntent(makeOrder).subscribe({
+        this.payment.paymentIntent(this.confirmOrder).subscribe({
           next:(response:any)=>{
-
             window.location.href = response;
           },
           error:(_err:any)=>{

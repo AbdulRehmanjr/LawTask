@@ -1,0 +1,84 @@
+<div class="container-fluid mt-sm-3 mt-md-5">
+  <p-toast position="bottom-right"></p-toast>
+  <div class="row">
+    <div class="col-md-8 offset-md-2 mt-sm-3 mt-md-5">
+      <p-table
+        #dt
+        styleClass="p-datatable-gridlines"
+        [value]="orders"
+        [rows]="10"
+        [paginator]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [globalFilterFields]="[
+          'customerName',
+          'customerEmail',
+          'startedDate',
+          'endedDate',
+          'price',
+          'job?.jobName',
+          'user?.userName'
+        ]"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+      >
+        <ng-template pTemplate="caption">
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event.target['value'], 'contains')"
+            placeholder="Search..."
+          />
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="customerName" style="width: 10rem">
+              Customer Name <p-sortIcon field="customerName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="customerEmail" style="width: 5rem">
+              Email <p-sortIcon field="customerEmail"></p-sortIcon>
+            </th>
+            <th style="width: 5rem" pSortableColumn="startedDate">
+              Start Date <p-sortIcon field="startedDate"></p-sortIcon>
+            </th>
+            <th style="width: 5rem" pSortableColumn="endedDate">
+              End Date <p-sortIcon field="endedDate"></p-sortIcon>
+            </th>
+            <th style="width: 5rem" pSortableColumn="price">
+              Price <p-sortIcon field="price"></p-sortIcon>
+            </th>
+            <th style="width: 5rem" pSortableColumn="job?.jobName">
+              Job Name <p-sortIcon field="job?.jobName"></p-sortIcon>
+            </th>
+            <th style="width: 5rem" pSortableColumn="user?.userName">
+              Seller <p-sortIcon field="user?.userName"></p-sortIcon>
+            </th>
+            <th style="width: 5rem" >
+              File
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+          <tr>
+            <td>{{ order.customerName }}</td>
+            <td>{{ order.customerEmail }}</td>
+            <td>{{ order.startedDate }}</td>
+            <td>{{ order.endedDate }}</td>
+            <td>{{ order.price | currency : "USD" }}</td>
+            <td>{{ order.job.jobName }}</td>
+            <td>{{ order.user.userName }}</td>
+            <td><button class="btn btn-success" (click)="download(order)">
+              <i class="fa-solid fa-file-arrow-down"></i>
+            </button></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            In total there are {{ orders ? orders.length : 0 }} products.
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

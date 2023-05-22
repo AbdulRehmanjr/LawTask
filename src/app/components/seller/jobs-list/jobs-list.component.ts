@@ -37,6 +37,7 @@ export class JobsListComponent implements OnInit {
   fetchJobsBySeller():void{
     this.jobService.getJobsByUserId(this.userId).subscribe({
       next:(response:Job[])=>{
+        console.log(response)
         this.jobs = response
       },
       error:(error:any)=>{

@@ -11,6 +11,8 @@ export class PaymentService {
 
   private url = `${environment.apiBaseUrl}/${environment.paymentUrl}`
 
+
+  private subs = `${environment.apiBaseUrl}/${environment.subscription}`
   constructor(private http: HttpClient) { }
 
   paymentIntent(order:Order) {
@@ -20,7 +22,18 @@ export class PaymentService {
       responseType: 'text'
     })
   }
+  deleteSubscription(email:string){
 
+    return this.http.post(`${this.url}/cancel/${email}`,{},{
+      observe:'body'
+    })
+  }
+
+  getSubscription(email:string){
+    return this.http.get(`${this.subs}/info/${email}`,{
+      observe:'body'
+    })
+  }
   paymentConfirm(type:string,email:string){
 
     let payment = new PaymentRequest()

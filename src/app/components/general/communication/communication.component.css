@@ -2,6 +2,7 @@
   max-height:450px;
   overflow-y: scroll;
 }
+
 .sticky-container{
   position: sticky;
   top:60px;
@@ -44,8 +45,9 @@
 /* .messages-inbox{
   height:100vh;
 } */
-a{
+a,a:hover{
   cursor: pointer;
+  color:#fff;
 }
 ::ng-deep  .p-component-overlay {
   position: unset;
