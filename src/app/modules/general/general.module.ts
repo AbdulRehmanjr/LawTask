@@ -55,12 +55,6 @@ import { TermofuseComponent } from '../../components/general/termofuse/termofuse
 import { PrivacyComponent } from '../../components/general/privacy/privacy.component';
 import { SubscriptioncardComponent } from 'src/app/components/shared/subscriptioncard/subscriptioncard.component';
 
-// const config: SocketIoConfig = {
-//   url: 'http://localhost:8082/my-websocket-endpoint',
-//   options: {
-//     transports:['websocket']
-//   }
-// };
 const routes: Routes = [
   {
     path: 'home', component: GeneralComponent,

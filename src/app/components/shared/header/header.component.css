@@ -10,3 +10,10 @@ a:hover{
 ul li{
   list-style: none;
 }
+::ng-deep{
+  top: 0;
+    left: 0;
+    width: 14rem;
+    height: 100%;
+
+}

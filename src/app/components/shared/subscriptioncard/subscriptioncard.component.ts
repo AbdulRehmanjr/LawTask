@@ -1,11 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Route } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { CardSubscription } from 'src/app/classes/subscription';
 import { PaymentService } from 'src/app/services/payment.service';
 import { SellerService } from 'src/app/services/seller.service';
-import { environment } from 'src/app/variables/environment ';
-import { StripeScriptTag } from 'stripe-angular';
+
 
 @Component({
   selector: 'shared-subscriptioncard',
@@ -35,7 +32,6 @@ export class SubscriptioncardComponent implements OnInit {
       const email = JSON.parse(localStorage.getItem('user'))['email']
       this.stripeService.paymentConfirm(type,email).subscribe({
         next:(response:any)=>{
-
           window.location.href = response;
         },
         error:(_err:any)=>{
