@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   profile: string = ''
   private user: any
   userResponse:User =  null
+  sidebarVisible: boolean = false
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
@@ -33,7 +34,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.profileDropdown()
   }
-
+  showSideBar(){
+    this.sidebarVisible = true
+  }
 
   fetchUser() {
     this.userService.getUserById(this.check).subscribe({

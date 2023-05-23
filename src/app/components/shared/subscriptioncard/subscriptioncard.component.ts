@@ -28,20 +28,32 @@ export class SubscriptioncardComponent implements OnInit {
   }
 
   buySubscription(type:string) {
-    const email = JSON.parse(localStorage.getItem('user'))['email']
-    this.stripeService.paymentConfirm(type,email).subscribe({
-      next:(response:any)=>{
 
-        window.location.href = response;
-      },
-      error:(_err:any)=>{
-        console.log(_err)
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `Something went Wrong. Please check you internet connection or provided information` })
-      },
-      complete:()=>{
+    const role= JSON.parse(localStorage.getItem('user'))['authority']
 
-      }
-    })
+    if(role=='SELLER'){
+      const email = JSON.parse(localStorage.getItem('user'))['email']
+      this.stripeService.paymentConfirm(type,email).subscribe({
+        next:(response:any)=>{
+
+          window.location.href = response;
+        },
+        error:(_err:any)=>{
+          console.log(_err)
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: `Cant Update to Lower Packages.` })
+        },
+        complete:()=>{
+
+        }
+      })
+    }else{
+      this.messageService.add({
+        severity:'error',
+        summary:'Error',
+        detail:'Must must be an active seller'
+      })
+    }
+
 
   }
 

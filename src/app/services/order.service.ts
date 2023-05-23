@@ -43,4 +43,9 @@ export class OrderService {
   getOrderByUserId(id:string){
     return this.http.get(`${this.URL}/user/${id}`,{observe:'body'})
   }
+  orderDone(order:Order){
+    return this.http.post(`${this.URL}/done`,order,{
+      observe:'body'
+    })
+  }
 }

@@ -23,7 +23,6 @@ import { AddJobComponent } from '../../components/seller/add-job/add-job.compone
 import { DashboardComponent } from '../../components/seller/dashboard/dashboard.component';
 import { SidebarComponent } from '../../components/seller/sidebar/sidebar.component';
 import { CommunicationComponent } from 'src/app/components/general/communication/communication.component';
-import { ProfileComponent } from '../../components/seller/profile/profile.component';
 import { PendingordersComponent } from '../../components/seller/pendingorders/pendingorders.component';
 import { FilessharingComponent } from '../../components/seller/filessharing/filessharing.component';
 import { FiledetailsComponent } from '../../components/seller/filedetails/filedetails.component';
@@ -59,7 +58,6 @@ const routes: Routes = [
     AddJobComponent,
     DashboardComponent,
     SidebarComponent,
-    ProfileComponent,
     PendingordersComponent,
     FilessharingComponent,
     FiledetailsComponent,

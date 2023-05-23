@@ -54,17 +54,11 @@ export class IntroComponent implements OnInit {
       return
     }
 
-    this.location = this.searchForm.get('location').value
-
-    if (typeof this.location == undefined) {
-      this.location = 'ANY'
-    }
 
     this.category = this.searchForm.get('category').value
 
     const queryParams = {
       category:this.category.trim(),
-      location:this.location
     }
 
     this.router.navigate([`/home/search`],{queryParams})

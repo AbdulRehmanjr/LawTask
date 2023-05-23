@@ -12,13 +12,13 @@ export class SellerGuard implements CanActivate {
 
       const user = JSON.parse(localStorage?.getItem('user'))['authority']
 
-      // if (user == 'SELLER') {
-      //   return true;
-      // } else {
-      //   return false;
-      // }
+      if (user == 'SELLER') {
+        return true;
+      } else {
+        return false;
+      }
 
-      return true;
+
   }
 
 }

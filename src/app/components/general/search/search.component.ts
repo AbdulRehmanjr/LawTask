@@ -33,11 +33,12 @@ export class SearchComponent implements OnInit {
       this.jobName = params['category'];
     });
     this.fetchJobs()
+    this.createForm()
   }
 
   createForm(): void {
     this.search = this.formBuilder.group({
-      search: new FormControl('')
+      job: new FormControl('')
     })
   }
   onPageChange(event:any) {
@@ -80,5 +81,22 @@ export class SearchComponent implements OnInit {
       }
     })
 
+  }
+  onSubmit(): void {
+
+    const job = this.search.get('job').value
+
+    this.jobService.getJobsByJobName(job).subscribe({
+      next: (response: Job[]) => {
+
+        this.jobs = response
+      },
+      error: (error: any) => {
+        this.isFound = false
+        this.message.add({ severity: 'error', summary: 'error', detail: 'No Job or service found.' })
+      },
+      complete: () => {
+      }
+    })
   }
 }

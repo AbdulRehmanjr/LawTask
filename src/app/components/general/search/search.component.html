@@ -5,54 +5,19 @@
         <!-- Location -->
         <div class="sidebar-widget">
           <h3>Search</h3>
-          <div class="input-with-icon">
-            <div id="autocomplete-container">
-              <input
-                #search
-                id="autocomplete-input"
-                type="text"
-                placeholder="Search"
-              />
-            </div>
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-        </div>
+          <form [formGroup]="search" class="row" (ngSubmit)="onSubmit()">
 
-        <div class="sidebar-widget">
-          <h3>Price</h3>
-
-          <div class="radio-buttons">
-            <label>
-              <input type="radio" name="currency" value="low" checked />
-              <span class="button-style">$</span>
-            </label>
-            <label>
-              <input type="radio" name="currency" value="normal" />
-              <span class="button-style">$$</span>
-            </label>
-            <label>
-              <input type="radio" name="currency" value="high" />
-              <span class="button-style">$$$</span>
-            </label>
-          </div>
+            <span class="d-flex flex-column">
+              <input type="text" placeholder="Jobs" formControlName="job" />
+            </span>
+            <button class="mx-auto mt-2 btn btn-success" style="width:100px;">Search</button>
+          </form>
         </div>
       </div>
     </div>
     <ng-container *ngIf="isFound; else notFound">
       <div class="col-xl-9 col-lg-8">
         <h3 class="page-title">Search Results</h3>
-
-        <!-- <div class="notify-box margin-top-15">
-          <div class="d-flex flex-space-between">
-            <span>Sort by:</span>
-            <select class="selectpicker">
-              <option>Relevance</option>
-              <option>Newest</option>
-              <option>Oldest</option>
-              <option>Random</option>
-            </select>
-          </div>
-        </div> -->
 
         <!-- Tasks Container -->
         <div class="tasks-list-container tasks-grid-layout margin-top-35">

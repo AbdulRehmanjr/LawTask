@@ -6,3 +6,7 @@ a:hover{
   border: none !important;
   cursor: pointer;
 }
+
+ul li{
+  list-style: none;
+}

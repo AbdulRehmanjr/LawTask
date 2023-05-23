@@ -41,7 +41,6 @@ import { MainPortionComponent } from '../../components/general/main-portion/main
 import { JobsListComponent } from 'src/app/components/seller/jobs-list/jobs-list.component';
 import { SearchComponent } from '../../components/general/search/search.component';
 import { CommunicationComponent } from '../../components/general/communication/communication.component';
-import { StripecardComponent } from 'src/app/components/shared/stripecard/stripecard.component';
 import { ProfileComponent } from '../../components/general/profile/profile.component';
 import { NotfoundComponent } from '../../components/general/notfound/notfound.component';
 import { MakeOrderComponent } from '../../components/general/make-order/make-order.component';
@@ -67,9 +66,6 @@ const routes: Routes = [
     path: 'home', component: GeneralComponent,
     canActivate: [GeneralGuard],
     children: [
-      {
-        path: 'success', component: StripecardComponent
-      },
       {
         path: '', component: MainPortionComponent
       },
@@ -109,6 +105,8 @@ const routes: Routes = [
       },
       {
         path:'privacy-policy',component:PrivacyComponent
+      },{
+        path:'terms',component:TermofuseComponent
       }
     ]
   },

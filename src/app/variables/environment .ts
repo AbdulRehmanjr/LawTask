@@ -21,5 +21,6 @@ export const environment = {
   coupon:'coupon',
   userdashboard:'userdashboard',
   file:'file',
-  subscription:'subscription'
+  subscription:'subscription',
+  social:'social'
 };

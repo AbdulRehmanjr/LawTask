@@ -9,13 +9,16 @@ input,input:focus,input:hover{
   border-radius: 10px;
 
 }
-button{
+.button{
+  height: 30px;
   border:1px solid yellowgreen;
+  color: #fff !important;
 }
+
 .button{
   background-color: #00A88C;
 }
-button:hover{
+.button:hover{
   background-color: yellowgreen;
   color:#fff;
 

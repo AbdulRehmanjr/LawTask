@@ -33,16 +33,16 @@ export class DashboardComponent implements OnInit {
 
     const date1 = new Date(dateStr);
 
-    // Get the current date
+
     const date2 = new Date();
 
-    // One day in milliseconds
+
     const oneDay = 1000 * 60 * 60 * 24;
 
-    // Calculate the difference in milliseconds
+
     const diffInMs = Math.abs(date2.getTime() - date1.getTime());
 
-    // Convert back to days and return
+
     return Math.round(diffInMs / oneDay);
   }
 
@@ -85,12 +85,21 @@ export class DashboardComponent implements OnInit {
   }
   cancel() {
     this.payment.deleteSubscription(JSON.parse(localStorage.getItem('user'))['email']).subscribe({
-      next: (response) => {
-        console.log('sucess')
+      next: (_response:any) => {
+        this.message.add({
+          severity: 'success',
+          summary: 'Deleted',
+          detail: 'Subscription Canceled'
+        })
       },
-      error: (error) => {
-        console.error(error)
+      error: (error:any) => {
+        this.message.add({
+          severity: 'error',
+          summary: 'Error!!!',
+          detail: 'Subscription not found'
+        })
       }
     })
   }
+
 }

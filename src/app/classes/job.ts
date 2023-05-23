@@ -5,8 +5,6 @@ export class Job {
   jobName:string
   jobImage:string
   description:string
-  likes:number
-  views:number
   jobType:string
   jobPrice:number
   user:User

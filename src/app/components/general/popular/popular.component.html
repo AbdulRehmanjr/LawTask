@@ -63,14 +63,7 @@
                     <span>{{ freelancer.seller?.jobName }}</span>
                   </div>
 
-                  <!-- Rating -->
-                  <div class="freelancer-rating">
-                    <p-rating
-                      [(ngModel)]="freelancer.rating"
-                      [readonly]="true"
-                      [cancel]="false"
-                    ></p-rating>
-                  </div>
+
                 </div>
               </div>
 
@@ -85,7 +78,6 @@
                         {{freelancer.seller?.location}}</strong
                       >
                     </li>
-                    <li>Job Success <strong>{{freelancer?.success}}%</strong></li>
                   </ul>
                 </div>
                 <button (click)="freelancerProfile(freelancer?.id)" class="btn btn-success"

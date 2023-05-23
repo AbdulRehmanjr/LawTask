@@ -1,0 +1,23 @@
+
+.intro-search-button {
+	margin: 8px;
+	margin-left: 0;
+	flex: auto;
+	flex-grow: 0;
+	display: flex;
+    align-items: center;
+}
+
+.intro-search-button .button {
+	height: 52px;
+	line-height: 52px;
+	padding: 0 30px;
+	font-size: 18px;
+}
+.intro-banner-search-form .intro-search-button {
+  margin-top: 30px;
+}
+button{
+  background-color: red;
+  color:#fff;
+}

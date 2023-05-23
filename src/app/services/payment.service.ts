@@ -25,7 +25,8 @@ export class PaymentService {
   deleteSubscription(email:string){
 
     return this.http.post(`${this.url}/cancel/${email}`,{},{
-      observe:'body'
+      observe:'body',
+      responseType:'text'
     })
   }
 

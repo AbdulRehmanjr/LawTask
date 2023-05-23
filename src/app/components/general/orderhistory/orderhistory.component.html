@@ -57,6 +57,7 @@
             <th style="width: 5rem" pSortableColumn="user?.userName">
               Seller <p-sortIcon field="user?.userName"></p-sortIcon>
             </th>
+            <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-order>
@@ -69,6 +70,12 @@
             <td>{{ order.job.jobName }}</td>
             <td><p-tag [value]="status" [severity]="getSeverity(order.completed)"></p-tag></td>
             <td>{{ order.user.userName }}</td>
+            <td>
+              <button class="job-done-button" (click)="jobDone(order)">
+                <i class="fas fa-check"></i>
+              </button>
+
+            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">

@@ -64,4 +64,25 @@ export class OrderhistoryComponent implements OnInit {
     }
   }
 
+  jobDone(order:Order){
+    this.orderService.orderDone(order).subscribe({
+      next:(response:Order)=>{
+        this.messageService.add({
+          severity:'success',
+          summary:'Status Updated',
+          detail:'Done'
+        })
+      },
+      error:(error)=>{
+        this.messageService.add({
+          severity:'error',
+          summary:'Error',
+          detail:'Something went wrong'
+        })
+      },
+      complete:()=>{
+        this.fetchOrder()
+      }
+    })
+  }
 }

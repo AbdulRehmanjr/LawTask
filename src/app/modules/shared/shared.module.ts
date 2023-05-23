@@ -10,16 +10,16 @@ import { DialogModule } from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
-import { StripecardComponent } from '../../components/shared/stripecard/stripecard.component';
-import { Message } from 'src/app/classes/message';
+import { SidebarModule } from 'primeng/sidebar';
+
 
 @NgModule({
   declarations: [
     SubscriptioncardComponent,
-    HeaderComponent,
-    StripecardComponent
+    HeaderComponent
   ],
   imports: [
+    SidebarModule,
     ToastModule,
     MessageModule,
     FormsModule,

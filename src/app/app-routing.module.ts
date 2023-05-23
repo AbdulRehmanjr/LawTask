@@ -7,17 +7,18 @@ import { SignupComponent } from './components/general/signup/signup.component';
 import { AdminModule } from './modules/admin/admin.module';
 import { SharedModule } from 'primeng/api';
 import { NotfoundComponent } from './components/general/notfound/notfound.component';
+import { AuthGuard } from './security/auth.guard';
 
 
 const routes: Routes = [
   {
-    path:'login',component:LoginComponent
+    path:'login',component:LoginComponent ,canActivate:[AuthGuard]
   },
   {
-    path:'signup',component:SignupComponent
+    path:'signup',component:SignupComponent,canActivate:[AuthGuard]
   },
   {
-    path:'not-found',component:NotfoundComponent
+    path:'not-found',component:NotfoundComponent,canActivate:[AuthGuard]
   }
 
 ];
