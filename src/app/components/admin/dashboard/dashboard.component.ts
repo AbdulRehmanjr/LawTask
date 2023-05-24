@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
   info: DashBoard
   data: any
   sellerInfo:any
-  array: number[] = [1, 2, 3, 2, 4, 5, 6, 7, 1, 2, 3, 9, 0, 4, 5]
   userJoin: UserJoin[]
   sellerJoin: SellerJoin[]
   sellerOptions:any
@@ -86,10 +85,18 @@ export class DashboardComponent implements OnInit {
     this.join.getSellerInfo().subscribe({
       next: (response: SellerJoin[]) => {
         this.sellerJoin = response
-        console.log(this.sellerJoin)
+        this.message.add({
+          severity:'success',
+          summary:'Seller Joined',
+          detail:'Seller Join Successfully'
+        })
       },
       error: (error) => {
-        console.log(`error ${error}`)
+        this.message.add({
+          severity:'error',
+          summary:'Errror',
+          detail:'Seller Joining error'
+        })
       },
       complete: () => {
         this.sellerJoin.forEach((data: SellerJoin) => {

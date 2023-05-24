@@ -2,9 +2,9 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, O
 import { Router } from '@angular/router';
 
 import * as $ from 'jquery'
-import { Subject } from 'rxjs';
+import { MessageService } from 'primeng/api';
 import { User } from 'src/app/classes/user';
-import { LoginService } from 'src/app/services/login.service';
+
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -20,9 +20,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isAdmin: boolean = false
   profile: string = ''
   private user: any
-  userResponse:User =  null
+  userResponse:User = new User()
   sidebarVisible: boolean = false
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService,
+    private messageService:MessageService) { }
 
   ngOnInit(): void {
 
@@ -41,11 +42,19 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   fetchUser() {
     this.userService.getUserById(this.check).subscribe({
       next: (response: User) => {
-
         this.userResponse = response
+        this.messageService.add({
+          severity:'success',
+          summary:'Success',
+          detail:'Login SuccessFull'
+        })
       },
-      error: (_error) => {
-        console.log(_error)
+      error: (_error:any) => {
+        this.messageService.add({
+            severity:'error',
+            summary:'Error',
+            detail:'User fetching error'
+        })
       },
       complete: () => {
       }
@@ -66,7 +75,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   logOut() {
 
     localStorage.removeItem('user')
-
     setInterval(
       () => {
         location.reload()

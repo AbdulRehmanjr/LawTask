@@ -1,5 +1,6 @@
 <header id="header-container" class="fullwidth">
   <!-- Header -->
+  <p-toast position="bottom-right"></p-toast>
   <div id="header">
     <div class="container">
       <!-- Left Side Content -->
@@ -43,7 +44,7 @@
               <a class="disabled-link-hover"
                 ><div class="user-avatar status-online">
                   <img
-                    src="data:image/jpeg; base64, {{userResponse.profilePicture}}"
+                    src="data:image/jpeg; base64, {{userResponse?.profilePicture}}"
                     alt="profile picture"
                   /></div
               ></a>

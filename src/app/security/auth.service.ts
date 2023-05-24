@@ -10,10 +10,11 @@ export class AuthService implements HttpInterceptor {
 
 
     const token = localStorage.getItem('token');
+    const content = token?.substring(1, token.length - 1);
 
     // Clone the request and add the token as an Authorization header
     const authReq = req.clone({
-      setHeaders: { Authorization: `Bearer ${token}` },
+      setHeaders: { Authorization: `Bearer ${content}` },
     });
 
     // Pass the modified request to the next interceptor or the HTTP handler

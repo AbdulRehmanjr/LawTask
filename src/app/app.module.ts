@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerService } from './interceptor/spinner.service';
@@ -18,6 +17,7 @@ import { AuthService } from './security/auth.service';
     AppComponent
   ],
   imports: [
+
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,

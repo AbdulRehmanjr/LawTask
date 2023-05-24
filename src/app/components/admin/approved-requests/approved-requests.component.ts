@@ -35,7 +35,7 @@ export class ApprovedRequestsComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Network error.' })
       },
       complete: () => {
-        console.log('completed')
+
       }
     })
   }

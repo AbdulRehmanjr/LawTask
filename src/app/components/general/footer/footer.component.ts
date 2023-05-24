@@ -9,10 +9,24 @@ import { SocialService } from 'src/app/services/social.service';
 })
 export class FooterComponent  implements OnInit{
 
-  socials:SocialLinks[]
+  socials:SocialLinks[] = [
+    {
+      id:'id',
+      link:'facebook'
+    },{
+      id:'id',
+      link:'facebook'
+    },{
+      id:'id',
+      link:'facebook'
+    },{
+      id:'id',
+      link:'facebook'
+    }
+  ]
   constructor(private socialService:SocialService){}
   ngOnInit(): void {
-    this.fetchLinks()
+    // this.fetchLinks()
   }
 
 

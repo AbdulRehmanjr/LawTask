@@ -64,7 +64,7 @@ export class CouponComponent implements OnInit{
   }
   deleteCoupon(id:string){
 
-    console.log('clicked')
+
     this.couponService.deleteCoupon(id).subscribe({
       next:()=>{
 
