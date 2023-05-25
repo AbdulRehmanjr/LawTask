@@ -3,7 +3,7 @@ export const environment = {
   stripePublicKey: 'pk_test_51JhGPzEr164QO1Kb8FdmFbmmyAAixxNnftXtvzfwQqun2eToP4OmlZhkjomR9UNiA97TcGuh3IfJsj1BgkLwvcBt00pIFjyExI',
   stripePublicKeyLive:'pk_live_51JhGPzEr164QO1KbD3UXh9LMANe9ItYyBHScGROV4ORdoQ2oiNBvkh7R6FeqtF7KxvZV9n0B2I32eYWwp2q6xEi600mIz5vsuV',
   stripeSecertKey:'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',
-  apiBaseUrl: 'http://139.59.215.241/api/v1',
+  apiBaseUrl: 'http://139.59.215.241:8080/api/v1',
   socket:'ws',
   chatlist:'chatlist',
   paymentUrl:'checkout',
