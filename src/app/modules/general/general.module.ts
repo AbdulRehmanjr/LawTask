@@ -54,6 +54,8 @@ import { GeneralGuard } from 'src/app/security/general.guard';
 import { TermofuseComponent } from '../../components/general/termofuse/termofuse.component';
 import { PrivacyComponent } from '../../components/general/privacy/privacy.component';
 import { SubscriptioncardComponent } from 'src/app/components/shared/subscriptioncard/subscriptioncard.component';
+import { EditprofileComponent } from '../../components/general/editprofile/editprofile.component';
+import { ForgotpassordComponent } from '../../components/general/forgotpassord/forgotpassord.component';
 
 const routes: Routes = [
   {
@@ -77,6 +79,12 @@ const routes: Routes = [
         path: 'job-list', component: JobsListComponent
       },
       {
+        path:'edit-profile',component:EditprofileComponent
+      },
+      {
+        path:'forgot-password',component:ForgotpassordComponent
+      },
+      {
         path: 'search', component: SearchComponent
       }, {
         path: 'files', component: FilessharingComponent
@@ -94,13 +102,13 @@ const routes: Routes = [
       },
       {
         path: 'order-confirm', component: ConfirmorderComponent
-      },{
-        path:'term-of-use',component:TermofuseComponent
+      }, {
+        path: 'term-of-use', component: TermofuseComponent
       },
       {
-        path:'privacy-policy',component:PrivacyComponent
-      },{
-        path:'terms',component:TermofuseComponent
+        path: 'privacy-policy', component: PrivacyComponent
+      }, {
+        path: 'terms', component: TermofuseComponent
       }
     ]
   },
@@ -132,6 +140,8 @@ const routes: Routes = [
     FiledetailsComponent,
     TermofuseComponent,
     PrivacyComponent,
+    EditprofileComponent,
+    ForgotpassordComponent,
   ],
   imports: [
     ButtonModule,

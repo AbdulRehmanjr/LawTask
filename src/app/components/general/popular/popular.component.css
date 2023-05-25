@@ -177,6 +177,8 @@ a{
   background-color: #F0F0F0;
   font-weight: 500;
 } */
+
+
 ::ng-deep .p-rating .p-rating-icon.pi-star-fill{
   color:#33BF34;
 }

@@ -1,0 +1,62 @@
+<section class="margin-top">
+  <div class="forgot-password-wrapper">
+  <div class="forgot-password-form">
+    <h2>Forgot Password</h2>
+    <ng-container *ngIf="received == undefined else otp">
+      <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" formControlName="email" id="email" required>
+        </div>
+        <div
+        *ngIf="
+        passwordForm.get('email').invalid &&
+          passwordForm.get('email').touched
+        "
+      >
+        <p-message
+          severity="error"
+          text="Field is required"
+        ></p-message>
+      </div>
+        <button type="submit">Send OTP</button>
+      </form>
+    </ng-container>
+    <ng-template #otp>
+      <form [formGroup]="otpForm" (ngSubmit)="otpSubmit()">
+        <div class="form-group">
+          <label for="otp">OTP:</label>
+          <input type="number" formControlName="otp" id="otp" required>
+        </div>
+        <div
+        *ngIf="
+        otpForm.get('otp').invalid &&
+        otpForm.get('otp').touched
+        "
+      >
+        <p-message
+          severity="error"
+          text="Field is required"
+        ></p-message>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="text" formControlName="password" id="pasword" required>
+      </div>
+      <div
+      *ngIf="
+      otpForm.get('password').invalid &&
+      otpForm.get('password').touched
+      "
+    >
+      <p-message
+        severity="error"
+        text="Field is required"
+      ></p-message>
+    </div>
+        <button type="submit">Reset Password</button>
+      </form>
+    </ng-template>
+  </div>
+</div>
+</section>

@@ -73,8 +73,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   logOut() {
-
     localStorage.removeItem('user')
+    localStorage.removeItem('token')
     setInterval(
       () => {
         location.reload()

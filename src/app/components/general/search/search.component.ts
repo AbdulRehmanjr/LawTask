@@ -70,7 +70,7 @@ export class SearchComponent implements OnInit {
 
     this.chatList.addNewUser(userId, receiverId).subscribe({
       next: (_response) => {
-        console.log(_response)
+
       },
       error: (_error) => {
         console.log(_error)
@@ -88,7 +88,6 @@ export class SearchComponent implements OnInit {
 
     this.jobService.getJobsByJobName(job).subscribe({
       next: (response: Job[]) => {
-
         this.jobs = response
       },
       error: (error: any) => {

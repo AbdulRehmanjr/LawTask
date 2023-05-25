@@ -1,11 +1,11 @@
-<section>
+<section d="job-cards">
   <div class="col-sm-12 text-center">
     <h3 class="heading">Popular Jobs</h3>
   </div>
-  <div class="row m-sm-2 p-sm-2 m-md-4 p-md-4 m-lg-5 m-lg-5">
+  <div class="row m-3 p-2 m-md-4 p-md-4 m-lg-5 m-lg-5 justify-content-center"> <!-- Added justify-content-center class -->
     <div
       *ngFor="let card of cards"
-      class="col-md-3 m-md-4 text-center category-box"
+      class="col-md-3 col-sm-12 m-4 p-3  m-md-4 text-center category-box"
     >
       <a class="m-md-4">
         <div class="category-box-icon">
@@ -19,6 +19,7 @@
     </div>
   </div>
 </section>
+
 <section id="popular-freelancer">
   <div class="row">
     <div class="col-xl-12">

@@ -1,3 +1,5 @@
+import { Role } from "./role"
+
 export class User {
   userId:string
   userName:string
@@ -5,5 +7,5 @@ export class User {
   password:string
   profilePicture:string
   authority:string
-  role:any
+  role:Role
 }

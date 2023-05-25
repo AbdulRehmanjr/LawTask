@@ -7,36 +7,51 @@
       <div class="left-side">
         <!-- Logo -->
         <div id="logo">
-          <a class="disabled-link-hover"><img src="assets/images/logo.png" alt="logo picture" /></a>
+          <a class="disabled-link-hover"
+            ><img src="assets/images/logo.png" alt="logo picture"
+          /></a>
         </div>
 
-        <!-- Main Navigation -->
         <nav id="navigation">
           <ul id="responsive">
             <li><a routerLink="/home" class="current">Home</a></li>
-            <li *ngIf="role=='SELLER'"><a routerLink="/seller-dashboard">For Employers</a></li>
-            <li *ngIf="role=='USER'"><a routerLink="messages">Messages</a></li>
-            <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
-            <li *ngIf="role=='SELLER'"><a routerLink="/home/job-list">My Jobs</a></li>
-            <li *ngIf="role=='USER'"><a routerLink="/home/order">Orders</a></li>
-            <li *ngIf="role=='USER'"><a routerLink="/home/files">Files</a></li>
-            <li *ngIf="check == undefined else other">
+            <li *ngIf="role == 'SELLER'">
+              <a routerLink="/seller-dashboard">For Employers</a>
+            </li>
+            <li *ngIf="role == 'USER'">
+              <a routerLink="messages">Messages</a>
+            </li>
+            <li *ngIf="isAdmin == true">
+              <a href="/admin-dashboard">Dashboard</a>
+            </li>
+            <li *ngIf="role == 'SELLER'">
+              <a routerLink="/home/job-list">My Jobs</a>
+            </li>
+            <li *ngIf="role == 'USER'">
+              <a routerLink="/home/order">Orders</a>
+            </li>
+            <li *ngIf="role == 'USER'">
+              <a routerLink="/home/files">Files</a>
+            </li>
+            <li *ngIf="check == undefined; else other">
               <a routerLink="/login"> Login </a>
             </li>
             <ng-template #other>
-              <li *ngIf="role=='USER'">
-              <a routerLink="/home/seller-request"> Become Seller </a>
-            </li>
+              <li *ngIf="role == 'USER'">
+                <a routerLink="/home/seller-request"> Become Seller </a>
+              </li>
             </ng-template>
           </ul>
         </nav>
         <div class="clearfix"></div>
-        <!-- Main Navigation / End -->
       </div>
-      <!-- Left Side Content / End -->
+      <div class="right-side d-sm-block d-md-none">
+        <button class="side-bar" (click)="showSideBar()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
 
-      <!-- Right Side Content / End -->
-      <div *ngIf="check!=undefined" class="right-side">
+      <div *ngIf="check != undefined" class="right-side">
         <!-- User Menu -->
         <div class="header-widget">
           <div class="header-notifications user-menu">
@@ -44,7 +59,9 @@
               <a class="disabled-link-hover"
                 ><div class="user-avatar status-online">
                   <img
-                    src="data:image/jpeg; base64, {{userResponse?.profilePicture}}"
+                    src="data:image/jpeg; base64, {{
+                      userResponse?.profilePicture
+                    }}"
                     alt="profile picture"
                   /></div
               ></a>
@@ -54,59 +71,101 @@
               <div class="user-status">
                 <div class="user-details">
                   <div class="user-avatar status-online">
-                    <img width="50" height="50" src="data:image/jpeg; base64, {{userResponse.profilePicture}}" alt="profile image" />
+                    <img
+                      width="50"
+                      height="50"
+                      src="data:image/jpeg; base64, {{
+                        userResponse.profilePicture
+                      }}"
+                      alt="profile image"
+                    />
                   </div>
-                  <div class="user-name">{{userResponse?.userName}}</div>
+                  <div class="user-name">{{ userResponse?.userName }}</div>
                 </div>
-
-                <!-- <div class="status-switch" id="snackbar-user-status">
-                  <label class="user-online current-status">Online</label>
-                  <span class="status-indicator" aria-hidden="true"></span>
-                </div> -->
               </div>
 
               <ul class="user-menu-small-nav">
                 <li>
-                  <button (click)="logOut()"
-                    ><i class="icon-material-outline-power-settings-new"></i>
-                    Logout</button>
+                  <a routerLink="/home/edit-profile"
+                    ><i class="fas fa-user"></i>Edit Profiles</a
+                  >
+                </li>
+
+                <li>
+                  <a (click)="logOut()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Logout</a
+                  >
                 </li>
               </ul>
             </div>
           </div>
         </div>
-
         <span class="mmenu-trigger">
-          <button class="hamburger hamburger--collapse" type="button" (click)="showSideBar()">
+          <button
+            class="hamburger hamburger--collapse"
+            type="button"
+            (click)="showSideBar()"
+          >
             <span class="hamburger-box">
               <span class="hamburger-inner"></span>
             </span>
           </button>
         </span>
       </div>
-      <!-- Right Side Content / End -->
     </div>
   </div>
   <!-- Header / End -->
 </header>
-<p-sidebar class= "col-md-2 d-sm-block d-md-none mt-md-2" [(visible)]="sidebarVisible" position="left" [blockScroll]="false" >
-  <nav id="navigation d-flex flex-column">
-    <ul id="d-flex flex-column">
+<p-sidebar
+  class="col-md-2 d-sm-block d-md-none mt-md-2"
+  [(visible)]="sidebarVisible"
+  position="left"
+  [blockScroll]="false"
+>
+  <nav id="navigation-sidebar">
+    <ul>
       <h1>Navigation</h1>
-      <li><a routerLink="/home" class="current">Home</a></li>
-      <li *ngIf="role=='SELLER'"><a routerLink="/seller-dashboard">For Employers</a></li>
-      <li *ngIf="role=='USER'"><a routerLink="messages">Messages</a></li>
-      <li *ngIf="isAdmin==true"><a href="/admin-dashboard">Dashboard</a></li>
-      <li *ngIf="role=='SELLER'"><a routerLink="/home/job-list">My Jobs</a></li>
-      <li *ngIf="role=='USER'"><a routerLink="/home/order">Orders</a></li>
-      <li *ngIf="role=='USER'"><a routerLink="/home/files">Files</a></li>
-      <li *ngIf="check == undefined else other">
-        <a routerLink="/login"> Login </a>
+      <li>
+        <a routerLink="/home" class="current"
+          ><i class="fas fa-home"></i> Home</a
+        >
+      </li>
+      <li *ngIf="role == 'SELLER'">
+        <a routerLink="/seller-dashboard"
+          ><i class="fas fa-briefcase"></i> For Employers</a
+        >
+      </li>
+      <li *ngIf="role == 'USER'">
+        <a routerLink="messages"><i class="fas fa-envelope"></i> Messages</a>
+      </li>
+      <li *ngIf="isAdmin == true">
+        <a href="/admin-dashboard"
+          ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+        >
+      </li>
+      <li *ngIf="role == 'SELLER'">
+        <a routerLink="/home/job-list"
+          ><i class="fas fa-briefcase"></i> My Jobs</a
+        >
+      </li>
+      <li *ngIf="role == 'USER'">
+        <a routerLink="/home/order"
+          ><i class="fas fa-shopping-cart"></i> Orders</a
+        >
+      </li>
+      <li *ngIf="role == 'USER'">
+        <a routerLink="/home/files"><i class="fas fa-file-alt"></i> Files</a>
+      </li>
+      <li *ngIf="check == undefined; else other">
+        <a routerLink="/login"><i class="fas fa-sign-in-alt"></i> Login </a>
       </li>
       <ng-template #other>
-        <li *ngIf="role=='USER'">
-        <a routerLink="/home/seller-request"> Become Seller </a>
-      </li>
+        <li *ngIf="role == 'USER'">
+          <a routerLink="/home/seller-request"
+            ><i class="fas fa-user-plus"></i> Become Seller
+          </a>
+        </li>
       </ng-template>
     </ul>
   </nav>

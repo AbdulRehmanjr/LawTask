@@ -1,19 +1,56 @@
-a:hover{
-  border-bottom: 2px solid #39FF14;
-  color:#39FF14 !important;
+a:hover {
+  border-bottom: 2px solid #39ff14;
+  color: #39ff14 !important;
 }
-.disabled-link-hover:hover{
+.disabled-link-hover:hover {
   border: none !important;
   cursor: pointer;
 }
 
-ul li{
+ul li {
   list-style: none;
 }
-::ng-deep{
-  top: 0;
-    left: 0;
-    width: 14rem;
-    height: 100%;
+.side-bar {
+  font-size: 30px;
+  padding-top: 10px;
+  color: #00ff7f;
+}
 
+#navigation-sidebar {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#navigation-sidebar h1 {
+  font-size: 24px;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+#navigation-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+#navigation-sidebar ul li {
+  padding: 10px 0;
+}
+
+#navigation-sidebar ul li a {
+  text-decoration: none;
+  color: #666666;
+}
+
+#navigation-sidebar ul li a.current {
+  color: #333333;
+  font-weight: bold;
+}
+
+::ng-deep .p-sidebar-left {
+  top: 0;
+  left: 0;
+  width: 14rem !important;
+  height: 100%;
 }

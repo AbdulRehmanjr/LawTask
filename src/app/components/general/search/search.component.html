@@ -1,22 +1,21 @@
 <section class="container margin">
   <div class="row">
-    <div class="col-xl-3 col-lg-4">
-      <div class="sidebar-container">
-        <!-- Location -->
-        <div class="sidebar-widget">
-          <h3>Search</h3>
-          <form [formGroup]="search" class="row" (ngSubmit)="onSubmit()">
-
-            <span class="d-flex flex-column">
-              <input type="text" placeholder="Jobs" formControlName="job" />
-            </span>
-            <button class="mx-auto mt-2 btn btn-success" style="width:100px;">Search</button>
-          </form>
-        </div>
-      </div>
+    <div class="col-sm-4">
+      <h3>Search</h3>
+      <form [formGroup]="search" class="row asmr-form" (ngSubmit)="onSubmit()">
+        <span class="d-flex flex-column">
+          <input
+            type="text"
+            placeholder="Jobs"
+            formControlName="job"
+            class="asmr-input"
+          />
+        </span>
+        <button class="mx-auto mt-2 btn btn-success asmr-button">Search</button>
+      </form>
     </div>
     <ng-container *ngIf="isFound; else notFound">
-      <div class="col-xl-9 col-lg-8">
+      <div class="col-sm-12">
         <h3 class="page-title">Search Results</h3>
 
         <!-- Tasks Container -->
@@ -24,7 +23,7 @@
           <!-- Task -->
           <a
             *ngFor="let job of jobs?.slice(first, first + rows)"
-            class="task-listing"
+            class="task-listing col-sm-12 col-md-3"
           >
             <!-- Job Listing Details -->
             <div class="task-listing-details">
@@ -35,11 +34,6 @@
                   alt="job image"
                 />
                 <h3 class="task-listing-title">{{ job.jobName }}</h3>
-                <ul class="task-icons">
-                  <li>
-                    <i class="icon-material-outline-location-on"></i>location
-                  </li>
-                </ul>
               </div>
             </div>
 

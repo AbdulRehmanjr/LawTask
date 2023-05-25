@@ -1,9 +1,9 @@
-<section class="row mt-md-2 mt-sm-3 sticky-container">
+<section class="margin-top">
   <p-toast position="bottom-right"></p-toast>
   <ng-container *ngIf="isUsers else nouser"
   >
-  <div class="row">
-    <aside id="userbar" class="col-md-3 d-none d-md-block mt-md-2">
+  <div class="row chat-screen">
+    <aside id="userbar" class="col-md-3 d-none d-md-block">
       <div class="messages-inbox">
         <!-- <div class="messages-headline">
           <div class="input-with-icon">
@@ -39,7 +39,7 @@
       </div>
     </aside>
 
-    <p-sidebar class= "col-md-3 d-sm-block d-md-none mt-md-2" [(visible)]="sidebarVisible" position="left" [blockScroll]="false" >
+    <p-sidebar class= "col-md-3  d-sm-block d-md-none" [(visible)]="sidebarVisible" position="left" [blockScroll]="false" >
       <aside >
         <div class="messages-inbox">
           <div class="messages-headline">
@@ -77,11 +77,11 @@
         </div>
       </aside>
   </p-sidebar>
-  <ng-container *ngIf="selectedUser else select">
-    <article id="userchat" class="col-sm-12 col-md-9 mt-md-2">
+  <ng-container *ngIf="selectedUser else select" class="h-full">
+    <article id="userchat" class="col-sm-12 col-md-9 ">
       <div class="message-content">
-        <div class="messages-headline d-flex gap-2">
-          <h4 class="user-name">{{ selectedUser?.userName }}</h4>
+        <div class="messages-headline d-flex gap-2 justify-content-between">
+          <h4 class="asmr-name">{{ selectedUser?.userName }}</h4>
           <button
             class="btn btn-success d-sm-block d-md-none"
             (click)="sidebarVisible = true"
@@ -89,7 +89,7 @@
             <i class="fa-solid fa-users"></i>
           </button>
           <button *ngIf="role=='SELLER'" (click)="confirmOrder()" class="btn btn-success">Confirm Order</button>
-          <button class="btn btn-danger">
+          <button class="btn btn-danger float-left">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
@@ -122,7 +122,7 @@
               <div class="message-bubble-inner">
                 <div class="message-text m-3 mt-0 mb-0">
                   <p>
-                    {{ message.content }}
+                    {{ message.content | linkify}}
                   </p>
                   <p class="time">{{ message.date }}</p>
                 </div>
@@ -158,14 +158,18 @@
   </ng-container>
   <ng-template #select>
     <button class="d-sm-block d-md-none btn btn-success" (click)="showSideBar()">Show Side bar</button>
-    <article  id="userchat" class="col-sm-12 col-md-9 mt-md-2">
+    <article id="userchat" class="col-sm-12 col-md-9 asmr-container">
+
+      <i class="fa-solid fa-comments asmr-logo"></i>
       <h1>Terms and Condition</h1>
       <ul class="condition">
         <li>Please do not search any personal info here.</li>
         <li>Search Files through the dedicated Files Section.</li>
-        <li>If you are geting error while sending message please reload the page.</li>
+        <li>If you are getting an error while sending a message, please reload the page.</li>
+        <li>Messages will be auto deleted. The project is submitted</li>
       </ul>
     </article>
+
   </ng-template>
   </div>
 

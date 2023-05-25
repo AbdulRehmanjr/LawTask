@@ -15,7 +15,9 @@ export class PopularComponent implements OnInit {
   freelancers: Freelancer[] = []
 
   constructor(private freelancerService:FreelancerService,
-    private router:Router){}
+    private router:Router){
+
+    }
   ngOnInit(): void {
     this.responsiveOptions = [
       {

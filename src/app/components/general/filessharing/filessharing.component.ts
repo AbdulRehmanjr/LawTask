@@ -26,10 +26,11 @@ export class FilessharingComponent implements OnInit {
   }
 
   fetchOrder() {
-    console.log('fetching orders')
+
     this.orderService.getOrderByCustomerId(this.id).subscribe({
       next: (response: Order[]) => {
         this.orders = response
+
       },
 
       error: (error: any) => {
