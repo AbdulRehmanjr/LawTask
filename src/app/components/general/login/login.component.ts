@@ -54,7 +54,7 @@ export class LoginComponent {
 
     this.loginService.generateToken(login).subscribe({
       next: (data: any) => {
-        console.log('token', data.token)
+
         this.loginService.setToken(data.token)
 
         this.loginService.currentUser(login).subscribe(
@@ -78,7 +78,7 @@ export class LoginComponent {
 
       },
       complete: () => {
-        console.log(`completted token generation`)
+
       }
     })
   }

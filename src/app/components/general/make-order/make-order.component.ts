@@ -89,9 +89,9 @@ export class MakeOrderComponent implements OnInit{
     this.orderService.createOrder(makeOrder).subscribe({
       next:(_response:any)=>{
         navigator.clipboard.writeText(_response).then(function() {
-          console.log('Order URL copied to clipboard');
+
       }).catch(function(err) {
-          console.error('Could not copy text: ', err);
+
       });
         this.messageService.add({severity:'success',summary:'Add Success',detail:'URL copied to clipboard'})
       },
