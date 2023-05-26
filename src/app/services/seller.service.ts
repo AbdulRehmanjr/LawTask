@@ -20,6 +20,11 @@ export class SellerService {
       observe:'body'
     })
   }
+  getAllSellers(){
+    return this.http.get(`${this.baseUrl}/all`,{
+      observe:'body'
+    })
+  }
   getSeller(userId:string){
     return this.http.get(`${this.baseUrl}/${userId}`,{observe:'body'})
   }

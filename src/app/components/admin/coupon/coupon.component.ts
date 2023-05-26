@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Coupon } from 'src/app/classes/coupon';
+import { Seller } from 'src/app/classes/seller';
 import { CouponService } from 'src/app/services/coupon.service';
+import { SellerService } from 'src/app/services/seller.service';
 
 @Component({
   selector: 'app-coupon',
@@ -13,21 +15,31 @@ export class CouponComponent implements OnInit{
 
   coupons:Coupon[]
   displayDialog:boolean = false
-  couponForm: FormGroup;
+  giveDialog:boolean = false
+  couponForm: FormGroup
+  sellerForm:FormGroup
+  sellers:Seller[]
+  selectedCoupon:string
 
   constructor(private fb: FormBuilder,
     private couponService:CouponService,
-    private messageService:MessageService) { }
+    private messageService:MessageService,
+    private sellerService:SellerService) { }
 
   ngOnInit() {
     this.couponForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(5)]],
       amount: ['', [Validators.required, Validators.min(5)]]
     });
+    this.sellerForm = this.fb.group({
+      email: ['', [Validators.required]],
+    });
+
     this.fetchAllCoupon()
+    this.fetchAllSellers()
   }
 
-  get f() { return this.couponForm.controls; }
+
 
   fetchAllCoupon(){
       this.couponService.getAllCoupons().subscribe({
@@ -72,7 +84,7 @@ export class CouponComponent implements OnInit{
       },error:()=>{
         this.messageService.add({severity:'error',summary:'Error',detail:'Coupon Deleting Error '})
       },complete:()=>{
-        this.fetchAllCoupon()
+        this.ngOnInit()
       }
     })
   }
@@ -80,5 +92,50 @@ export class CouponComponent implements OnInit{
     this.displayDialog = true
   }
 
+  giveCoupon(id:any){
+
+    this.giveDialog = true
+    this.selectedCoupon = id
+  }
+  fetchAllSellers(){
+    this.sellerService.getAllSellers().subscribe({
+      next:(response:Seller[])=>{
+        this.sellers = response
+      },
+      error:(error:any)=>{
+        this.messageService.add({
+          severity:'error',
+          detail:'Sellers Fetching Error',
+          summary:'Error'
+        })
+      },
+      complete:()=>{
+
+      }
+    })
+
+  }
+  giveAway(){
+
+    const email = this.sellerForm.get('email').value
+
+    this.couponService.giveCoupon(email,this.selectedCoupon).subscribe(
+      {
+        next:(response:any)=>{
+
+        },
+        error:(error:any)=>{
+          this.messageService.add({
+            severity:'error',
+            detail:'Sellers Fetching Error',
+            summary:'Error'
+          })
+        },
+        complete:()=>{
+          this.giveDialog = false
+        }
+      }
+    )
+  }
 
 }

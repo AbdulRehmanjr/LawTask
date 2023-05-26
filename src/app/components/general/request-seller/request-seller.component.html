@@ -1,5 +1,5 @@
 <ng-container *ngIf="alreadyRequested == false else newUser">
-  <section class="row">
+  <section class="row margin-top">
     <div clas=" mt-4 pt-4 gap-2">
       <p-toast position="bottom-right"></p-toast>
     </div>
@@ -286,7 +286,7 @@
   </section>
 </ng-container>
 <ng-template #newUser>
-  <section class="row mt-md-5 mt-sm-3">
+  <section class="row margin-top">
     <ng-container *ngIf="isAccepted == true else unAccepted">
       <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Congsrauation!!!!</h4>
@@ -301,7 +301,7 @@
       <section
         id="unAccepted"
         *ngIf="isRejected == false"
-        class="mt-5 text-center"
+        class="margin-top text-center"
       >
         <div class="row">
           <div class="col-sm-5 offset-sm-3">
@@ -314,7 +314,7 @@
           </div>
         </div>
       </section>
-      <section clas="mt-5" *ngIf="isRejected == true">
+      <section clas="margin-top" *ngIf="isRejected == true">
         <div class="row">
           <div class="col-sm-5 offset-sm-3">
             <div class="alert alert-danger" role="alert">

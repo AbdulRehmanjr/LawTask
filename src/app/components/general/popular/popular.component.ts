@@ -43,7 +43,6 @@ export class PopularComponent implements OnInit {
     this.freelancerService.getTopFreeLancers().subscribe({
       next:(response:Freelancer[])=>{
         this.freelancers  = response
-        console.log(response)
       },
       error:(error:any)=>{
         console.log("error")

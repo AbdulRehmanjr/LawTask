@@ -37,15 +37,15 @@ export class JobsListComponent implements OnInit {
   fetchJobsBySeller():void{
     this.jobService.getJobsByUserId(this.userId).subscribe({
       next:(response:Job[])=>{
-        console.log(response)
+
         this.jobs = response
       },
       error:(error:any)=>{
-        console.log('error',error)
+
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in fetching Jobs.' })
       },
       complete:()=>{
-        console.log('jobs fetching by userId completed')
+
       }
     })
   }
@@ -62,10 +62,10 @@ export class JobsListComponent implements OnInit {
           }
         },
         error: (error: any) => {
-          console.error(error)
+
         },
         complete: () => {
-          console.log('completed function fetch seller')
+
           this.maxJobs = this.seller.maxJobs
           this.leftJobs = this.maxJobs - this.seller.currentJobs
         }
@@ -78,7 +78,7 @@ export class JobsListComponent implements OnInit {
     this.fetchJobsBySeller()
     this.maxJobs = this.maxJobs +1
     this.leftJobs = this.leftJobs
-    // this.fetchSeller()
+    this.fetchSeller()
   }
   showDialog() {
     this.displayDialog = true

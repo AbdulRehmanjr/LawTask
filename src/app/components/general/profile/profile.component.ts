@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Freelancer } from 'src/app/classes/freelancer';
 import { Job } from 'src/app/classes/job';
 import { ChatlistService } from 'src/app/services/chatlist.service';
@@ -22,8 +23,9 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private freelancerService: FreelancerService,
     private router: Router,
+    private messageService: MessageService,
     private jobService: JobsService,
-    private chatList:ChatlistService
+    private chatList: ChatlistService
   ) { }
 
   ngOnInit(): void {
@@ -76,19 +78,33 @@ export class ProfileComponent implements OnInit {
     }
   }
   sendMessage() {
-    const userId = JSON.parse(localStorage.getItem('user'))['userId']
-    const receiverId = this.freelancerData?.seller?.user?.userId
-    this.chatList.addNewUser(userId, receiverId).subscribe({
-      next: (_response) => {
-        console.log(_response)
-      },
-      error: (_error) => {
-        console.log('error',_error)
-      },
-      complete: () => {
-        this.router.navigate(['/home/messages'])
-      }
-    })
 
-  }
+    try {
+      const userId = JSON.parse(localStorage.getItem('user'))['userId']
+      const receiverId = this.freelancerData?.seller?.user?.userId
+      this.chatList.addNewUser(userId, receiverId).subscribe({
+        next: (_response) => {
+          console.log(_response)
+        },
+        error: (_error) => {
+          console.log('error', _error)
+        },
+        complete: () => {
+          this.router.navigate(['/home/messages'])
+        }
+      })
+    } catch (error) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Login!!',
+        detail: 'Please Login First'
+      })
+    }
+
+
+
+
+    }
+
+
 }

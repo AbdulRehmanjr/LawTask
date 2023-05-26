@@ -1,5 +1,5 @@
-<section id="coupon">
-  <div class="container-fluid mt-sm-3 mt-md-5">
+<section id="coupon margin-top">
+  <div class="container-fluid">
     <p-toast position="bottom-right"></p-toast>
     <div class="row">
       <div class="col-md-8 offset-md-2 mt-sm-3 mt-md-5">
@@ -45,7 +45,7 @@
               <th pSortableColumn="discount" style="width: 2rem">
                 Discount % <p-sortIcon field="discount"></p-sortIcon>
               </th>
-              <th style="width:2rem"></th>
+              <th style="width: 2rem"></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-coupon>
@@ -60,7 +60,14 @@
                   pRipple
                   (click)="deleteCoupon(coupon.id)"
                   icon="pi pi-trash"
-                  class="p-button-rounded p-button-warning"
+                  class="p-button-rounded p-button-danger"
+                ></button>
+                <button
+                  pButton
+                  pRipple
+                  (click)="giveCoupon(coupon.id)"
+                  icon="pi pi-pencil"
+                  class="p-button-rounded p-button-success mx-3"
                 ></button>
               </td>
             </tr>
@@ -84,8 +91,20 @@
               <form [formGroup]="couponForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                   <label for="name">Coupon Name:</label>
-                  <input type="text" class="form-control" id="name" formControlName="name">
-                  <div *ngIf="couponForm.get('name').invalid && (couponForm.get('name').touched || couponForm.get('name').dirty)" class="alert alert-danger">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    formControlName="name"
+                  />
+                  <div
+                    *ngIf="
+                      couponForm.get('name').invalid &&
+                      (couponForm.get('name').touched ||
+                        couponForm.get('name').dirty)
+                    "
+                    class="alert alert-danger"
+                  >
                     <div *ngIf="couponForm.get('name').errors['required']">
                       Coupon Name is required.
                     </div>
@@ -96,8 +115,20 @@
                 </div>
                 <div class="form-group">
                   <label for="amount">Discount Amount:</label>
-                  <input type="number" class="form-control" id="amount" formControlName="amount">
-                  <div *ngIf="couponForm.get('amount').invalid && (couponForm.get('amount').touched || couponForm.get('amount').dirty)" class="alert alert-danger">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="amount"
+                    formControlName="amount"
+                  />
+                  <div
+                    *ngIf="
+                      couponForm.get('amount').invalid &&
+                      (couponForm.get('amount').touched ||
+                        couponForm.get('amount').dirty)
+                    "
+                    class="alert alert-danger"
+                  >
                     <div *ngIf="couponForm.get('amount').errors['required']">
                       Discount Amount is required.
                     </div>
@@ -106,10 +137,61 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit"  class="btn btn-primary" [disabled]="couponForm.invalid">Submit</button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="couponForm.invalid"
+                >
+                  Submit
+                </button>
               </form>
             </div>
-
+          </ng-template>
+        </p-dialog>
+        <p-dialog
+          [(visible)]="giveDialog"
+          header="Give Coupon to Sellers"
+          [modal]="true"
+          styleClass="dialog-style"
+          style="z-index: 9999999990"
+        >
+          <ng-template pTemplate="body">
+            <div class="container">
+              <h2>Give Away Coupon Form</h2>
+              <form [formGroup]="sellerForm" (ngSubmit)="giveAway()">
+                <div class="input-with-icon-left">
+                  <i class="fa-solid fa-envelope"></i>
+                  <select
+                    class="with-border px-5"
+                    formControlName="email"
+                    id=""
+                  >
+                    <option selected>Select an option</option>
+                    <option
+                      *ngFor="let seller of sellers"
+                      value="{{ seller.user.email }}"
+                    >
+                      {{ seller.user.userName }}
+                    </option>
+                  </select>
+                </div>
+                <div
+                  *ngIf="
+                    sellerForm.get('email').invalid &&
+                    sellerForm.get('email').touched
+                  "
+                  class="error-message"
+                >
+                  Seller is required
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
           </ng-template>
         </p-dialog>
       </div>

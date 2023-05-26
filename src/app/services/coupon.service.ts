@@ -34,6 +34,12 @@ export class CouponService {
    return  this.http.delete(`${this.URL}/${id}`)
   }
 
+  giveCoupon(email:string,couponId:string){
+    return this.http.post(`${this.URL}/giveaway/${email}/${couponId}`,{},{
+      observe:'body'
+    })
+  }
+
 
 
 }
