@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://api.lawtasks.pro/api/v1',
+  apiBaseUrl: 'https://apis.lawtasks.pro/api/v1',
   socket:'ws',
   chatlist:'chatlist',
   paymentUrl:'checkout',
