@@ -13,6 +13,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { TagModule } from 'primeng/tag';
 
 
 // custom modules
@@ -68,6 +69,7 @@ const routes: Routes = [
     ButtonModule,
     TableModule,
     ToolbarModule,
+    TagModule,
     ToastModule,
     DialogModule,
     MessageModule,

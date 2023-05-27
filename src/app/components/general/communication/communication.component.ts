@@ -114,6 +114,8 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     message.content = data.value;
     message.senderName = this.currentUserId;
     message.receiverName = this.selectedUser?.userId;
+
+    this.time = new Date().toLocaleTimeString()
     message.date = this.time;
     message.type = 'SENDER';
 

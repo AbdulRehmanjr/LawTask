@@ -24,10 +24,10 @@ export class ChatService {
   constructor(private messageService:MessageService) {
     this.currentUserId = JSON.parse(localStorage.getItem('user'))['userId']
     this.client.onStompError = (frame) => {
-      console.error('WebSocket Error:', frame);
+
     };
     this.client.onConnect = (frame) => {
-      console.log('Connected to WebSocket server', frame);
+
 
     };
   }
@@ -35,12 +35,12 @@ export class ChatService {
   connectToUser(connectedId: string) {
 
     if (this.subscriptions[connectedId]) {
-      console.log(`Already subscribed to user ${connectedId}`);
+
       return;
     }
     const subscription = this.client.subscribe(`/userChat/${connectedId}/private`, (message:any) => {
       const newMessage: Message = JSON.parse(message.body);
-      this.messageService.add({severity:'info',summary:'Message Received',detail:`Message Recived By ${connectedId}`})
+      this.messageService.add({severity:'info',summary:'Message Received',detail:`Message Received`})
       this.handleNewMessage(newMessage);
     });
 

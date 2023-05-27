@@ -13,6 +13,7 @@ export class PendingordersComponent implements OnInit {
 
 
   orders:Order[]
+  status:any
   private id:string = ''
   constructor(
     private orderService:OrderService,
@@ -52,4 +53,14 @@ export class PendingordersComponent implements OnInit {
     fileSave.saveAs(file, `${order.customerName}.${order.documentType.split('/')[1]}`)
   }
 
+  getSeverity(status: boolean): string {
+    switch (status) {
+      case true:
+        this.status = 'Completed'
+        return 'success';
+      case false:
+        this.status = 'Pending'
+        return 'danger';
+    }
+  }
 }

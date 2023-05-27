@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, SecurityContext } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Pipe({
@@ -13,10 +13,16 @@ export class LinkifyPipe implements PipeTransform {
     }
 
     private stylize(text: string): string {
-        const urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g;
+      const urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g;
+
+      if (urlRegex.test(text)) {
         return text.replace(urlRegex, url =>
-          `<a target="_blank" href="${url.startsWith('www') ? 'http://' + url : url }">${url}</a>`
+          `<a  href="${url.startsWith('www') ? 'https://' + url : url }">${url}</a>`
         );
+      } else {
+        // If the text does not contain a URL, sanitize it
+        return this.sanitizer.sanitize(SecurityContext.HTML, text);
+      }
     }
 
 }

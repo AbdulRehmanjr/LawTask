@@ -15,6 +15,7 @@
           'startedDate',
           'endedDate',
           'price',
+          'status',
           'job?.jobName',
           'user?.userName'
         ]"
@@ -68,6 +69,7 @@
             <td>{{ order.price | currency : "USD" }}</td>
             <td>{{ order.job.jobName }}</td>
             <td>{{ order.user.userName }}</td>
+            <td><p-tag [value]="status" [severity]="getSeverity(order.completed)"></p-tag></td>
             <td><button class="btn btn-success" (click)="download(order)">
               <i class="fa-solid fa-file-arrow-down"></i>
             </button></td>

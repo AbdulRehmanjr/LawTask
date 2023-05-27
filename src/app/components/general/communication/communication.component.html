@@ -121,8 +121,8 @@
             >
               <div class="message-bubble-inner">
                 <div class="message-text m-3 mt-0 mb-0">
-                  <p>
-                    {{ message.content | linkify}}
+                  <p  [innerHTML]="message.content | linkify">
+
                   </p>
                   <p class="time">{{ message.date }}</p>
                 </div>
