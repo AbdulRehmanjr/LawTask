@@ -14,6 +14,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TagModule } from 'primeng/tag';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 // custom modules
@@ -65,6 +66,7 @@ const routes: Routes = [
 
   ],
   imports: [
+    SidebarModule,
     SelectButtonModule,
     ButtonModule,
     TableModule,

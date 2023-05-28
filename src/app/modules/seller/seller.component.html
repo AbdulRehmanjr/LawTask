@@ -5,7 +5,32 @@
   <aside class="d-none d-md-block col-md-2">
     <seller-sidebar></seller-sidebar>
   </aside>
+  <div class="d-sm-block d-md-none mx-2">
+    <button class="side-bar" (click)="showSideBar()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
   <main class="col-md-10">
+
     <router-outlet></router-outlet>
   </main>
 </section>
+<p-sidebar
+class="d-sm-block d-md-none margin-top"
+[(visible)]="sidebarVisible"
+position="left"
+[blockScroll]="false"
+[autoZIndex]="true"
+>
+  <nav class="margin-top sidebar">
+    <ul class="menu-list">
+      <li><a routerLink="/seller-dashboard"><i class="fa-solid fa-rectangle-list"></i>Dashboard</a></li>
+      <li><a routerLink="/seller-dashboard/messages"><i class="fa-solid fa-comments"></i>Messages</a></li>
+      <li><a routerLink="/seller-dashboard/orders"><i class="fa-solid fa-briefcase"></i>Orders</a></li>
+    </ul>
+    <ul class="menu-list">
+      <li><a routerLink="/home/job-list">Jobs</a></li>
+      <li><a routerLink="/seller-dashboard/files">Files</a></li>
+    </ul>
+  </nav>
+</p-sidebar>

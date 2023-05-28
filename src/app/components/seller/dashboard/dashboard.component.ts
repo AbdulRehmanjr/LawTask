@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { UserDashboard } from 'src/app/classes/userdashboard';
-import { DashboardService } from 'src/app/services/dashboard.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { UserdashboardService } from 'src/app/services/userdashboard.service';
 
@@ -12,10 +11,13 @@ import { UserdashboardService } from 'src/app/services/userdashboard.service';
 })
 export class DashboardComponent implements OnInit {
 
+
+
+  sidebarVisible: boolean = false
   user: any
   userDashboard: UserDashboard
-  info:any
-  time:any
+  info: any
+  time: any
   constructor(private payment: PaymentService,
     private dashboardService: UserdashboardService,
 
@@ -61,7 +63,7 @@ export class DashboardComponent implements OnInit {
           detail: 'Cant fetch Dashboard Info'
         })
       },
-      complete:()=>{
+      complete: () => {
 
       }
     })
@@ -85,14 +87,14 @@ export class DashboardComponent implements OnInit {
   }
   cancel() {
     this.payment.deleteSubscription(JSON.parse(localStorage.getItem('user'))['email']).subscribe({
-      next: (_response:any) => {
+      next: (_response: any) => {
         this.message.add({
           severity: 'success',
           summary: 'Deleted',
           detail: 'Subscription Canceled'
         })
       },
-      error: (error:any) => {
+      error: (error: any) => {
         this.message.add({
           severity: 'error',
           summary: 'Error!!!',

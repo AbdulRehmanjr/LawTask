@@ -26,7 +26,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
   oldMessages: Message[]
   isClicked: boolean = false
   role:string
-
+  isconnected:boolean = false
   @ViewChild('chatContainer') chatContainer?: ElementRef
   sidebarVisible: boolean = false
 
@@ -54,9 +54,23 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     this.chatService.onConnect()
     this.messages$ = this.chatService.getMessages()
 
+    this.status()
 
   }
-
+  status(){
+    this.chatService.getConnectionStatus().subscribe({
+      next:(response:boolean)=>{
+        this.isconnected = response
+        if(response === false){
+          this.messageService.add({
+            severity:'error',
+            detail:'Connection Error Please Reload the window',
+            summary:'Connection Failure'
+          })
+        }
+      }
+    })
+  }
   showSideBar(){
     this.sidebarVisible = true
   }
@@ -122,12 +136,21 @@ export class CommunicationComponent implements OnInit, AfterViewChecked {
     data.value = '';
 
     // Only push the sent message if the current user is the sender or recipient
-    if (message.senderName === this.currentUserId) {
-      const currentMessages = this.messages$.value;
-      const updatedMessages = [...currentMessages, message];
-      this.messages$.next(updatedMessages)
-      this.chatService.sendMessage(message)
+    if(this.isconnected==true){
+      if (message.senderName === this.currentUserId) {
+        const currentMessages = this.messages$.value;
+        const updatedMessages = [...currentMessages, message];
+        this.messages$.next(updatedMessages)
+        this.chatService.sendMessage(message)
+      }
+    }else{
+      this.messageService.add({
+        severity:'error',
+        detail:'Connection Error Please Reload the window',
+        summary:'Connection Failure'
+      })
     }
+
   }
 
   scrollToBottom(): void {

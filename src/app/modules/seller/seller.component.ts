@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class SellerComponent {
 
+sidebarVisible:boolean = false
+  showSideBar() {
+    this.sidebarVisible = true
+  }
 }

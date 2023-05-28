@@ -19,17 +19,27 @@ export class ChatService {
   private sockJS = new SockJS(this.SOCKET);
   private client: CompatClient = Stomp.over(this.sockJS)
   private currentUserId: string = ''
-  private currentReceiverId:string = ''
+  private currentReceiverId: string = ''
+  isConnected: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private reconnectInterval: number = 5000;
+  private reconnectTimer: any;
   private subscriptions: { [key: string]: any } = {};
-  constructor(private messageService:MessageService) {
-    this.currentUserId = JSON.parse(localStorage.getItem('user'))['userId']
-    this.client.onStompError = (frame) => {
 
+  constructor(private messageService: MessageService) {
+    this.currentUserId = JSON.parse(localStorage.getItem('user'))['userId']
+    this.initWebSocket();
+  }
+
+  private initWebSocket() {
+    this.client.onStompError = (frame) => {
+      this.isConnected.next(false)
     };
     this.client.onConnect = (frame) => {
-
-
+      this.isConnected.next(true)
     };
+    this.client.onWebSocketClose = (frame)=>{
+      this.isConnected.next(false)
+    }
   }
 
   connectToUser(connectedId: string) {
@@ -38,9 +48,9 @@ export class ChatService {
 
       return;
     }
-    const subscription = this.client.subscribe(`/userChat/${connectedId}/private`, (message:any) => {
+    const subscription = this.client.subscribe(`/userChat/${connectedId}/private`, (message: any) => {
       const newMessage: Message = JSON.parse(message.body);
-      this.messageService.add({severity:'info',summary:'Message Received',detail:`Message Received`})
+      this.messageService.add({ severity: 'info', summary: 'Message Received', detail: `Message Received` })
       this.handleNewMessage(newMessage);
     });
 
@@ -59,13 +69,15 @@ export class ChatService {
   sendMessage(data: Message) {
     let message = new Message()
     message = data
-    this.client.send('/app/private-message', {}, JSON.stringify(message))
-
+    try {
+      this.client.send('/app/private-message', {}, JSON.stringify(message))
+    } catch (error) {
+      this.isConnected.next(false)
+    }
 
   }
   disconect(receiverId: string) {
     if (this.subscriptions[receiverId]) {
-      // Unsubscribe and remove the subscription
       this.subscriptions[receiverId].unsubscribe();
       delete this.subscriptions[receiverId];
     }
@@ -77,5 +89,9 @@ export class ChatService {
 
   public getMessages() {
     return this.messagesSubject;
+  }
+
+  getConnectionStatus(){
+    return this.isConnected.asObservable()
   }
 }

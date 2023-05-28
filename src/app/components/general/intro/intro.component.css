@@ -5,6 +5,12 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+@media (max-width: 767px) {
+  #intro-section {
+    height: auto;
+  }
+}
+
 .intro-headline {
   padding: 50px;
 }

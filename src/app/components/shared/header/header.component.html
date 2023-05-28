@@ -51,7 +51,7 @@
         </button>
       </div>
 
-      <div *ngIf="check != undefined" class="right-side">
+      <div *ngIf="check != undefined" class="right-side d-flex flex-row">
         <!-- User Menu -->
         <div class="header-widget">
           <div class="header-notifications user-menu">
@@ -101,17 +101,12 @@
             </div>
           </div>
         </div>
-        <span class="mmenu-trigger">
-          <button
-            class="hamburger hamburger--collapse"
-            type="button"
-            (click)="showSideBar()"
-          >
-            <span class="hamburger-box">
-              <span class="hamburger-inner"></span>
-            </span>
-          </button>
-        </span>
+          <div class="d-sm-block d-md-none mx-2">
+            <button class="side-bar" (click)="showSideBar()">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+
       </div>
     </div>
   </div>
