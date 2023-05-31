@@ -1,9 +1,8 @@
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
 import { Message } from 'src/app/classes/message';
-import { Seller } from 'src/app/classes/seller';
 import { User } from 'src/app/classes/user';
 import { ChatService } from 'src/app/services/chat.service';
 import { ChatlistService } from 'src/app/services/chatlist.service';

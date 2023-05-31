@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Seller } from 'src/app/classes/seller';
 import { SellerRequest } from 'src/app/classes/seller-request';
 import { User } from 'src/app/classes/user';
 import { SellerrequestService } from 'src/app/services/sellerrequest.service';

@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Job } from 'src/app/classes/job';
 import { Order } from 'src/app/classes/order';
-import { User } from 'src/app/classes/user';
-import { JobsService } from 'src/app/services/jobs.service';
 import { OrderService } from 'src/app/services/order.service';
 import { PaymentService } from 'src/app/services/payment.service';
 

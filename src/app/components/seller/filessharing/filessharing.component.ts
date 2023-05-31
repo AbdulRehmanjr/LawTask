@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { MessageService } from 'primeng/api';
 import { OrderService } from 'src/app/services/order.service';
-import * as fileSaver from 'file-saver'
-import { FileUploader } from 'src/app/classes/file';
-import { FileService } from 'src/app/services/file.service';
 import { Order } from 'src/app/classes/order';
 @Component({
   selector: 'app-filessharing',
@@ -24,7 +21,7 @@ export class FilessharingComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = JSON.parse(localStorage.getItem('user'))['userId']
-    this.fetchOrder()
+   this.fetchOrder()
 
   }
 
@@ -46,7 +43,4 @@ export class FilessharingComponent implements OnInit {
       }
     })
   }
-
-
-
 }

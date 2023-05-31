@@ -10,7 +10,7 @@
                 <div class="card__title">{{order.job?.jobName}}</div>
                 <div class="card__code">Seller : {{order.user?.userName}}</div>
                 <p class="card__text">Customer: {{order.customerName}}</p>
-                <p class="card__text"><i class="fa-solid fa-clock" ></i> {{order.startedDate}} - <i class="fa-solid fa-clock" ></i> {{order.endedDate}}</p>
+                <p class="card__text"><i class="fa-solid fa-clock"></i> {{order.startedDate}} - <i class="fa-solid fa-clock" ></i> {{order.endedDate}}</p>
                 <button class="btn btn-success card__btn" routerLink="/home/files-detail/{{order.id}}/{{order.customerId}}/{{order.user.userId}}">View</button>
               </div>
             </div>

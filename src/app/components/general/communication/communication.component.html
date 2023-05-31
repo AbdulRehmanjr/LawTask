@@ -89,9 +89,9 @@
             <i class="fa-solid fa-users"></i>
           </button>
           <button *ngIf="role=='SELLER'" (click)="confirmOrder()" class="btn btn-success">Confirm Order</button>
-          <button class="btn btn-danger float-left">
+          <!-- <button class="btn btn-danger float-left">
             <i class="fa-solid fa-trash"></i>
-          </button>
+          </button> -->
         </div>
         <div #chatContainer class="message-content-inner">
           <ng-container *ngFor="let message of oldMessages">
@@ -175,6 +175,9 @@
 
 </ng-container>
 <ng-template #nouser>
-  <app-notfound></app-notfound>
+  <div class="container-fluid margin-top">
+    <app-notfound></app-notfound>
+  </div>
+
 </ng-template>
 </section>

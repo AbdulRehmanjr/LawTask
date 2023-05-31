@@ -10,8 +10,6 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { SliderModule } from 'primeng/slider';
-import { ChipModule } from 'primeng/chip';
-import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
@@ -72,8 +70,6 @@ const routes: Routes = [
     TableModule,
     ToastModule,
     MessageModule,
-    MultiSelectModule,
-    ChipModule,
     SliderModule,
     FormsModule,
     ReactiveFormsModule,

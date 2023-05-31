@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Freelancer } from 'src/app/classes/freelancer';
-import { ChatlistService } from 'src/app/services/chatlist.service';
 import { FreelancerService } from 'src/app/services/freelancer.service';
 
 @Component({

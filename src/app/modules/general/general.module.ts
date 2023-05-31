@@ -13,14 +13,9 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { MessageModule } from 'primeng/message';
-import { SliderModule } from 'primeng/slider';
 import { ChipModule } from 'primeng/chip';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { RatingModule } from 'primeng/rating';
 import { SidebarModule } from 'primeng/sidebar';
 import { PaginatorModule } from 'primeng/paginator';
-import { BadgeModule } from 'primeng/badge';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -147,15 +142,10 @@ const routes: Routes = [
     TagModule,
     TableModule,
     DialogModule,
-    BadgeModule,
     PaginatorModule,
     SidebarModule,
-    RatingModule,
     CarouselModule,
-    SelectButtonModule,
-    SliderModule,
     ChipModule,
-    MultiSelectModule,
     SharedModule,
     ToastModule,
     BrowserAnimationsModule,

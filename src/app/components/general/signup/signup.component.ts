@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Chatlist } from 'src/app/classes/chatlist';
 import { User } from 'src/app/classes/user';
-import { ChatService } from 'src/app/services/chat.service';
 import { ChatlistService } from 'src/app/services/chatlist.service';
 import { SingupService } from 'src/app/services/singup.service';
 
