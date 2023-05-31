@@ -28,7 +28,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
     this.user = JSON.parse(localStorage.getItem('user'))
-    this.check = this.user['userId']
+    try {
+      this.check = this.user['userId']
+    } catch (error) {
+      console.log(error)
+    }
+
     this.userCheck()
     this.fetchUser()
   }
@@ -72,17 +77,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  logOut() {
+  async logOut() {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
     setInterval(
       () => {
-        location.reload()
+        location.reload();
       }, 1000
     )
-    this.router.navigate(['/home/'])
-
-
   }
   profileDropdown(): void {
 

@@ -14,9 +14,7 @@ export class IntroComponent implements OnInit {
 
   searchForm: FormGroup
   info:DashBoard
-
-  private location: string
-  private category: string = ''
+  private jobName: string = ''
   constructor(private form: FormBuilder,private router:Router,
     private dashboard:DashboardService,
     private message:MessageService) { }
@@ -55,10 +53,10 @@ export class IntroComponent implements OnInit {
     }
 
 
-    this.category = this.searchForm.get('category').value
+    this.jobName = this.searchForm.get('category').value
 
     const queryParams = {
-      category:this.category.trim(),
+      jobName:this.jobName.trim(),
     }
 
     this.router.navigate([`/home/search`],{queryParams})

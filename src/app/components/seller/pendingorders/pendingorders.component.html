@@ -1,7 +1,7 @@
-<div class="container-fluid mt-sm-3 mt-md-5">
+<div class="container-fluid margin-top">
   <p-toast position="bottom-right"></p-toast>
   <div class="row">
-    <div class="col-md-8 offset-md-2 mt-sm-3 mt-md-5">
+    <div class="col-md-8 offset-md-2">
       <p-table
         #dt
         styleClass="p-datatable-gridlines"
@@ -55,9 +55,11 @@
             <th style="width: 5rem" pSortableColumn="user?.userName">
               Seller <p-sortIcon field="user?.userName"></p-sortIcon>
             </th>
+            <th>Status</th>
             <th style="width: 5rem" >
               File
             </th>
+
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-order>

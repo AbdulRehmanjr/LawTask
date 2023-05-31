@@ -6,7 +6,7 @@ import { LoginComponent } from './components/general/login/login.component';
 import { SignupComponent } from './components/general/signup/signup.component';
 import { AdminModule } from './modules/admin/admin.module';
 import { SharedModule } from 'primeng/api';
-import { NotfoundComponent } from './components/general/notfound/notfound.component';
+import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 import { AuthGuard } from './security/auth.guard';
 
 

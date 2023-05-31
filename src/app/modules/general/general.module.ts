@@ -42,7 +42,6 @@ import { JobsListComponent } from 'src/app/components/seller/jobs-list/jobs-list
 import { SearchComponent } from '../../components/general/search/search.component';
 import { CommunicationComponent } from '../../components/general/communication/communication.component';
 import { ProfileComponent } from '../../components/general/profile/profile.component';
-import { NotfoundComponent } from '../../components/general/notfound/notfound.component';
 import { MakeOrderComponent } from '../../components/general/make-order/make-order.component';
 import { OrderhistoryComponent } from '../../components/general/orderhistory/orderhistory.component';
 import { ConfirmorderComponent } from '../../components/general/confirmorder/confirmorder.component';
@@ -132,7 +131,6 @@ const routes: Routes = [
     SearchComponent,
     CommunicationComponent,
     ProfileComponent,
-    NotfoundComponent,
     MakeOrderComponent,
     OrderhistoryComponent,
     ConfirmorderComponent,

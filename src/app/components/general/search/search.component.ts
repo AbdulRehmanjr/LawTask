@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.queryParams.subscribe(params => {
-      this.jobName = params['category'];
+      this.jobName = params['jobName'];
     });
     this.fetchJobs()
     this.createForm()
@@ -86,16 +86,26 @@ export class SearchComponent implements OnInit {
 
     const job = this.search.get('job').value
 
-    this.jobService.getJobsByJobName(job).subscribe({
-      next: (response: Job[]) => {
-        this.jobs = response
-      },
-      error: (error: any) => {
-        this.isFound = false
-        this.message.add({ severity: 'error', summary: 'error', detail: 'No Job or service found.' })
-      },
-      complete: () => {
-      }
-    })
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { jobName: job.trim() },
+      queryParamsHandling: 'merge',
+      skipLocationChange: false
+    }).then(() => {
+      this.fetchJobs();
+    });
+    // this.jobService.getJobsByJobName(job).subscribe({
+    //   next: (response: Job[]) => {
+    //     this.isFound = true
+    //     this.jobs = response
+    //   },
+    //   error: (error: any) => {
+    //     this.isFound = false
+    //     this.message.add({ severity: 'error', summary: 'error', detail: 'No Job or service found.' })
+    //   },
+    //   complete: () => {
+    //   }
+    // })
   }
 }

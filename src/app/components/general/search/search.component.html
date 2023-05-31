@@ -1,19 +1,5 @@
-<section class="container margin">
+<section class="container margin-top">
   <div class="row">
-    <div class="col-sm-4">
-      <h3>Search</h3>
-      <form [formGroup]="search" class="row asmr-form" (ngSubmit)="onSubmit()">
-        <span class="d-flex flex-column">
-          <input
-            type="text"
-            placeholder="Jobs"
-            formControlName="job"
-            class="asmr-input"
-          />
-        </span>
-        <button class="mx-auto mt-2 btn btn-success asmr-button">Search</button>
-      </form>
-    </div>
     <ng-container *ngIf="isFound; else notFound">
       <div class="col-sm-12">
         <h3 class="page-title">Search Results</h3>
@@ -70,6 +56,18 @@
       </div>
     </ng-container>
     <ng-template #notFound>
+
+       <form [formGroup]="search" (ngSubmit)="onSubmit()" style="max-width: 300px; margin: 0 auto;">
+        <span class="d-flex flex-column">
+          <input
+            type="text"
+            placeholder="Jobs"
+            formControlName="job"
+            class="form-controle"
+          />
+        </span>
+        <button class="btn btn-success mt-3">Search</button>
+      </form>
       <app-notfound></app-notfound>
     </ng-template>
   </div>

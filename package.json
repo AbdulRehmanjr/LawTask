@@ -36,6 +36,8 @@
     "rxjs": "~7.5.0",
     "sockjs-client": "^1.6.1",
     "stripe-angular": "^1.9.3",
+    "three": "^0.152.2",
+    "three-css3drenderer": "^1.0.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

@@ -1,3 +1,9 @@
 h4{
   font-size:20px;
 }
+/* .fun-fact-icon{
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+} */
+.fun-fact{
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+}

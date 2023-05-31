@@ -41,7 +41,11 @@ export class UserService {
     formData.append('file', file)
     formData.append('user',JSON.stringify(user))
 
-    return this.http.post(`${this.URL}/edit`, formData,{observe:'body'})
+    return this.http.post(`${this.URL}/edit/file`, formData,{observe:'body'})
   }
 
+  updateUserNFile(user:User){
+
+    return this.http.post(`${this.URL}/edit`, user,{observe:'body'})
+  }
 }

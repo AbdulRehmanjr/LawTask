@@ -20,18 +20,17 @@
   </div>
 </section>
 
-<section id="popular-freelancer">
+
+<section id="popular-freelancer" *ngIf="freelancers">
   <div class="row">
     <div class="col-xl-12">
       <!-- Section Headline -->
       <div class="row">
         <div class="col-sm-12 text-center mt-4 mb-4">
-          <h3>Highest Rated Freelancers</h3>
+          <h3 class="heading">Highest Rated Freelancers</h3>
         </div>
 
-        <!-- <a href="freelancers-grid-layout.html" class="headline-link"
-          >Browse All Freelancers</a
-        > -->
+
       </div>
     </div>
     <div class="col-xl-12">
@@ -43,7 +42,7 @@
         [responsiveOptions]="responsiveOptions"
       >
         <ng-template let-freelancer pTemplate="item">
-          <div class="freelancers-container">
+          <div class="freelancers-container m-auto">
             <!--Freelancer -->
             <div class="freelancer">
               <!-- Overview -->

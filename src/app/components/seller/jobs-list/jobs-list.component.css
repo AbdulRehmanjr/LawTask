@@ -46,6 +46,7 @@
 
 ::ng-deep .p-toolbar {
   background-color: #22c55e;
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
 }
 
 ::ng-deep .p-datatable .p-datatable-thead > tr > th {
@@ -59,4 +60,7 @@
 }
 ::ng-deep .p-dialog{
   top:10%;
+}
+::ng-deep .p-datatable{
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
 }

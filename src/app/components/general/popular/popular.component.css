@@ -1,11 +1,14 @@
 
-section{
-    border-bottom:  2px solid #999999 ;
-}
 .heading{
   color: #000;
   margin:20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:36px;
+  font-weight: 700;
 }
+
+
+
 a{
   text-decoration: none;
   cursor:pointer;
@@ -65,10 +68,11 @@ a{
   outline: none;
   border-radius: 10px;
   background-color: #198754;
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
 }
 
 .category-box:hover {
-	background-color: #63a423a0 ;
+	background-color: #63a423a0;
 	color: #fff;
 }
 

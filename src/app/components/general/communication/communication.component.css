@@ -96,7 +96,7 @@ a,a:hover{
   font-size:20px;
   font-weight: 600px;
 } */
-.condition {
+/* .condition {
   list-style-type: none;
   padding: 0;
 }
@@ -116,7 +116,7 @@ a,a:hover{
 }
 
 .condition li::before {
-  content: "\2718"; /* Unicode for cross symbol */
+  content: "\2718";
   position: absolute;
   left: 0;
   top: 50%;
@@ -128,14 +128,14 @@ a,a:hover{
   font-family: Arial, sans-serif;
   font-weight: bold;
   font-size: 14px;
-  color: #ff0000; /* Error sign color */
+  color: #ff0000;
 }
 
 .condition li i {
   font-style: normal;
   font-weight: bold;
   color: #888888;
-}
+} */
 
 .asmr-container {
   background-color: #f5f5f5;

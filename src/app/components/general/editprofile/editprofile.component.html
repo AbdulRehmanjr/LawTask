@@ -15,13 +15,6 @@
 
         <div class="content">
           <div class="row">
-            <!-- <div class="col-sm-2 col-md-3  mx-2 px-2 mt-4 mb-2">
-              <img
-                class="profile-pic"
-                src="assets/images/person/person1.jpg"
-                alt="profile picture"
-              />
-            </div> -->
             <div class="col-sm-2 col-md-3 mx-2 px-2 mt-4 mb-2">
               <label for="edit-image-input" class="edit-image-label">
                 <input type="file" id="edit-image-input" class="edit-image-input" (change)="onChange($event)"/>
@@ -63,10 +56,13 @@
                     formControlName="email"
                       type="text"
                       class="with-border"
-
                     />
-                    <!-- [disabled]="isDisabled" [value]="user?.email" -->
                   </div>
+                </div>
+                <div class="col-xl-6">
+                  <button class="btn btn-success" routerLink="/home/forgot-password">
+                    Change Password
+                  </button>
                 </div>
               </div>
             </div>

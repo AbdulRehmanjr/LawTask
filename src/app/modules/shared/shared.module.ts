@@ -5,16 +5,19 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { HeaderComponent } from 'src/app/components/shared/header/header.component';
 import { SubscriptioncardComponent } from 'src/app/components/shared/subscriptioncard/subscriptioncard.component';
+import { NotfoundComponent } from 'src/app/components/shared/notfound/notfound.component';
 
 import { DialogModule } from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { SidebarModule } from 'primeng/sidebar';
+import { NotFoundError } from 'rxjs';
 
 
 @NgModule({
   declarations: [
+    NotfoundComponent,
     SubscriptioncardComponent,
     HeaderComponent
   ],
@@ -29,6 +32,7 @@ import { SidebarModule } from 'primeng/sidebar';
     CommonModule,
   ],
   exports:[
+    NotfoundComponent,
     SubscriptioncardComponent,
     HeaderComponent
   ],

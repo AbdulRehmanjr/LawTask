@@ -1,19 +1,29 @@
-<div class="container-fluid mt-sm-3 mt-md-5">
-  <p-toast position="bottom-right"></p-toast>
-  <div class="row">
-    <div *ngFor="let order of orders" class="col-sm-4 mt-3">
-      <div class="cards">
-        <div class="cards__item">
-          <div class="card">
-            <div class="card__content">
-              <div class="card__title">{{order.job?.jobName}}</div>
-              <div class="card__code">Seller : {{order.user?.userName}}</div>
-              <p class="card__text">{{order.customerName}}</p>
-              <p class="card__text"><i class="fa-solid fa-clock" ></i> {{order.startedDate}} - <i class="fa-solid fa-clock" ></i> {{order.endedDate}}</p>
-              <button class="btn btn-info card__btn" routerLink="/seller-dashboard/files-detail/{{order.id}}/{{order.customerId}}/{{order.user.userId}}">View</button>
+<ng-container *ngIf="orders else notfound">
+  <div class="container-fluid margin-top">
+    <p-toast position="bottom-right"></p-toast>
+    <div class="row">
+      <div *ngFor="let order of orders" class="col-sm-4 mt-3">
+        <div class="cards">
+          <div class="cards__item">
+            <div class="card">
+              <div class="card__content">
+                <div class="card__title">{{order.job?.jobName}}</div>
+                <div class="card__code">Seller : {{order.user?.userName}}</div>
+                <p class="card__text">Customer: {{order.customerName}}</p>
+                <p class="card__text"><i class="fa-solid fa-clock" ></i> {{order.startedDate}} - <i class="fa-solid fa-clock" ></i> {{order.endedDate}}</p>
+                <button class="btn btn-success card__btn" routerLink="/home/files-detail/{{order.id}}/{{order.customerId}}/{{order.user.userId}}">View</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+    </div>
   </div>
-</div>
+  </div>
+
+</ng-container>
+
+<ng-template #notfound>
+  <app-notfound></app-notfound>
+</ng-template>
+
+
