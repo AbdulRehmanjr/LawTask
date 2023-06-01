@@ -82,9 +82,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     localStorage.removeItem('token')
     setInterval(
       () => {
-        location.reload();
+        this.router.navigate(['/home'])
       }, 1000
     )
+
   }
   profileDropdown(): void {
 

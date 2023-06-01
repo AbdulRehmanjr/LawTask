@@ -16,7 +16,7 @@
           <div class="fun-fact">
             <div class="fun-fact-text">
               <span>Total Jobs</span>
-              <h4>{{ userDashboard?.jobs }}</h4>
+              <h4> {{ userDashboard?.jobs !== null && userDashboard?.jobs !== undefined ? userDashboard?.jobs : 0 }}</h4>
             </div>
             <div class="fun-fact-icon">
               <i class="fas fa-cart-shopping" style="color: #efa80f"></i>
@@ -27,7 +27,7 @@
           <div class="fun-fact">
             <div class="fun-fact-text">
               <span>Total Revenue</span>
-              <h4>{{ userDashboard?.revenue | currency : "USD" }}</h4>
+              <h4>{{ userDashboard?.revenue !== null && userDashboard?.revenue !== undefined ? userDashboard?.revenue : 0  | currency:"USD"}}</h4>
             </div>
             <div class="fun-fact-icon">
               <i class="fa-solid fa-sack-dollar" style="color: #00ff00"></i>
@@ -39,7 +39,7 @@
           <div class="fun-fact">
             <div class="fun-fact-text">
               <span>Subscription Type</span>
-              <h4>{{ userDashboard?.sellerType }}</h4>
+              <h4>{{ userDashboard?.sellerType !== null && userDashboard?.sellerType !== undefined ? userDashboard?.sellerType : "NONE"}}</h4>
             </div>
             <div class="fun-fact-icon">
               <i class="fa-solid fa-star" style="color: #e7d5a2"></i>
