@@ -77,15 +77,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  async logOut() {
+  logOut() {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
     setInterval(
       () => {
-        this.router.navigate(['/home'])
+        location.reload()
       }, 1000
     )
-
+    this.router.navigate(['/home/'])
   }
   profileDropdown(): void {
 

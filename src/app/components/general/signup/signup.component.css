@@ -1,46 +1,42 @@
-.error-message{
-  color:red;
-}
 .card{
-
-  background-color: rgb(245, 245, 245);
-
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
 }
-
-
+img{
+width:100%;
+height:550px;
+border: none;
+border-radius: 10px;
+}
+.margin-top{
+  margin-top: 6%;
+}
 a{
 color:#39FF14;
 }
-
+.error-message{
+color: red;
+font-size: 16px;
+}
 input{
 width: 400px;
-background-color: #fff;
-}
-input[type=email]{
-background-color: #fff;
+background-color: #f5f5f5;
+border: 1px solid #4CAF50;
+border-radius: 9px;
 }
 .button {
-display: inline-block;
-padding: 12px 24px;
-background-color: #4CAF50;
-color: #FFFFFF;
-font-size: 16px;
-font-weight: bold;
-border: none;
-border-radius: 8px;
-box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-transition: transform 0.3s ease-in-out;
+  display: inline-block;
+  padding: 12px 24px;
+  background:linear-gradient(45deg,#04b25c, #1eec00);
+  color: #FFFFFF;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 34px;
 }
 
-.button:hover {
-transform: translateY(-4px);
-box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
-}
-
-.button:active {
-transform: translateY(0);
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
 .icon {
 display: inline-block;
 font-size: 24px;
@@ -117,4 +113,21 @@ transition: color 0.3s ease;
 
 .forgot-password-link:hover {
 color: #2E8B57;
+}
+::ng-deep .p-password {
+  display: block !important;
+  background-color: #f5f5f5;
+  border: 1px solid #4CAF50;
+  border-radius: 9px;
+}
+
+::ng-deep .p-inputtext:enabled:focus{
+
+  outline: none;
+  box-shadow:  none;
+}
+
+::ng-deep .p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label textarea:focus ~ label, .p-float-label textarea.p-filled ~ label, .p-float-label .p-inputwrapper-focus ~ label, .p-float-label .p-inputwrapper-filled ~ label {
+  top: -1rem;
+  font-size: 12px;
 }

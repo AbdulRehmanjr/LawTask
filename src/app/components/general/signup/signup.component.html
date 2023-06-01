@@ -1,126 +1,139 @@
 <div class="container-fluid bg-grey">
-  <div class="row mt-4 d-flex justify-content-center align-items-center">
+  <div class="row d-flex justify-content-center align-items-center margin-top">
     <div class="col-md-10">
       <p-toast></p-toast>
       <div class="row card" style="border: none; border-radius: 10px">
         <div class="col-md-6 offset-sm-3 bg">
           <div class="card-body p-4 text-black">
-            <div class="d-flex align-items-center mb-3 pb-1">
-              <i class="fas fa-cubes fa-2x me-3 icon" ></i>
+            <div class="d-flex justify-content-center mt-5 mb-5 pb-1">
+              <i class="fas fa-cubes fa-2x me-3 icon"></i>
               <span class="h1 fw-bold mb-0 heading">Law Tasks</span>
             </div>
-            <form [formGroup]="SignupForm" (ngSubmit)="OnSubmit()" vali>
-              <div class="form-outline">
-                <input
+            <form [formGroup]="SignupForm" (ngSubmit)="OnSubmit()" >
+
+              <div class="form-outline mb-4">
+                <span class="p-float-label">
+                  <input
                   type="text"
                   placeholder="Full Name"
                   formControlName="username"
-                  class="form-control form-control-lg"
+                  class="form-control form-control-lg w-100"
                   required
                 />
-                <label class="form-label">User Name</label>
+                <label class="form-label">Full Name</label>
+                </span>
+
+                <div
+                  *ngIf="
+                    SignupForm.get('username').invalid &&
+                    SignupForm.get('username').touched
+                  "
+                  class="error-message"
+                >
+                  Full Name is required
+                </div>
               </div>
-              <div
-                *ngIf="
-                  SignupForm.get('username').invalid &&
-                  SignupForm.get('username').touched
-                "
-                class="error-message"
-              >
-                Username is required
-              </div>
+
               <!-- Email -->
-              <div class="form-outline">
-                <input
+              <div class="form-outline mb-4">
+                <span class="p-float-label">
+                  <input
                   type="email"
                   formControlName="email"
                   placeholder="Enter your Email"
-                  class="form-control form-control-lg"
+                  class="form-control form-control-lg w-100"
                   required
                 />
                 <label class="form-label">Email</label>
-              </div>
+                </span>
 
-              <div
-                *ngIf="
-                  SignupForm.get('email').invalid &&
-                  SignupForm.get('email').touched
-                "
-                class="error-message"
-              >
-                Email is required
+                <div
+                  *ngIf="
+                    SignupForm.get('email').invalid &&
+                    SignupForm.get('email').touched
+                  "
+                  class="error-message"
+                >
+                  Email is required
+                </div>
               </div>
 
               <div class="row">
                 <div class="col-lg-6">
                   <!-- password -->
-                  <div class="form-outline">
-                    <p-password
+                  <div class="form-outline mb-4">
+                    <span class="p-float-label">
+                      <p-password
                       id="password"
                       formControlName="password"
                       [feedback]="true"
                       [toggleMask]="true"
                     ></p-password>
                     <label class="form-label">Enter the Password</label>
-                  </div>
-                  <div
-                    *ngIf="
-                      SignupForm.get('password').invalid &&
-                      SignupForm.get('password').touched
-                    "
-                    class="error-message"
-                  >
-                    <div *ngIf="SignupForm.get('password').errors['required']">
-                      Password is required
+                    </span>
+
+                    <div
+                      *ngIf="
+                        SignupForm.get('password').invalid &&
+                        SignupForm.get('password').touched
+                      "
+                      class="error-message"
+                    >
+                      <div
+                        *ngIf="SignupForm.get('password').errors['required']"
+                      >
+                        Password is required
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-lg-6">
                   <!-- confirm -->
-                  <div class="form-outline">
-                    <p-password
+                  <div class="form-outline mb-4">
+                    <span class="p-float-label">
+                      <p-password
                       id="password"
                       formControlName="confirmPassword"
                       [feedback]="false"
                       [toggleMask]="true"
                     ></p-password>
                     <label class="form-label">Confirm Password</label>
-                  </div>
+                    </span>
 
-                  <div
-                    *ngIf="
-                      SignupForm.get('confirmPassword').invalid &&
-                      SignupForm.get('confirmPassword').touched
-                    "
-                    class="error-message"
-                  >
-                    Confirm password is required
-                  </div>
-                  <div
-                    *ngIf="
-                      SignupForm.get('confirmPassword').touched &&
-                      SignupForm.get('confirmPassword').value !=
-                        SignupForm.get('password').value
-                    "
-                    class="error-message"
-                  >
-                    Confirm password not matched
+                    <div
+                      *ngIf="
+                        SignupForm.get('confirmPassword').invalid &&
+                        SignupForm.get('confirmPassword').touched
+                      "
+                      class="error-message"
+                    >
+                      Confirm password is required
+                    </div>
+                    <div
+                      *ngIf="
+                        SignupForm.get('confirmPassword').touched &&
+                        SignupForm.get('confirmPassword').value !=
+                          SignupForm.get('password').value
+                      "
+                      class="error-message"
+                    >
+                      Confirm password not matched
+                    </div>
                   </div>
                 </div>
               </div>
               <!-- image -->
-              <div class="form-outline">
+              <div class="form-outline mb-4">
                 <input
                   type="file"
                   formControlName="profilePicture"
                   (change)="onChange($event)"
-                  class="form-control form-control-lg"
+                  class="form-control form-control-lg w-100"
                   required
                 />
                 <label class="form-label">Profile Picture</label>
-              </div>
-              <div
+                <div
                 *ngIf="
                   SignupForm.get('profilePicture').invalid &&
                   SignupForm.get('profilePicture').touched
@@ -129,7 +142,9 @@
               >
                 Profile picture is required
               </div>
-              <div class="single-input-item">
+              </div>
+
+              <div class="single-input-item text-center">
                 <button type="submit" class="button">Submit</button>
               </div>
             </form>
