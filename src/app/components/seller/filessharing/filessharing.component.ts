@@ -11,7 +11,7 @@ import { Order } from 'src/app/classes/order';
 export class FilessharingComponent implements OnInit {
 
 
-  orders:Order[] = undefined
+  orders:Order[]
   private id:string = ''
   constructor(
     private orderService:OrderService,

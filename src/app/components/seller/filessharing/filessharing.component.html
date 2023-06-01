@@ -1,8 +1,8 @@
-<ng-container *ngIf="orders!=undefined; else notfound">
-  <div class="container-fluid margin-top">
+<ng-container *ngIf="orders else notfound">
+  <div class="container margin-top">
     <p-toast position="bottom-right"></p-toast>
     <div class="row">
-      <div *ngFor="let order of orders" class="col-sm-4 mt-3">
+      <div *ngFor="let order of orders" class="col-md-4 mt-3">
         <div class="cards">
           <div class="cards__item">
             <div class="card">
