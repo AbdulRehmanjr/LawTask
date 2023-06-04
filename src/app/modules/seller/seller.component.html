@@ -1,7 +1,7 @@
 <div class="row sticky">
   <shared-header></shared-header>
 </div>
-<section class="row">
+<div class="row">
   <aside class="d-none d-md-block col-md-2">
     <seller-sidebar></seller-sidebar>
   </aside>
@@ -11,12 +11,12 @@
     </button>
   </div>
   <main class="col-md-10">
-
     <router-outlet></router-outlet>
   </main>
-</section>
+</div>
+
 <p-sidebar
-class="d-sm-block d-md-none margin-top"
+class="d-sm-block d-md-none sidebar-mobile"
 [(visible)]="sidebarVisible"
 position="left"
 [blockScroll]="false"

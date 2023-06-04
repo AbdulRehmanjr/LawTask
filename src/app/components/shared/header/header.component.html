@@ -52,7 +52,80 @@
       </div>
 
       <div *ngIf="check != undefined" class="right-side d-flex flex-row">
-        <!-- User Menu -->
+        <div class="header-widget hide-on-mobile">
+					<!-- Notifications -->
+					<div class="header-notifications">
+
+						<!-- Trigger -->
+						<div class="header-notifications-trigger">
+							<a  href="#" class="notify" (click)="readNotification()">
+                <ng-container *ngIf="notCount == 0 else hasCount">
+                  <i  class="fa-solid fa-bell"></i>
+                </ng-container>
+                <ng-template #hasCount>
+                  <i pBadge value="{{notCount}}" severity="danger" class="fa-solid fa-bell"></i>
+                </ng-template>
+
+              </a>
+						</div>
+
+						<!-- Dropdown -->
+						<div class="header-notifications-dropdown">
+
+							<div class="header-notifications-headline">
+								<h4>Notifications</h4>
+								<button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left">
+									<i class="mx-3 fa-solid fa-square-check" style="color:#43CC87;"></i>
+								</button>
+							</div>
+
+							<div class="header-notifications-content">
+								<div class="header-notifications-scroll" data-simplebar>
+                  <ng-container *ngIf="notifications else no" >
+                    <ul >
+                      <li class="notifications-not-read" *ngFor="let notification of notifications">
+                        <a href="#">
+                          <span class="notification-icon"><i class="fa-solid fa-circle-info" style="color:#43CC87;"></i></span>
+                          <span class="notification-text">
+                            {{notification.content}}
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </ng-container>
+
+                  <ng-template #no>
+                    <ul>
+                      <li class="notifications-not-read">
+                        <a href="#" aria-disabled="true">
+                          <span class="notification-icon"><i class="fa-solid fa-circle-exclamation" style="color:red;"></i></span>
+                          <span class="notification-text">
+                            No Notification Yet.
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+
+                  </ng-template>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+          <button class="btn btn-msg"v routerLink="/home/messages">
+            <ng-container *ngIf="count == 0 else hasMessage">
+              <i  class="fa-solid fa-message"></i>
+            </ng-container>
+            <ng-template #hasMessage>
+              <i pBadge value="{{count}}" severity="danger" class="fa-solid fa-message"></i>
+            </ng-template>
+
+
+
+          </button>
+				</div>
+
         <div class="header-widget">
           <div class="header-notifications user-menu">
             <div class="header-notifications-trigger">
@@ -75,25 +148,36 @@
                       width="50"
                       height="50"
                       src="data:image/jpeg; base64, {{
-                        userResponse.profilePicture
+                        userResponse?.profilePicture
                       }}"
                       alt="profile image"
                     />
                   </div>
-                  <div class="user-name">{{ userResponse?.userName }}</div>
-                </div>
-              </div>
+                  <div class="name d-flex flex-column mx-3 p-1">
+                    <div class="user-name">{{ userResponse?.userName }}</div>
+                  <div class="user-type">{{ userResponse?.role?.roleName | titlecase}}</div>
+                  </div>
 
+                </div>
+
+              </div>
               <ul class="user-menu-small-nav">
                 <li>
                   <a routerLink="/home/edit-profile"
-                    ><i class="fas fa-user"></i>Edit Profiles</a
+                  class="profile-links"
+                    ><i class="fa-solid fa-cube mx-3"></i>Dashboard</a
+                  >
+                </li>
+                <li>
+                  <a routerLink="/home/edit-profile"
+                  class="profile-links"
+                    ><i class="fa-solid fa-gear mx-3"></i>Settings</a
                   >
                 </li>
 
                 <li>
-                  <a (click)="logOut()">
-                    <i class="fas fa-sign-in-alt"></i>
+                  <a (click)="logOut()" class="profile-links">
+                    <i class="fa-solid fa-power-off mx-3"></i>
                     Logout</a
                   >
                 </li>

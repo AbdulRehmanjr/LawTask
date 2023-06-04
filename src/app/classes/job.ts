@@ -1,3 +1,4 @@
+import { Category } from "./category"
 import { User } from "./user"
 
 export class Job {
@@ -8,4 +9,5 @@ export class Job {
   jobType:string
   jobPrice:number
   user:User
+  category:Category
 }

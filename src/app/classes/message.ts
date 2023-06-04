@@ -7,4 +7,5 @@ export class Message{
   receiverName:string
   date:string
   type:string
+  isRead:boolean
 }

@@ -1,9 +1,12 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as $ from 'jquery'
 import { MessageService } from 'primeng/api';
+import { Notification } from 'src/app/classes/notification';
 import { User } from 'src/app/classes/user';
+import { ChatlistService } from 'src/app/services/chatlist.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,27 +23,29 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isAdmin: boolean = false
   profile: string = ''
   private user: any
-  userResponse:User = new User()
+  userResponse: User
   sidebarVisible: boolean = false
+  count: number = 0
+  notCount: number = 0
+  notifications: Notification[]
   constructor(private router: Router, private userService: UserService,
-    private messageService:MessageService) { }
+    private messageService: MessageService,
+    private chatListService: ChatlistService,
+    private notificationService: NotificationService) { }
 
   ngOnInit(): void {
 
     this.user = JSON.parse(localStorage.getItem('user'))
-    try {
-      this.check = this.user['userId']
-    } catch (error) {
-      console.log(error)
-    }
-
+    this.check = this.user['userId']
     this.userCheck()
     this.fetchUser()
+    this.fetchMessagesCount()
+    this.fetchNotifcations()
   }
   ngAfterViewInit(): void {
     this.profileDropdown()
   }
-  showSideBar(){
+  showSideBar() {
     this.sidebarVisible = true
   }
 
@@ -49,16 +54,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       next: (response: User) => {
         this.userResponse = response
         this.messageService.add({
-          severity:'success',
-          summary:'Success',
-          detail:'Login SuccessFull'
+          severity: 'success',
+          summary: 'Success',
         })
       },
-      error: (_error:any) => {
+      error: (_error: any) => {
         this.messageService.add({
-            severity:'error',
-            summary:'Error',
-            detail:'User fetching error'
+          severity: 'error',
+          summary: 'Error',
+          detail: 'User fetching error'
         })
       },
       complete: () => {
@@ -77,6 +81,35 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
+  fetchMessagesCount() {
+    this.chatListService.getMessageCount(this.check).subscribe({
+      next: (response: number) => {
+        this.count = response
+      },
+      error: (error: any) => {
+
+      },
+      complete: () => { }
+    })
+  }
+  fetchNotifcations() {
+    this.notificationService.getAllNotifications(this.check).subscribe({
+      next: (response: Notification[]) => {
+        this.notifications = response
+      },
+      error: (error: any) => {
+
+      },
+      complete: () => {
+        this.notifications = this.notifications.sort((a, b) => b.id - a.id)
+        this.notCount = this.notifications.length
+      }
+    })
+  }
+  readNotification(){
+    this.notCount = 0
+    //TODO:  backend api
+  }
   logOut() {
     localStorage.removeItem('user')
     localStorage.removeItem('token')

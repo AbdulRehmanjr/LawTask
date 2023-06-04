@@ -21,6 +21,9 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
+import { BadgeModule } from 'primeng/badge';
+import {RatingModule} from 'primeng/rating'
+
 // custom modules
 import { SharedModule } from '../shared/shared.module';
 
@@ -137,6 +140,8 @@ const routes: Routes = [
     ForgotpassordComponent,
   ],
   imports: [
+    RatingModule,
+    BadgeModule,
     ButtonModule,
     ToolbarModule,
     TagModule,

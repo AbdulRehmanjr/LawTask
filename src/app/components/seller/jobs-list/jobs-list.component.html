@@ -22,9 +22,8 @@
           #dt
           styleClass="p-datatable-gridlines"
           [value]="jobs"
-          [rows]="10"
+          [rows]="5"
           [paginator]="true"
-          [tableStyle]="{ 'min-width': '50rem' }"
           [globalFilterFields]="['jobName', 'jobType', 'description', 'status']"
           [rowHover]="true"
           dataKey="id"
@@ -54,7 +53,7 @@
               </th>
               <th style="width: 13rem">Description</th>
 
-              <!-- <th width="width:10rem"></th> -->
+              <th></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-job>
@@ -71,6 +70,10 @@
               <td>{{ job.jobPrice | currency : "USD" }}</td>
               <td>{{job.jobType}}</td>
               <td>{{ job.description }}</td>
+              <td >
+                <!-- <button class="btn btn-danger mx-3"><i class="fa-solid fa-trash"></i></button> -->
+                <button (click)="editJobDialog(job)" class="btn btn-warning"><i class="fa-solid fa-pen" style="color:#fff;"></i></button>
+              </td>
             </tr>
           </ng-template>
           <ng-template pTemplate="summary">
@@ -90,6 +93,92 @@
             <app-add-job (jobAdded)="hideDialog()"></app-add-job>
           </ng-template>
         </p-dialog>
+        <p-dialog
+        [(visible)]="editDialog"
+        header="Edit Job"
+        [modal]="true"
+        styleClass="dialog-style"
+        style="z-index:  9999999990;"
+      >
+        <ng-template pTemplate="body">
+          <form  #orderForm="ngForm" (ngSubmit)="editSubmit()">
+            <div class="input-with-icon-left">
+                <i class="fa-solid fa-user-tie"></i>
+                <input
+                  type="text"
+                  name="jobName"
+                  class="input-text with-border"
+                  [(ngModel)]="editJob.jobName"
+                  #jobName="ngModel"
+                  id="jobName"
+                  required="true"
+                />
+            </div>
+            <div
+                *ngIf="jobName.invalid && jobName.touched"
+                class="error-message"
+            >
+                Job Name is required
+            </div>
+            <div class="input-with-icon-left">
+                <i class="fa-solid fa-envelope"></i>
+                <input
+                  type="number"
+                  name="price"
+                  class="input-text with-border"
+                  [(ngModel)]="editJob.jobPrice"
+                  #price="ngModel"
+                  id="price"
+                  required="true"
+                />
+            </div>
+            <div
+                *ngIf="price.invalid && price.touched"
+                class="error-message"
+            >
+                Price is required
+            </div>
+            <div class="input-with-icon-left">
+              <i class="fa-solid fa-dollar-sign"></i>
+                <p-selectButton [options]="stateOptions" name="option" [(ngModel)]="editJob.jobType" #jobType="ngModel" required="true" optionLabel="label" optionValue="value"></p-selectButton>
+            </div>
+            <div
+                *ngIf="jobType.invalid && jobType.touched"
+                class="error-message"
+            >
+                Job Type is required
+            </div>
+            <div class="input-with-icon-left">
+              <textarea
+              name="description"
+              cols="10"
+              placeholder="Message"
+              [(ngModel)]="editJob.description"
+              #description="ngModel"
+              class="with-border"
+              required="true"
+          ></textarea>
+            </div>
+
+            <div
+                *ngIf="description.invalid && description.touched"
+                class="error-message"
+            >
+                description is required
+            </div>
+
+            <!-- Button -->
+            <button
+              class="btn btn-success margin-top-35 full-width button-sliding-icon ripple-effect"
+              type="submit"
+              [disabled]="orderForm.invalid"
+            >
+              Make an Offer
+              <i class="icon-material-outline-arrow-right-alt"></i>
+            </button>
+        </form>
+        </ng-template>
+      </p-dialog>
       </div>
     </div>
   </div>

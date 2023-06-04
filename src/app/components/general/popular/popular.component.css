@@ -1,14 +1,21 @@
 /* @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500&display=swap'); */
 .heading{
   color: #000;
-  margin:20px;
+  margin-top:50px;
+  margin-bottom: 0;
+  padding-top: 30px;
+  padding-bottom: 0;
   font-family: 'Nunito', sans-serif;
   font-size:36px;
   font-weight: 700;
 }
-
-
-
+.heading2{
+  color: #000;
+  margin-top: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size:36px;
+  font-weight: 700;
+}
 a{
   text-decoration: none;
   cursor:pointer;
@@ -176,11 +183,12 @@ a{
 	margin-right: 3px;
 	color: #777;
 }
-/* .btn{
-  font-size: 16px;
-  background-color: #F0F0F0;
-  font-weight: 500;
-} */
+.freelancer-avatar img{
+  height: 100px;
+  width:100px;
+  border:none;
+  border-radius: 50%;
+}
 
 
 ::ng-deep .p-rating .p-rating-icon.pi-star-fill{
@@ -195,3 +203,15 @@ a{
     background: #EFF6FF;
     color: #1D4ED8;
 } */
+
+.rating-num{
+  background-color: #1bca1b;
+  color:#fff;
+  font-weight: 700;
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  padding-top: 3px;
+  border:none;
+  border-radius: 5px;
+}

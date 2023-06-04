@@ -28,4 +28,10 @@ export class JobsService {
     let params = new HttpParams().set('jobName', jobName)
     return this.http.get(`${this.baseUrl}/search`,{params:params,observe:'body'})
   }
+
+  editJob(job:Job){
+    return this.http.post(`${this.baseUrl}/edit`,job,{
+      observe:'body'
+    })
+  }
 }

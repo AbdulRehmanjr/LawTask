@@ -12,7 +12,7 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { SidebarModule } from 'primeng/sidebar';
-import { NotFoundError } from 'rxjs';
+import { Badge, BadgeModule } from 'primeng/badge';
 
 
 @NgModule({
@@ -22,6 +22,7 @@ import { NotFoundError } from 'rxjs';
     HeaderComponent
   ],
   imports: [
+    BadgeModule,
     SidebarModule,
     ToastModule,
     MessageModule,

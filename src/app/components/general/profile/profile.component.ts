@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private messageService: MessageService,
     private jobService: JobsService,
-    private chatList: ChatlistService
+    private chatList: ChatlistService,
+    private http:HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +50,20 @@ export class ProfileComponent implements OnInit {
           this.router.navigate(['/not-found'])
         },
         complete: () => {
+            let flagInfo:any
+                  this.http.get(` https://restcountries.com/v3.1/name/${this.freelancerData?.seller.location}`)
+                .subscribe({
+                  next:(response:any)=>{
+                    flagInfo =  response
+                  },
+                  error:()=>{
+
+                  },
+                  complete:()=>{
+                    this.freelancerData.flag = flagInfo[0].flags['svg']
+                  }
+                })
+
           this.fetchJobs()
         }
       }

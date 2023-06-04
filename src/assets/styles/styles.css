@@ -333,9 +333,8 @@ header.fullwidth .container {
 .header-notifications-trigger,
 .header-notifications-trigger a {
 	font-size: 22px;
-	color: #333;
+	color: #43CC87;
 	position: relative;
-	top: 55%;
 	transform: translate3d(0,-50%,0);
 }
 
@@ -349,22 +348,6 @@ header.fullwidth .container {
 }
 /* IE 11 Fixes - End */
 
-.header-notifications-trigger span {
-	position: absolute;
-	display: inline-block;
-	top: -15px;
-	margin-left: -10px;
-	font-weight: 700;
-	height: 19px;
-	width: 19px;
-	line-height: 19px;
-	text-align: center;
-	color: #fff;
-	font-size: 11px;
-	background-color: #66676b;
-	border-radius: 50%;
-	position: relative;
-}
 
 
 /* Header User Menu Dropdown */
@@ -548,7 +531,6 @@ ul.user-menu-small-nav li a:hover i { color: #66676b; }
 	font-weight: 500;
 	color: #333;
 	line-height: 20px;
-	padding: 2px 0 0 15px;
 }
 
 .user-details span {
@@ -3434,7 +3416,9 @@ body #backtotop a {
 	display: inline-block;
 	margin-right: 25px;
 	line-height: 23px;
-	color: #808080;
+  font-weight: 700;
+  font-size:15px;
+	color: #000;
 	margin-bottom: 15px;
 }
 
@@ -3444,7 +3428,7 @@ body #backtotop a {
 
 .freelancer-details-list ul li strong {
 	display: block;
-	color: #333;
+	color: #000;
 }
 
 .freelancer-details-list ul li strong i {
@@ -7209,7 +7193,6 @@ ul.dashboard-box-list > li:hover {
 }
 
 
-/* Scrollbar Adjustments */
 .messages-inbox ul { max-height: 875px; }
 .message-content-inner {height: 750px; }
 
@@ -7219,7 +7202,7 @@ ul.dashboard-box-list > li:hover {
 .message-content-inner,
 .messages-container-inner .messages-inbox ul {
 	overflow-y: scroll;
-	width: calc(100% + 18px)
+	width: calc(100%+10px)
 }
 /*  Scrollbar Hide - End */
 
@@ -7470,7 +7453,7 @@ ul.dashboard-box-list > li:hover {
 	position: relative;
 	display: inline-block;
 	float: left;
-  max-width: 400px;
+  max-width: 230px;
   height: auto;
   word-break: break-word;
 	line-height: 25px;
@@ -7502,7 +7485,7 @@ color:#000;
 	position: relative;
 	display: inline-block;
 	float: right;
-  max-width: 400px;
+  max-width: 230px;
   height: auto;
   word-break: break-word;
 	line-height: 25px;
@@ -8070,13 +8053,12 @@ color:#000;
 .tasks-list-container.tasks-grid-layout {
     display: flex;
     flex-wrap: wrap;
-    width: calc(100% + 30px);
 }
 
 .tasks-list-container.tasks-grid-layout .task-listing {
     display: flex;
     justify-content: center;
-    margin: 0 30px 30px 0;
+    margin: 30px;
     flex-direction: column;
 }
 
@@ -8100,7 +8082,6 @@ color:#000;
 	top: 5px;
 }
 
-.tasks-list-container.tasks-grid-layout .task-listing-bid-inner .button { height: 100%; width: 45%; }
 
 .tasks-list-container.tasks-grid-layout  .task-listing .task-listing-details {
 	display: flex;

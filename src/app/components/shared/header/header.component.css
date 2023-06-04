@@ -13,7 +13,13 @@ ul li {
 .side-bar {
   font-size: 30px;
   padding-top: 10px;
-  color: #00ff7f;
+  color: #43cc87;
+}
+
+.btn-msg{
+  margin-top: 20px;
+  font-size: 20px;
+  color: #43cc87;
 }
 
 #navigation-sidebar {
@@ -49,8 +55,253 @@ ul li {
 }
 
 ::ng-deep .p-sidebar-left {
-  top: 0;
+  position: absolute;
+  top: 10% !important;
   left: 0;
   width: 14rem !important;
   height: 100%;
+}
+@media (max-width: 480px) {
+	.hide-on-mobile { display: none; }
+}
+.header-notifications {
+	height: 100%;
+	display: inline-block;
+	padding-right: 15px;
+	position: relative;
+}
+
+.header-notifications:last-child { margin-right: -15px; }
+
+.header-notifications-trigger,
+.header-notifications-trigger a, .header-notifications-trigger a:hover {
+	font-size: 22px;
+	transform: translate3d(0,-50%,0);
+  border: none;
+  color:#43CC87;
+}
+
+/* IE 11 Fixes */
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+	.header-notifications-trigger,
+	.header-notifications-trigger a {
+		height: 40px;
+	}
+	.header-notifications.user-menu { top: -8px; }
+}
+/* IE 11 Fixes - End */
+
+.header-notifications-trigger span {
+	position: absolute;
+	display: inline-block;
+	top: -15px;
+	margin-left: -10px;
+	font-weight: 700;
+	height: 19px;
+	width: 19px;
+	line-height: 19px;
+	text-align: center;
+	color: #fff;
+	font-size: 11px;
+	background-color: #66676b;
+	border-radius: 50%;
+	position: relative;
+}
+
+.header-notifications.active .header-notifications-dropdown {
+	transform: scale(1);
+	opacity: 1;
+	visibility: visible;
+	pointer-events: all;
+}
+
+.header-notifications-dropdown:before {
+	content: "";
+	position: absolute;
+	right: 43px;
+	top: -6px;
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #d7d7d7;
+
+	/* Arrow with shadow */
+/*	top: 0;
+	right: 33px;
+    border: 5px solid black;
+    border-color: transparent transparent #fff #fff;
+    transform-origin: 0 0;
+    transform: rotate(135deg);
+    box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.05);*/
+}
+
+/* Headline */
+.header-notifications-headline {
+	padding: 17px 25px;
+	padding-top: 18px;
+	line-height: 24px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.header-notifications-headline h4,
+.header-notifications-headline span {
+	display: inline-block;
+}
+
+
+
+/* Content */
+.header-notifications-content {
+	display: block;
+	width: 100%;
+}
+
+.header-notifications-scroll {
+	display: block;
+	overflow-y: scroll;
+	max-height: 500px;
+}
+
+.header-notifications-content ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.header-notifications-content ul li {
+	border-bottom: 1px solid #e6e6e6;
+	transition: 0.25s;
+}
+
+.header-notifications-content ul li:hover { background-color: #fafafa; }
+.header-notifications-content ul li:hover .notification-icon { background-color: #eee; }
+.header-notifications-content ul li:last-child { border-bottom: none; }
+
+.header-notifications-content ul li a {
+	color: #666;
+	position: relative;
+	padding: 22px 25px;
+	display: block;
+}
+
+.header-notifications-content p { margin: 0; padding: 0; }
+
+.header-notifications-content ul li a {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.header-notifications-content .notification-icon,
+.header-notifications-content .notification-text {
+	flex: 1;
+}
+
+/* Notification Icon */
+.header-notifications-content .notification-icon i { position: relative; }
+
+.notification-icon,
+.header-notifications-content .notification-icon {
+	font-size: 24px;
+	height: 40px;
+	width: 40px;
+	max-width: 40px;
+	display: inline-block;
+	background-color: #f2f2f2;
+	border-radius: 4px;
+	line-height: 42px;
+	text-align: center;
+	color: #a0a0a0;
+	transition: 0.25s;
+	position: relative;
+}
+
+/* Adjustments for some icons :( */
+.notification-icon .icon-material-outline-autorenew { font-size: 22px; }
+.notification-icon .icon-material-outline-gavel { font-size: 19px; top: -2px; left: 1px; }
+
+
+/* Notification Avatar*/
+.header-notifications-content .notification-avatar {
+	height: 42px;
+	width: 42px;
+	max-width: 42px;
+	display: inline-block;
+	border-radius: 50%;
+	overflow: visible;
+	align-self: flex-start;
+}
+
+.header-notifications-content .notification-avatar img{
+    width: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    border-radius: 50%;
+}
+
+
+/* Notification Texts */
+.notification-text,
+.header-notifications-content .notification-text {
+	padding-left: 20px;
+	padding-right: 5px;
+	display: inline-block;
+	line-height: 23px;
+	font-size: 14.7px
+}
+
+.header-notifications-content .notification-msg-text {
+	display: inline-block;
+	line-height: 23px;
+	font-size: 14.7px;
+	margin: 4px 0;
+}
+
+.notification-text strong,
+.header-notifications-content .notification-text strong {
+	font-weight: 600;
+	color: #333;
+}
+
+.notification-text span.color,
+.header-notifications-content .notification-text span.color {
+	color: #66676b;
+	display: inline-block;
+}
+
+.notification-text span.color {
+	display: block;
+}
+
+
+/* Button */
+a.header-notifications-button {
+	border-radius: 0 0 4px 4px;
+	font-weight: 600;
+	color: #fff;
+	font-size: 14.7px;
+	padding: 12px 16px;
+	background-color: #66676b;
+	width: 100%;
+	display: block;
+	text-align: center;
+	transition: 0.3s;
+}
+
+.notify{
+  top:30px;
+}
+
+.profile-links:hover ,.profile-links:hover i{
+  color:#43CC87;
+  border: none;
+}
+
+.user-name{
+  font-size: 25px;
+  font-weight: 700;
+}
+.user-type{
+  font-size:15px;
+  font-weight: 500;
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Job } from 'src/app/classes/job';
 import { Seller } from 'src/app/classes/seller';
@@ -22,6 +23,12 @@ export class JobsListComponent implements OnInit {
   @Input()
   actionForm: boolean
   displayDialog:boolean = false
+  editDialog:boolean = false
+  editJob:Job
+  stateOptions: any[] = [
+    { label: 'Fixed', value: 'Fixed' },
+    { label: 'Hourly', value: 'Hourly' }
+  ];
   constructor(
     private sellerService: SellerService,
     private jobService:JobsService,
@@ -33,6 +40,8 @@ export class JobsListComponent implements OnInit {
     this.fetchSeller()
     this.fetchJobsBySeller()
   }
+
+
 
   fetchJobsBySeller():void{
     this.jobService.getJobsByUserId(this.userId).subscribe({
@@ -72,7 +81,32 @@ export class JobsListComponent implements OnInit {
       }
     )
   }
+  editJobDialog(job:Job){
+    this.editDialog = true
+    this.editJob = job
+  }
+  editSubmit(){
 
+    this.jobService.editJob(this.editJob).subscribe({
+      next: (response: Job) => {
+          this.messageService.add({
+            severity:'success',
+            summary:'Success'
+          })
+      },
+      error: (error: any) => {
+        this.messageService.add({
+          severity:'error',
+          summary:'Error'
+        })
+      },
+      complete: () => {
+        this.editDialog = false
+        this.fetchJobsBySeller()
+      }
+
+    })
+  }
   hideDialog() {
     this.displayDialog = false
     this.fetchJobsBySeller()

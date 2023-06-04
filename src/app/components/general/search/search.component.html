@@ -1,63 +1,215 @@
-<section class="container margin-top">
+<section class="container-fluid margin-top">
   <div class="row">
     <ng-container *ngIf="isFound; else notFound">
       <div class="col-sm-12">
         <h3 class="page-title">Search Results</h3>
 
-        <!-- Tasks Container -->
-        <div class="tasks-list-container tasks-grid-layout margin-top-35">
-          <!-- Task -->
-          <a
-            *ngFor="let job of jobs?.slice(first, first + rows)"
-            class="task-listing col-sm-12 col-md-3"
-          >
-            <!-- Job Listing Details -->
-            <div class="task-listing-details">
-              <div class="task-listing-description">
-                <img
-                  width="70"
-                  src="data:image/jpeg; base64, {{ job?.jobImage }}"
-                  alt="job image"
-                />
-                <h3 class="task-listing-title">{{ job.jobName }}</h3>
+        <div class="row m-2">
+          <div class="col-md-2">
+            <div class="sidebar-container">
+              <!-- Location -->
+              <div class="sidebar-widget">
+                <h3>Location</h3>
+                <select
+                  class="selectpicker with-border"
+                  title="Select Job Type"
+                >
+                  <option value="">Location</option>
+                  <option
+                    *ngFor="let location of locations"
+                    value="{{ location.name }}"
+                  >
+                    {{ location.name }}
+                  </option>
+                </select>
               </div>
-            </div>
 
-            <div class="task-listing-bid">
-              <div class="task-listing-bid-inner">
-                <div class="task-offers">
-                  <strong>{{ job?.jobPrice | currency : "USD" }}</strong>
-                  <strong>{{ job?.user.userName }}</strong>
-                  <span>Fixed Price</span>
+              <!-- Keywords -->
+              <div class="sidebar-widget">
+                <h3>Keywords</h3>
+                <div class="keywords-container">
+                  <div class="keyword-input-container">
+                    <input
+                      type="text"
+                      class="keyword-input"
+                      placeholder="e.g. job title"
+                    />
+                  </div>
+                  <div class="clearfix"></div>
                 </div>
-                <span
-                  (click)="sendMessage(job.user.userId)"
-                  class="button button-sliding-icon ripple-effect"
-                  >Contact <i class="fa-regular fa-comment-dots"></i
-                ></span>
+              </div>
+
+              <div class="sidebar-widget">
+                <h3>Category</h3>
+                <select
+                  class="selectpicker with-border"
+                  title="Select Job Type"
+                >
+                  <option>Admin Support</option>
+                  <option>Customer Service</option>
+                  <option>Data Analytics</option>
+                  <option>Design & Creative</option>
+                  <option>Legal</option>
+                  <option>Software Developing</option>
+                  <option>IT & Networking</option>
+                  <option>Writing</option>
+                  <option>Translation</option>
+                  <option>Sales & Marketing</option>
+                </select>
+              </div>
+
+              <!-- <div class="sidebar-widget">
+                <h3>Job Type</h3>
+
+                <div class="switches-list">
+                  <div class="switch-container">
+                    <label class="switch"
+                      ><input type="checkbox" /><span
+                        class="switch-button"
+                      ></span>
+                      Freelance</label
+                    >
+                  </div>
+
+                  <div class="switch-container">
+                    <label class="switch"
+                      ><input type="checkbox" /><span
+                        class="switch-button"
+                      ></span>
+                      Full Time</label
+                    >
+                  </div>
+
+                  <div class="switch-container">
+                    <label class="switch"
+                      ><input type="checkbox" /><span
+                        class="switch-button"
+                      ></span>
+                      Part Time</label
+                    >
+                  </div>
+
+                  <div class="switch-container">
+                    <label class="switch"
+                      ><input type="checkbox" /><span
+                        class="switch-button"
+                      ></span>
+                      Internship</label
+                    >
+                  </div>
+                  <div class="switch-container">
+                    <label class="switch"
+                      ><input type="checkbox" /><span
+                        class="switch-button"
+                      ></span>
+                      Temporary</label
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="sidebar-widget">
+                <h3>Tags</h3>
+
+                <div class="tags-container">
+                  <div class="tag">
+                    <input type="checkbox" id="tag1" />
+                    <label for="tag1">front-end dev</label>
+                  </div>
+                  <div class="tag">
+                    <input type="checkbox" id="tag2" />
+                    <label for="tag2">angular</label>
+                  </div>
+                  <div class="tag">
+                    <input type="checkbox" id="tag3" />
+                    <label for="tag3">react</label>
+                  </div>
+                  <div class="tag">
+                    <input type="checkbox" id="tag4" />
+                    <label for="tag4">vue js</label>
+                  </div>
+                  <div class="tag">
+                    <input type="checkbox" id="tag5" />
+                    <label for="tag5">web apps</label>
+                  </div>
+                  <div class="tag">
+                    <input type="checkbox" id="tag6" />
+                    <label for="tag6">design</label>
+                  </div>
+                  <div class="tag">
+                    <input type="checkbox" id="tag7" />
+                    <label for="tag7">wordpress</label>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="tasks-list-container tasks-grid-layout margin-top-35">
+                <!-- Task -->
+                <a
+                  *ngFor="let job of jobs?.slice(first, first + rows)"
+                  class="task-listing col-sm-12 col-md-3"
+                >
+                  <!-- Job Listing Details -->
+                  <div class="task-listing-details">
+                    <div class="task-listing-description">
+                      <img
+                        width="70"
+                        src="data:image/jpeg; base64, {{ job?.jobImage }}"
+                        alt="job image"
+                      />
+                      <h3 class="task-listing-title">{{ job.jobName }}</h3>
+                    </div>
+                  </div>
+
+                  <div class="task-listing-bid">
+                    <div class="task-listing-bid-inner">
+                      <div class="task-offers">
+                        <strong>{{ job?.jobPrice | currency : "USD" }}</strong>
+                        <strong>{{ job?.user.userName }}</strong>
+                        <span>Fixed Price</span>
+                      </div>
+                    </div>
+                    <div class="action text-center mb-2">
+                      <span
+                        (click)="sendMessage(job.user.userId)"
+                        class="button button-sliding-icon ripple-effect"
+                        >Contact <i class="fa-regular fa-comment-dots"></i
+                      ></span>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
-          </a>
-        </div>
-        <!-- Tasks Container / End -->
+          </div>
 
-        <!-- Pagination -->
-        <div class="clearfix"></div>
-        <div class="row">
-          <div class="col-md-12">
-            <p-paginator
-              (onPageChange)="onPageChange($event)"
-              [first]="first"
-              [rows]="rows"
-              [totalRecords]="jobs?.length"
-            ></p-paginator>
+          <!-- Tasks Container / End -->
+
+          <!-- Pagination -->
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <p-paginator
+                (onPageChange)="onPageChange($event)"
+                [first]="first"
+                [rows]="rows"
+                [totalRecords]="jobs?.length"
+              ></p-paginator>
+            </div>
           </div>
         </div>
       </div>
     </ng-container>
     <ng-template #notFound>
-
-       <form [formGroup]="search" (ngSubmit)="onSubmit()" style="max-width: 300px; margin: 0 auto;">
+      <form
+        [formGroup]="search"
+        (ngSubmit)="onSubmit()"
+        style="max-width: 300px; margin: 0 auto"
+      >
         <span class="d-flex flex-column">
           <input
             type="text"

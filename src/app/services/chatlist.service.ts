@@ -29,4 +29,10 @@ export class ChatlistService {
 
     return this.http.get(`${this.URL}/${userId}/${receiverId}`,{observe:'body'})
   }
+
+  getMessageCount(userId:string){
+    return this.http.get(`${this.URL}/count/${userId}`,{
+      observe:'body'
+    })
+  }
 }

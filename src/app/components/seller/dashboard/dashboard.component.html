@@ -27,7 +27,7 @@
           <div class="fun-fact">
             <div class="fun-fact-text">
               <span>Total Revenue</span>
-              <h4>{{ userDashboard?.revenue !== null && userDashboard?.revenue !== undefined ? userDashboard?.revenue : 0  | currency:"USD"}}</h4>
+              <h4>{{ (userDashboard?.revenue !== null && userDashboard?.revenue !== undefined ? userDashboard?.revenue : 0 ) | currency:"USD"}}</h4>
             </div>
             <div class="fun-fact-icon">
               <i class="fa-solid fa-sack-dollar" style="color: #00ff00"></i>

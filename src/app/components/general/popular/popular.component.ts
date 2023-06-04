@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Freelancer } from 'src/app/classes/freelancer';
@@ -14,7 +15,7 @@ export class PopularComponent implements OnInit {
   freelancers: Freelancer[] = []
 
   constructor(private freelancerService:FreelancerService,
-    private router:Router){
+    private router:Router,private http:HttpClient){
 
     }
   ngOnInit(): void {
@@ -47,11 +48,29 @@ export class PopularComponent implements OnInit {
         console.log("error")
       },
       complete:()=>{
+        let flagInfo:any
+        this.freelancers.map(
+          data=>{
+              this.http.get(` https://restcountries.com/v3.1/name/${data.seller.location}`)
+            .subscribe({
+              next:(response:any)=>{
+                console.log(response)
+                flagInfo =  response
 
+              },
+              error:()=>{
+
+              },
+              complete:()=>{
+                data.flag = flagInfo[0].flags['svg']
+                console.log(data.flag)
+              }
+            })
+          }
+        )
       }
     })
   }
-
 
   freelancerProfile(id:string){
     const queryParams = {
