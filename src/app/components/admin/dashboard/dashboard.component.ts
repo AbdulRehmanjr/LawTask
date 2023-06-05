@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
       {
         next: (response: DashBoard) => {
           this.info = response
+          console.log("dashboard",response)
         },
         error: (error: any) => {
           this.message.add({ severity: 'error', summary: 'Error', detail: 'Error in fecthing dashbaord info.' })
@@ -87,15 +88,13 @@ export class DashboardComponent implements OnInit {
         this.sellerJoin = response
         this.message.add({
           severity:'success',
-          summary:'Seller Joined',
-          detail:'Seller Join Successfully'
+          summary:'Success'
         })
       },
       error: (error) => {
         this.message.add({
           severity:'error',
           summary:'Errror',
-          detail:'Seller Joining error'
         })
       },
       complete: () => {

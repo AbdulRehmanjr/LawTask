@@ -23,10 +23,40 @@
   background: #30AB4A;
   border-color: #30AB4A;
 }
+.dashboard-note {
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	padding: 25px;
+	padding-top: 20px;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.dashboard-note:last-child { margin-bottom: 65px; }
+
+.dashboard-note:before {
+	content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 20px 20px 0;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.15) #fff;
+    transition: 0.3s;
+    border-radius: 0 0 0 4px;
+}
+
+.dashboard-note p {
+	line-height: 24px;
+	margin-bottom: 20px;
+	color: #777;
+	font-size: 14.7px;
+}
 .custom-box{
   max-height: 500px;
   overflow: scroll;
 }
+
 .item{
   width: 150px;
 }

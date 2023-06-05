@@ -24,7 +24,7 @@
           [value]="jobs"
           [rows]="5"
           [paginator]="true"
-          [globalFilterFields]="['jobName', 'jobType', 'description', 'status']"
+          [globalFilterFields]="['jobName', 'jobType', 'description', 'status','category.name']"
           [rowHover]="true"
           dataKey="id"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -51,8 +51,8 @@
               <th pSortableColumn="jobType" style="width: 5rem">
                 Type <p-sortIcon field="jobType"></p-sortIcon>
               </th>
+              <th>Category</th>
               <th style="width: 13rem">Description</th>
-
               <th></th>
             </tr>
           </ng-template>
@@ -69,6 +69,7 @@
               </td>
               <td>{{ job.jobPrice | currency : "USD" }}</td>
               <td>{{job.jobType}}</td>
+              <td>{{job.category?.name}}</td>
               <td>{{ job.description }}</td>
               <td >
                 <!-- <button class="btn btn-danger mx-3"><i class="fa-solid fa-trash"></i></button> -->

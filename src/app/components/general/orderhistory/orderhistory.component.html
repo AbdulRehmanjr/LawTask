@@ -71,10 +71,10 @@
               <td>{{ order.endedDate }}</td>
               <td>{{ order.price | currency : "USD" }}</td>
               <td>{{ order.job.jobName }}</td>
-              <td><p-tag [value]="status" [severity]="getSeverity(order.completed)"></p-tag></td>
+              <td><p-tag [value]="getStatus(order.completed)" [severity]="getSeverity(order.completed)"></p-tag></td>
               <td>{{ order.user.userName }}</td>
               <td>
-                <button class="job-done-button" (click)="jobDone(order)">
+                <button class="job-done-button" (click)="showDialog(order)" [disabled]="order.completed">
                   <i class="fas fa-check"></i>
                 </button>
 
@@ -87,6 +87,36 @@
             </div>
           </ng-template>
         </p-table>
+
+        <p-dialog
+        [(visible)]="dialog"
+        header="Rate the User"
+        [modal]="true"
+        styleClass="dialog-style"
+        style="z-index: 9999999990"
+      >
+        <ng-template pTemplate="body">
+          <div class="container my-3">
+            <label for="rating">Rating</label>
+           <p-rating [(ngModel)]="rating" [cancel]="false"> </p-rating>
+           <label for="comment">
+              Comment Here
+           </label>
+           <textarea name="com" id="com" cols="10" rows="2" [(ngModel)]="comment" #userComment="ngModel">
+           </textarea>
+           <div
+           *ngIf="userComment.invalid && userComment.touched"
+           class="error-message"
+       >
+           Comment is required
+       </div>
+
+           <button class="btn btn-success my-3" (click)="rateSeller()">
+            Rate
+           </button>
+          </div>
+        </ng-template>
+      </p-dialog>
       </div>
     </div>
   </section>

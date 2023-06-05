@@ -21,10 +21,15 @@
                   }}<span>{{ freelancerData?.seller?.tagLine }}</span>
                 </h3>
                 <ul>
-
                   <li>
                     {{ freelancerData?.seller?.location }}
-                    <img width="20" height="20" class="mx-3" src="{{freelancerData?.flag}}" alt="flag img">
+                    <img
+                      width="20"
+                      height="20"
+                      class="mx-3"
+                      src="{{ freelancerData?.flag }}"
+                      alt="flag img"
+                    />
                   </li>
                   <li>
                     <p-chip label="Verified" icon="pi pi-verified"></p-chip>
@@ -44,61 +49,52 @@
     <div class="row">
       <!-- Content -->
       <div class="col-md-7">
-
         <div class="single-page-section">
           <h3 class="margin-bottom-25">About Me</h3>
           <p>{{ freelancerData?.seller?.description }}</p>
-        </div>
-        <div class="contact">
-          <a
-          (click)="sendMessage()"
-            class="btn btn-success popup-with-zoom-anim margin-bottom-50 btn btn-success"
-            >Contact  <i class="fa-regular fa-comment-dots"></i></a>
         </div>
         <div class="boxed-list margin-bottom-60">
           <div class="boxed-list-headline">
             <h3><i class="fa-solid fa-briefcase"></i> Avaliable Jobs</h3>
           </div>
-          <ng-container *ngIf="jobs!=undefined else nojobs">
-            <ul class="boxed-list-ul">
-              <li *ngFor="let job of jobs?.slice(first, first + rows)">
-                <div class="boxed-list-item">
-                  <!-- Avatar -->
-                  <div class="item-image">
-                    <img
-                      src="data:image/jpeg; base64,{{ job?.jobImage }}"
-                      alt="job image"
-                    />
+
+          <ul class="boxed-list-ul">
+            <li *ngFor="let job of jobs?.slice(first, first + rows)">
+              <div class="boxed-list-item">
+                <!-- Avatar -->
+                <div class="item-image">
+                  <img
+                    src="data:image/jpeg; base64,{{ job?.jobImage }}"
+                    alt="job image"
+                  />
+                </div>
+                <div class="item-content">
+                  <h4>{{ job?.jobName }}</h4>
+                  <div class="item-details margin-top-7">
+                    <div class="detail-item">
+                      <i class="fa-solid fa-wallet"></i>
+                      {{ job?.jobPrice | currency : "USD" }} {{ job?.jobType }}
+                    </div>
                   </div>
-                  <div class="item-content">
-                    <h4>{{ job?.jobName }}</h4>
-                    <div class="item-details margin-top-7">
-                      <div class="detail-item">
-                        <i class="fa-solid fa-wallet"></i>
-                        {{ job?.jobPrice | currency : "USD" }} {{ job?.jobType }}
-                      </div>
-                    </div>
-                    <div class="item-description">
-                      <p>{{ job?.description }}</p>
-                    </div>
+                  <div class="item-description">
+                    <p>{{ job?.description }}</p>
                   </div>
                 </div>
-              </li>
-            </ul>
-            <div class="row">
-              <div class="col-md-12">
-                <p-paginator
-                  (onPageChange)="onPageChange($event)"
-                  [first]="first"
-                  [rows]="rows"
-                  [totalRecords]="jobs?.length"
-                ></p-paginator>
               </div>
+            </li>
+          </ul>
+
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <p-paginator
+                (onPageChange)="onPageChange($event)"
+                [first]="first"
+                [rows]="rows"
+                [totalRecords]="jobs?.length"
+              ></p-paginator>
             </div>
-          </ng-container>
-          <ng-template #nojobs>
-            <h3 class="my-3"><i class="fa-solid fa-circle-exclamation" style="color:red;"></i> No Jobs Yet.</h3>
-          </ng-template>
+          </div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -126,28 +122,15 @@
           </div>
 
           <div class="content with-padding">
-            <ng-container *ngIf="freelancerData.comments!=null else nocomment">
-              <ng-container  *ngFor="let comment of freelancerData.comments">
-                <div class="dashboard-note">
-                  <p>{{ comment }}</p>
-                </div>
-              </ng-container>
-            </ng-container>
-            <ng-template #nocomment>
+            <!-- Note -->
+            <ng-container *ngFor="let comment of freelancerData.comments">
               <div class="dashboard-note">
-                <p><i class="fa-solid fa-circle-exclamation" style="color:red;"></i> No comments Yet.</p>
+                <p>{{ comment }}</p>
               </div>
-            </ng-template>
-
+            </ng-container>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
-
-  <!-- Spacer -->
-  <div class="margin-top-15"></div>
 </section>
-

@@ -71,7 +71,9 @@
             <td>{{ order.price | currency : "USD" }}</td>
             <td>{{ order.job.jobName }}</td>
             <td>{{ order.user.userName }}</td>
-            <td><p-tag [value]="status" [severity]="getSeverity(order.completed)"></p-tag></td>
+            <td><p-tag [value]="getStatus(order.completed)" [severity]="getSeverity(order.completed)"></p-tag></td>
+            <!-- <td></td>
+            <td>{{order.completed}}</td> -->
             <td><button class="btn btn-success" (click)="download(order)">
               <i class="fa-solid fa-file-arrow-down"></i>
             </button></td>

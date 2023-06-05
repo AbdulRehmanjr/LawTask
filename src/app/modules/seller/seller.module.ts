@@ -15,7 +15,10 @@ import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TagModule } from 'primeng/tag';
 import { SidebarModule } from 'primeng/sidebar';
-
+import { PaginatorModule } from 'primeng/paginator';
+import { ChipModule } from 'primeng/chip';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { RatingModule } from 'primeng/rating';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -29,6 +32,8 @@ import { PendingordersComponent } from '../../components/seller/pendingorders/pe
 import { FilessharingComponent } from '../../components/seller/filessharing/filessharing.component';
 import { FiledetailsComponent } from '../../components/seller/filedetails/filedetails.component';
 import { SellerGuard } from 'src/app/security/seller.guard';
+import { ProfileComponent } from '../../components/seller/profile/profile.component';
+import { WithdrawrequestComponent } from '../../components/seller/withdrawrequest/withdrawrequest.component';
 
 
 
@@ -44,9 +49,17 @@ const routes: Routes = [
       { path: 'messages', component: CommunicationComponent },
       {
         path: 'orders', component: PendingordersComponent
-      },{
+      },
+      {
+        path:'withdraw',component:WithdrawrequestComponent
+      },
+      {
+        path:'profile/:userId',component:ProfileComponent
+      },
+      {
         path:'files',component:FilessharingComponent
-      },{
+      },
+      {
         path:'files-detail/:orderId/:customerId/:userId',component:FiledetailsComponent
       }
     ]
@@ -63,9 +76,15 @@ const routes: Routes = [
     PendingordersComponent,
     FilessharingComponent,
     FiledetailsComponent,
+    ProfileComponent,
+    WithdrawrequestComponent,
 
   ],
   imports: [
+    RatingModule,
+    ProgressBarModule,
+    ChipModule,
+    PaginatorModule,
     SidebarModule,
     SelectButtonModule,
     ButtonModule,

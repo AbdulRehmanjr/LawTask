@@ -199,10 +199,6 @@ a{
 ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
     background-color: #33BF34;
 }
-/* .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
-    background: #EFF6FF;
-    color: #1D4ED8;
-} */
 
 .rating-num{
   background-color: #1bca1b;

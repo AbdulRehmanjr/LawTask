@@ -13,7 +13,7 @@
           <div class="fun-fact">
             <div class="fun-fact-text">
               <span>Total Users</span>
-              <h4>{{ info.users !== null && info.users! ==undefined ? info?.users :0}}</h4>
+              <h5>{{ info.users != null && info.users!=undefined ? info.users :0}}</h5>
             </div>
             <div class="fun-fact-icon">
               <i class="fas fa-user" style="color: #7fff00"></i>
@@ -24,7 +24,7 @@
           <div class="fun-fact">
             <div class="fun-fact-text">
               <span>Total Sellers</span>
-              <h4>{{ info.sellers !== null && info.sellers! ==undefined ? info?.sellers :0}}</h4>
+              <h5>{{ info.sellers != null && info.sellers!=undefined ? info?.sellers :0}}</h5>
             </div>
             <div class="fun-fact-icon">
               <i class="fas fa-shop" style="color: #b81b7f"></i>
@@ -35,7 +35,7 @@
           <div class="fun-fact">
             <div class="fun-fact-text">
               <span>Total Jobs</span>
-              <h4>{{ info.jobs !== null && info.jobs! ==undefined ? info?.jobs :0 }}</h4>
+              <h5>{{ info.jobs != null && info.jobs!=undefined ? info?.jobs :0 }}</h5>
             </div>
             <div class="fun-fact-icon">
               <i class="fas fa-cart-shopping" style="color: #efa80f"></i>
@@ -46,7 +46,7 @@
           <div class="fun-fact" >
             <div class="fun-fact-text">
               <span>Total Revenue</span>
-              <h4>{{ info.income !== null && info.income! ==undefined ? info?.income :0 | currency : "USD" }}</h4>
+              <h5>{{ info.income != null && info.income!=undefined ? info?.income :0 | currency : "USD" }}</h5>
             </div>
             <div class="fun-fact-icon">
               <i class="fa-solid fa-sack-dollar" style="color: #00ff00"></i>
@@ -58,7 +58,7 @@
           <div class="fun-fact" >
             <div class="fun-fact-text">
               <span>Dew Dropper Subscriptions</span>
-              <h4>{{info.dewDropper !== null && info.dewDropper! ==undefined ? info?.dewDropper :0}}</h4>
+              <h5>{{info.dewDropper != null && info.dewDropper!=undefined ? info?.dewDropper :0}}</h5>
             </div>
             <div class="fun-fact-icon">
 
@@ -71,7 +71,7 @@
           <div class="fun-fact" >
             <div class="fun-fact-text">
               <span>Sprinkle Subscriptions</span>
-              <h4>{{ info.sprinkle !== null && info.sprinkle! ==undefined ? info?.sprinkle :0}}</h4>
+              <h5>{{ info.sprinkle != null && info.sprinkle!=undefined ? info?.sprinkle :0}}</h5>
             </div>
             <div class="fun-fact-icon">
               <i class="fa-solid fa-star" style="color:#B5BEC2;"></i>
@@ -84,7 +84,7 @@
           <div class="fun-fact" >
             <div class="fun-fact-text">
               <span>Rainmake Subscriptions</span>
-              <h4>{{ info.rainmaker !== null && info.rainmaker! ==undefined ? info?.rainmaker :0}}</h4>
+              <h5>{{ info.rainmaker != null && info.rainmaker!=undefined ? info?.rainmaker :0}}</h5>
             </div>
             <div class="fun-fact-icon">
               <i class="fa-solid fa-star" style="color:#FBCD29;font-size:20px"></i>
@@ -94,6 +94,7 @@
           </div>
         </div>
         <div class="col-8">
+          <label for="">User Join</label>
           <p-chart type="bar" [data]="data" [options]="options"></p-chart>
         </div>
         <div class="col-8 mt-5">

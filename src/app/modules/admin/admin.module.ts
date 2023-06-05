@@ -28,6 +28,8 @@ import { ApprovedRequestsComponent } from '../../components/admin/approved-reque
 import { DashboardComponent } from '../../components/admin/dashboard/dashboard.component';
 import { CouponComponent } from '../../components/admin/coupon/coupon.component';
 import { AdminGuard } from 'src/app/security/admin.guard';
+import { WithdrawrequestComponent } from '../../components/admin/withdrawrequest/withdrawrequest.component';
+
 
 const routes: Routes = [
   {
@@ -45,6 +47,9 @@ const routes: Routes = [
         path:'coupons',component:CouponComponent
       },
       {
+        path:'withdraw',component:WithdrawrequestComponent
+      },
+      {
         path:'',redirectTo:'main',pathMatch:'full'
       }
     ]
@@ -60,7 +65,8 @@ const routes: Routes = [
     SellerapprovaldetailComponent,
     ApprovedRequestsComponent,
     DashboardComponent,
-    CouponComponent
+    CouponComponent,
+    WithdrawrequestComponent,
   ],
   imports: [
     ButtonModule,

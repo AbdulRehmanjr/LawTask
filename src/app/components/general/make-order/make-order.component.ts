@@ -100,7 +100,7 @@ export class MakeOrderComponent implements OnInit{
         this.messageService.add({severity:'error',summary:'Error',detail:'Error Making Order'})
       },
       complete:()=>{
-        // this.router.navigate(['/home/messages'])
+        this.router.navigate(['/home/messages'])
       }
     })
   }

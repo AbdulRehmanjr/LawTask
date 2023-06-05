@@ -26,35 +26,37 @@
 
               <!-- Keywords -->
               <div class="sidebar-widget">
-                <h3>Keywords</h3>
+                <h3>Search</h3>
                 <div class="keywords-container">
                   <div class="keyword-input-container">
                     <input
                       type="text"
                       class="keyword-input"
                       placeholder="e.g. job title"
+                      #searchWord
                     />
+                    <button class="keyword-input-button" (click)="searchJobs(searchWord.value)">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                   </div>
                   <div class="clearfix"></div>
                 </div>
               </div>
 
               <div class="sidebar-widget">
-                <h3>Category</h3>
+                <h3>Category (filter)</h3>
                 <select
+                  (change)="filterCategories($event.target['value'])"
                   class="selectpicker with-border"
                   title="Select Job Type"
                 >
-                  <option>Admin Support</option>
-                  <option>Customer Service</option>
-                  <option>Data Analytics</option>
-                  <option>Design & Creative</option>
-                  <option>Legal</option>
-                  <option>Software Developing</option>
-                  <option>IT & Networking</option>
-                  <option>Writing</option>
-                  <option>Translation</option>
-                  <option>Sales & Marketing</option>
+                  <option value="">Category</option>
+                  <option
+                    *ngFor="let category of categories"
+                    value="{{ category.id }}"
+                  >
+                    {{ category.name }}
+                  </option>
                 </select>
               </div>
 
@@ -158,11 +160,12 @@
                   <div class="task-listing-details">
                     <div class="task-listing-description">
                       <img
-                        width="70"
+                        class="job-image"
                         src="data:image/jpeg; base64, {{ job?.jobImage }}"
                         alt="job image"
                       />
                       <h3 class="task-listing-title">{{ job.jobName }}</h3>
+                      <strong class="">{{ job.category?.name }}</strong>
                     </div>
                   </div>
 

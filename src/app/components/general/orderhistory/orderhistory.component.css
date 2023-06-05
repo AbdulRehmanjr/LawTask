@@ -16,3 +16,21 @@
 .job-done-button i {
   margin-right: 8px;
 }
+
+ ::ng-deep .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon:hover {
+  color: #4CAF50;
+}
+
+::ng-deep .p-rating .p-rating-icon.pi-star-fill {
+  color:#4CAF50;
+}
+.error-message{
+  color:red;
+
+}
+.container{
+  width: 500px;
+}
+textarea{
+  border:1px solid black;
+}

@@ -22,7 +22,8 @@ import { TagModule } from 'primeng/tag';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { BadgeModule } from 'primeng/badge';
-import {RatingModule} from 'primeng/rating'
+import { RatingModule } from 'primeng/rating'
+import { ProgressBarModule } from 'primeng/progressbar';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -76,16 +77,18 @@ const routes: Routes = [
         path: 'job-list', component: JobsListComponent
       },
       {
-        path:'edit-profile',component:EditprofileComponent
+        path: 'edit-profile', component: EditprofileComponent
       },
       {
-        path:'forgot-password',component:ForgotpassordComponent
+        path: 'forgot-password', component: ForgotpassordComponent
       },
       {
         path: 'search', component: SearchComponent
-      }, {
+      },
+      {
         path: 'files', component: FilessharingComponent
-      }, {
+      },
+      {
         path: 'files-detail/:orderId/:customerId/:userId', component: FiledetailsComponent
       },
       {
@@ -140,6 +143,7 @@ const routes: Routes = [
     ForgotpassordComponent,
   ],
   imports: [
+    ProgressBarModule,
     RatingModule,
     BadgeModule,
     ButtonModule,

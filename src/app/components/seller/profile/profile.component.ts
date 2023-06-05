@@ -15,12 +15,13 @@ import { JobsService } from 'src/app/services/jobs.service';
 })
 export class ProfileComponent implements OnInit {
 
-  freelanceId: string = ''
-  freelancerData: Freelancer
+  userId: string = ''
+  freelancerData: Freelancer = null
   first: number = 0
   rows: number = 2
   currentPage = 1
   jobs: Job[]
+
   constructor(private route: ActivatedRoute,
     private freelancerService: FreelancerService,
     private router: Router,
@@ -31,9 +32,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.freelanceId = params['id'];
-    });
+    this.userId = this.route.snapshot.paramMap.get('userId')
     this.fetchFreelancer()
 
   }
@@ -41,7 +40,7 @@ export class ProfileComponent implements OnInit {
 
   fetchFreelancer() {
 
-    this.freelancerService.getFreelancerById(this.freelanceId).subscribe(
+    this.freelancerService.getFreelancerByUserId(this.userId).subscribe(
       {
         next: (response: Freelancer) => {
           this.freelancerData = response

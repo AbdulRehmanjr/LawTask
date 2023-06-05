@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 import { Order } from 'src/app/classes/order';
+import { FreelancerService } from 'src/app/services/freelancer.service';
 
 import { OrderService } from 'src/app/services/order.service';
 
@@ -17,9 +18,14 @@ export class OrderhistoryComponent implements OnInit {
   orders:Order[]
   email:string = ''
   status:string = ''
+  dialog:boolean = false
+  rating:number = 1
+  selectedOrder:Order
+  comment:string = ''
   constructor(
     private orderService:OrderService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private freelancerService:FreelancerService
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +68,15 @@ export class OrderhistoryComponent implements OnInit {
         return 'danger';
     }
   }
+  getStatus(value: boolean): string {
+
+    switch (value) {
+      case true:
+        return 'Completed';
+      case false:
+        return 'Pending';
+    }
+  }
 
   jobDone(order:Order){
     this.orderService.orderDone(order).subscribe({
@@ -83,5 +98,28 @@ export class OrderhistoryComponent implements OnInit {
         this.fetchOrder()
       }
     })
+  }
+  showDialog(order:Order){
+
+    this.dialog = true
+    this.selectedOrder = order
+  }
+  rateSeller(){
+
+    this.freelancerService.rateFreeLancers(this.selectedOrder.user.userId,this.rating,this.comment,this.selectedOrder.id).subscribe({
+      next: (response: any) => {
+        this.messageService.add({
+          severity:'success',
+          summary:"Thanks."
+        })
+      },
+      error: (error: any) => console.log(error),
+      complete: () => {
+        this.dialog = false
+        this.jobDone(this.selectedOrder)
+      }
+
+    })
+
   }
 }

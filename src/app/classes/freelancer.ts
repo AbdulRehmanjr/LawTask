@@ -6,4 +6,5 @@ export class Freelancer {
   flag:any
   rating:number
   success:number
+  comments:string[]
 }

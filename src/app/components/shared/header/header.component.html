@@ -52,7 +52,7 @@
       </div>
 
       <div *ngIf="check != undefined" class="right-side d-flex flex-row">
-        <div class="header-widget hide-on-mobile">
+        <div class="header-widget hide-on-mobile" *ngIf="role!='ADMIN'">
 					<!-- Notifications -->
 					<div class="header-notifications">
 
@@ -111,18 +111,14 @@
 							</div>
 
 						</div>
-
 					</div>
-          <button class="btn btn-msg"v routerLink="/home/messages">
+          <button class="btn btn-msg" routerLink="/home/messages">
             <ng-container *ngIf="count == 0 else hasMessage">
               <i  class="fa-solid fa-message"></i>
             </ng-container>
             <ng-template #hasMessage>
               <i pBadge value="{{count}}" severity="danger" class="fa-solid fa-message"></i>
             </ng-template>
-
-
-
           </button>
 				</div>
 

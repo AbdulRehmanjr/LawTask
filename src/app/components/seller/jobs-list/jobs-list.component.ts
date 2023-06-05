@@ -48,6 +48,7 @@ export class JobsListComponent implements OnInit {
       next:(response:Job[])=>{
 
         this.jobs = response
+        console.log(response)
       },
       error:(error:any)=>{
 
