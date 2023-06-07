@@ -59,4 +59,10 @@ export class JobsService {
       observe:'body'
     })
   }
+
+  getAll(){
+      return this.http.get(`${this.baseUrl}/all`,{
+        observe:'body'
+      })
+  }
 }

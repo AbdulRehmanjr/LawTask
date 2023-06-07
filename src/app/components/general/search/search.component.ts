@@ -34,15 +34,20 @@ export class SearchComponent implements OnInit {
     private chatList: ChatlistService) { }
   ngOnInit(): void {
 
-    try {
-      this.route.queryParams.subscribe(params => {
-        this.jobName = params['jobName'];
-      });
-    } catch (error) {
 
-    }
+    this.route.queryParams.subscribe(params => {
+      this.jobName = params['jobName'];
+
+      if(this.jobName == undefined){
+        this.fetchAllJobs()
+      }
+    });
+
     this.fetchCategories()
-    this.fetchByCategory(+this.jobName)
+    if(this.jobName!=undefined){
+      this.fetchByCategory(+this.jobName)
+    }
+
     this.createForm()
   }
 
@@ -77,13 +82,14 @@ export class SearchComponent implements OnInit {
     })
   }
   fetchJobs(): void {
+    this.isFound = false
     this.jobService.getAlljobs(this.jobName).subscribe({
-      next: (response:any[]) => {
-        this.jobs = [...response[0],...response[1]]
+      next: (response: any[]) => {
+        this.jobs = [...response[0], ...response[1]]
       }
       ,
       error: (error: any) => {
-
+        this.jobs = undefined
       },
       complete: () => {
         this.filteredJobs = this.jobs
@@ -123,6 +129,19 @@ export class SearchComponent implements OnInit {
       this.fetchJobs();
     })
   }
+
+  fetchAllJobs(){
+    this.jobService.getAll().subscribe({
+      next: (response: Job[]) => {
+        this.jobs = response
+      },
+      error: (error: any) => {  this.jobs = undefined},
+      complete: () =>{
+        this.filteredJobs = this.jobs
+        this.isFound = true
+      }
+    })
+  }
   searchJobs(keyword: string) {
     this.jobName = keyword
     this.router.navigate([], {
@@ -132,13 +151,13 @@ export class SearchComponent implements OnInit {
       skipLocationChange: false
     }).then(() => {
       this.jobService.getAlljobs(keyword).subscribe({
-        next: (response:any[]) => {
+        next: (response: any[]) => {
 
-          this.jobs = [...response[0],...response[1]]
+          this.jobs = [...response[0], ...response[1]]
         }
         ,
         error: (error: any) => {
-
+          this.jobs = undefined
         },
         complete: () => {
           this.filteredJobs = this.jobs
@@ -148,33 +167,33 @@ export class SearchComponent implements OnInit {
     })
 
   }
-  fetchByCategory(value:number){
+  fetchByCategory(value: number) {
     this.jobService.getAllJobsByCategory(value).subscribe({
       next: (response: Job[]) => {
-          this.jobs = response
+        this.jobs = response
       },
       error: (error: any) => {
-
+        this.jobs = undefined
       },
       complete: () => {
-          this.filteredJobs = this.jobs
-          this.isFound = true
-          return;
+        this.filteredJobs = this.jobs
+        this.isFound = true
+        return;
       }
     })
   }
   filterCategories(category: number) {
-    if(this.filteredJobs){
+    if (this.filteredJobs) {
       this.jobService.getAllJobsByCategory(category).subscribe({
         next: (response: Job[]) => {
-            this.jobs = response
+          this.jobs = response
         },
         error: (error: any) => {
-
+          this.jobs = undefined
         },
         complete: () => {
-            this.filteredJobs = this.jobs
-            return;
+          this.filteredJobs = this.jobs
+          return;
         }
       })
     }
