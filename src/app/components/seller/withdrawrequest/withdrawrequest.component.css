@@ -1,72 +1,12 @@
 
-.boxed-widget {
-	background-color: #f9f9f9;
-	padding: 0;
-	transform: translate3d(0,0,0);
-	z-index: 90;
-	position: relative;
-	border-radius: 4px;
-	overflow: hidden;
-}
-
-.boxed-widget-headline {
-    color: #333;
-    font-size: 20px;
-    padding: 20px 30px;
-    background-color: #f0f0f0;
-    color: #333;
-    position: relative;
-    border-radius: 4px 4px 0 0;
-}
-
-.boxed-widget-headline h3 {
-	font-size: 20px;
-	padding: 0;
-	margin: 0;
-}
-
-.boxed-widget-inner {
-	padding: 30px;
-}
-
-.boxed-widget ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.boxed-widget ul li span {
-    float: right;
-    color: #333;
-    font-weight: 600;
-}
-
-.boxed-widget ul li {
-    color: #666;
-    padding-bottom: 1px;
-}
-
-.boxed-widget.summary li.total-costs {
-    font-size: 18px;
-	border-top: 1px solid #e4e4e4;
-    padding-top: 18px;
-    margin-top: 18px;
-}
-
-.boxed-widget-footer {
-	border-top: 1px solid #e4e4e4;
-	width: 100%;
-	padding: 20px 30px;
-}
-
-.boxed-widget-footer .checkbox label {
-	margin-bottom: 0;
-}
-
-.boxed-widget.summary li.total-costs span {
-    font-weight: 700;
-    color: #66676b;
-}
 .error-message{
   color:red;
+}
+.history{
+  max-height: 300px;
+  overflow: scroll;
+}
+::ng-deep .p-tag.p-tag-danger {
+  color:#fff !important;
+  font-weight: 600;
 }

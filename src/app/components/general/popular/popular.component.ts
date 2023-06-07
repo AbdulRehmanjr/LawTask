@@ -39,13 +39,19 @@ export class PopularComponent implements OnInit {
     this.getTopFreelancers()
   }
 
+  search(value:number){
+    const queryParams = {
+      jobName:value,
+    }
+    this.router.navigate([`/home/search`],{queryParams})
+  }
   getTopFreelancers():void{
     this.freelancerService.getTopFreeLancers().subscribe({
       next:(response:Freelancer[])=>{
         this.freelancers  = response
       },
       error:(error:any)=>{
-        console.log("error")
+
       },
       complete:()=>{
         let flagInfo:any
@@ -54,7 +60,7 @@ export class PopularComponent implements OnInit {
               this.http.get(` https://restcountries.com/v3.1/name/${data.seller.location}`)
             .subscribe({
               next:(response:any)=>{
-                console.log(response)
+
                 flagInfo =  response
 
               },
@@ -63,7 +69,7 @@ export class PopularComponent implements OnInit {
               },
               complete:()=>{
                 data.flag = flagInfo[0].flags['svg']
-                console.log(data.flag)
+
               }
             })
           }
@@ -82,38 +88,40 @@ export class PopularComponent implements OnInit {
   }
   cards: any[] = [
     {
+      id:1,
       icon: 'fa-regular fa-file-word',
 
       category: 'Web & Software Dev',
       description: 'Software Engineer, Web / Mobile Developer & More'
     },
     {
+      id:21,
       icon: 'fa-regular fa-chart-bar',
 
       category: 'Data Science & Analitycs',
       description: 'Data Specialist / Scientist, Data Analyst & More'
     },
     {
+      id:9,
       icon: 'fa fa-file-invoice-dollar',
-
       category: 'Accounting & Consulting',
       description: 'Auditor, Accountant, Fnancial Analyst & More'
     },
     {
+      id:5,
       icon: 'fa fa-pen',
-      counter: 145,
       category: 'Writing & Translations',
       description: 'Copywriter, Creative Writer, Translator & More'
     },
     {
+      id:3,
       icon: 'fa-regular fa-image',
-
       category: 'Graphics & Design',
       description: 'Creative Director, Web Designer & More'
     },
     {
+      id:15,
       icon: 'fa fa-globe',
-
       category: 'Digital Marketing',
       description: 'Darketing Analyst, Social Profile Admin & More'
     },

@@ -186,7 +186,7 @@ export class RequestSellerComponent {
    */
    updateRequest(): void {
 
-    console.log('update')
+
     if (this.updateForm.invalid) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please Provide Credentials' })
       return

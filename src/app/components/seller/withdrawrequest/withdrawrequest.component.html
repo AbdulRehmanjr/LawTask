@@ -23,6 +23,11 @@
           >
             Amount is Required
           </div>
+          <div *ngIf="amountWith.value<=49" class="error-message">Amount must be at least 50.</div>
+          <div *ngIf="amountWith.value>=userInfo?.revenue" class="error-message">
+            Amount cannot exceed {{ userInfo ? userInfo.revenue : 'unknown' }}.
+          </div>
+
           <div class="flex flex-column">
             <label htmlFor="reason">Reason</label>
             <div class="input-group mb-3">
@@ -66,6 +71,21 @@
               <li class="total-costs">After Withdraw <span> {{userInfo?.revenue - amount | currency:'USD'}}</span></li>
             </ul>
           </div>
+        </div>
+        <div class="boxed-widget summary history">
+          <div class="boxed-widget-headline">
+            <h3>With History</h3>
+          </div>
+          <ng-container *ngFor="let withdraw of withDraws">
+            <div class="boxed-widget-inner">
+              <ul>
+                <li>With Draw Amount <span>{{withdraw.amount | currency: 'USD'}}</span></li>
+                <li>Reason : <p>{{withdraw.reason}}</p></li>
+                <li>Status <p-tag [value]="getStatus(withdraw.status)" [severity]="getSeverity(withdraw.status)" ></p-tag></li>
+              </ul>
+            </div>
+          </ng-container>
+
         </div>
       </div>
 

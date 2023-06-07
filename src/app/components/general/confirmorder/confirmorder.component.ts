@@ -72,7 +72,7 @@ export class ConfirmorderComponent {
             window.location.href = response;
           },
           error:(_err:any)=>{
-            console.log(_err)
+
             this.messageService.add({ severity: 'error', summary: 'Error', detail: `Something went Wrong. Please check you internet connection or provided information` })
           },
           complete:()=>{

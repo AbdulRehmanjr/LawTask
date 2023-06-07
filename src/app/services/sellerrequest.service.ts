@@ -51,4 +51,9 @@ export class SellerrequestService {
       observe:'body'
     })
   }
+  getCount(){
+    return this.http.get(`${this.URL}/count`,{
+      observe:'body'
+    })
+  }
 }

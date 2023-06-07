@@ -2,27 +2,10 @@
   <div class="row">
     <ng-container *ngIf="isFound; else notFound">
       <div class="col-sm-12">
-        <h3 class="page-title">Search Results</h3>
 
         <div class="row m-2">
           <div class="col-md-2">
             <div class="sidebar-container">
-              <!-- Location -->
-              <div class="sidebar-widget">
-                <h3>Location</h3>
-                <select
-                  class="selectpicker with-border"
-                  title="Select Job Type"
-                >
-                  <option value="">Location</option>
-                  <option
-                    *ngFor="let location of locations"
-                    value="{{ location.name }}"
-                  >
-                    {{ location.name }}
-                  </option>
-                </select>
-              </div>
 
               <!-- Keywords -->
               <div class="sidebar-widget">
@@ -59,100 +42,14 @@
                   </option>
                 </select>
               </div>
-
-              <!-- <div class="sidebar-widget">
-                <h3>Job Type</h3>
-
-                <div class="switches-list">
-                  <div class="switch-container">
-                    <label class="switch"
-                      ><input type="checkbox" /><span
-                        class="switch-button"
-                      ></span>
-                      Freelance</label
-                    >
-                  </div>
-
-                  <div class="switch-container">
-                    <label class="switch"
-                      ><input type="checkbox" /><span
-                        class="switch-button"
-                      ></span>
-                      Full Time</label
-                    >
-                  </div>
-
-                  <div class="switch-container">
-                    <label class="switch"
-                      ><input type="checkbox" /><span
-                        class="switch-button"
-                      ></span>
-                      Part Time</label
-                    >
-                  </div>
-
-                  <div class="switch-container">
-                    <label class="switch"
-                      ><input type="checkbox" /><span
-                        class="switch-button"
-                      ></span>
-                      Internship</label
-                    >
-                  </div>
-                  <div class="switch-container">
-                    <label class="switch"
-                      ><input type="checkbox" /><span
-                        class="switch-button"
-                      ></span>
-                      Temporary</label
-                    >
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="sidebar-widget">
-                <h3>Tags</h3>
-
-                <div class="tags-container">
-                  <div class="tag">
-                    <input type="checkbox" id="tag1" />
-                    <label for="tag1">front-end dev</label>
-                  </div>
-                  <div class="tag">
-                    <input type="checkbox" id="tag2" />
-                    <label for="tag2">angular</label>
-                  </div>
-                  <div class="tag">
-                    <input type="checkbox" id="tag3" />
-                    <label for="tag3">react</label>
-                  </div>
-                  <div class="tag">
-                    <input type="checkbox" id="tag4" />
-                    <label for="tag4">vue js</label>
-                  </div>
-                  <div class="tag">
-                    <input type="checkbox" id="tag5" />
-                    <label for="tag5">web apps</label>
-                  </div>
-                  <div class="tag">
-                    <input type="checkbox" id="tag6" />
-                    <label for="tag6">design</label>
-                  </div>
-                  <div class="tag">
-                    <input type="checkbox" id="tag7" />
-                    <label for="tag7">wordpress</label>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-              </div> -->
             </div>
           </div>
           <div class="col-md-9">
             <div class="row">
-              <div class="tasks-list-container tasks-grid-layout margin-top-35">
+              <div class="tasks-list-container tasks-grid-layout margin-top-35 text-center">
                 <!-- Task -->
-                <a
+                <ng-container *ngIf="jobs!=undefined; else not">
+                  <a
                   *ngFor="let job of jobs?.slice(first, first + rows)"
                   class="task-listing col-sm-12 col-md-3"
                 >
@@ -177,33 +74,31 @@
                         <span>Fixed Price</span>
                       </div>
                     </div>
-                    <div class="action text-center mb-2">
+                    <div class="action text-center mb-3">
                       <span
                         (click)="sendMessage(job.user.userId)"
-                        class="button button-sliding-icon ripple-effect"
+                        class="btn btn-success"
                         >Contact <i class="fa-regular fa-comment-dots"></i
                       ></span>
                     </div>
                   </div>
                 </a>
+                </ng-container>
+                <ng-template #not>
+                  <h1>Not found</h1>
+                </ng-template>
+
               </div>
-            </div>
-          </div>
-
-          <!-- Tasks Container / End -->
-
-          <!-- Pagination -->
-          <div class="clearfix"></div>
-          <div class="row">
-            <div class="col-md-12">
               <p-paginator
-                (onPageChange)="onPageChange($event)"
-                [first]="first"
-                [rows]="rows"
-                [totalRecords]="jobs?.length"
-              ></p-paginator>
+              (onPageChange)="onPageChange($event)"
+              [first]="first"
+              [rows]="rows"
+              [totalRecords]="jobs?.length"
+            ></p-paginator>
             </div>
           </div>
+
+          <div class="clearfix"></div>
         </div>
       </div>
     </ng-container>

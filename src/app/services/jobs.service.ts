@@ -53,4 +53,10 @@ export class JobsService {
         toArray()
     )
   }
+  getAllJobsByCategory(categoryId:number){
+
+    return this.http.get(`${this.baseUrl}/category/${categoryId}`,{
+      observe:'body'
+    })
+  }
 }

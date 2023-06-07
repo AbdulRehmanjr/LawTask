@@ -1,1 +1,66 @@
-<p>withdrawrequest works!</p>
+<section class="margin-top">
+  <div class="container-fluid">
+    <div class="col-md-8 offset-md-2">
+      <p-table
+      #dt
+      styleClass="p-datatable-gridlines"
+      [value]="withdraws"
+      [rows]="10"
+      [paginator]="true"
+      [globalFilterFields]="['amount', 'user.userName','user.email']"
+      [rowHover]="true"
+      dataKey="id"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template pTemplate="caption">
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target['value'], 'contains')"
+          placeholder="Search..."
+        />
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="amount" style="width: 2rem">
+            Amount <p-sortIcon field="amount"></p-sortIcon>
+          </th>
+          <th style="width: 20rem">
+            Reason
+          </th>
+          <th style="width:2rem">Status</th>
+          <th style="width: 6rem">User Name</th>
+          <th style="width: 8rem">Email</th>
+          <th style="width: 2rem"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-withdraw>
+        <tr>
+          <td>{{ withdraw.amount }}</td>
+          <td>
+            {{ withdraw.reason }}
+          </td>
+          <td><p-tag [value]="getStatus(withdraw.status)" [severity]="getSeverity(withdraw.status)" ></p-tag></td>
+          <td>{{withdraw.user?.userName}}</td>
+          <td>{{withdraw.user?.email}}</td>
+          <td>
+            <button
+            [disabled]="withdraw.status"
+              (click)="giveMoney(withdraw)"
+              class="btn btn-success mx-3"
+            >
+            <i class="fa-solid fa-check"></i>
+          </button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are {{ withdraws ? withdraws.length : 0 }} products.
+        </div>
+      </ng-template>
+    </p-table>
+    </div>
+  </div>
+</section>

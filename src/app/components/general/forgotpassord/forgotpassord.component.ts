@@ -48,7 +48,7 @@ export class ForgotpassordComponent {
 
       },
       error:(error:any)=>{
-        console.log(error)
+
       },
       complete:()=>{
         this.received = true
@@ -78,7 +78,9 @@ export class ForgotpassordComponent {
         })
       },
       error:(error:any)=>{
-        console.log(error)
+        this.messageService.add({
+          severity:'error'
+        })
       },
       complete:()=>{
         this.router.navigate(['login'])

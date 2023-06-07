@@ -1,32 +1,41 @@
-.user-bar{
-  max-height:450px;
+.margin-top{
+  margin-top:6%;
+}
+.userbar{
+  height:84.7vh;
+  /* overflow-y: scroll; */
+}
+.messages-inbox{
+  height: 100%;
+}
+.messages-inbox .user-list{
+  height:100%;
   overflow-y: scroll;
 }
-
 .chat-screen{
   background-color: #fff;
 }
 
 .messages-headline{
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 50px rgb(223 222 222);
 }
 section{
   overflow: hidden;
-}
-article{
-  height: 100%;
 }
 .sticky-container{
   position: sticky;
   top:60px;
 }
-.message-content-inner{
-  min-height: 430px ;
-  max-height: 430px;
+article{
+  height: 84.7vh;
 }
 .message-content{
-  height:570px;
+  height:100%;
 }
+.message-content-inner{
+height:77%;
+}
+
 .user-name{
   font-size: 25px;
 }
@@ -52,9 +61,7 @@ article{
   position: sticky;
   top:75px;
 }
-#userchat{
-  height:570px;
-}
+
 /* .messages-inbox{
   height:100vh;
 } */
@@ -148,4 +155,13 @@ a,a:hover{
   font-style: normal;
   font-weight: bold;
   color: #888888;
+}
+
+::ng-deep .p-tag.p-tag-success span{
+  background-color: #22C55E;
+  color: #ffffff;
+}
+
+::ng-deep .p-sidebar .p-sidebar-content{
+  padding: 0;
 }

@@ -1,8 +1,8 @@
 <section class="row margin-top">
   <p-toast position="bottom-right"></p-toast>
-  <aside id="userbar" class="col-md-3 d-none d-md-block">
+  <aside class="col-md-3 d-none d-md-block userbar" style="padding-right:0px;">
     <div class="messages-inbox">
-      <ul class="user-bar">
+      <ul class="user-list">
         <li *ngFor="let user of users">
           <a
             id="{{ user.sender.userName }}"
@@ -21,10 +21,20 @@
             </div>
             <div class="message-by">
               <div class="message-by-headline">
-                <h5 pBadge value="{{ user.unRead }}" severity="success"
-                >
-                  {{ user?.sender.userName }}
-                </h5>
+
+                <ng-container *ngIf="user.unRead != 0 else nomessage">
+                  <h5
+                  >
+                    {{ user?.sender.userName }}
+                  </h5>
+                  <p-tag value="{{user.unRead}}" severity="success" ></p-tag>
+                </ng-container>
+                <ng-template #nomessage>
+                  <h5
+                  >
+                    {{ user?.sender.userName }}
+                  </h5>
+                </ng-template>
               </div>
             </div>
           </a>
@@ -32,53 +42,10 @@
       </ul>
     </div>
   </aside>
-  <p-sidebar
-    class="col-md-3 d-sm-block d-md-none margin-top"
-    [(visible)]="sidebarVisible"
-    position="left"
-    [blockScroll]="false"
-  >
-    <aside>
-      <div class="messages-inbox">
-        <div class="messages-headline">
-          <div class="input-with-icon">
-            <input id="autocomplete-input" type="text" placeholder="Search" />
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-        </div>
 
-        <ul class="user-bar">
-          <li *ngFor="let user of users">
-            <a
-              id="{{ user.sender.userName }}"
-              (click)="selectUser(user)"
-              [ngStyle]="{
-                background: selectedUser === user.receiver ? '#f0f0f0' : 'none'
-              }"
-            >
-              <div class="message-avatar">
-                <i class="status-icon status-online"></i>
-                <img
-                  src="data:image/jpeg; base64, {{
-                    user?.sender.profilePicture
-                  }}"
-                  alt="profile Image"
-                />
-              </div>
-              <div class="message-by">
-                <div class="message-by-headline">
-                  <h5>{{ user?.sender.userName }}</h5>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </aside>
-  </p-sidebar>
   <ng-container *ngIf="isUsers; else nouser">
-    <div class="chat-screen col-sm-12 col-md-9">
-      <ng-container *ngIf="selectedUser; else select" class="h-full">
+    <div class="chat-screen col-sm-12 col-md-9" style="padding-left:0px;">
+      <ng-container *ngIf="selectedUser; else select">
         <article id="userchat">
           <div class="message-content">
             <div class="messages-headline d-flex gap-2 justify-content-between">
@@ -94,7 +61,7 @@
                 (click)="confirmOrder()"
                 class="btn btn-success"
               >
-                Confirm Order
+                Create an Offer
               </button>
               <!-- <button class="btn btn-danger float-left">
             <i class="fa-solid fa-trash"></i>
@@ -134,11 +101,10 @@
                 </div>
               </ng-container>
             </div>
-            <!-- Message Content Inner / End -->
-
-            <!-- Reply Area -->
             <div class="message-reply">
+              &nbsp;
               <textarea
+              style="margin-left:6px;"
                 #message
                 cols="1"
                 rows="1"
@@ -146,32 +112,29 @@
                 data-autoresize
                 (keydown.enter)="sendMessage($event, message)"
               ></textarea>
-              <!-- <input type="file" style="display: none;" (change)="onFileSelected($event)" #fileInput>
-          <button style="margin-right:5px;" class="send-button mr-2" (click)="fileInput.click()">
-             <i class="fas fa-file"></i>
-          </button> -->
 
               <button
                 (click)="sendMessage($event, message)"
                 class="send-button"
               >
-                <i class="fa-solid fa-paper-plane"></i>Send
+                <i class="fa-solid fa-paper-plane"></i>
               </button>
             </div>
           </div>
         </article>
       </ng-container>
       <ng-template #select>
-        <div class="button-container text-center">
-          <button
-            class="d-sm-block d-md-none btn btn-success w-25"
-            (click)="showSideBar()"
-          >
-            User List
-          </button>
-        </div>
+
 
         <article id="userchat" class="col-sm-12 col-md-9 asmr-container">
+          <div class="button-container text-center">
+            <button
+              class="d-sm-block d-md-none btn btn-success w-25"
+              (click)="showSideBar()"
+            >
+              Chats
+            </button>
+          </div>
           <i class="fa-solid fa-comments asmr-logo"></i>
           <h1>Terms and Condition</h1>
           <ul class="condition">
@@ -193,3 +156,41 @@
     </div>
   </ng-template>
 </section>
+<p-sidebar
+class="col-md-3 d-sm-block d-md-none margin-top userbar"
+[(visible)]="sidebarVisible"
+position="left"
+[blockScroll]="false"
+>
+
+  <div class="messages-inbox">
+
+    <ul class="user-list">
+      <li *ngFor="let user of users">
+        <a
+          id="{{ user.sender.userName }}"
+          (click)="selectUser(user)"
+          [ngStyle]="{
+            background: selectedUser === user.receiver ? '#f0f0f0' : 'none'
+          }"
+        >
+          <div class="message-avatar">
+            <i class="status-icon status-online"></i>
+            <img
+              src="data:image/jpeg; base64, {{
+                user?.sender.profilePicture
+              }}"
+              alt="profile Image"
+            />
+          </div>
+          <div class="message-by">
+            <div class="message-by-headline">
+              <h5>{{ user?.sender.userName }}</h5>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</p-sidebar>

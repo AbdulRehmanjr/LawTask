@@ -8,7 +8,7 @@
       *ngFor="let card of cards"
       class="col-md-3 col-sm-12 m-4 p-3 m-md-4 text-center category-box"
     >
-      <a class="m-md-4">
+      <a class="m-md-4" (click)="search(card.id)">
         <div class="category-box-icon">
           <i class="{{ card.icon }}"></i>
         </div>
@@ -76,27 +76,27 @@
               <!-- Details -->
               <div class="freelancer-details">
                 <div class="freelancer-details-list">
-                  <ul>
-                    <li >
+                  <div class="d-flex justify-content-around">
+                    <div class="location d-flex flex-column">
                       Location
                       <strong
                         ><i class="fa-solid fa-location-dot"></i>
                         {{ freelancer.seller?.location }}</strong
                       >
-                    </li>
-                    <li >
+                    </div>
+                    <div class="success d-flex flex-column">
                       Success
                       <strong>
                         {{freelancer.success}} %
                       </strong>
-                    </li>
-                  </ul>
+                    </div>
+                  </div>
                 </div>
                 <button
                   (click)="freelancerProfile(freelancer?.id)"
-                  class="btn btn-success"
+                  class="btn  btn-success mt-3 w-100"
                 >
-                  View Profile <i class="fa-solid fa-id-card"></i>
+                  View Profile
                 </button>
               </div>
             </div>

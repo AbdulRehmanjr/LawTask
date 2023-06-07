@@ -45,9 +45,6 @@ export class SignupComponent {
 
   onChange(event: any) {
     this.file = event.target.files[0]
-    if (this.file) {
-      console.log("File changed / selected")
-    }
   }
   OnSubmit() {
     if (this.SignupForm.invalid) {
@@ -67,11 +64,11 @@ export class SignupComponent {
         }
       },
       error: (err: Error) => {
-        console.log(err)
+
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `Error!, Please check provided Information.` })
       },
       complete: () => {
-        console.log('Saving user completed with success')
+
         this.chatList.createNewChatList(this.user.userId).subscribe()
       }
     })

@@ -24,6 +24,9 @@
             <li *ngIf="isAdmin == true">
               <a href="/admin-dashboard">Dashboard</a>
             </li>
+            <li >
+              <a href="/home/search">Search</a>
+            </li>
             <li *ngIf="role == 'SELLER'">
               <a routerLink="/home/job-list">My Jobs</a>
             </li>
@@ -58,7 +61,7 @@
 
 						<!-- Trigger -->
 						<div class="header-notifications-trigger">
-							<a  href="#" class="notify" (click)="readNotification()">
+							<a  href="#" class="notify">
                 <ng-container *ngIf="notCount == 0 else hasCount">
                   <i  class="fa-solid fa-bell"></i>
                 </ng-container>

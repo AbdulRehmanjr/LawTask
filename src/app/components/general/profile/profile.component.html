@@ -57,7 +57,7 @@
         </div>
         <div class="boxed-list margin-bottom-60">
           <div class="boxed-list-headline">
-            <h3><i class="fa-solid fa-briefcase"></i> Avaliable Jobs</h3>
+            <h3 class="fw-bolder fs" style="font-size:21px;"><i class="fa-solid fa-briefcase"></i> Avaliable Jobs</h3>
           </div>
           <ng-container *ngIf="jobs!=undefined else nojobs">
             <ul class="boxed-list-ul">
@@ -97,7 +97,7 @@
             </div>
           </ng-container>
           <ng-template #nojobs>
-            <h3 class="my-3"><i class="fa-solid fa-circle-exclamation" style="color:red;"></i> No Jobs Yet.</h3>
+            <h5 class="m-3 text-center" style="color:#66676B;"><i class="fa-solid fa-circle-exclamation" style="color:#66676B;"></i> No Jobs Yet.</h5>
           </ng-template>
           <div class="clearfix"></div>
         </div>
@@ -115,14 +115,14 @@
             ></p-rating>
           </div>
           <div class="success my-4 item">
-            <label for="sucess"></label>
+            <label for="sucess">Job Success</label>
             <p-progressBar [value]="freelancerData.success"></p-progressBar>
           </div>
         </div>
 
         <div class="dashboard-box custom-box">
           <div class="headline">
-            <h3><i class="fa-solid fa-comment m-2"></i> Comments</h3>
+            <h3 style="color:#198754;"><i class="fa-solid fa-comment m-2" style="color:#198754;"></i> Comments</h3>
           </div>
 
           <div class="content with-padding">
@@ -135,7 +135,7 @@
             </ng-container>
             <ng-template #nocomment>
               <div class="dashboard-note">
-                <p><i class="fa-solid fa-circle-exclamation" style="color:red;"></i> No comments Yet.</p>
+                <p><i class="fa-solid fa-circle-exclamation" style="color:#66676B;"></i> No comments Yet.</p>
               </div>
             </ng-template>
 

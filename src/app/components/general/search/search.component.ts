@@ -34,13 +34,15 @@ export class SearchComponent implements OnInit {
     private chatList: ChatlistService) { }
   ngOnInit(): void {
 
-    this.route.queryParams.subscribe(params => {
-      this.jobName = params['jobName'];
-    });
+    try {
+      this.route.queryParams.subscribe(params => {
+        this.jobName = params['jobName'];
+      });
+    } catch (error) {
 
+    }
     this.fetchCategories()
-    this.fetchJobs()
-
+    this.fetchByCategory(+this.jobName)
     this.createForm()
   }
 
@@ -66,23 +68,30 @@ export class SearchComponent implements OnInit {
       next: (response: Category[]) => {
         this.categories = response
       },
-      error: (error: any) => console.log(error),
-      complete: () => console.log()
+      error: (error: any) => {
+
+      },
+      complete: () => {
+
+      }
     })
   }
   fetchJobs(): void {
-    this.jobService.getJobsByJobName(this.jobName).subscribe({
-      next: (response: Job[]) => {
-        this.jobs = response
-      },
+    this.jobService.getAlljobs(this.jobName).subscribe({
+      next: (response:any[]) => {
+        this.jobs = [...response[0],...response[1]]
+      }
+      ,
       error: (error: any) => {
-        this.message.add({ severity: 'error', summary: 'error', detail: 'No Job or service found.' })
+
       },
       complete: () => {
-        this.isFound = true
         this.filteredJobs = this.jobs
+        this.isFound = true
       }
     })
+
+
   }
   sendMessage(receiverId: string) {
     const userId = JSON.parse(localStorage.getItem('user'))['userId']
@@ -92,7 +101,7 @@ export class SearchComponent implements OnInit {
 
       },
       error: (_error) => {
-        console.log(_error)
+
         // this.router.navigate(['/home/messages'])
       },
       complete: () => {
@@ -114,8 +123,6 @@ export class SearchComponent implements OnInit {
       this.fetchJobs();
     })
   }
-
-  //filters
   searchJobs(keyword: string) {
     this.jobName = keyword
     this.router.navigate([], {
@@ -126,24 +133,52 @@ export class SearchComponent implements OnInit {
     }).then(() => {
       this.jobService.getAlljobs(keyword).subscribe({
         next: (response:any[]) => {
-          console.log(response)
+
           this.jobs = [...response[0],...response[1]]
         }
         ,
-        error: (error: any) => console.log(error),
+        error: (error: any) => {
+
+        },
         complete: () => {
           this.filteredJobs = this.jobs
+          this.isFound = true
         }
       })
     })
 
   }
+  fetchByCategory(value:number){
+    this.jobService.getAllJobsByCategory(value).subscribe({
+      next: (response: Job[]) => {
+          this.jobs = response
+      },
+      error: (error: any) => {
+
+      },
+      complete: () => {
+          this.filteredJobs = this.jobs
+          this.isFound = true
+          return;
+      }
+    })
+  }
   filterCategories(category: number) {
+    if(this.filteredJobs){
+      this.jobService.getAllJobsByCategory(category).subscribe({
+        next: (response: Job[]) => {
+            this.jobs = response
+        },
+        error: (error: any) => {
 
-    console.log(category)
-
+        },
+        complete: () => {
+            this.filteredJobs = this.jobs
+            return;
+        }
+      })
+    }
     if (category) {
-
       this.jobs = this.filteredJobs.filter(job => job.category?.id == category);
     }
     else {

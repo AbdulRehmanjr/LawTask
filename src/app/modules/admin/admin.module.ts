@@ -15,6 +15,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
+import { BadgeModule } from 'primeng/badge';
 
 //* custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -69,6 +71,8 @@ const routes: Routes = [
     WithdrawrequestComponent,
   ],
   imports: [
+    BadgeModule,
+    TagModule,
     ButtonModule,
     ToolbarModule,
     ChartModule,

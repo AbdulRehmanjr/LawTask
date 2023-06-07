@@ -85,7 +85,7 @@ export class MakeOrderComponent implements OnInit{
     makeOrder.user = user
 
 
-    console.log(makeOrder)
+
     this.orderService.createOrder(makeOrder).subscribe({
       next:(_response:any)=>{
         navigator.clipboard.writeText(_response).then(function() {
@@ -96,7 +96,7 @@ export class MakeOrderComponent implements OnInit{
         this.messageService.add({severity:'success',summary:'Add Success',detail:'URL copied to clipboard'})
       },
       error:(_error:any)=>{
-        console.log(_error)
+
         this.messageService.add({severity:'error',summary:'Error',detail:'Error Making Order'})
       },
       complete:()=>{

@@ -1,4 +1,4 @@
-<section id="approval-requests">
+<section class="container-fluid margin-top">
   <div class="row text-center">
     <h3 class="heading p-3 m-3">Request for seller</h3>
   </div>
@@ -9,9 +9,8 @@
         #dt
         [value]="sellerRequests"
         [rowHover]="true"
-        [rows]="5"
+        [rows]="10"
         [showCurrentPageReport]="true"
-        [rowsPerPageOptions]="[5, 10, 25]"
         [paginator]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [filterDelay]="0"

@@ -1,26 +1,73 @@
 <div class="dashboard-sidebar sticky">
   <div class="dashboard-sidebar-inner" data-simplebar>
     <div class="dashboard-nav-container">
-
-
       <div class="dashboard-nav">
         <div class="dashboard-nav-inner">
           <ul>
-            <li><a routerLink="main"><i class="fa-solid fa-rectangle-list m-2"></i>  Dashboard</a></li>
-            <li><a routerLink="request-approval"><i class="fa-solid fa-envelope-circle-check m-2"></i> Seller Requests </a></li>
-            <li><a routerLink="approved-requests"><i class="fa-solid fa-envelope-circle-check m-2"></i> Approved Requests </a></li>
-            <li><a routerLink="coupons"><i class="fa-solid fa-envelope-circle-check m-2"></i> Coupons</a></li>
-            <li><a routerLink="withdraw">
-              <i class="fa-solid fa-wallet m-2">
+            <li>
+              <a routerLink="main"
+                ><i class="fa-solid fa-rectangle-list m-2"></i> Dashboard</a
+              >
+            </li>
+            <li>
 
-              </i>
-              Withdraw Requests
-            </a></li>
+              <a routerLink="request-approval">
+                <ng-container *ngIf="req == 0 else hasReq">
+                  <i class="fa-solid fa-envelope-circle-check m-2"></i> Seller
+                Requests
+                </ng-container>
+                <ng-template #hasReq>
+                  <i
+                  pBadge
+                  value="{{ req }}"
+                  severity="danger"
+                  class="
+                  fa-solid
+                  fa-wallet
+                  m-2"
+                ></i>
+                Withdraw Requests
+                </ng-template>
+              </a>
+            </li>
+            <li>
+              <a routerLink="approved-requests"
+                ><i class="fa-solid fa-envelope-circle-check m-2"></i> Approved
+                Requests
+              </a>
+            </li>
+            <li>
+              <a routerLink="coupons"
+                ><i class="fa-solid fa-envelope-circle-check m-2"></i>
+                Coupons</a
+              >
+            </li>
+            <li>
+              <a routerLink="withdraw">
+                <ng-container *ngIf="count == 0 else hasCount">
+                  <i class="fa-solid fa-wallet m-2"> </i>
+                  Withdraw Requests
+
+                </ng-container>
+                <ng-template #hasCount>
+                  <i
+                    pBadge
+                    value="{{ count }}"
+                    severity="danger"
+                    class="
+                    fa-solid
+                    fa-wallet
+                    m-2"
+                  ></i>
+                  Withdraw Requests
+
+                </ng-template>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
       <!-- Navigation / End -->
-
     </div>
   </div>
 </div>

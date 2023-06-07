@@ -42,7 +42,7 @@ export class PendingordersComponent implements OnInit {
   }
 
   download(order:Order){
-    console.log(order)
+
     const byteCharacters = atob(order.requirementFile);
     const byteNumbers = new Array(byteCharacters.length);
     for (let i = 0; i < byteCharacters.length; i++) {

@@ -100,10 +100,10 @@ export class ProfileComponent implements OnInit {
       const receiverId = this.freelancerData?.seller?.user?.userId
       this.chatList.addNewUser(userId, receiverId).subscribe({
         next: (_response) => {
-          console.log(_response)
+
         },
         error: (_error) => {
-          console.log('error', _error)
+
         },
         complete: () => {
           this.router.navigate(['/home/messages'])

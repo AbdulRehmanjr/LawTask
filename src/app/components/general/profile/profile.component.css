@@ -1,3 +1,7 @@
+.margin-top{
+  margin-top:5%;
+}
+
 .verified{
   color:#fff;
   border:none;
@@ -6,7 +10,8 @@
 
 }
 .profile-intro {
-  background: linear-gradient(to right, #005700, #00A600, #00FF00);
+  /* background: linear-gradient(to right, #005700, #00A600, #00FF00); */
+  background-color: #198754;
 }
 ::ng-deep .p-chip  {
     background-color: #30AB4A;

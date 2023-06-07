@@ -101,7 +101,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in fecthing user' })
       },
       complete: () => {
-        console.log('completed')
+
       }
     })
   }
@@ -117,7 +117,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
     };
     //reader.readAsArrayBuffer(file);
     reader.readAsDataURL(file);
-    console.log(file)
+
   }
 
   sendMessage($event: Event, data: any) {
@@ -172,7 +172,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
 
       },
       error: (error: any) => {
-        console.log(error)
+
       },
       complete: () => {
         this.oldMessages.forEach(

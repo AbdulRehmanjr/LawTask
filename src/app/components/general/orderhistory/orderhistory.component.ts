@@ -17,7 +17,6 @@ export class OrderhistoryComponent implements OnInit {
 
   orders:Order[]
   email:string = ''
-  status:string = ''
   dialog:boolean = false
   rating:number = 1
   selectedOrder:Order
@@ -61,10 +60,9 @@ export class OrderhistoryComponent implements OnInit {
   getSeverity(status: boolean): string {
     switch (status) {
       case true:
-        this.status = 'Completed'
         return 'success';
       case false:
-        this.status = 'Pending'
+
         return 'danger';
     }
   }
@@ -113,7 +111,9 @@ export class OrderhistoryComponent implements OnInit {
           summary:"Thanks."
         })
       },
-      error: (error: any) => console.log(error),
+      error: (error: any) => {
+
+      },
       complete: () => {
         this.dialog = false
         this.jobDone(this.selectedOrder)

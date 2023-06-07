@@ -106,10 +106,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       }
     })
   }
-  readNotification(){
-    this.notCount = 0
-    //TODO:  backend api
-  }
+  // readNotification(){
+  //   this.notCount = 0
+  //   //TODO:  backend api
+  // }
   logOut() {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
