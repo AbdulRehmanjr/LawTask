@@ -10,14 +10,12 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class FilessharingComponent implements OnInit {
 
-
   orders: Order[]
   private id: string = ''
-  isOrder:boolean = false
+  isOrder: boolean = false
   constructor(
     private orderService: OrderService,
     private messageService: MessageService,
-
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +29,6 @@ export class FilessharingComponent implements OnInit {
     this.orderService.getOrderByCustomerId(this.id).subscribe({
       next: (response: Order[]) => {
         this.orders = response
-this.isOrder = true
       },
 
       error: (error: any) => {
@@ -42,7 +39,7 @@ this.isOrder = true
         })
       },
       complete: () => {
-
+        this.isOrder = true
       }
     })
   }

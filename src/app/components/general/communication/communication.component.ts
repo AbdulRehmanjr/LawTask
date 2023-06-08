@@ -41,10 +41,14 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
 
   }
   ngOnDestroy(): void {
-    this.chatService.disconect(this.selectedUser.userId)
+    if(this.selectedUser){
+
+      this.chatService.disconect(this.selectedUser.userId)
+    }
+
   }
   ngAfterViewChecked(): void {
-    this.scrollToBottom();
+
   }
 
   ngOnInit(): void {
@@ -122,7 +126,10 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
 
   sendMessage($event: Event, data: any) {
 
+    this.scrollToBottom()
     $event.preventDefault()
+
+
 
     if (data.value == '') {
       return

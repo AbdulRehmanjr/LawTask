@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class EditprofileComponent implements OnInit {
 
   editProfile: FormGroup
+  email:string = ''
   private userId: string
   user: User
   placeholder: any
@@ -43,9 +44,10 @@ export class EditprofileComponent implements OnInit {
 
       },
       complete: () => {
+        this.email = this.user?.email
         this.editProfile.patchValue({
-          username: this.user?.userName,
-          email: this.user?.email,
+          username: '',
+          email: '',
 
         });
       }

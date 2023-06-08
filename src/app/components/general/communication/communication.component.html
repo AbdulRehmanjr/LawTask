@@ -1,50 +1,52 @@
 <section class="row margin-top">
   <p-toast position="bottom-right"></p-toast>
-  <aside class="col-md-3 d-none d-md-block userbar" style="padding-right:0px;">
-    <div class="messages-inbox">
-      <ul class="user-list">
-        <li *ngFor="let user of users">
-          <a
-            id="{{ user.sender.userName }}"
-            pBafe
-            (click)="selectUser(user)"
-            [ngStyle]="{
-              background: selectedUser === user.receiver ? '#f0f0f0' : 'none'
-            }"
-          >
-            <div class="message-avatar">
-              <i class="status-icon status-online"></i>
-              <img
-                src="data:image/jpeg; base64, {{ user?.sender.profilePicture }}"
-                alt="profile Image"
-              />
-            </div>
-            <div class="message-by">
-              <div class="message-by-headline">
-
-                <ng-container *ngIf="user.unRead != 0 else nomessage">
-                  <h5
-                  >
-                    {{ user?.sender.userName }}
-                  </h5>
-                  <p-tag value="{{user.unRead}}" severity="success" ></p-tag>
-                </ng-container>
-                <ng-template #nomessage>
-                  <h5
-                  >
-                    {{ user?.sender.userName }}
-                  </h5>
-                </ng-template>
-              </div>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
 
   <ng-container *ngIf="isUsers; else nouser">
-    <div class="chat-screen col-sm-12 col-md-9" style="padding-left:0px;">
+    <aside
+      class="col-md-3 d-none d-md-block userbar"
+      style="padding-right: 0px"
+    >
+      <div class="messages-inbox">
+        <ul class="user-list">
+          <li *ngFor="let user of users">
+            <a
+              id="{{ user.sender.userName }}"
+              pBafe
+              (click)="selectUser(user)"
+              [ngStyle]="{
+                background: selectedUser === user.receiver ? '#f0f0f0' : 'none'
+              }"
+            >
+              <div class="message-avatar">
+                <i class="status-icon status-online"></i>
+                <img
+                  src="data:image/jpeg; base64, {{
+                    user?.sender.profilePicture
+                  }}"
+                  alt="profile Image"
+                />
+              </div>
+              <div class="message-by">
+                <div class="message-by-headline">
+                  <ng-container *ngIf="user.unRead != 0; else nomessage">
+                    <h5>
+                      {{ user?.sender.userName }}
+                    </h5>
+                    <p-tag value="{{ user.unRead }}" severity="success"></p-tag>
+                  </ng-container>
+                  <ng-template #nomessage>
+                    <h5>
+                      {{ user?.sender.userName }}
+                    </h5>
+                  </ng-template>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="chat-screen col-sm-12 col-md-9" style="padding-left: 0px">
       <ng-container *ngIf="selectedUser; else select">
         <article id="userchat">
           <div class="message-content">
@@ -104,7 +106,7 @@
             <div class="message-reply">
               &nbsp;
               <textarea
-              style="margin-left:6px;"
+                style="margin-left: 6px"
                 #message
                 cols="1"
                 rows="1"
@@ -124,8 +126,6 @@
         </article>
       </ng-container>
       <ng-template #select>
-
-
         <article id="userchat" class="col-sm-12 col-md-9 asmr-container">
           <div class="button-container text-center">
             <button
@@ -157,14 +157,12 @@
   </ng-template>
 </section>
 <p-sidebar
-class="col-md-3 d-sm-block d-md-none margin-top userbar"
-[(visible)]="sidebarVisible"
-position="left"
-[blockScroll]="false"
+  class="col-md-3 d-sm-block d-md-none margin-top userbar"
+  [(visible)]="sidebarVisible"
+  position="left"
+  [blockScroll]="false"
 >
-
   <div class="messages-inbox">
-
     <ul class="user-list">
       <li *ngFor="let user of users">
         <a
@@ -177,9 +175,7 @@ position="left"
           <div class="message-avatar">
             <i class="status-icon status-online"></i>
             <img
-              src="data:image/jpeg; base64, {{
-                user?.sender.profilePicture
-              }}"
+              src="data:image/jpeg; base64, {{ user?.sender.profilePicture }}"
               alt="profile Image"
             />
           </div>
@@ -192,5 +188,4 @@ position="left"
       </li>
     </ul>
   </div>
-
 </p-sidebar>

@@ -1,15 +1,12 @@
-<section class="row margin-top">
+<section class=" row margin-top">
   <div clas=" mt-4 pt-4 gap-2">
     <p-toast position="bottom-right"></p-toast>
-  </div>
-  <div class="row">
-    <h1 class="asmrl-heading">Edit Profile</h1>
   </div>
   <form [formGroup]="editProfile" (ngSubmit)="onSubmit()">
     <!-- Dashboard Box -->
     <div class="col-xl-12">
       <div class="dashboard-box">
-        <div class="headline">
+        <div class="headline text-center">
           <h3><i class="fa-regular fa-id-card"></i> My Account</h3>
         </div>
 
@@ -26,13 +23,14 @@
 
             <div class="col">
               <div class="row">
-                <div class="col-xl-6">
+                <div class="col-md-6 offset-md-3">
                   <div class="submit-field">
-                    <h5>User Name</h5>
+
                     <input
                       formControlName="username"
                       type="text"
                       class="with-border"
+                      placeholder="Enter New User Name"
                       required="true"
                     />
                   </div>
@@ -49,21 +47,28 @@
                   </div>
                 </div>
 
-                <div class="col-xl-6">
+                <div class="col-md-6 offset-md-3">
                   <div class="submit-field">
-                    <h5>Email</h5>
+
                     <input
                     formControlName="email"
                       type="text"
                       class="with-border"
+                      placeholder="Email : {{email}}"
                     />
                   </div>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-md-6 offset-md-3 text-center">
                   <button class="btn btn-success" routerLink="/home/forgot-password">
                     Change Password
                   </button>
                 </div>
+                <div class="col-md-6 offset-md-3 text-center">
+                  <button type="submit" class="btn btn-success mt-2 mb-4">
+                    Save Changes
+                  </button>
+                </div>
+
               </div>
             </div>
           </div>
@@ -73,9 +78,7 @@
 
 
     <div class="col-xl-12 d-flex justify-content-center">
-      <button type="submit" class="btn btn-success mt-2 mb-4">
-        Save Changes
-      </button>
+
     </div>
   </form>
 </section>

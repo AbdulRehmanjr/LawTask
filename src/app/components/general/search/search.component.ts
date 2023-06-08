@@ -38,13 +38,13 @@ export class SearchComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.jobName = params['jobName'];
 
-      if(this.jobName == undefined){
+      if (this.jobName == undefined) {
         this.fetchAllJobs()
       }
     });
 
     this.fetchCategories()
-    if(this.jobName!=undefined){
+    if (this.jobName != undefined) {
       this.fetchByCategory(+this.jobName)
     }
 
@@ -130,13 +130,13 @@ export class SearchComponent implements OnInit {
     })
   }
 
-  fetchAllJobs(){
+  fetchAllJobs() {
     this.jobService.getAll().subscribe({
       next: (response: Job[]) => {
         this.jobs = response
       },
-      error: (error: any) => {  this.jobs = undefined},
-      complete: () =>{
+      error: (error: any) => { this.jobs = undefined },
+      complete: () => {
         this.filteredJobs = this.jobs
         this.isFound = true
       }
@@ -183,7 +183,7 @@ export class SearchComponent implements OnInit {
     })
   }
   filterCategories(category: number) {
-    if (this.filteredJobs) {
+    if (this.filteredJobs == undefined) {
       this.jobService.getAllJobsByCategory(category).subscribe({
         next: (response: Job[]) => {
           this.jobs = response
@@ -198,10 +198,25 @@ export class SearchComponent implements OnInit {
       })
     }
     if (category) {
-      this.jobs = this.filteredJobs.filter(job => job.category?.id == category);
+      this.jobs = this.filteredJobs.filter(job => job.category?.id == category)
+      if(this.jobs.length ==0){
+        this.jobService.getAllJobsByCategory(category).subscribe({
+          next: (response: Job[]) => {
+            this.jobs = response
+          },
+          error: (error: any) => {
+            this.jobs = undefined
+          },
+          complete: () => {
+            this.filteredJobs = this.jobs
+            return;
+          }
+        })
+      }
     }
     else {
       this.jobs = this.filteredJobs
+      this.isFound = true
     }
   }
   locations: any[] = [

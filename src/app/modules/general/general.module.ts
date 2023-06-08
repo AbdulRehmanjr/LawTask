@@ -54,6 +54,7 @@ import { PrivacyComponent } from '../../components/general/privacy/privacy.compo
 import { SubscriptioncardComponent } from 'src/app/components/shared/subscriptioncard/subscriptioncard.component';
 import { EditprofileComponent } from '../../components/general/editprofile/editprofile.component';
 import { ForgotpassordComponent } from '../../components/general/forgotpassord/forgotpassord.component';
+import { ContactusComponent } from '../../components/general/contactus/contactus.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,9 @@ const routes: Routes = [
       },
       {
         path: 'job-list', component: JobsListComponent
+      },
+      {
+        path:'contact',component:ContactusComponent
       },
       {
         path: 'edit-profile', component: EditprofileComponent
@@ -141,6 +145,7 @@ const routes: Routes = [
     PrivacyComponent,
     EditprofileComponent,
     ForgotpassordComponent,
+    ContactusComponent,
   ],
   imports: [
     ProgressBarModule,

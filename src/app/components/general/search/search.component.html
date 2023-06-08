@@ -107,17 +107,18 @@
       <form
         [formGroup]="search"
         (ngSubmit)="onSubmit()"
-        style="max-width: 300px; margin: 0 auto"
+        class="d-flex flex-row"
+        style="max-width: 400px; margin: 0 auto"
       >
-        <span class="d-flex flex-column">
+
           <input
             type="text"
             placeholder="Jobs"
             formControlName="job"
             class="form-controle"
           />
-        </span>
-        <button class="btn btn-success mt-3">Search</button>
+
+        <button class="btn btn-success">Search</button>
       </form>
       <app-notfound></app-notfound>
     </ng-template>
