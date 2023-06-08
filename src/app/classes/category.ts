@@ -3,5 +3,5 @@ export class Category{
   name:string
   icons:string
   jobCount:number
-  description
+  description:string
 }
