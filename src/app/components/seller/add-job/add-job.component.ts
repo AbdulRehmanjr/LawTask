@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { Category } from 'src/app/classes/category';
 import { Job } from 'src/app/classes/job';
 import { User } from 'src/app/classes/user';
+import { CategoryService } from 'src/app/services/category.service';
 import { JobsService } from 'src/app/services/jobs.service';
 
 @Component({
@@ -13,6 +15,7 @@ import { JobsService } from 'src/app/services/jobs.service';
 export class AddJobComponent implements OnInit {
 
 
+  categories:Category[]
   @Output()
   jobAdded = new EventEmitter<boolean>()
 
@@ -24,11 +27,13 @@ export class AddJobComponent implements OnInit {
   ];
   constructor(private formBuilder: FormBuilder,
     private jobService: JobsService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private categoryService:CategoryService) { }
 
   ngOnInit(): void {
 
     this.createForm()
+    this.fetchCategories()
   }
 
   createForm(): void {
@@ -37,7 +42,8 @@ export class AddJobComponent implements OnInit {
       description: ['', [Validators.required]],
       jobType:  new FormControl('Fixed'),
       jobPicture: ['', [Validators.required]],
-      jobPrice: ['', Validators.required]
+      jobPrice: ['', Validators.required],
+      category:['',Validators.required]
     })
   }
 
@@ -45,6 +51,20 @@ export class AddJobComponent implements OnInit {
     this.file = event.target.files[0]
   }
 
+
+  fetchCategories() {
+    this.categoryService.getAllCategories().subscribe({
+      next: (response: Category[]) => {
+        this.categories = response
+      },
+      error: (error: any) => {
+
+      },
+      complete: () => {
+
+      }
+    })
+  }
   onSubmit(): void {
     if (this.jobForm.invalid) {
       this.jobForm.markAllAsTouched();
@@ -55,10 +75,14 @@ export class AddJobComponent implements OnInit {
     user.userId = JSON.parse(localStorage.getItem('user'))['userId']
 
     let job = new Job()
+    let category = new Category()
     job.jobName = this.jobForm.get('jobName').value
     job.description = this.jobForm.get('description').value
     job.jobPrice = this.jobForm.get('jobPrice').value
     job.jobType = this.jobForm.get('jobType').value
+
+    category.id = this.jobForm.get('category').value
+    job.category = category
     job.user = user
 
     this.jobService.saveJob(job, this.file).subscribe({

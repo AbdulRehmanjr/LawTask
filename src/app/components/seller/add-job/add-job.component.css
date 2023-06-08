@@ -5,6 +5,9 @@ input,textarea{
   border:1px solid #000  ;
   outline:#000 ;
 }
+select{
+  padding: 0;
+}
 
 ::ng-deep .p-selectbutton .p-button.p-highlight{
   background-color: #22C55E;
