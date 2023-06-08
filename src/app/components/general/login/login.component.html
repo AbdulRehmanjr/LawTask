@@ -20,26 +20,27 @@
                 <h5 class="mb-3 pb-3 description" style="letter-spacing: 1px">
                   Sign into your Account
                 </h5>
-                <div class="form-outline mb-5 ">
-                  <span class="p-float-label">
+                <div class="form-outline mb-4">
+                  <div class="flex flex-column">
+                    <label htmlFor="email">Email </label>
                     <input
-                    class="w-100"
-                      id="email"
-                      formControlName="email"
-                      required="true"
-                    />
-                    <label For="email">Email</label>
-                  </span>
+                    type="email"
+                    formControlName="email"
+                    placeholder="Enter your Email"
+                    class="form-control form-control-lg w-100"
+                    required
+                  />
+                    <small id="jobname-help">Enter your Job Name.</small>
+                  </div>
                   <div
-                  *ngIf="
-                    LoginForm.get('email').invalid &&
-                    LoginForm.get('email').touched
-                  "
-                  class="error-message m-2"
-                >
-                  Email is required
-                </div>
-
+                    *ngIf="
+                      LoginForm.get('email').invalid &&
+                      LoginForm.get('email').touched
+                    "
+                    class="error-message"
+                  >
+                    Email is required
+                  </div>
                 </div>
 
                 <div class="form-outline mb-4 mt-4">

@@ -12,21 +12,21 @@
             <form [formGroup]="SignupForm" (ngSubmit)="OnSubmit()" >
 
               <div class="form-outline mb-4">
-                <span class="p-float-label">
+                <div class="flex flex-column">
+                  <label htmlFor="username">User Name </label>
                   <input
                   type="text"
-                  placeholder="Full Name"
-                  formControlName="username"
+                  formControlName="userName"
+                  placeholder="Enter User Name"
                   class="form-control form-control-lg w-100"
                   required
                 />
-                <label class="form-label">Full Name</label>
-                </span>
-
+                  <small id="userName-help">Enter User Name.</small>
+                </div>
                 <div
                   *ngIf="
-                    SignupForm.get('username').invalid &&
-                    SignupForm.get('username').touched
+                    SignupForm.get('userName').invalid &&
+                    SignupForm.get('userName').touched
                   "
                   class="error-message"
                 >
@@ -36,7 +36,8 @@
 
               <!-- Email -->
               <div class="form-outline mb-4">
-                <span class="p-float-label">
+                <div class="flex flex-column">
+                  <label htmlFor="email">Email </label>
                   <input
                   type="email"
                   formControlName="email"
@@ -44,9 +45,8 @@
                   class="form-control form-control-lg w-100"
                   required
                 />
-                <label class="form-label">Email</label>
-                </span>
-
+                  <small id="jobname-help">Enter your Job Name.</small>
+                </div>
                 <div
                   *ngIf="
                     SignupForm.get('email').invalid &&
