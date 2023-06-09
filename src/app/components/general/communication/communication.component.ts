@@ -127,7 +127,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
   sendMessage($event: Event, data: any) {
 
     this.scrollToBottom()
-    // $event.preventDefault()
+    $event.preventDefault()
 
     if (data.value == '') {
       return
