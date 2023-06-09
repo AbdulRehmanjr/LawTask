@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   GoToProfile() {
     if(this.role=='SELLER'){
-      this.router.navigateByUrl(`/home/profile/${this.user['userId']}`)
+     this.router.navigate([`/home/profile/${this.user['userId']}`])
     }
 
   }
