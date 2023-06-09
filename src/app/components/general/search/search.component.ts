@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   search: FormGroup
   jobs: Job[]
   jobName: string = ''
-  isFound: boolean = true
+  isFound: boolean
   categories: Category[]
   filteredJobs: Job[]
 
