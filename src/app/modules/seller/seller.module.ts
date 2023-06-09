@@ -34,6 +34,8 @@ import { FiledetailsComponent } from '../../components/seller/filedetails/filede
 import { SellerGuard } from 'src/app/security/seller.guard';
 import { ProfileComponent } from '../../components/seller/profile/profile.component';
 import { WithdrawrequestComponent } from '../../components/seller/withdrawrequest/withdrawrequest.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerService } from 'src/app/interceptor/spinner.service';
 
 
 
@@ -104,6 +106,11 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerService,
+      multi: true
+    },
     MessageService
   ]
 })

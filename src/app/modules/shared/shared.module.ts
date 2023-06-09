@@ -13,6 +13,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { SidebarModule } from 'primeng/sidebar';
 import { Badge, BadgeModule } from 'primeng/badge';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerService } from 'src/app/interceptor/spinner.service';
 
 
 @NgModule({
@@ -37,6 +39,13 @@ import { Badge, BadgeModule } from 'primeng/badge';
     SubscriptioncardComponent,
     HeaderComponent
   ],
-  providers:[MessageService]
+  providers:[
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerService,
+      multi: true
+    },
+    MessageService
+  ]
 })
 export class SharedModule { }

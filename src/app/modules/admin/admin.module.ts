@@ -31,6 +31,8 @@ import { DashboardComponent } from '../../components/admin/dashboard/dashboard.c
 import { CouponComponent } from '../../components/admin/coupon/coupon.component';
 import { AdminGuard } from 'src/app/security/admin.guard';
 import { WithdrawrequestComponent } from '../../components/admin/withdrawrequest/withdrawrequest.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerService } from 'src/app/interceptor/spinner.service';
 
 
 const routes: Routes = [
@@ -93,6 +95,11 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerService,
+      multi: true
+    },
     MessageService
   ]
 })

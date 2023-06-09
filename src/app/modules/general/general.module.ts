@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // prime
@@ -55,6 +55,7 @@ import { SubscriptioncardComponent } from 'src/app/components/shared/subscriptio
 import { EditprofileComponent } from '../../components/general/editprofile/editprofile.component';
 import { ForgotpassordComponent } from '../../components/general/forgotpassord/forgotpassord.component';
 import { ContactusComponent } from '../../components/general/contactus/contactus.component';
+import { SpinnerService } from 'src/app/interceptor/spinner.service';
 
 const routes: Routes = [
   {
@@ -175,6 +176,11 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerService,
+      multi: true
+    },
     MessageService
   ]
 })

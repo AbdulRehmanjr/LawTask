@@ -8,6 +8,8 @@ import { AdminModule } from './modules/admin/admin.module';
 import { SharedModule } from 'primeng/api';
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 import { AuthGuard } from './security/auth.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerService } from './interceptor/spinner.service';
 
 
 const routes: Routes = [
@@ -31,6 +33,13 @@ const routes: Routes = [
     SellerModule,
     GeneralModule,
     RouterModule.forRoot(routes)
+  ],
+  providers:[
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerService,
+      multi: true
+    },
   ],
   exports: [RouterModule]
 })
