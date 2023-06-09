@@ -18,6 +18,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
 
+
   check: string
   role: string = ''
   isAdmin: boolean = false
@@ -70,7 +71,25 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     })
   }
 
+  GoToDashboard() {
+    if(this.role=='ADMIN'){
+      this.router.navigate(['/admin-dashboard'])
+    }
+    else{
+      this.router.navigate(['/seller-dashboard'])
+    }
+    }
 
+  GoToProfile() {
+    if(this.role=='SELLER'){
+      const queryParams = {
+        id:this.user['userId']
+      }
+
+      this.router.navigate([`/home/profile`],{queryParams})
+    }
+
+  }
 
 
   userCheck(): void {
