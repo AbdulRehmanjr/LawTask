@@ -34,19 +34,23 @@ export class SearchComponent implements OnInit {
     private chatList: ChatlistService) { }
   ngOnInit(): void {
 
-
+    this.fetchCategories()
     this.route.queryParams.subscribe(params => {
       this.jobName = params['jobName'];
 
       if (this.jobName == undefined) {
         this.fetchAllJobs()
+      }else{
+        const id = +this.jobName
+
+        if(Number.isNaN(id)){
+          this.searchJobs(this.jobName)
+        }else{
+          this.fetchByCategory(id)
+        }
       }
     });
 
-    this.fetchCategories()
-    if (this.jobName != undefined) {
-      this.fetchByCategory(+this.jobName)
-    }
 
     this.createForm()
   }
@@ -184,18 +188,7 @@ export class SearchComponent implements OnInit {
   }
   filterCategories(category: number) {
     if (this.filteredJobs == undefined) {
-      this.jobService.getAllJobsByCategory(category).subscribe({
-        next: (response: Job[]) => {
-          this.jobs = response
-        },
-        error: (error: any) => {
-          this.jobs = undefined
-        },
-        complete: () => {
-          this.filteredJobs = this.jobs
-          return;
-        }
-      })
+      this.fetchByCategory(category)
     }
     if (category) {
       this.jobs = this.filteredJobs.filter(job => job.category?.id == category)

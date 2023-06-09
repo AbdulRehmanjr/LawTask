@@ -185,9 +185,10 @@ a{
 }
 .freelancer-avatar img{
   height: 100px;
-  width:100px;
-  border:none;
+  width: 100px;
+  border: none;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 

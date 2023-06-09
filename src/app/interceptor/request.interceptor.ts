@@ -20,12 +20,18 @@ export class RequestInterceptor implements HttpInterceptor {
     const token = localStorage.getItem('token');
     const content = token?.substring(1, token.length - 1);
 
+    // const modifiedRequest = request.clone({
+    //   headers: new HttpHeaders(),
+    //   reportProgress: true,
+    //   setHeaders: {
+    //     'Max-Body-Length': maxFileSize.toString(),
+    //     'Max-Content-Length': maxRequestSize.toString(),
+    //     'Authorization' : `Bearer ${content}`
+    //   }
+    // });
     const modifiedRequest = request.clone({
-      headers: new HttpHeaders(),
-      reportProgress: true,
       setHeaders: {
-        'Max-Body-Length': maxFileSize.toString(),
-        'Max-Content-Length': maxRequestSize.toString(),
+
         'Authorization' : `Bearer ${content}`
       }
     });
