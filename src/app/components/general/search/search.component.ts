@@ -89,6 +89,7 @@ export class SearchComponent implements OnInit {
     this.isFound = false
     this.jobService.getAlljobs(this.jobName).subscribe({
       next: (response: any[]) => {
+        this.isFound = true
         this.jobs = [...response[0], ...response[1]]
       }
       ,
@@ -98,7 +99,7 @@ export class SearchComponent implements OnInit {
       },
       complete: () => {
         this.filteredJobs = this.jobs
-        this.isFound = true
+
       }
     })
 
@@ -138,6 +139,7 @@ export class SearchComponent implements OnInit {
   fetchAllJobs() {
     this.jobService.getAll().subscribe({
       next: (response: Job[]) => {
+        this.isFound = true
         this.jobs = response
       },
       error: (error: any) => {
@@ -146,7 +148,7 @@ export class SearchComponent implements OnInit {
        },
       complete: () => {
         this.filteredJobs = this.jobs
-        this.isFound = true
+
       }
     })
   }
@@ -160,7 +162,7 @@ export class SearchComponent implements OnInit {
     }).then(() => {
       this.jobService.getAlljobs(keyword).subscribe({
         next: (response: any[]) => {
-
+          this.isFound = true
           this.jobs = [...response[0], ...response[1]]
         }
         ,
@@ -170,7 +172,7 @@ export class SearchComponent implements OnInit {
         },
         complete: () => {
           this.filteredJobs = this.jobs
-          this.isFound = true
+
         }
       })
     })
@@ -180,6 +182,7 @@ export class SearchComponent implements OnInit {
     this.jobService.getAllJobsByCategory(value).subscribe({
       next: (response: Job[]) => {
         this.jobs = response
+        this.isFound = true
       },
       error: (error: any) => {
         this.jobs = undefined
@@ -187,7 +190,7 @@ export class SearchComponent implements OnInit {
       },
       complete: () => {
         this.filteredJobs = this.jobs
-        this.isFound = true
+
         return;
       }
     })
@@ -202,6 +205,7 @@ export class SearchComponent implements OnInit {
         this.jobService.getAllJobsByCategory(category).subscribe({
           next: (response: Job[]) => {
             this.jobs = response
+            this.isFound = true
           },
           error: (error: any) => {
             this.jobs = undefined
@@ -216,7 +220,7 @@ export class SearchComponent implements OnInit {
     }
     else {
       this.jobs = this.filteredJobs
-      this.isFound = true
+
     }
   }
 }
