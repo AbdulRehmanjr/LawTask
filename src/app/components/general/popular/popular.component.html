@@ -5,7 +5,7 @@
   <div class="row m-3 p-2 m-md-4 p-md-4 m-lg-5 m-lg-5 justify-content-center">
     <!-- Added justify-content-center class -->
     <div
-      *ngFor="let card of categories.slice(0,6)"
+      *ngFor="let card of categories?.slice(0,6)"
       class="col-md-3 col-sm-12 m-4 p-3 m-md-4 text-center category-box"
     >
       <a class="m-md-4" (click)="search(card.id)">

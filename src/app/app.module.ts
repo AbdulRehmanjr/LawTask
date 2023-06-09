@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerService } from './interceptor/spinner.service';
-import { AuthService } from './security/auth.service';
+import { RequestInterceptor } from './interceptor/request.interceptor';
+
 
 
 @NgModule({
@@ -30,9 +31,10 @@ import { AuthService } from './security/auth.service';
       multi: true
     }, {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthService,
+      useClass: RequestInterceptor,
       multi: true
     },
+
   ],
   exports: [],
   bootstrap: [AppComponent]
