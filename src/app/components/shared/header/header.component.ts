@@ -78,15 +78,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     else{
       this.router.navigate(['/seller-dashboard'])
     }
-    }
+  }
 
   GoToProfile() {
     if(this.role=='SELLER'){
-      const queryParams = {
-        id:this.user['userId']
-      }
-
-      this.router.navigate([`/home/profile`],{queryParams})
+      this.router.navigate([`/home/profile/${this.user['userId']}`],)
     }
 
   }
@@ -108,7 +104,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       error: (error: any) => {
 
       },
-      complete: () => { }
+      complete: () => {
+
+      }
     })
   }
   fetchNotifcations() {
@@ -125,10 +123,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       }
     })
   }
-  // readNotification(){
-  //   this.notCount = 0
-  //   //TODO:  backend api
-  // }
   logOut() {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
