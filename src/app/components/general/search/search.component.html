@@ -63,12 +63,14 @@
                       />
                       <h3 class="task-listing-title">{{ job.jobName }}</h3>
                       <strong class="">{{ job.category?.name }}</strong>
+
                     </div>
                   </div>
 
                   <div class="task-listing-bid">
                     <div class="task-listing-bid-inner">
                       <div class="task-offers">
+                        <strong class="">{{job.description}}</strong>
                         <strong>{{ job?.jobPrice | currency : "USD" }}</strong>
                         <strong>{{ job?.user.userName }}</strong>
                         <span>Fixed Price</span>

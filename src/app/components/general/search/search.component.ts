@@ -105,21 +105,26 @@ export class SearchComponent implements OnInit {
 
 
   }
-  sendMessage(receiverId: string) {
-    const userId = JSON.parse(localStorage.getItem('user'))['userId']
+  sendMessage(sellerId: string) {
+    // const userId = JSON.parse(localStorage.getItem('user'))['userId']
 
-    this.chatList.addNewUser(userId, receiverId).subscribe({
-      next: (_response) => {
+    // this.chatList.addNewUser(userId, receiverId).subscribe({
+    //   next: (_response) => {
 
-      },
-      error: (_error) => {
+    //   },
+    //   error: (_error) => {
 
-        // this.router.navigate(['/home/messages'])
-      },
-      complete: () => {
-        this.router.navigate(['/home/messages'])
-      }
-    })
+    //     // this.router.navigate(['/home/messages'])
+    //   },
+    //   complete: () => {
+    //     this.router.navigate(['/home/messages'])
+    //   }
+    // })
+    const queryParams = {
+      id:sellerId
+    }
+
+    this.router.navigate([`/home/profile`],{queryParams})
 
   }
   onSubmit(): void {
