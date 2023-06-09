@@ -80,14 +80,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  GoToProfile() {
-    if(this.role=='SELLER'){
-      const url = `/home/profile/${this.check}`
-     this.router.navigate([url])
-    }
-
-  }
-
 
   userCheck(): void {
     const user = JSON.parse(localStorage.getItem('user'))
