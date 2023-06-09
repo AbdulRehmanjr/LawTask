@@ -59,7 +59,7 @@ export class PopularComponent implements OnInit {
 
         },
         complete: () => {
-            this.categories.sort((a,b)=>  b.jobCount - a.jobCount)
+           this.categories =  this.categories.sort((a,b)=>  b.jobCount - a.jobCount)
         }
       })
   }
