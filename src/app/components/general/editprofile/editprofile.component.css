@@ -64,7 +64,7 @@ section{
 }
 
 button {
-  width: 250px;
+  width: 50%;
   display: inline-block;
   padding: 12px 24px;
   background:linear-gradient(45deg,#04b25c, #1eec00);
