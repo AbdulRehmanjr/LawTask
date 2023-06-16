@@ -8,23 +8,23 @@ import { Observable, finalize, tap } from 'rxjs';
 })
 export class SpinnerService implements HttpInterceptor {
 
+  activeRequests = 0;
+
   constructor(private spinner: NgxSpinnerService) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.spinner?.show();
-    return next.handle(req).pipe(
-      tap({
-        next: (event) => {
-          if (event instanceof HttpResponse) {
-            // Hide the spinner on successful response
 
-          }
-        },
-        error: (error) => {
-          // Hide the spinner on error
-          this.spinner.hide();
-        },
-        complete:()=>{
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (this.activeRequests === 0) {
+      this.spinner.show();
+    }
+
+    this.activeRequests++;
+
+    return next.handle(request).pipe(
+      finalize(() => {
+        this.activeRequests--;
+
+        if (this.activeRequests === 0) {
           this.spinner.hide();
         }
       })
