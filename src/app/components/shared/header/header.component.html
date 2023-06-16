@@ -58,7 +58,6 @@
               <li><a routerLink="/home/contact">Contact Us</a></li>
               <li> <a routerLink="/home/order">Orders</a></li>
               <li> <a routerLink="/home/files">Files</a></li>
-              <a routerLink="messages">Messages</a>
               <li>
                 <a routerLink="/home/seller-request"> Become Seller </a>
               </li>
@@ -67,11 +66,7 @@
         </nav>
         <div class="clearfix"></div>
       </div>
-      <div class="right-side d-sm-block d-md-none">
-        <button class="side-bar" (click)="showSideBar()">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
+
 
       <div *ngIf="check != undefined" class="right-side d-flex flex-row">
         <div class="header-widget hide-on-mobile" *ngIf="role!='ADMIN'">
@@ -192,18 +187,19 @@
             </div>
           </div>
         </div>
-        <div class="d-sm-block d-md-none mx-2">
+        <div class="d-sm-block d-lg-none mx-2">
           <button class="side-bar" (click)="showSideBar()">
             <i class="fas fa-bars"></i>
           </button>
         </div>
+
 
       </div>
     </div>
   </div>
   <!-- Header / End -->
 </header>
-<p-sidebar class="col-md-2 d-sm-block d-md-none mt-md-2" [(visible)]="sidebarVisible" position="left"
+<p-sidebar class="col-md-2 d-sm-block d-lg-none mt-md-2" [(visible)]="sidebarVisible" position="left"
   [blockScroll]="false">
   <nav id="navigation-sidebar">
     <ul>

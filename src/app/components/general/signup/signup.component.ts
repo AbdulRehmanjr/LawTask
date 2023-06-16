@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
 import { MessageService } from 'primeng/api';
 import { User } from 'src/app/classes/user';
 import { ChatlistService } from 'src/app/services/chatlist.service';
@@ -54,7 +55,7 @@ export class SignupComponent {
     let user = new User()
     user.email = this.SignupForm.controls['email'].value
     user.password = this.SignupForm.controls['password'].value
-    user.userName = this.SignupForm.controls['username'].value
+    user.userName = this.SignupForm.controls['userName'].value
 
     this._signup.saveUser(user, this.file).subscribe({
       next: (value: any) => {
@@ -63,9 +64,8 @@ export class SignupComponent {
           this._router.navigate(['login'])
         }
       },
-      error: (err: Error) => {
-
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `Error!, Please check provided Information.` })
+      error: (err: any) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `Error!, ${err.error}` })
       },
       complete: () => {
 

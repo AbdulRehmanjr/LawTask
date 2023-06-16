@@ -154,8 +154,7 @@ img { max-width: 100%; }
 	border-right: 1px solid #e0e0e0;
 	height: 100%;
 	vertical-align: top;
-	padding-right: 35px;
-	margin-right: 20px;
+
 }
 
 #logo img {
@@ -201,12 +200,11 @@ header.fullwidth .container {
 #header .right-side {
 	float: right;
 	text-align: right;
-	width: auto;
+	width: fit-content;
 	display: inline-block;
 	position: absolute;
 	right: 25px;
 	background-color: #fff;
-	flex: 1;
 	top: 0;
 }
 
@@ -218,7 +216,7 @@ header.fullwidth .container {
 	position: relative;
 }
 
-.full-width #header .right-side {
+/* .full-width #header .right-side {
 	float: right;
 	text-align: right;
 	width: auto;
@@ -226,7 +224,7 @@ header.fullwidth .container {
 	position: absolute;
 	right: 25px;
 	background-color: #fff;
-}
+} */
 
 
 

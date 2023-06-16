@@ -1,8 +1,9 @@
 #intro-section {
   height: 100vh;
   background-image: url("src/assets/images/home.jpg");
-  /* background-size: cover; */
-  /* background-repeat: no-repeat; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 @media (max-width: 767px) {
