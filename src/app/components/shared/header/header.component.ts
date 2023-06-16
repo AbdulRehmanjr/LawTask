@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   role: string = ''
   isAdmin: boolean = false
   profile: string = ''
-  private user: any
+   user: any
   userResponse: User
   sidebarVisible: boolean = false
   count: number = 0

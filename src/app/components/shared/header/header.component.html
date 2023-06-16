@@ -7,46 +7,62 @@
       <div class="left-side">
         <!-- Logo -->
         <div id="logo">
-          <a class="disabled-link-hover"
-            ><img src="assets/images/logo.png" alt="logo picture"
-          /></a>
+          <a class="disabled-link-hover"><img src="assets/images/logo.png" alt="logo picture" /></a>
         </div>
 
         <nav id="navigation">
           <ul id="responsive">
-            <li><a routerLink="/home" class="current">Home</a></li>
-            <li *ngIf="role == 'SELLER'">
-              <a routerLink="/seller-dashboard">For Employers</a>
-            </li>
-            <li *ngIf="role == 'USER'">
+            <ng-container *ngIf="user == undefined">
+              <li>
+                <a routerLink="/home" class="current">Home</a>
+              </li>
+              <li>
+                <a routerLink="/home/search">Search Jobs</a>
+              </li>
+              <li><a routerLink="/home/about-us">About Us</a></li>
+              <li><a routerLink="/home/FAQ">FAQ</a></li>
+              <li><a routerLink="/home/contact">Contact Us</a></li>
+              <li>
+                <a routerLink="/login"> Login </a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="role == 'SELLER'">
+              <li>
+                <a routerLink="/home" class="current">Home</a>
+              </li>
+              <li>
+                <a routerLink="/seller-dashboard">Seller Dashboard</a>
+              </li>
+
+              <li><a routerLink="/home/job-list">My Jobs</a></li>
+              <li><a routerLink="/home/contact">Contact Us</a></li>
+            </ng-container>
+
+            <ng-container *ngIf="role =='ADMIN'">
+              <li>
+                <a routerLink="/home" class="current">Home</a>
+              </li>
+              <li>
+                <a href="/admin-dashboard">Dashboard</a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="role == 'USER'">
+              <li>
+                <a routerLink="/home" class="current">Home</a>
+              </li>
+              <li>
+                <a href="/home/search">Search Jobs</a>
+              </li>
+              <li><a routerLink="/home/about-us">About Us</a></li>
+              <li><a routerLink="/home/FAQ">FAQ</a></li>
+              <li><a routerLink="/home/contact">Contact Us</a></li>
+              <li> <a routerLink="/home/order">Orders</a></li>
+              <li> <a routerLink="/home/files">Files</a></li>
               <a routerLink="messages">Messages</a>
-            </li>
-            <li *ngIf="isAdmin == true">
-              <a href="/admin-dashboard">Dashboard</a>
-            </li>
-            <li >
-              <a href="/home/search">Jobs</a>
-            </li>
-            <li *ngIf="role == 'SELLER'">
-              <a routerLink="/home/job-list">My Jobs</a>
-            </li>
-            <li *ngIf="role == 'USER'">
-              <a routerLink="/home/order">Orders</a>
-            </li>
-            <li *ngIf="role == 'USER'">
-              <a routerLink="/home/files">Files</a>
-            </li>
-            <li *ngIf="role != 'ADMIN'">
-              <a routerLink="/home/contact">Contact Us</a>
-            </li>
-            <li *ngIf="check == undefined; else other">
-              <a routerLink="/login"> Login </a>
-            </li>
-            <ng-template #other>
-              <li *ngIf="role == 'USER'">
+              <li>
                 <a routerLink="/home/seller-request"> Become Seller </a>
               </li>
-            </ng-template>
+            </ng-container>
           </ul>
         </nav>
         <div class="clearfix"></div>
@@ -59,39 +75,40 @@
 
       <div *ngIf="check != undefined" class="right-side d-flex flex-row">
         <div class="header-widget hide-on-mobile" *ngIf="role!='ADMIN'">
-					<!-- Notifications -->
-					<div class="header-notifications">
+          <!-- Notifications -->
+          <div class="header-notifications">
 
-						<!-- Trigger -->
-						<div class="header-notifications-trigger">
-							<a  href="#" class="notify">
+            <!-- Trigger -->
+            <div class="header-notifications-trigger">
+              <a href="#" class="notify">
                 <ng-container *ngIf="notCount == 0 else hasCount">
-                  <i  class="fa-solid fa-bell"></i>
+                  <i class="fa-solid fa-bell"></i>
                 </ng-container>
                 <ng-template #hasCount>
                   <i pBadge value="{{notCount}}" severity="danger" class="fa-solid fa-bell"></i>
                 </ng-template>
 
               </a>
-						</div>
+            </div>
 
-						<!-- Dropdown -->
-						<div class="header-notifications-dropdown">
+            <!-- Dropdown -->
+            <div class="header-notifications-dropdown">
 
-							<div class="header-notifications-headline">
-								<h4>Notifications</h4>
-								<button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left">
-									<i class="mx-3 fa-solid fa-square-check" style="color:#43CC87;"></i>
-								</button>
-							</div>
+              <div class="header-notifications-headline">
+                <h4>Notifications</h4>
+                <button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left">
+                  <i class="mx-3 fa-solid fa-square-check" style="color:#43CC87;"></i>
+                </button>
+              </div>
 
-							<div class="header-notifications-content">
-								<div class="header-notifications-scroll" data-simplebar>
-                  <ng-container *ngIf="notifications else no" >
-                    <ul >
+              <div class="header-notifications-content">
+                <div class="header-notifications-scroll" data-simplebar>
+                  <ng-container *ngIf="notifications else no">
+                    <ul>
                       <li class="notifications-not-read" *ngFor="let notification of notifications">
                         <a href="#">
-                          <span class="notification-icon"><i class="fa-solid fa-circle-info" style="color:#43CC87;"></i></span>
+                          <span class="notification-icon"><i class="fa-solid fa-circle-info"
+                              style="color:#43CC87;"></i></span>
                           <span class="notification-text">
                             {{notification.content}}
                           </span>
@@ -104,7 +121,8 @@
                     <ul>
                       <li class="notifications-not-read">
                         <a href="#" aria-disabled="true">
-                          <span class="notification-icon"><i class="fa-solid fa-circle-exclamation" style="color:red;"></i></span>
+                          <span class="notification-icon"><i class="fa-solid fa-circle-exclamation"
+                              style="color:red;"></i></span>
                           <span class="notification-text">
                             No Notification Yet.
                           </span>
@@ -113,51 +131,44 @@
                     </ul>
 
                   </ng-template>
-								</div>
-							</div>
+                </div>
+              </div>
 
-						</div>
-					</div>
+            </div>
+          </div>
           <button class="btn btn-msg" routerLink="/home/messages">
             <ng-container *ngIf="count == 0 else hasMessage">
-              <i  class="fa-solid fa-message"></i>
+              <i class="fa-solid fa-message"></i>
             </ng-container>
             <ng-template #hasMessage>
               <i pBadge value="{{count}}" severity="danger" class="fa-solid fa-message"></i>
             </ng-template>
           </button>
-				</div>
+        </div>
 
         <div class="header-widget">
           <div class="header-notifications user-menu">
             <div class="header-notifications-trigger">
-              <a class="disabled-link-hover"
-                ><div class="user-avatar status-online">
-                  <img
-                    src="data:image/jpeg; base64, {{
+              <a class="disabled-link-hover">
+                <div class="user-avatar status-online">
+                  <img src="data:image/jpeg; base64, {{
                       userResponse?.profilePicture
-                    }}"
-                    alt="profile picture"
-                  /></div
-              ></a>
+                    }}" alt="profile picture" />
+                </div>
+              </a>
             </div>
 
             <div class="header-notifications-dropdown">
               <div class="user-status">
                 <div class="user-details">
                   <div class="user-avatar status-online">
-                    <img
-                      width="50"
-                      height="50"
-                      src="data:image/jpeg; base64, {{
+                    <img width="50" height="50" src="data:image/jpeg; base64, {{
                         userResponse?.profilePicture
-                      }}"
-                      alt="profile image"
-                    />
+                      }}" alt="profile image" />
                   </div>
                   <div class="name d-flex flex-column mx-3 p-1">
                     <div class="user-name">{{ userResponse?.userName }}</div>
-                  <div class="user-type">{{ userResponse?.role?.roleName | titlecase}}</div>
+                    <div class="user-type">{{ userResponse?.role?.roleName | titlecase}}</div>
                   </div>
 
                 </div>
@@ -165,75 +176,55 @@
               </div>
               <ul class="user-menu-small-nav">
                 <li *ngIf="role != 'USER'">
-                  <a (click)="GoToDashboard()"
-                  class="profile-links"
-                    ><i class="fa-solid fa-cube mx-3"></i>Dashboard</a
-                  >
+                  <a (click)="GoToDashboard()" class="profile-links"><i class="fa-solid fa-cube mx-3"></i>Dashboard</a>
                 </li>
                 <li>
-                  <a routerLink="/home/edit-profile"
-                  class="profile-links"
-                    ><i class="fa-solid fa-gear mx-3"></i>Settings</a
-                  >
+                  <a routerLink="/home/edit-profile" class="profile-links"><i
+                      class="fa-solid fa-gear mx-3"></i>Settings</a>
                 </li>
 
                 <li>
                   <a (click)="logOut()" class="profile-links">
                     <i class="fa-solid fa-power-off mx-3"></i>
-                    Logout</a
-                  >
+                    Logout</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-          <div class="d-sm-block d-md-none mx-2">
-            <button class="side-bar" (click)="showSideBar()">
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
+        <div class="d-sm-block d-md-none mx-2">
+          <button class="side-bar" (click)="showSideBar()">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
 
       </div>
     </div>
   </div>
   <!-- Header / End -->
 </header>
-<p-sidebar
-  class="col-md-2 d-sm-block d-md-none mt-md-2"
-  [(visible)]="sidebarVisible"
-  position="left"
-  [blockScroll]="false"
->
+<p-sidebar class="col-md-2 d-sm-block d-md-none mt-md-2" [(visible)]="sidebarVisible" position="left"
+  [blockScroll]="false">
   <nav id="navigation-sidebar">
     <ul>
       <h1>Navigation</h1>
       <li>
-        <a routerLink="/home" class="current"
-          ><i class="fas fa-home"></i> Home</a
-        >
+        <a routerLink="/home" class="current"><i class="fas fa-home"></i> Home</a>
       </li>
       <li *ngIf="role == 'SELLER'">
-        <a routerLink="/seller-dashboard"
-          ><i class="fas fa-briefcase"></i> For Employers</a
-        >
+        <a routerLink="/seller-dashboard"><i class="fas fa-briefcase"></i> For Employers</a>
       </li>
       <li *ngIf="role == 'USER'">
         <a routerLink="messages"><i class="fas fa-envelope"></i> Messages</a>
       </li>
       <li *ngIf="isAdmin == true">
-        <a href="/admin-dashboard"
-          ><i class="fas fa-tachometer-alt"></i> Dashboard</a
-        >
+        <a href="/admin-dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
       </li>
       <li *ngIf="role == 'SELLER'">
-        <a routerLink="/home/job-list"
-          ><i class="fas fa-briefcase"></i> My Jobs</a
-        >
+        <a routerLink="/home/job-list"><i class="fas fa-briefcase"></i> My Jobs</a>
       </li>
       <li *ngIf="role == 'USER'">
-        <a routerLink="/home/order"
-          ><i class="fas fa-shopping-cart"></i> Orders</a
-        >
+        <a routerLink="/home/order"><i class="fas fa-shopping-cart"></i> Orders</a>
       </li>
       <li *ngIf="role == 'USER'">
         <a routerLink="/home/files"><i class="fas fa-file-alt"></i> Files</a>
@@ -243,8 +234,7 @@
       </li>
       <ng-template #other>
         <li *ngIf="role == 'USER'">
-          <a routerLink="/home/seller-request"
-            ><i class="fas fa-user-plus"></i> Become Seller
+          <a routerLink="/home/seller-request"><i class="fas fa-user-plus"></i> Become Seller
           </a>
         </li>
       </ng-template>

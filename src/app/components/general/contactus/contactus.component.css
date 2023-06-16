@@ -62,3 +62,14 @@
   .margin-btn{
     margin-top: 50%;
   }
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    background:linear-gradient(45deg,#04b25c, #1eec00);
+    color: #FFFFFF;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 34px;
+  }

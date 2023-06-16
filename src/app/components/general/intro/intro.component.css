@@ -1,8 +1,8 @@
 #intro-section {
   height: 100vh;
-  background-image: url("src/assets/images/home-background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url("src/assets/images/home.jpg");
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
   background-attachment: fixed;
 }
 @media (max-width: 767px) {
@@ -15,7 +15,7 @@
   padding: 50px;
 }
 h3 {
-  color: #fff;
+  color: #000;
 }
 .search-form {
   background-color: #fff;

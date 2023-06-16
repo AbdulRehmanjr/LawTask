@@ -2,14 +2,10 @@
   <section id="intro-section">
     <div class="row">
       <div class="col-md-12">
-        <div class="intro-headline text-center margin-top">
-          <h3>
-            <strong>Hire experts or be hired for any job, any time.</strong>
-            <br />
-            <span>Thousands of small businesses.</span>
-            <br />
-            <span>Turn your ideas into reality.</span>
-          </h3>
+        <div class="intro-headline margin-top text-center">
+          <h2>
+            <strong>Quality Legal Work ,<br> Affordable Flat Rates.</strong>
+          </h2>
         </div>
       </div>
     </div>
@@ -19,7 +15,7 @@
           <form [formGroup]="searchForm" class="row" (ngSubmit)="onSubmit()">
             <span class="col-sm-9 d-flex flex-row">
               <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Jobs" formControlName="category" />
+              <input type="text" placeholder="What type of legal services do you need done today?" formControlName="category" />
             </span>
             <button class="col-sm-1 mx-auto btn btn-success" >Search</button>
           </form>
@@ -27,26 +23,5 @@
         </div>
       </div>
     </div>
-    <div class="row">
-			<div class="col-sm-6 offset-sm-1 offset-md-4 margin-top">
-				<ul class="intro-stats">
-					<li>
-						<strong class="counter">{{info?.jobs}}</strong>
-            <br>
-						<span class="intro-stats-title">Jobs Posted</span>
-					</li>
-					<li>
-						<strong class="counter">{{info?.users}}</strong>
-            <br>
-						<span class="intro-stats-title">Users</span>
-					</li>
-					<li>
-						<strong class="counter">{{info?.sellers}}</strong>
-            <br>
-						<span class="intro-stats-title">Freelancers</span>
-					</li>
-				</ul>
-			</div>
-		</div>
   </section>
 

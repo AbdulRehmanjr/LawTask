@@ -25,6 +25,7 @@ import { BadgeModule } from 'primeng/badge';
 import { RatingModule } from 'primeng/rating'
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DeferModule } from 'primeng/defer';
+import { AccordionModule } from 'primeng/accordion';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -57,6 +58,8 @@ import { EditprofileComponent } from '../../components/general/editprofile/editp
 import { ForgotpassordComponent } from '../../components/general/forgotpassord/forgotpassord.component';
 import { ContactusComponent } from '../../components/general/contactus/contactus.component';
 import { SpinnerService } from 'src/app/interceptor/spinner.service';
+import { AboutComponent } from '../../components/general/about/about.component';
+import { FaqComponent } from '../../components/general/faq/faq.component';
 
 const routes: Routes = [
   {
@@ -113,9 +116,14 @@ const routes: Routes = [
       },
       {
         path: 'privacy-policy', component: PrivacyComponent
-      }, {
-        path: 'terms', component: TermofuseComponent
+      },
+      {
+        path:'about-us',component:AboutComponent
+      },
+      {
+        path:'FAQ',component:FaqComponent
       }
+
     ]
   },
   {
@@ -148,8 +156,11 @@ const routes: Routes = [
     EditprofileComponent,
     ForgotpassordComponent,
     ContactusComponent,
+    AboutComponent,
+    FaqComponent,
   ],
   imports: [
+    AccordionModule,
     DeferModule,
     ProgressBarModule,
     RatingModule,

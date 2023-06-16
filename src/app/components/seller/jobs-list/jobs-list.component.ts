@@ -52,7 +52,7 @@ export class JobsListComponent implements OnInit {
       },
       error:(error:any)=>{
 
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error in fetching Jobs.' })
+        this.messageService.add({ severity: 'info', summary: 'No Job', detail: 'No job found' })
       },
       complete:()=>{
 
