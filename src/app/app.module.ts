@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+import { DeferModule } from 'primeng/defer';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -18,7 +21,7 @@ import { RequestInterceptor } from './interceptor/request.interceptor';
     AppComponent
   ],
   imports: [
-
+    DeferModule,
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
@@ -36,7 +39,9 @@ import { RequestInterceptor } from './interceptor/request.interceptor';
     },
 
   ],
-  exports: [],
+  exports: [
+    DeferModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

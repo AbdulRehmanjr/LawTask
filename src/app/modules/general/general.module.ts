@@ -24,6 +24,7 @@ import { ButtonModule } from 'primeng/button';
 import { BadgeModule } from 'primeng/badge';
 import { RatingModule } from 'primeng/rating'
 import { ProgressBarModule } from 'primeng/progressbar';
+import { DeferModule } from 'primeng/defer';
 
 // custom modules
 import { SharedModule } from '../shared/shared.module';
@@ -149,6 +150,7 @@ const routes: Routes = [
     ContactusComponent,
   ],
   imports: [
+    DeferModule,
     ProgressBarModule,
     RatingModule,
     BadgeModule,
