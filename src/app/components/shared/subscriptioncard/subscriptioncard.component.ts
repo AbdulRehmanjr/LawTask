@@ -35,7 +35,6 @@ export class SubscriptioncardComponent implements OnInit {
           window.location.href = response;
         },
         error:(_err:any)=>{
-          console.log(_err)
           this.messageService.add({ severity: 'error', summary: 'Error', detail: `Cant Update to Lower Packages.` })
         },
         complete:()=>{

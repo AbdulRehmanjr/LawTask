@@ -65,11 +65,9 @@
               >
                 Create an Offer
               </button>
-              <!-- <button class="btn btn-danger float-left">
-            <i class="fa-solid fa-trash"></i>
-          </button> -->
+
             </div>
-            <div #chatContainer class="message-content-inner">
+            <div #chatContainer class="message-content-inner hide-scrollbar">
               <ng-container *ngFor="let message of oldMessages">
                 <div
                   [ngClass]="{

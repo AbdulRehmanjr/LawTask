@@ -17,11 +17,14 @@ export class SpinnerService implements HttpInterceptor {
         next: (event) => {
           if (event instanceof HttpResponse) {
             // Hide the spinner on successful response
-            this.spinner.hide();
+
           }
         },
         error: (error) => {
           // Hide the spinner on error
+          this.spinner.hide();
+        },
+        complete:()=>{
           this.spinner.hide();
         }
       })

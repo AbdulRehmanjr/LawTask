@@ -48,7 +48,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
 
   }
   ngAfterViewChecked(): void {
-
+    // this.scrollToBottom()
   }
 
   ngOnInit(): void {
@@ -109,21 +109,6 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
       }
     })
   }
-  /**
-   * @deprecated
-   * @param $event
-   */
-  onFileSelected($event: any) {
-    const file = $event.target.files[0]
-    const reader = new FileReader();
-    reader.onload = (event: any) => {
-
-    };
-    //reader.readAsArrayBuffer(file);
-    reader.readAsDataURL(file);
-
-  }
-
   sendMessage($event: Event, data: any) {
 
     this.scrollToBottom()
@@ -162,12 +147,15 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
   }
 
   scrollToBottom(): void {
-    const container = this.chatContainer?.nativeElement
-    if (container) {
-      container.scrollTop = container?.scrollHeight;
+    const container = this.chatContainer?.nativeElement;
+    if (this.chatContainer) {
+      const container = this.chatContainer.nativeElement;
+    setTimeout(() => {
+      container.scrollTop = container.scrollHeight;
+    }, 100);
     }
-
   }
+
 
   fetchMessage() {
     this.chatListService.getAllMessages(this.currentUserId, this.selectedUser.userId).subscribe({
