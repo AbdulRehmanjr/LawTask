@@ -67,6 +67,13 @@
         <div class="clearfix"></div>
       </div>
 
+    <div *ngIf="check == undefined" class="right-side">
+      <div class="d-sm-block d-lg-none mx-2">
+        <button class="side-bar" (click)="showSideBar()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div >
 
       <div *ngIf="check != undefined" class="right-side d-flex flex-row">
         <div class="header-widget hide-on-mobile" *ngIf="role!='ADMIN'">
@@ -192,8 +199,6 @@
             <i class="fas fa-bars"></i>
           </button>
         </div>
-
-
       </div>
     </div>
   </div>
