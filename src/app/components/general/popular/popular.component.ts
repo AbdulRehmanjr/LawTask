@@ -72,26 +72,6 @@ export class PopularComponent implements OnInit {
 
       },
       complete:()=>{
-        let flagInfo:any
-        this.freelancers.map(
-          data=>{
-              this.http.get(` https://restcountries.com/v3.1/name/${data.seller.location}`)
-            .subscribe({
-              next:(response:any)=>{
-
-                flagInfo =  response
-
-              },
-              error:()=>{
-
-              },
-              complete:()=>{
-                data.flag = flagInfo[0].flags['svg']
-
-              }
-            })
-          }
-        )
       }
     })
   }

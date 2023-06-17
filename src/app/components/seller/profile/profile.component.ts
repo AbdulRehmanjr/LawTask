@@ -49,20 +49,6 @@ export class ProfileComponent implements OnInit {
           this.router.navigate(['/not-found'])
         },
         complete: () => {
-            let flagInfo:any
-                  this.http.get(` https://restcountries.com/v3.1/name/${this.freelancerData?.seller.location}`)
-                .subscribe({
-                  next:(response:any)=>{
-                    flagInfo =  response
-                  },
-                  error:()=>{
-
-                  },
-                  complete:()=>{
-                    this.freelancerData.flag = flagInfo[0].flags['svg']
-                  }
-                })
-
           this.fetchJobs()
         }
       }
