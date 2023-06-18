@@ -47,7 +47,20 @@ export class ProfileComponent implements OnInit {
           this.freelancerData = response
         },
         error: (_error) => {
-          this.router.navigate(['/not-found'])
+          this.freelancerService.getFreelancerById(this.freelanceId).subscribe(
+            {
+              next: (response: Freelancer) => {
+                this.freelancerData = response
+              },
+              error: (_error) => {
+                this.router.navigate(['/not-found'])
+              },
+              complete: () => {
+
+              }
+            }
+          )
+
         },
         complete: () => {
           this.fetchJobs()
