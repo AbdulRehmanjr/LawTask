@@ -56,14 +56,17 @@ export class ProfileComponent implements OnInit {
                 this.router.navigate(['/not-found'])
               },
               complete: () => {
-
+                  this.fetchJobs()
               }
             }
           )
 
         },
         complete: () => {
-          this.fetchJobs()
+          if(this.jobs == undefined){
+            this.fetchJobs()
+          }
+
         }
       }
     )
