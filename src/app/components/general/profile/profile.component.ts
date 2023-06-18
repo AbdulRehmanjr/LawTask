@@ -60,7 +60,6 @@ export class ProfileComponent implements OnInit {
               }
             }
           )
-
         },
         complete: () => {
           if(this.jobs == undefined){

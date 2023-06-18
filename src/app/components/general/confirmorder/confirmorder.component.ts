@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Order } from 'src/app/classes/order';
@@ -19,7 +18,6 @@ export class ConfirmorderComponent {
   file:File
 
   constructor(private route:ActivatedRoute,
-    private form:FormBuilder,
     private payment:PaymentService,
     private orderService:OrderService,
     private messageService:MessageService){}
@@ -38,10 +36,12 @@ export class ConfirmorderComponent {
         this.confirmOrder = response
       },
       error:(_error)=>{
-        console.log(_error)
+
       },
       complete:()=>{
-
+        this.confirmOrder.customerName = ''
+        this.confirmOrder.customerEmail = ''
+        console.log(this.confirmOrder)
       }
     })
   }
@@ -64,7 +64,7 @@ export class ConfirmorderComponent {
       },
       error:(_error:any)=>{
         console.error(_error)
-        this.messageService.add({severity:'error',summary:'Error',detail:'Error Making Order'})
+        this.messageService.add({severity:'info',summary:'Information',detail:`${_error.error}`})
       },
       complete:()=>{
         this.payment.paymentIntent(this.confirmOrder).subscribe({
@@ -73,7 +73,7 @@ export class ConfirmorderComponent {
           },
           error:(_err:any)=>{
 
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: `Something went Wrong. Please check you internet connection or provided information` })
+            this.messageService.add({ severity: 'info', summary: 'Error', detail: `Something went Wrong. Please check you internet connection or provided information` })
           },
           complete:()=>{
 

@@ -3,10 +3,6 @@
     <div class="col-md-8 offset-md-2">
       <p-toast position="bottom-right"></p-toast>
       <div class="sign-in-form">
-        <ul class="popup-tabs-nav">
-          <li class="text-center">Make an Offer</li>
-        </ul>
-
         <div class="popup-tabs-container">
           <!-- Tab -->
           <div class="popup-tab-content" id="tab">
@@ -22,6 +18,7 @@
                   <input
                     type="text"
                     name="name"
+                    placeholder="Enter your Name"
                     class="input-text with-border"
                     [(ngModel)]="confirmOrder.customerName"
                     #name="ngModel"
@@ -36,6 +33,7 @@
                     type="email"
                     name="email"
                     class="input-text with-border"
+                    placeholder="Enter your email address"
                     [(ngModel)]="confirmOrder.customerEmail"
                     #email="ngModel"
                     id="emailaddress"

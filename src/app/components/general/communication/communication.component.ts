@@ -17,6 +17,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestroy {
 
   messages$: BehaviorSubject<any[]>
+  messages:any[]
   currentUserId: string
   users: UserChat[]
   selectedUser: User
@@ -42,10 +43,8 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
   }
   ngOnDestroy(): void {
     if(this.selectedUser){
-
       this.chatService.disconect(this.selectedUser.userId)
     }
-
   }
   ngAfterViewChecked(): void {
     // this.scrollToBottom()
@@ -57,9 +56,9 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
     this.role = user['authority']
     this.fetchUser()
     this.fetchChatList()
-
+    this.receiveMessages()
     this.chatService.onConnect()
-    this.messages$ = this.chatService.getMessages()
+
 
     this.status()
 
@@ -70,7 +69,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
         this.isconnected = response
         if (response === false) {
           this.messageService.add({
-            severity: 'error',
+            severity: 'warning',
             detail: 'Connection Error Please Reload the window',
             summary: 'Connection Failure'
           })
@@ -81,6 +80,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
   showSideBar() {
     this.sidebarVisible = true
   }
+
   fetchChatList() {
     this.chatListService.getChatList(this.currentUserId).subscribe({
       next: (response: UserChat[]) => {
@@ -109,6 +109,15 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
       }
     })
   }
+  receiveMessages(){
+    this.chatService.getMessages().subscribe({
+      next: (response: any[]) => {
+          this.messages = response
+      },
+      error: (error: any) => console.log(error),
+      complete: () => console.log()
+    })
+  }
   sendMessage($event: Event, data: any) {
 
     this.scrollToBottom()
@@ -131,11 +140,12 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
     // Only push the sent message if the current user is the sender or recipient
     if (this.isconnected == true) {
       if (message.senderName === this.currentUserId) {
-        const currentMessages = this.messages$.value;
-        const updatedMessages = [...currentMessages, message];
-        this.messages$.next(updatedMessages)
+
+        const updatedMessages = [...this.messages, message];
+        this.messages = updatedMessages
         this.chatService.sendMessage(message)
       }
+
     } else {
       this.messageService.add({
         severity: 'error',
@@ -175,6 +185,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
             }
           }
         )
+       this.scrollToBottom()
       }
     })
   }
@@ -183,7 +194,7 @@ export class CommunicationComponent implements OnInit, AfterViewChecked,OnDestro
     this.isClicked = !this.isClicked;
     this.selectedUser = user.sender
     const values = []
-    this.messages$.next(values)
+    this.messages = []
     this.chatService.connectToUser(this.selectedUser?.userId)
     this.fetchMessage()
     this.markMessagesAsRead(user.sender.userId,user.receiver.userId)

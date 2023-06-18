@@ -22,7 +22,7 @@ export class JobsService {
   }
 
   getJobsByUserId(userId: string) {
-    return this.http.get(`${this.baseUrl}/${userId}`, { observe: 'body' })
+    return this.http.get(`${this.baseUrl}/${userId}`, { observe: 'body'})
   }
 
   getJobsByJobName(jobName: string) {

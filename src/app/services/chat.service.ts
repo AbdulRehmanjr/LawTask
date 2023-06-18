@@ -21,8 +21,6 @@ export class ChatService {
   private currentUserId: string = ''
   private currentReceiverId: string = ''
   isConnected: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private reconnectInterval: number = 5000;
-  private reconnectTimer: any;
   private subscriptions: { [key: string]: any } = {};
 
   constructor(private messageService: MessageService,
@@ -34,12 +32,14 @@ export class ChatService {
   private initWebSocket() {
     this.client.onStompError = (frame) => {
       this.isConnected.next(false)
+      this.onConnect()
     };
     this.client.onConnect = (frame) => {
       this.isConnected.next(true)
     };
     this.client.onWebSocketClose = (frame)=>{
       this.isConnected.next(false)
+      this.onConnect()
     }
   }
 
