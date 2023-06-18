@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
 
   fetchFreelancer() {
 
-    this.freelancerService.getFreelancerById(this.freelanceId).subscribe(
+    this.freelancerService.getFreelancerByUserId(this.freelanceId).subscribe(
       {
         next: (response: Freelancer) => {
           this.freelancerData = response
@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
         this.jobs = response
       },
       error: (_error: any) => {
-        // this.router.navigate(['/not-found'])
+
       },
       complete: () => {
 
@@ -102,10 +102,6 @@ export class ProfileComponent implements OnInit {
         detail: 'Please Login First'
       })
     }
-
-
-
-
     }
 
 

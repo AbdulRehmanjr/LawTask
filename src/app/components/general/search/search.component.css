@@ -215,3 +215,14 @@ input:checked + .switch-button:before {
 select{
   padding: 0;
 }
+
+strong.description{
+  font-size: 14px;
+  height:150px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  text-align: justify;
+  text-overflow: ellipsis;
+  overflow:hidden;
+}

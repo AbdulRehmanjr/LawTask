@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -24,6 +24,8 @@ export class SearchComponent implements OnInit {
   isFound: boolean = true
   categories: Category[]
   filteredJobs: Job[]
+  isOverFlowed:boolean = false;
+
 
   constructor(private jobService: JobsService,
     private message: MessageService,
@@ -54,6 +56,7 @@ export class SearchComponent implements OnInit {
 
     this.createForm()
   }
+
 
   createForm(): void {
     this.search = this.formBuilder.group({
@@ -106,25 +109,13 @@ export class SearchComponent implements OnInit {
 
   }
   sendMessage(sellerId: string) {
-    // const userId = JSON.parse(localStorage.getItem('user'))['userId']
-
-    // this.chatList.addNewUser(userId, receiverId).subscribe({
-    //   next: (_response) => {
-
-    //   },
-    //   error: (_error) => {
-
-    //     // this.router.navigate(['/home/messages'])
-    //   },
-    //   complete: () => {
-    //     this.router.navigate(['/home/messages'])
-    //   }
-    // })
-    const queryParams = {
-      id:sellerId
+    if(sellerId){
+      const queryParams = {
+        id:sellerId
+      }
+      this.router.navigate([`/home/profile`],{queryParams})
     }
 
-    this.router.navigate([`/home/profile`],{queryParams})
 
   }
   onSubmit(): void {

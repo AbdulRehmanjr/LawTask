@@ -3,7 +3,7 @@ import { MessageService } from 'primeng/api';
 import { UserDashboard } from 'src/app/classes/userdashboard';
 import { PaymentService } from 'src/app/services/payment.service';
 import { UserdashboardService } from 'src/app/services/userdashboard.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -86,22 +86,35 @@ export class DashboardComponent implements OnInit {
     })
   }
   cancel() {
-    this.payment.deleteSubscription(JSON.parse(localStorage.getItem('user'))['email']).subscribe({
-      next: (_response: any) => {
-        this.message.add({
-          severity: 'success',
-          summary: 'Deleted',
-          detail: 'Subscription Canceled'
-        })
-      },
-      error: (error: any) => {
-        this.message.add({
-          severity: 'error',
-          summary: 'Error!!!',
-          detail: 'Subscription not found'
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.payment.deleteSubscription(JSON.parse(localStorage.getItem('user'))['email']).subscribe({
+          next: (_response: any) => {
+            this.message.add({
+              severity: 'success',
+              summary: 'Deleted',
+              detail: 'Subscription Canceled'
+            })
+          },
+          error: (error: any) => {
+            this.message.add({
+              severity: 'error',
+              summary: 'Error!!!',
+              detail: 'Subscription not found'
+            })
+          }
         })
       }
     })
+
   }
 
 }

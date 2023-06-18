@@ -28,7 +28,6 @@ export class ProfileComponent implements OnInit {
     private messageService: MessageService,
     private jobService: JobsService,
     private chatList: ChatlistService,
-    private http:HttpClient
   ) { }
 
   ngOnInit(): void {

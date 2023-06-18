@@ -7859,6 +7859,7 @@ color:#000;
 .task-listing-bid-inner {
 	width: 100%;
 	padding: 35px;
+  /* overflow: hidden; */
 }
 
 .task-listing-bid-inner .button {
@@ -7875,6 +7876,7 @@ color:#000;
 .task-listing-bid .task-offers {
 	margin-bottom: 15px;
 /*	text-align: center;*/
+/* overflow: hidden; */
 }
 
 .task-listing-bid .task-offers strong {
