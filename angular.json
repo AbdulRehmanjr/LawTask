@@ -24,7 +24,8 @@
             "allowedCommonJsDependencies": [
               "jquery",
               "file-saver",
-              "sockjs-client"
+              "sockjs-client",
+              "sweetalert2"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
