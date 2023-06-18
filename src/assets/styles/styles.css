@@ -8067,7 +8067,7 @@ color:#000;
 .tasks-list-container.tasks-grid-layout .task-listing-bid-inner {
 	display: flex;
 	align-items: center;
-	padding: 18px 32px;
+	padding: 18px 19px;
 }
 
 .tasks-list-container.tasks-grid-layout .task-listing-bid-inner .task-offers {
@@ -8080,7 +8080,7 @@ color:#000;
 .tasks-list-container.tasks-grid-layout  .task-listing .task-listing-details {
 	display: flex;
     align-items: center;
-	padding: 28px 32px;
+	padding: 16px 15px;
 }
 
 /* Media Queries for Tasks List */

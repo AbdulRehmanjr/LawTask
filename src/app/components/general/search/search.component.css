@@ -217,10 +217,10 @@ select{
 }
 
 strong.description{
-  font-size: 14px;
-  height:150px;
+  font-size: 11px;
+  height:129px;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   text-align: left;
   text-overflow: ellipsis;
