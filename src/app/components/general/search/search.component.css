@@ -222,7 +222,7 @@ strong.description{
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
-  text-align: justify;
+  text-align: left;
   text-overflow: ellipsis;
   overflow:hidden;
 }
